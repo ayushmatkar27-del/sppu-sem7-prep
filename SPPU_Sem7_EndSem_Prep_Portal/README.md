@@ -25,3 +25,5 @@ The portal uses direct relative paths:
 3. **Cloud Computing**: Hardware Virtualization, Hypervisors, CIA Security Model, CSA Cloud Threats, AWS & GAE Services, IoT Integration.
 4. **Deep Learning (Elective IV)**: Batch Normalization, Activations & Gradients, VGGNet vs AlexNet, DenseNet, LSTM Cells, Transfer Learning.
 5. **JavaScript (Elective III)**: Functions & Closures, Objects, Regular Expressions, DOM Manipulation, AJAX & ES6+.
+
+<!-- Deployed Live at: https://ayushmatkar27-del.github.io/sppu-sem7-prep/ -->
