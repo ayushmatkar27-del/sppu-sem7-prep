@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript All Exam Codes & Short Snippets | SPPU Sem 7</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #e11d48;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .nav-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+        .brand-icon {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 19px; color: white;
+            box-shadow: 0 4px 10px rgba(225, 29, 72, 0.25);
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; letter-spacing: -0.3px; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .nav-search-box {
+            position: relative; flex: 1; max-width: 440px;
+        }
+        .nav-search-input {
+            width: 100%;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 8px 16px 8px 36px;
+            font-size: 13px; font-family: inherit; outline: none; transition: all 0.2s;
+        }
+        .nav-search-input:focus {
+            background: #ffffff; border-color: #e11d48; box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15);
+        }
+        .nav-search-icon {
+            position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #94a3b8; pointer-events: none;
+        }
+
+        .search-suggestions-dropdown {
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+            background: #ffffff; border-radius: 14px; border: 1px solid #cbd5e1;
+            box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.2);
+            max-height: 480px; overflow-y: auto; z-index: 1000; display: none;
+        }
+        .search-suggestions-dropdown.open { display: block; }
+        .suggestion-header {
+            padding: 10px 14px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; background: #f8fafc; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between;
+        }
+        .suggestion-item {
+            padding: 12px 14px; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.15s; text-decoration: none; display: block; color: inherit;
+        }
+        .suggestion-item:hover { background: #fff1f2; }
+        .sugg-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .sugg-subj { font-size: 10.5px; font-weight: 700; color: #e11d48; background: #ffe4e6; padding: 2px 8px; border-radius: 10px; }
+        .sugg-unit { font-size: 10.5px; font-weight: 700; color: #475569; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; }
+        .sugg-freq { font-size: 10.5px; font-weight: 700; color: #991b1b; background: #fee2e2; padding: 2px 8px; border-radius: 10px; margin-left: auto; }
+        .sugg-title { font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 3px; line-height: 1.35; }
+        .sugg-snippet { font-size: 12px; color: #64748b; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .sugg-match { background: #fef08a; color: #854d0e; font-weight: 700; padding: 0 2px; border-radius: 2px; }
+
+        .nav-links { display: flex; align-items: center; gap: 6px; }
+        .nav-item {
+            padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; white-space: nowrap;
+        }
+        .nav-item:hover, .nav-item.active { background: #f1f5f9; color: var(--text-main); }
+        .nav-item.active { font-weight: 700; }
+
+        /* Hero */
+        .code-hero {
+            background: linear-gradient(135deg, #881337 0%, #be123c 50%, #e11d48 100%);
+            color: #ffffff;
+            padding: 45px 24px;
+        }
+        .code-hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .code-hero h1 {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px;
+        }
+        .code-hero p {
+            font-size: 15px;
+            opacity: 0.95;
+            max-width: 680px;
+            line-height: 1.5;
+        }
+
+        /* Main Container */
+        .code-main {
+            max-width: 1100px;
+            margin: 35px auto 60px auto;
+            padding: 0 24px;
+            flex: 1;
+        }
+
+        /* Navigation Filter by Unit */
+        .unit-filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { background: #f1f5f9; }
+        .filter-btn.active {
+            background: #e11d48;
+            color: white;
+            border-color: #e11d48;
+            box-shadow: 0 4px 10px rgba(225, 29, 72, 0.25);
+        }
+
+        /* Code Cards */
+        .code-card {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .code-card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .code-card-header {
+            padding: 24px 28px 18px 28px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .code-badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .badge-u {
+            background: #ede9fe; color: #5b21b6; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px;
+        }
+        .badge-freq {
+            background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px;
+        }
+        .badge-marks {
+            background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px;
+        }
+
+        .code-card-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        .code-card-exp {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        /* Section Blocks */
+        .code-section-block {
+            padding: 22px 28px;
+        }
+        .code-section-block.detailed {
+            background: #ffffff;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+        .code-section-block.exam {
+            background: #fdfaf6;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .detailed-lbl { color: #1e40af; }
+        .exam-lbl { color: #b45309; }
+
+        .copy-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.15s;
+        }
+        .copy-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        pre.code-pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin-bottom: 14px;
+        }
+        pre.exam-pre {
+            background: #1c1917;
+            border: 1px solid #fbbf24;
+            color: #fef08a;
+        }
+
+        .code-notes {
+            font-size: 13px;
+            color: #475569;
+        }
+        .code-notes ul {
+            margin: 6px 0 0 0;
+            padding-left: 20px;
+        }
+
+        .exam-tip {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-white { background: #ffffff; color: var(--text-main); }
+        .btn-white:hover { background: #f8fafc; transform: translateY(-2px); }
+        .btn-glass { background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .btn-glass:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-container {
+            background: #ffffff; width: 100%; max-width: 1120px; height: 90vh;
+            border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .modal-header {
+            padding: 16px 24px; background: #0f172a; color: white; display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-close {
+            background: rgba(255, 255, 255, 0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-body { flex: 1; background: #f8fafc; }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+
+        footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .code-hero-container { flex-direction: column; align-items: flex-start; }
+            .nav-links { display: none; }
+            .nav-search-box { max-width: 180px; }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">🎓</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">JavaScript Exam Codes & Snippets</div>
+                </div>
+            </a>
+
+            <!-- Universal Real-Time Search Bar -->
+            <div class="nav-search-box">
+                <span class="nav-search-icon">🔍</span>
+                <input type="text" id="globalSearchInput" class="nav-search-input" placeholder="Search any topic, code, or question..." autocomplete="off">
+                <div id="searchDropdown" class="search-suggestions-dropdown"></div>
+            </div>
+
+            <div class="nav-links"><a href="cram-mode.html" class="nav-item" style="color: #ef4444; font-weight: 700;">⚡ Cram Mode</a><a href="diagrams.html" class="nav-item" style="color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a><a href="calculators.html" class="nav-item" style="color: #10b981; font-weight: 700;">🧮 Calculators</a><a href="exam-guide.html" class="nav-item" style="color: #f59e0b; font-weight: 700;">🎯 Strategy</a><a href="cheatsheet.html" class="nav-item" style="color: #3b82f6; font-weight: 700;">📐 Formulas</a><a href="quiz.html" class="nav-item" style="color: #ec4899; font-weight: 700;">❓ Quiz</a><a href="tracker.html" class="nav-item" style="color: #14b8a6; font-weight: 700;">✅ Tracker</a><a href="index.html" class="nav-item">🏠 Home</a><a href="rmt.html" class="nav-item">📡 RMT</a><a href="vlsi.html" class="nav-item">⚡ VLSI</a><a href="cloud.html" class="nav-item">☁️ Cloud</a><a href="deep-learning.html" class="nav-item">🧠 DL</a><a href="javascript.html" class="nav-item">💻 JS</a></div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="code-hero">
+        <div class="code-hero-container">
+            <div>
+                <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                    Dedicated JavaScript Exam Code Bank
+                </span>
+                <h1 style="margin-top: 8px;">💻 JavaScript Programs & Exam Snippets</h1>
+                <p>Every coding question asked in SPPU End-Sem exams across Units 3, 4, 5, and 6. Each question includes a <strong>Detailed Architecture Code</strong> followed by an <strong>Ultra-Short Exam Snippet</strong> to write quickly and score full 6/6 marks.</p>
+            </div>
+            <div>
+                <a href="javascript.html" class="btn btn-white">
+                    ← Back to JS Subject Page
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="code-main">
+        <!-- Filter Bar -->
+        <div class="unit-filter-bar">
+            <button class="filter-btn active" onclick="filterUnit('all', this)">All Units (12 Codes)</button>
+            <button class="filter-btn" onclick="filterUnit('3', this)">Unit 3 (Functions & Objects)</button>
+            <button class="filter-btn" onclick="filterUnit('4', this)">Unit 4 (Strings & RegEx)</button>
+            <button class="filter-btn" onclick="filterUnit('5', this)">Unit 5 (DOM & Events)</button>
+            <button class="filter-btn" onclick="filterUnit('6', this)">Unit 6 (Forms & Calculators)</button>
+        </div>
+
+        <!-- Code Cards List -->
+        <div id="codeCardsContainer">
+            
+    <div class="code-card" id="c1">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 3</span>
+                <span class="badge-freq">🔥 5x repeated (Nov 2022, May 2023, Nov 2023, May 2024, May 2026)</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #1. Append Object to an Array & Check Array Datatype</h3>
+            <p class="code-card-exp">This problem requires two essential operations: (1) appending a JavaScript object into an existing array using the <code>push()</code> method, and (2) verifying if a variable is genuinely an Array datatype using <code>Array.isArray()</code> (since <code>typeof []</code> misleadingly returns <code>'object'</code>).</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-1', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-1">// Step 1: Create an initial array and a new object
+let studentList = [
+    { id: 101, name: "Rahul", branch: "E&amp;TC" },
+    { id: 102, name: "Sneha", branch: "Computer" }
+];
+
+let newStudent = { id: 103, name: "Ayush", branch: "IT" };
+
+// Step 2: Append the object to the array using push()
+studentList.push(newStudent);
+console.log("Updated Array after push:", studentList);
+
+// Step 3: Check if variable is an array datatype
+// Note: typeof studentList returns 'object', which is ambiguous!
+// Correct approach 1: Array.isArray() [Recommended ES5+]
+console.log("Is studentList an Array? -&gt;", Array.isArray(studentList)); // true
+console.log("Is newStudent an Array?  -&gt;", Array.isArray(newStudent));  // false
+
+// Correct approach 2: instanceof operator
+console.log("instanceof Array check   -&gt;", studentList instanceof Array); // true</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li><code>array.push(item)</code> inserts element at the end of the array and returns new length.</li><li><code>Array.isArray(val)</code> reliably returns boolean <code>true</code> if operand is an array.</li><li>Never use <code>typeof val === 'array'</code> because arrays are objects in JavaScript prototype hierarchy.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-1', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-1">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+let arr = [{ id: 1 }];
+let obj = { id: 2, name: "SPPU" };
+
+// 1. Append object to array
+arr.push(obj);
+
+// 2. Check if object is an array
+console.log(Array.isArray(arr)); // true
+console.log(Array.isArray(obj)); // false</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c2">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 3</span>
+                <span class="badge-freq">🔥 8x repeated (100% of exams)</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #2. Anonymous Functions & Passing Function as Argument (Callback)</h3>
+            <p class="code-card-exp">An anonymous function is a function defined without a name identifier. It is stored in a variable (function expression), passed as a callback argument, or invoked immediately (IIFE).</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-2', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-2">// 1. Anonymous Function assigned to a variable
+const calculateSquare = function(num) {
+    return num * num;
+};
+console.log("Square of 5:", calculateSquare(5)); // Output: 25
+
+// 2. Anonymous function passed as a Callback Argument
+function processNumber(val, callbackFn) {
+    console.log("Processing number:", val);
+    let result = callbackFn(val);
+    console.log("Callback output:", result);
+}
+
+// Passing inline anonymous function
+processNumber(10, function(n) {
+    return n * 3; // Multiplies by 3
+});
+
+// 3. Immediately Invoked Function Expression (IIFE)
+(function() {
+    let secret = "Encapsulated Scope";
+    console.log("IIFE Executed automatically:", secret);
+})();</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Anonymous functions are NOT hoisted; they can only be called after their definition.</li><li>Frequently used in event listeners: <code>btn.addEventListener('click', function() { ... })</code>.</li><li>Avoids polluting the global namespace.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-2', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-2">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+// Anonymous function assigned to a variable
+let add = function(a, b) {
+    return a + b;
+};
+console.log(add(10, 20)); // 30
+
+// Anonymous callback in setTimeout
+setTimeout(function() {
+    console.log("Executed anonymously!");
+}, 1000);</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c3">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 3</span>
+                <span class="badge-freq">🔥 4x repeated (Nov 2022, Nov 2023, May 2024, May 2025)</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #3. Pass by Reference & Addition of Two Object Values</h3>
+            <p class="code-card-exp">Objects in JavaScript are passed by reference (memory address). Changes made to an object's properties inside a function directly affect the original object outside.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-3', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-3">// Define two objects with numeric properties
+let itemA = { name: "Pen", price: 25 };
+let itemB = { name: "Book", price: 75 };
+
+// Function that accepts objects by reference and adds their values
+function calculateTotalBill(obj1, obj2) {
+    let total = obj1.price + obj2.price;
+    
+    // Demonstrating pass by reference: modifying property
+    obj1.discountApplied = true;
+    
+    return total;
+}
+
+let bill = calculateTotalBill(itemA, itemB);
+console.log("Total Bill Amount:", bill); // 100
+console.log("Original Item A modified:", itemA); 
+// itemA now contains discountApplied: true (proves pass by reference)</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Primitives (Number, String, Boolean) are passed by Value (copy is made).</li><li>Non-Primitives (Objects, Arrays) are passed by Reference (shared pointer).</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-3', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-3">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+let obj1 = { val: 10 };
+let obj2 = { val: 20 };
+
+function addObjects(a, b) {
+    return a.val + b.val;
+}
+
+console.log(addObjects(obj1, obj2)); // 30</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c4">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 3</span>
+                <span class="badge-freq">🔥 3x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #4. Arrays as Stacks (LIFO) and Queues (FIFO)</h3>
+            <p class="code-card-exp">JavaScript arrays provide built-in methods: <code>push()</code> and <code>pop()</code> for Stacks (Last-In-First-Out), and <code>push()</code> and <code>shift()</code> for Queues (First-In-First-Out).</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-4', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-4">// ================= STACK IMPLEMENTATION (LIFO) =================
+let stack = [];
+// Push elements to top of stack
+stack.push("Page 1");
+stack.push("Page 2");
+stack.push("Page 3");
+console.log("Stack state:", stack); // ["Page 1", "Page 2", "Page 3"]
+
+// Pop element from top of stack
+let popped = stack.pop();
+console.log("Popped element:", popped); // "Page 3"
+console.log("Stack after pop:", stack);  // ["Page 1", "Page 2"]
+
+// ================= QUEUE IMPLEMENTATION (FIFO) =================
+let queue = [];
+// Enqueue elements at end
+queue.push("Customer 1");
+queue.push("Customer 2");
+queue.push("Customer 3");
+console.log("Queue state:", queue);
+
+// Dequeue element from front using shift()
+let served = queue.shift();
+console.log("Served customer:", served); // "Customer 1"
+console.log("Queue after dequeue:", queue); // ["Customer 2", "Customer 3"]</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Stack: <code>push()</code> adds to end, <code>pop()</code> removes from end (LIFO).</li><li>Queue: <code>push()</code> adds to end, <code>shift()</code> removes from front (FIFO).</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-4', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-4">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+// Stack (LIFO: push + pop)
+let s = [];
+s.push(10); s.push(20);
+console.log(s.pop()); // 20
+
+// Queue (FIFO: push + shift)
+let q = [];
+q.push(10); q.push(20);
+console.log(q.shift()); // 10</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c5">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 3</span>
+                <span class="badge-freq">🔥 3x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #5. Recursive Function in JavaScript (Factorial)</h3>
+            <p class="code-card-exp">A recursive function is a function that calls itself until it reaches a terminating Base Case, preventing infinite execution and stack overflow.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-5', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-5">// Function to compute factorial recursively: n! = n * (n-1)!
+function factorial(n) {
+    // 1. Base Case: stops recursion
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    // 2. Recursive Case: function calls itself
+    return n * factorial(n - 1);
+}
+
+console.log("Factorial of 5:", factorial(5)); // 5 * 4 * 3 * 2 * 1 = 120
+console.log("Factorial of 0:", factorial(0)); // 1</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Every recursive function MUST have a Base Condition.</li><li>Calls are stacked in the browser's execution call stack.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-5', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-5">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+function fact(n) {
+    if (n &lt;= 1) return 1;    // Base condition
+    return n * fact(n - 1);  // Recursive call
+}
+console.log(fact(5)); // 120</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c6">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 4</span>
+                <span class="badge-freq">🔥 7x repeated (100% of exams)</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #6. String Methods Used for Regular Expressions (match, search, replace, split)</h3>
+            <p class="code-card-exp">JavaScript String prototype provides four built-in methods that accept Regular Expression patterns: <code>match()</code>, <code>search()</code>, <code>replace()</code>, and <code>split()</code>.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-6', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-6">let text = "SPPU Exam 2026 is scheduled in Nov Dec 2026";
+
+// 1. search() -&gt; Returns index of first match (or -1)
+let index = text.search(/\d{4}/);
+console.log("First 4-digit number index:", index); // 10
+
+// 2. match() -&gt; Returns array of matched strings
+let allYears = text.match(/\d{4}/g); // 'g' for global search
+console.log("All matched years:", allYears); // ["2026", "2026"]
+
+// 3. replace() -&gt; Replaces matched substring with replacement text
+let updated = text.replace(/2026/g, "2027");
+console.log("Replaced text:", updated); // "SPPU Exam 2027 is scheduled in Nov Dec 2027"
+
+// 4. split() -&gt; Splits string into array using regex delimiter
+let words = text.split(/\s+/); // Splits by one or more whitespace
+console.log("Split words array:", words);</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li><code>search()</code> is equivalent to <code>indexOf()</code> with RegEx support.</li><li><code>replace(/pattern/g, newStr)</code> replaces all matches when global <code>g</code> flag is present.</li><li><code>split(/\s+/)</code> handles multiple consecutive spaces cleanly.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-6', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-6">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+let str = "Roll 101 and Roll 102";
+
+console.log(str.search(/\d+/));        // 5 (index)
+console.log(str.match(/\d+/g));        // ["101", "102"]
+console.log(str.replace(/Roll/g, "ID"));// "ID 101 and ID 102"
+console.log(str.split(/\s+/));          // ["Roll", "101", "and", "Roll", "102"]</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c7">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 4</span>
+                <span class="badge-freq">🔥 4x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #7. Lookahead and Lookbehind Assertions in JavaScript RegEx</h3>
+            <p class="code-card-exp">Lookaround assertions are zero-width matches that match characters only if they are followed by (Lookahead) or preceded by (Lookbehind) a specific pattern without including that pattern in the match result.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-7', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-7">let prices = "Apple: $15, Banana: 20EUR, Orange: $30";
+
+// 1. Positive Lookahead (?=pattern): Matches X only if followed by Y
+let dollarPrices = prices.match(/\d+(?=\s*EUR)/);
+console.log("Price followed by EUR:", dollarPrices[0]); // "20"
+
+// 2. Negative Lookahead (?!pattern): Matches X only if NOT followed by Y
+let nonEurNumbers = prices.match(/\d+(?!EUR)/g);
+console.log("Numbers not followed by EUR:", nonEurNumbers);
+
+// 3. Positive Lookbehind (?&lt;=pattern): Matches X only if preceded by Y
+let dollarAmounts = prices.match(/(?&lt;=\$)\d+/g);
+console.log("Amounts preceded by $ sign:", dollarAmounts); // ["15", "30"]
+
+// 4. Negative Lookbehind (?&lt;!pattern): Matches X only if NOT preceded by Y
+let rawNumbers = prices.match(/(?&lt;!\$)\b\d+\b/g);
+console.log("Numbers NOT preceded by $ sign:", rawNumbers); // ["20"]</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Positive Lookahead: <code>X(?=Y)</code></li><li>Negative Lookahead: <code>X(?!Y)</code></li><li>Positive Lookbehind: <code>(?<=Y)X</code> (Supported in modern ES2018+)</li><li>Negative Lookbehind: <code>(?<!Y)X</code></li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-7', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-7">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+let str = "$100 and 50kg";
+
+// Positive Lookbehind: find number preceded by $
+console.log(str.match(/(?&lt;=\$)\d+/)[0]); // "100"
+
+// Positive Lookahead: find number followed by kg
+console.log(str.match(/\d+(?=kg)/)[0]);    // "50" </code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c8">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 4</span>
+                <span class="badge-freq">🔥 4x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #8. Reverse a String, Check Palindrome & Find Length</h3>
+            <p class="code-card-exp">Demonstrates built-in string methods (<code>length</code>, <code>split</code>, <code>reverse</code>, <code>join</code>) to reverse text and check if it reads identically forwards and backwards.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-8', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-8">function analyzeString(str) {
+    // 1. Find Length
+    let len = str.length;
+    console.log("String Length:", len);
+
+    // 2. Reverse String: split into chars -&gt; reverse array -&gt; join back
+    let reversed = str.split("").reverse().join("");
+    console.log("Reversed String:", reversed);
+
+    // 3. Check Palindrome (case-insensitive)
+    let isPalindrome = str.toLowerCase() === reversed.toLowerCase();
+    console.log("Is Palindrome?", isPalindrome);
+
+    return { len, reversed, isPalindrome };
+}
+
+// Test cases
+analyzeString("madam"); // Palindrome: true
+analyzeString("hello"); // Palindrome: false</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Strings are immutable in JavaScript, so we convert to array via <code>split('')</code> to reverse.</li><li><code>join('')</code> joins the array elements back into a string.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-8', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-8">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+let s = "radar";
+let rev = s.split("").reverse().join("");
+
+console.log("Length:", s.length);          // 5
+console.log("Reversed:", rev);             // "radar"
+console.log("Palindrome:", s === rev);     // true</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c9">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 5</span>
+                <span class="badge-freq">🔥 4x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #9. Change Background Color Dynamically (DOM Manipulation)</h3>
+            <p class="code-card-exp">Demonstrates accessing the <code>document.body.style</code> property via DOM events (buttons or dropdowns) to change the page's background color dynamically.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-9', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-9">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;DOM Color Changer&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Select Background Color&lt;/h2&gt;
+    
+    &lt;!-- Option 1: Buttons with inline event handlers --&gt;
+    &lt;button onclick="changeColor('lightblue')"&gt;Blue&lt;/button&gt;
+    &lt;button onclick="changeColor('lightgreen')"&gt;Green&lt;/button&gt;
+    &lt;button onclick="changeColor('lightyellow')"&gt;Yellow&lt;/button&gt;
+    
+    &lt;!-- Option 2: Event Listener approach (Clean DOM) --&gt;
+    &lt;select id="colorSelect"&gt;
+        &lt;option value="white"&gt;Default White&lt;/option&gt;
+        &lt;option value="#fecaca"&gt;Soft Red&lt;/option&gt;
+        &lt;option value="#bbf7d0"&gt;Soft Green&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;script&gt;
+        // Function called by buttons
+        function changeColor(colorName) {
+            document.body.style.backgroundColor = colorName;
+        }
+
+        // Dropdown change listener
+        document.getElementById('colorSelect').addEventListener('change', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Use <code>document.body.style.backgroundColor</code> to alter style dynamically.</li><li>CSS property names in kebab-case (<code>background-color</code>) map to camelCase in JavaScript (<code>backgroundColor</code>).</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-9', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-9">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+function changeBg(color) {
+    document.body.style.backgroundColor = color;
+}
+// HTML: &lt;button onclick="changeBg('yellow')"&gt;Yellow&lt;/button&gt;</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c10">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 5</span>
+                <span class="badge-freq">🔥 3x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #10. Create, Insert, and Append Nodes in DOM</h3>
+            <p class="code-card-exp">DOM methods to dynamically construct new HTML elements in memory (<code>createElement</code>), create text (<code>createTextNode</code>), and insert them into the document tree (<code>appendChild</code>).</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-10', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-10">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;ul id="myList"&gt;
+        &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;button onclick="addNewItem()"&gt;Add Item&lt;/button&gt;
+
+    &lt;script&gt;
+        function addNewItem() {
+            // 1. Create a new &lt;li&gt; element
+            let newLi = document.createElement("li");
+
+            // 2. Create text content
+            let text = document.createTextNode("Dynamically Added Item");
+
+            // 3. Append text to &lt;li&gt;
+            newLi.appendChild(text);
+
+            // 4. Style or set attributes
+            newLi.style.color = "blue";
+
+            // 5. Append new &lt;li&gt; to parent &lt;ul&gt;
+            let list = document.getElementById("myList");
+            list.appendChild(newLi);
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li><code>document.createElement('tag')</code> creates element node.</li><li><code>parent.appendChild(child)</code> inserts child node at end of parent's children.</li><li><code>parent.insertBefore(newNode, refNode)</code> inserts before specific element.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-10', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-10">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+// Create element
+let p = document.createElement("p");
+p.textContent = "New Paragraph";
+
+// Append to body
+document.body.appendChild(p);</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c11">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 6</span>
+                <span class="badge-freq">🔥 3x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #11. Simple Calculator Implementation using JavaScript</h3>
+            <p class="code-card-exp">A complete interactive calculator handling arithmetic operations (+, -, *, /) using DOM input elements and event handling.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-11', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-11">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Simple Calculator&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+    &lt;h3&gt;Simple Arithmetic Calculator&lt;/h3&gt;
+    &lt;input type="number" id="num1" placeholder="First Number"&gt;
+    &lt;input type="number" id="num2" placeholder="Second Number"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;button onclick="calculate('+')"&gt;+&lt;/button&gt;
+    &lt;button onclick="calculate('-')"&gt;-&lt;/button&gt;
+    &lt;button onclick="calculate('*')"&gt;*&lt;/button&gt;
+    &lt;button onclick="calculate('/')"&gt;/&lt;/button&gt;
+
+    &lt;h4 id="result"&gt;Result: &lt;/h4&gt;
+
+    &lt;script&gt;
+        function calculate(op) {
+            let n1 = parseFloat(document.getElementById('num1').value);
+            let n2 = parseFloat(document.getElementById('num2').value);
+            let res = 0;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                alert("Please enter valid numbers");
+                return;
+            }
+
+            switch(op) {
+                case '+': res = n1 + n2; break;
+                case '-': res = n1 - n2; break;
+                case '*': res = n1 * n2; break;
+                case '/': res = n2 !== 0 ? (n1 / n2) : "Cannot divide by 0"; break;
+            }
+
+            document.getElementById('result').innerText = "Result: " + res;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Always wrap input strings with <code>parseFloat()</code> or <code>Number()</code> to prevent string concatenation during addition.</li><li>Handle division by zero validation safely.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-11', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-11">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+function calc(n1, n2, op) {
+    if (op === '+') return n1 + n2;
+    if (op === '-') return n1 - n2;
+    if (op === '*') return n1 * n2;
+    if (op === '/') return n2 !== 0 ? n1 / n2 : "Error";
+}
+console.log(calc(10, 5, '+')); // 15</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+    <div class="code-card" id="c12">
+        <div class="code-card-header">
+            <div class="code-badges">
+                <span class="badge-u">Unit 6</span>
+                <span class="badge-freq">🔥 3x repeated</span>
+                <span class="badge-marks">6 Marks</span>
+            </div>
+            <h3 class="code-card-title">Code #12. Student Registration Form Validation (Name, Mobile, Email)</h3>
+            <p class="code-card-exp">Form validation script ensuring input fields are not empty, mobile number is exactly 10 digits, and email follows standard pattern.</p>
+        </div>
+
+        <!-- Section 1: Detailed Code -->
+        <div class="code-section-block detailed">
+            <div class="section-label detailed-lbl">
+                <span>📘 1. Detailed Comprehensive Code (With Complete Architecture & Steps)</span>
+                <button class="copy-btn" onclick="copyCode('code-det-12', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre"><code id="code-det-12">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h3&gt;Student Registration Form&lt;/h3&gt;
+    &lt;form onsubmit="return validateForm()"&gt;
+        Name: &lt;input type="text" id="uname"&gt;&lt;br&gt;&lt;br&gt;
+        Mobile: &lt;input type="text" id="mobile"&gt;&lt;br&gt;&lt;br&gt;
+        Email: &lt;input type="text" id="email"&gt;&lt;br&gt;&lt;br&gt;
+        &lt;input type="submit" value="Register"&gt;
+    &lt;/form&gt;
+
+    &lt;script&gt;
+        function validateForm() {
+            let name = document.getElementById('uname').value.trim();
+            let mobile = document.getElementById('mobile').value.trim();
+            let email = document.getElementById('email').value.trim();
+
+            // Name validation
+            if (name === "") {
+                alert("Name cannot be empty!");
+                return false;
+            }
+
+            // Mobile number validation (10 digits)
+            let phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(mobile)) {
+                alert("Mobile number must be exactly 10 digits!");
+                return false;
+            }
+
+            // Email validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address!");
+                return false;
+            }
+
+            alert("Validation successful! Submitting form...");
+            return true;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div class="code-notes">
+                <strong>Technical Details & Concepts:</strong>
+                <ul><li>Return <code>false</code> in the <code>onsubmit</code> handler to prevent default browser form submission when validation fails.</li><li>Use <code>pattern.test(input)</code> to validate regular expressions cleanly.</li></ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Exam Quick Short Form -->
+        <div class="code-section-block exam">
+            <div class="section-label exam-lbl">
+                <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                <button class="copy-btn" onclick="copyCode('code-exam-12', this)">Copy Code</button>
+            </div>
+            <pre class="code-pre exam-pre"><code id="code-exam-12">// --- EXAM SHORT FORM (Write this in SPPU Paper) ---
+function validate() {
+    let name = document.getElementById("name").value;
+    let mob = document.getElementById("mob").value;
+    
+    if (name === "") { alert("Name empty"); return false; }
+    if (!/^[0-9]{10}$/.test(mob)) { alert("Invalid Mobile"); return false; }
+    return true;
+}</code></pre>
+            <div class="exam-tip">
+                🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Writing this short snippet alongside the definition in your answer sheet guarantees full marks without writing redundant boilerplate.
+            </div>
+        </div>
+    </div>
+    
+        </div>
+    </main>
+
+    <!-- Include Search Index & Logic -->
+    <script src="search-index.js"></script>
+    <div class="modal-overlay" id="readerModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h4 id="modalTitle" style="font-size: 15px; font-weight: 700;">Document Viewer</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a id="modalOpenExternal" href="#" target="_blank" class="btn btn-glass" style="padding: 4px 12px; font-size: 11px;">Open in New Tab ↗</a>
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" class="modal-iframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Copy to clipboard helper
+        function copyCode(elementId, btn) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "✓ Copied!";
+                btn.style.background = "#dcfce7";
+                btn.style.color = "#166534";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "#f1f5f9";
+                    btn.style.color = "#334155";
+                }, 2000);
+            });
+        }
+
+        // Filter cards by unit
+        function filterUnit(unit, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.code-card');
+            cards.forEach(card => {
+                if (unit === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardUnit = card.querySelector('.badge-u').textContent;
+                    card.style.display = cardUnit.includes(unit) ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Universal Search Dropdown
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+
+        if (searchInput && searchDropdown) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                if (query.length < 2) {
+                    searchDropdown.classList.remove('open');
+                    searchDropdown.innerHTML = '';
+                    return;
+                }
+
+                const index = window.SPPU_SEARCH_INDEX || [];
+                const terms = query.split(/\s+/).filter(Boolean);
+
+                const matches = index.filter(item => {
+                    const searchCorpus = (item.title + ' ' + item.subject + ' ' + item.snippet).toLowerCase();
+                    return terms.every(term => searchCorpus.includes(term));
+                });
+
+                if (matches.length === 0) {
+                    searchDropdown.innerHTML = `
+                        <div class="suggestion-header"><span>Search Results</span><span>0 matches</span></div>
+                        <div style="padding: 16px; text-align: center; color: #64748b; font-size: 13px;">No results found.</div>
+                    `;
+                    searchDropdown.classList.add('open');
+                    return;
+                }
+
+                searchDropdown.innerHTML = `
+                    <div class="suggestion-header"><span>Suggested Questions & Solved Answers</span><span>${matches.length} found</span></div>
+                ` + matches.slice(0, 8).map(m => `
+                    <div class="suggestion-item" onclick="openDoc('${escapeAttr(m.title)}', '${m.htmlUrl}')">
+                        <div class="sugg-top">
+                            <span class="sugg-subj">${m.icon} ${m.short}</span>
+                            <span class="sugg-unit">Unit ${m.unit}</span>
+                            ${m.freq ? `<span class="sugg-freq">${m.freq}</span>` : ''}
+                        </div>
+                        <div class="sugg-title">${escapeHtml(m.title)}</div>
+                        <div class="sugg-snippet">${escapeHtml(m.snippet)}</div>
+                    </div>
+                `).join('');
+                searchDropdown.classList.add('open');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.remove('open');
+                }
+            });
+        }
+
+        function openDoc(title, url) {
+            searchDropdown.classList.remove('open');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalIframe').src = url;
+            document.getElementById('modalOpenExternal').href = url;
+            document.getElementById('readerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('readerModal').classList.remove('active');
+            document.getElementById('modalIframe').src = '';
+            document.body.style.overflow = 'auto';
+        }
+        function escapeHtml(str) { return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+        function escapeAttr(str) { return str.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+    </script>
+
+    <footer>
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+        <p style="margin-top: 4px;">Dynamic relative paths directly linked with subject folders — any note updates automatically synchronize here.</p>
+    </footer>
+
+</body>
+</html>

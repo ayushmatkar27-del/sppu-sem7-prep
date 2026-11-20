@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 SPPU Paper Presentation & Examiner Strategy Guide | Sem 7 Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .guide-hero {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .rubric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+    .rubric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .rubric-score {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-bottom: 8px;
+    }
+    .strategy-step {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .time-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .time-table th, .time-table td {
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .time-table th {
+      background: var(--bg-card);
+      font-weight: 700;
+    }
+    .blunder-card {
+      border-left: 4px solid #ef4444;
+      background: rgba(239, 68, 68, 0.05);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .correct-card {
+      border-left: 4px solid #10b981;
+      background: rgba(16, 185, 129, 0.05);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-icon">🎯</a>
+        <div class="logo-text">
+          <h1>SPPU Paper Presentation Masterclass</h1>
+          <p>Score 65+/70 | Examiner Rubric Breakdown & Time Management Blueprint</p>
+        </div>
+      </div>
+      <div class="header-actions" style="display:flex; gap:8px; flex-wrap:wrap;"><a href="cram-mode.html" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; font-weight:700;">⚡ Cram</a><a href="diagrams.html" class="btn btn-outline" style="border-color:#8b5cf6; color:#8b5cf6; font-weight:700;">🖼️ Diagrams</a><a href="calculators.html" class="btn btn-outline" style="border-color:#10b981; color:#10b981; font-weight:700;">🧮 Calculators</a><a href="exam-guide.html" class="btn btn-outline" style="border-color:#f59e0b; color:#f59e0b; font-weight:700;">🎯 Strategy</a><a href="cheatsheet.html" class="btn btn-outline" style="border-color:#3b82f6; color:#3b82f6; font-weight:700;">📐 Formulas</a><a href="quiz.html" class="btn btn-outline" style="border-color:#ec4899; color:#ec4899; font-weight:700;">❓ Quiz</a><a href="tracker.html" class="btn btn-outline" style="border-color:#14b8a6; color:#14b8a6; font-weight:700;">✅ Tracker</a><a href="index.html" class="btn btn-outline">🏠 Home</a></div>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <div class="guide-hero">
+      <span class="badge" style="background:#4f46e5; color:#fff;">EXAMINER SECRETS REVEALED</span>
+      <h2 style="font-size:2rem; font-weight:800; margin:12px 0 8px;">How University Examiners Grade Your 70-Mark End-Sem Paper</h2>
+      <p style="color:var(--text-muted); max-width:750px; font-size:1.05rem; line-height:1.6;">
+        University moderators and examiners evaluate 35 to 50 answer sheets per day. They do <strong>not</strong> read dense paragraphs of text. They look for 3 distinct visual markers: <strong>labeled diagrams, equations in boxes, and bolded bullet points</strong>. Master these rules to guarantee full marks.
+      </p>
+    </div>
+
+    <!-- Section 1: The 6-Mark & 8-Mark Rubric -->
+    <section style="margin-bottom:48px;">
+      <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:16px;">📊 Anatomy of a Perfect 6/6 and 8/8 Mark Answer</h3>
+      <p style="color:var(--text-muted);">Every 6-mark SPPU university question is graded according to an implicit 3-tier rubric:</p>
+
+      <div class="rubric-grid">
+        <div class="rubric-card">
+          <div class="rubric-score">2 Marks</div>
+          <h4 style="margin:0 0 8px; font-size:1.1rem;">1. Neat Labeled Diagram</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">
+            Always drawn using pencil/pen with boxed borders. Must include all axis labels, signal names (CLK, VDD, GND), and wave shapes. A diagram without labels earns zero!
+          </p>
+        </div>
+
+        <div class="rubric-card">
+          <div class="rubric-score">2 Marks</div>
+          <h4 style="margin:0 0 8px; font-size:1.1rem;">2. Governing Equations / Math</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">
+            Write the fundamental formula at the top. Clearly state parameter meanings and boundary conditions. Always place the final derived result inside a rectangular box.
+          </p>
+        </div>
+
+        <div class="rubric-card">
+          <div class="rubric-score">2 Marks</div>
+          <h4 style="margin:0 0 8px; font-size:1.1rem;">3. Structured Bullet Points</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">
+            Break explanations into: <strong>Principle of Operation, Working / Modes, Advantages, and Key Applications</strong>. Never write continuous 20-line paragraphs!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The 60-Second "OR" Choice Rule -->
+    <section style="margin-bottom:48px;">
+      <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:16px;">⚖️ The 60-Second "OR" Selection Strategy</h3>
+      <p style="color:var(--text-muted); margin-bottom:20px;">
+        In SPPU exams, each unit gives you a choice (e.g. Q1 OR Q2). Don't start writing immediately! Spend 60 seconds evaluating both options using this strict priority hierarchy:
+      </p>
+
+      <div class="strategy-step">
+        <div class="step-num">1</div>
+        <div>
+          <h4 style="margin:0 0 6px; font-size:1.1rem; color:#10b981;">Priority 1: Derivations & Numerical Problems (Top Marks!)</h4>
+          <p style="margin:0; color:var(--text-muted); font-size:0.92rem; line-height:1.5;">
+            Examples: <em>Radar Range Equation, Magic Tee [S] Matrix, Guide Wavelength calculation, CNN Output Size</em>.<br>
+            <strong>Why:</strong> Examiners can award 100% full marks (6/6) objectively if your final steps and boxed answer are correct. Zero subjective deduction!
+          </p>
+        </div>
+      </div>
+
+      <div class="strategy-step">
+        <div class="step-num">2</div>
+        <div>
+          <h4 style="margin:0 0 6px; font-size:1.1rem; color:#4f46e5;">Priority 2: Diagram / Hardware Architecture Questions</h4>
+          <p style="margin:0; color:var(--text-muted); font-size:0.92rem; line-height:1.5;">
+            Examples: <em>6T SRAM Read/Write Circuit, Reflex Klystron Cavity, LSTM Cell Architecture, VHDL 4:1 Mux</em>.<br>
+            <strong>Why:</strong> The diagram takes 50% of the visual space. A well-drawn diagram with 5-6 crisp bullet points guarantees 5 to 6 marks in under 7 minutes.
+          </p>
+        </div>
+      </div>
+
+      <div class="strategy-step">
+        <div class="step-num">3</div>
+        <div>
+          <h4 style="margin:0 0 6px; font-size:1.1rem; color:#f59e0b;">Priority 3: Pure Descriptive / Essay Questions (Last Resort)</h4>
+          <p style="margin:0; color:var(--text-muted); font-size:0.92rem; line-height:1.5;">
+            Examples: <em>Explain Cloud deployment models, Describe JavaScript scoping rules, Overview of EMI standards</em>.<br>
+            <strong>Why:</strong> Even with 2 full pages written, examiners rarely award more than 4 or 4.5 marks out of 6 due to subjective marking criteria.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Time Management Table -->
+    <section style="margin-bottom:48px;">
+      <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:16px;">⏱️ Strict 150-Minute Exam Time Budget</h3>
+      <p style="color:var(--text-muted); margin-bottom:16px;">
+        70 Marks in 150 Minutes = ~2.1 minutes per mark. Stick to this clock schedule to guarantee you never run out of time:
+      </p>
+
+      <table class="time-table">
+        <thead>
+          <tr>
+            <th>Time Slot</th>
+            <th>Section</th>
+            <th>Marks</th>
+            <th>Recommended Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0:00 - 0:05</strong> (5 min)</td>
+            <td>Question Paper Scanning</td>
+            <td>-</td>
+            <td>Circle chosen questions in pencil (Q1 vs Q2, etc.). Jot formulas on rough page.</td>
+          </tr>
+          <tr>
+            <td><strong>0:05 - 0:40</strong> (35 min)</td>
+            <td><strong>Unit 3</strong> (Q1 or Q2)</td>
+            <td>17-18 M</td>
+            <td>Solve strongest unit first. Draw diagrams large and bold.</td>
+          </tr>
+          <tr>
+            <td><strong>0:40 - 1:15</strong> (35 min)</td>
+            <td><strong>Unit 4</strong> (Q3 or Q4)</td>
+            <td>17-18 M</td>
+            <td>Keep pace steady. 10-11 minutes per sub-question.</td>
+          </tr>
+          <tr>
+            <td><strong>1:15 - 1:47</strong> (32 min)</td>
+            <td><strong>Unit 5</strong> (Q5 or Q6)</td>
+            <td>17-18 M</td>
+            <td>Address numericals and circuit diagrams early in this block.</td>
+          </tr>
+          <tr>
+            <td><strong>1:47 - 2:19</strong> (32 min)</td>
+            <td><strong>Unit 6</strong> (Q7 or Q8)</td>
+            <td>17-18 M</td>
+            <td>Answer remaining unit questions concisely with clear headings.</td>
+          </tr>
+          <tr>
+            <td><strong>2:19 - 2:30</strong> (11 min)</td>
+            <td>Buffer & Final Review</td>
+            <td>-</td>
+            <td>Double-check question numbering, units on answers, and underline keywords.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4: Critical Blunders & Best Practices -->
+    <section style="margin-bottom:48px;">
+      <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:16px;">⚠️ 5 Fatal Blunders That Cost Students 15+ Marks</h3>
+
+      <div class="blunder-card">
+        <h4 style="margin:0 0 6px; color:#ef4444;">❌ Blunder 1: Missing Units or Box Around Final Numerical Answers</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">
+          Writing <code>R_max = 142.5</code> without <code>km</code> or forgetting <code>GHz</code> on waveguide cutoff frequencies leads to an automatic 1-mark deduction per numerical.
+        </p>
+      </div>
+
+      <div class="blunder-card">
+        <h4 style="margin:0 0 6px; color:#ef4444;">❌ Blunder 2: Unlabeled or Incomplete Pinouts on Diagrams</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">
+          Drawing a 6T SRAM cell without labeling Word Line (WL), Bit Line (BL), Bit Line Bar (BLB), VDD, and GND gets penalized by 50% immediately.
+        </p>
+      </div>
+
+      <div class="blunder-card">
+        <h4 style="margin:0 0 6px; color:#ef4444;">❌ Blunder 3: Writing Code in Generic English Pseudocode</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">
+          For VLSI and JavaScript, SPPU examiners require recognizable syntax (e.g. <code>entity mux4_1 is</code> or <code>async function fetchApi()</code>). English summaries score near zero.
+        </p>
+      </div>
+
+      <div class="blunder-card">
+        <h4 style="margin:0 0 6px; color:#ef4444;">❌ Blunder 4: Leaving Any Question Completely Blank</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">
+          Even if you don't remember the full answer, writing the definition, relevant formulas, and standard block diagram earns 2 to 3 partial marks. A blank sheet earns zero.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: The Winning Formatting Checklist -->
+    <section style="margin-bottom:48px;">
+      <div style="background:var(--bg-card); border:1px solid #10b981; border-radius:14px; padding:24px;">
+        <h3 style="font-size:1.3rem; font-weight:800; color:#10b981; margin:0 0 16px;">🏆 The 5-Point Answer Presentation Checklist</h3>
+        <ul style="list-style-type:none; padding-left:0; line-height:1.8;">
+          <li>✅ <strong>Clear Title & Sub-Heading:</strong> Write question number clearly in the margin (e.g. <code>Q. 3 (a)</code>).</li>
+          <li>✅ <strong>1-Line Core Definition:</strong> Start immediately with a crisp definition or formula.</li>
+          <li>✅ <strong>Large Labeled Diagram:</strong> Center the diagram, use a ruler, and label all signals clearly.</li>
+          <li>✅ <strong>Bullet Points with Bold Keywords:</strong> Use 4 to 6 numbered or bulleted points highlighting key terms.</li>
+          <li>✅ <strong>Formula in a Rectangular Box:</strong> Enclose equations and final answers inside a clean box: <code>[ Ans: R_max = 84.6 km ]</code>.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top:60px; padding:30px 20px; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.85rem;">
+    <p>🎯 SPPU Paper Presentation & Examiner Strategy Guide | Sem 7 (2019 Pattern)</p>
+  </footer>
+</body>
+</html>

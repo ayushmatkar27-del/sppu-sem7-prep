@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>📡 Unit 3: Waveguide Components &amp; Ferrite Devices | SPPU Prep</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 10.5pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 24px 16px;
+    }
+
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+    .header-box.cyan {
+        background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+        box-shadow: 0 8px 24px rgba(14, 116, 144, 0.2);
+    }
+    .header-box.purple {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+        box-shadow: 0 8px 24px rgba(76, 29, 149, 0.2);
+    }
+    .header-box.amber {
+        background: linear-gradient(135deg, #9a3412 0%, #f97316 100%);
+        box-shadow: 0 8px 24px rgba(154, 52, 18, 0.2);
+    }
+    .header-box.green {
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.2);
+    }
+    .header-box.rose {
+        background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+        box-shadow: 0 8px 24px rgba(136, 19, 55, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 22pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 10.5pt; opacity: 0.95; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-white { background: rgba(255, 255, 255, 0.2); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 26px 28px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .question-block h2 {
+        margin-top: 0;
+        font-size: 15pt;
+        color: #0f172a;
+        font-weight: 700;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+    }
+    h3 {
+        color: #1e3a8a;
+        font-size: 12pt;
+        font-weight: 700;
+        margin: 20px 0 8px 0;
+    }
+    h4 {
+        color: #334155;
+        font-size: 11pt;
+        font-weight: 600;
+        margin: 14px 0 6px 0;
+    }
+    p {
+        margin: 8px 0;
+        color: #334155;
+    }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 16px 20px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 14px 0;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 16px 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        padding: 10px 14px;
+        font-weight: 700;
+        text-align: left;
+        color: #1e293b;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+    tr:last-child td {
+        border-bottom: none;
+    }
+    tr:nth-child(even) td {
+        background-color: #fbfcfe;
+    }
+
+    ul, ol {
+        margin: 8px 0 14px 0;
+        padding-left: 24px;
+        color: #334155;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+
+    .callout-info {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 14px 0;
+        color: #1e40af;
+        font-size: 10pt;
+    }
+    .callout-quote {
+        background: #f8fafc;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 12px 0;
+        color: #92400e;
+        font-weight: 500;
+    }
+
+    .back-nav {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .back-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 10pt;
+    }
+    .back-nav a:hover {
+        text-decoration: underline;
+    }
+    .print-btn {
+        background: #1e293b;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 9.5pt;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .print-btn:hover {
+        background: #334155;
+    }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .back-nav { display: none; }
+        .question-block { page-break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-nav">
+        <a href="../rmt.html">← Back to RMT Portal</a>
+        <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="header-box purple">
+        <h1>📡 Unit 3: Waveguide Components &amp; Ferrite Devices</h1>
+        <p>Radiation and Microwave Theory (Course Code: 404181) | SPPU 2019 Course Pattern</p>
+        <p>Based on Prof. Barapate&#x27;s Lecture Series (Videos 12, 13, 14, 15, 16, 30) &amp; 13 University Question Papers</p>
+        <div class="badge-bar">
+            <span class="badge badge-white">SPPU 2019 Pattern</span>
+            <span class="badge badge-white">Prof. Barapate Lecture Series</span>
+            <span class="badge badge-white">Model Answers & Derivations</span>
+        </div>
+    </div>
+
+<div class="question-block">
+<h2>📌 Syllabus &amp; Lecture Map</h2>
+<table><thead><tr>
+<th>Lecture #</th>
+<th>Topic Taught by Prof. Barapate</th>
+<th>SPPU Exam Focus</th>
+<th>Weightage</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Video 12</strong></td>
+<td>E & H Plane Tee</td>
+<td>Construction, field orientations, and $[S]$-matrix derivations</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 13</strong></td>
+<td>Magic Tee (Hybrid Tee)</td>
+<td>4-port properties, balanced mixer, impedance bridge applications</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 14</strong></td>
+<td>Circulators</td>
+<td>Faraday rotation non-reciprocal working, 3-port & 4-port $[S]$-matrix</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 15</strong></td>
+<td>Directional Couplers</td>
+<td>Two-hole Bethe hole coupler, coupling, directivity, isolation equations</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 16</strong></td>
+<td>Microwave Attenuators, Gyrators & Isolators</td>
+<td>Card/vane attenuators, non-reciprocal gyrator & isolator</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 30</strong></td>
+<td>Quick Revision (Passive Components) Unit-3</td>
+<td>Formula bank, $[S]$-matrices summary & numerical shortcuts</td>
+<td>High Yield</td>
+</tr>
+</tbody></table>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 1: Explain E-Plane Tee and H-Plane Tee &amp; Derive Their [S]-Matrices</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 8 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>A Waveguide Tee junction is a 3-port waveguide device formed by intersecting a rectangular waveguide with another side waveguide arm.</p>
+<h3>1. H-Plane Tee (Shunt Tee)</h3>
+<ul>
+<li><strong>Construction:</strong> The axis of side arm (Port 3) is <strong>parallel to the magnetic field ($\vec{H}$)</strong> of the main collinear waveguide (Ports 1 and 2).</li>
+<li><strong>Physical Operation:</strong></li>
+<li>When power is fed into Port 3, the electric fields split into collinear Ports 1 and 2 with <strong>equal magnitude and IN-PHASE</strong>:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{13} = S_{23}$$</p>
+<ul>
+<li><strong>Scattering Matrix $[S]$ Derivation:</strong></li>
+</ul>
+<ol>
+<li>From symmetry: $S_{13} = S_{23}$ and $S_{31} = S_{32}$.</li>
+<li>If Port 3 is matched to the junction ($S_{33} = 0$):</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$[S] = \begin{bmatrix} S_{11} & S_{12} & S_{13} \\ S_{21} & S_{22} & S_{13} \\ S_{13} & S_{13} & 0 \end{bmatrix}$$</p>
+<ol>
+<li>Applying Unitary Property ($[S][S]^* = [I]$):</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\text{Row 3} \cdot \text{Row 3}^*: |S_{13}|^2 + |S_{13}|^2 + 0 = 1 \implies 2|S_{13}|^2 = 1 \implies \mathbf{S_{13} = \frac{1}{\sqrt{2}}}$$</p>
+<ol>
+<li>With Ports 1 and 2 symmetrically loaded, the final $[S]$-matrix is:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{[S_{\text{H-Tee}}] = \begin{bmatrix} \frac{1}{2} & -\frac{1}{2} & \frac{1}{\sqrt{2}} \\ -\frac{1}{2} & \frac{1}{2} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \end{bmatrix}}$$</p>
+<h3>2. E-Plane Tee (Series Tee)</h3>
+<ul>
+<li><strong>Construction:</strong> The axis of side arm (Port 3) is <strong>parallel to the electric field ($\vec{E}$)</strong> of the main collinear waveguide.</li>
+<li><strong>Physical Operation:</strong></li>
+<li>When power is fed into Port 3, the electric field lines couple with <strong>opposite polarity (180° OUT-OF-PHASE)</strong> into collinear Ports 1 and 2:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{13} = -S_{23}$$</p>
+<ul>
+<li><strong>Scattering Matrix $[S]$ Derivation:</strong></li>
+</ul>
+<ol>
+<li>From anti-symmetry: $S_{13} = -S_{23}$ and $S_{31} = -S_{32}$.</li>
+<li>If Port 3 is matched ($S_{33} = 0$):</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$2|S_{13}|^2 = 1 \implies \mathbf{S_{13} = \frac{1}{\sqrt{2}}} \implies \mathbf{S_{23} = -\frac{1}{\sqrt{2}}}$$</p>
+<ol>
+<li>The final $[S]$-matrix for an E-Plane Tee is:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{[S_{\text{E-Tee}}] = \begin{bmatrix} \frac{1}{2} & \frac{1}{2} & \frac{1}{\sqrt{2}} \\ \frac{1}{2} & \frac{1}{2} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0 \end{bmatrix}}$$</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 2: Magic Tee (Hybrid Tee) Properties &amp; Applications</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 14 times across all 8 End-Sem Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks (100% Guaranteed!)</span></div>
+<p>A Magic Tee is a 4-port waveguide junction created by integrating both an E-Plane Tee and an H-Plane Tee onto the same section of a collinear rectangular waveguide.</p>
+<pre><code>               Port 3 (H-Plane Arm - Sum Σ)
+                      │  ▲
+                      │  │
+   Port 1 ────────────┴──┴──────────── Port 2
+  (Collinear)        Junction         (Collinear)
+                      │  │
+                      │  ▼
+               Port 4 (E-Plane Arm - Difference Δ)</code></pre>
+<h3>1. Key Operational Characteristics</h3>
+<ol>
+<li><strong>Port 1 & Port 2:</strong> Collinear arms.</li>
+<li><strong>Port 3 (H-Plane / Sum Arm $\Sigma$):</strong> Power entering Port 3 divides equally and in-phase between Port 1 and Port 2 ($S_{13} = S_{23} = \frac{1}{\sqrt{2}}$). No power enters Port 4 ($S_{43} = 0$).</li>
+<li><strong>Port 4 (E-Plane / Difference Arm $\Delta$):</strong> Power entering Port 4 divides equally and 180° out-of-phase between Port 1 and Port 2 ($S_{14} = -S_{24} = \frac{1}{\sqrt{2}}$). No power enters Port 3 ($S_{34} = 0$).</li>
+<li><strong>Cross-Isolation:</strong> Port 3 and Port 4 are completely isolated from each other ($S_{34} = S_{43} = 0$). Likewise, when matched, Port 1 and Port 2 are isolated ($S_{12} = S_{21} = 0$).</li>
+</ol>
+<h3>2. The Ideal [S]-Matrix of a Magic Tee</h3>
+<p>$$\boxed{[S] = \frac{1}{\sqrt{2}} \begin{bmatrix}</p>
+<p>0 & 0 & 1 & 1 \\</p>
+<p>0 & 0 & 1 & -1 \\</p>
+<p>1 & 1 & 0 & 0 \\</p>
+<p>1 & -1 & 0 & 0</p>
+<p>\end{bmatrix}}$$</p>
+<h3>3. Practical University Applications of Magic Tee</h3>
+<ol>
+<li><strong>Balanced Microwave Mixer:</strong></li>
+</ol>
+<ul>
+<li>RF received signal fed into Port 1; Local Oscillator (LO) signal fed into Port 2.</li>
+<li>Mixer diodes placed at Port 3 and Port 4 receive equal power with LO noise cancelled at output.</li>
+</ul>
+<ol>
+<li><strong>Measurement of Unknown Impedance (Microwave Bridge):</strong></li>
+</ol>
+<ul>
+<li>Signal generator connected to Port 3; matched detector at Port 4.</li>
+<li>Standard known termination at Port 1; unknown load $Z_L$ at Port 2.</li>
+<li>When bridge balances, zero power reaches Port 4 ($P_4 = 0$). Unknown impedance $Z_L$ is directly deduced from standard load.</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 3: Directional Couplers (Two-Hole Directional Coupler)</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 10 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>A 4-port passive component used to sample a fraction of microwave power traveling along a transmission line without disturbing the main signal flow.</p>
+<h3>1. Two-Hole Coupler Construction & Principle of Operation</h3>
+<ul>
+<li>Two rectangular waveguides share a common broad wall with two small aperture holes spaced <strong>quarter-guide wavelength apart ($\Delta x = \lambda_g / 4$)</strong>.</li>
+<li>Power fed into <strong>Port 1 (Input)</strong> propagates toward <strong>Port 2 (Direct/Through Port)</strong>.</li>
+<li>At Hole 1 and Hole 2, small fractions of energy couple into the secondary auxiliary waveguide:</li>
+<li><strong>In the Forward Direction (toward Port 4 - Coupled Port):</strong></li>
+<li>Path via Hole 1: travels $\lambda_g/4$ in main guide $+ \lambda_g/4$ in auxiliary guide = path length $\lambda_g/2$.</li>
+<li>Path via Hole 2: travels $\lambda_g/4$ in main guide $+ \lambda_g/4$ in auxiliary guide = identical path length.</li>
+<li>The two coupled waves are <strong>IN-PHASE and add constructively at Port 4</strong>.</li>
+<li><strong>In the Reverse Direction (toward Port 3 - Isolated Port):</strong></li>
+<li>The wave passing through Hole 2 and traveling back to Port 3 travels an extra round-trip distance of $2 \times (\lambda_g/4) = \lambda_g/2$ ($180^\circ$ phase shift).</li>
+<li>Waves arriving from Hole 1 and Hole 2 are <strong>180° OUT-OF-PHASE and cancel destructively at Port 3 ($P_3 = 0$)</strong>.</li>
+</ul>
+<h3>2. Fundamental Performance Metrics (Must Write in Exam)</h3>
+<ol>
+<li><strong>Coupling Factor ($C$):</strong> Ratio of input power to forward coupled power.</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{C = 10 \log_{10}\left(\frac{P_1}{P_4}\right) \text{ dB}}$$</p>
+<ol>
+<li><strong>Directivity ($D$):</strong> Ability of the coupler to discriminate between forward and backward waves.</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{D = 10 \log_{10}\left(\frac{P_4}{P_3}\right) \text{ dB}}$$</p>
+<ol>
+<li><strong>Isolation ($I$):</strong> Ratio of input power to power exiting isolated port.</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{I = 10 \log_{10}\left(\frac{P_1}{P_3}\right) \text{ dB} = C + D}$$</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 4: Ferrite Non-Reciprocal Devices (Isolator, Circulator &amp; Gyrator)</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 12 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>Ferrites are non-metallic ceramic materials with high resistivity and high magnetic permeability. In the presence of a steady DC magnetic field, they exhibit <strong>Faraday Rotation</strong>—the plane of polarization of an EM wave rotates non-reciprocally.</p>
+<h3>1. Faraday Rotation Isolator</h3>
+<ul>
+<li><strong>Function:</strong> A 2-port non-reciprocal device that allows RF energy to pass in the forward direction ($1 \to 2$) with minimal loss ($< 0.5\text{ dB}$), while completely absorbing reflected waves in the reverse direction ($2 \to 1$) ($> 30\text{ dB}$ isolation).</li>
+<li><strong>Construction:</strong></li>
+<li>Rectangular waveguide with an internal central ferrite rod subjected to axial DC magnetic field adjusted to produce a precise <strong>45° clockwise rotation</strong>.</li>
+<li>A resistive resistance card is placed at the input port in the horizontal plane. An output card is oriented at 45°.</li>
+<li><strong>Operation:</strong></li>
+<li><strong>Forward ($1 \to 2$):</strong> Vertical wave enters Port 1, passes unattenuated by horizontal resistive card, rotates 45° in ferrite, matches output waveguide angle, and exits with near-zero attenuation.</li>
+<li><strong>Reverse ($2 \to 1$):</strong> Reflected wave entering Port 2 rotates another 45° clockwise, arriving at Port 1 in the horizontal plane—exactly parallel to the input resistance card, where it is <strong>100% absorbed as heat</strong>. Protects expensive microwave tubes/oscillators from load reflections!</li>
+</ul>
+<h3>2. Microwave Circulator</h3>
+<ul>
+<li>A multi-port junction in which power entering port $n$ emerges exclusively from port $n+1$:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$1 \to 2, \quad 2 \to 3, \quad 3 \to 1$$</p>
+<ul>
+<li><strong>Ideal $[S]$-Matrix for 3-Port Circulator:</strong></li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{[S_{\text{Circulator}}] = \begin{bmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}}$$</p>
+<ul>
+<li><strong>Application as Duplexer in Radar:</strong></li>
+<li>Port 1 connected to Transmitter, Port 2 connected to Antenna, Port 3 connected to Receiver.</li>
+<li>Transmitted pulses go straight to Antenna ($1 \to 2$); received target echoes go directly to Receiver ($2 \to 3$) with zero transmitter power leaking into sensitive receiver!</li>
+</ul>
+</div><!-- end question-block -->
+
+</div><!-- end container -->
+</body>
+</html>

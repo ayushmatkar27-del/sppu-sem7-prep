@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Subjects SPPU Sem 7 Formula & Cheatsheet Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .brand-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: white;
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 700; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+        }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+            color: white;
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .header h1 { font-size: 30px; font-weight: 800; margin-bottom: 6px; }
+        .header p { font-size: 15px; opacity: 0.9; max-width: 650px; margin: 0 auto; }
+
+        /* Cheatsheet Grid */
+        .sheet-container {
+            max-width: 1200px;
+            margin: 30px auto 60px auto;
+            padding: 0 24px;
+        }
+        .subj-sheet-block {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 28px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+        }
+        .sheet-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .sheet-head h2 { font-size: 20px; font-weight: 800; color: #0f172a; }
+        .sheet-pill {
+            font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+        }
+        .formula-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .f-title { font-size: 14px; font-weight: 800; color: #1e293b; margin-bottom: 8px; }
+        .f-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 13.5px;
+            text-align: center;
+            overflow-x: auto;
+        }
+        .f-notes { font-size: 12px; color: #64748b; line-height: 1.4; }
+
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar" style="position: sticky; top: 0; z-index: 1000; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 10px 20px; margin-bottom: 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.05rem; color: var(--text-main);">
+                <span>🎓</span> <span>SPPU Prep Portal</span>
+            </a>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem;">
+                <a href="cram-mode.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-weight: 700;">⚡ Cram</a>
+                <a href="diagrams.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(139, 92, 246, 0.1); color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a>
+                <a href="calculators.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #10b981; font-weight: 700;">🧮 Calculators</a>
+                <a href="exam-guide.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; font-weight: 700;">🎯 Strategy</a>
+                <a href="cheatsheet.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(59, 130, 246, 0.1); color: #3b82f6; font-weight: 700;">📐 Formulas</a>
+                <a href="quiz.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(236, 72, 153, 0.1); color: #ec4899; font-weight: 700;">❓ Quiz</a>
+                <a href="tracker.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(20, 184, 166, 0.1); color: #14b8a6; font-weight: 700;">✅ Tracker</a>
+                <a href="index.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: var(--bg-body); border: 1px solid var(--border); color: var(--text-muted); font-weight: 600;">🏠 Home</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">⚡</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">Master Formula & Cheatsheet Deck</div>
+                </div>
+            </a>
+            <a href="index.html" class="btn btn-primary">← Back to Portal</a>
+        </div>
+    </nav>
+
+    <header class="header">
+        <h1>📐 High-Yield Formula & Architecture Cheatsheet</h1>
+        <p>A quick-memory sheet of all key formulas, S-matrices, lambda rules, and layer equations to review 1 hour before the exam.</p>
+    </header>
+
+    <main class="sheet-container">
+
+        <!-- 1. RMT Formulas -->
+        <section class="subj-sheet-block">
+            <div class="sheet-head">
+                <h2>📡 Radiation & Microwave Theory (RMT)</h2>
+                <span class="sheet-pill" style="background: #e0f2fe; color: #0369a1;">Units 3, 4, 5, 6 (End-Sem)</span>
+            </div>
+            <div class="cards-grid">
+<div class="formula-card">
+                    <div class="f-title">Rectangular Waveguide Cutoff & Guide Wavelength (Unit 3)</div>
+                    <div class="f-box">
+                        $$\lambda_c = \frac{2ab}{\sqrt{m^2 b^2 + n^2 a^2}} \xrightarrow{\text{TE}_{10}} 2a, \quad \lambda_g = \frac{\lambda_0}{\sqrt{1 - (f_c/f)^2}}$$
+                    </div>
+                    <div class="f-notes">Dominant $\text{TE}_{10}$ cut-off is independent of height $b$. Guide wavelength $\lambda_g > \lambda_0$ inside waveguide.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Waveguide Velocity Relation & Wave Impedance (Unit 3)</div>
+                    <div class="f-box">
+                        $$v_p \cdot v_g = c^2, \quad v_p = \frac{c}{\sqrt{1 - (f_c/f)^2}} > c, \quad Z_{\text{TE}} = \frac{\eta}{\sqrt{1 - (f_c/f)^2}}$$
+                    </div>
+                    <div class="f-notes">Phase velocity $v_p$ exceeds $c$ while energy velocity $v_g < c$. $\eta = 377\;\Omega$ is free-space wave impedance.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Microstrip Effective Dielectric Constant (Unit 3)</div>
+                    <div class="f-box">
+                        $$\varepsilon_{\text{eff}} = \frac{\varepsilon_r + 1}{2} + \frac{\varepsilon_r - 1}{2} \left( 1 + 12 \frac{h}{W} \right)^{-1/2}$$
+                    </div>
+                    <div class="f-notes">Quasi-TEM mode with $1 < \varepsilon_{\text{eff}} < \varepsilon_r$. Strip width $W$, substrate thickness $h$, dielectric constant $\varepsilon_r$.</div>
+                </div>
+<div class="formula-card">
+                    <div class="f-title">Magic Tee Ideal Scattering Matrix</div>
+                    <div class="f-box">
+                        $$\mathbf{S} = rac{1}{\sqrt{2}} egin{bmatrix} 0 & 0 & 1 & 1 \ 0 & 0 & 1 & -1 \ 1 & 1 & 0 & 0 \ 1 & -1 & 0 & 0 \end{bmatrix}$$
+                    </div>
+                    <div class="f-notes">Notice $S_{24} = -1$ (180° out of phase split in E-plane arm) and $S_{34} = 0$ (cross isolation).</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Directional Coupler Parameters</div>
+                    <div class="f-box">
+                        $$C = 10 \log_{10}(P_1/P_3), \quad D = 10 \log_{10}(P_3/P_4), \quad I = C + D$$
+                    </div>
+                    <div class="f-notes">Distance between two holes $d = \lambda_g / 4$. Path difference for backward wave is $2d = \lambda_g/2$ (180° cancellation).</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Hull Cut-Off Magnetic Field ($B_c$)</div>
+                    <div class="f-box">
+                        $$B_c = rac{\sqrt{8 m V_0 / e}}{b (1 - a^2/b^2)}$$
+                    </div>
+                    <div class="f-notes">For Cavity Magnetron: $a$ is cathode radius, $b$ is anode cavity radius, $V_0$ is DC anode voltage.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Radar Maximum Range Equation</div>
+                    <div class="f-box">
+                        $$R_{	ext{max}} = \left[ rac{P_t G^2 \lambda^2 \sigma}{(4\pi)^3 P_{r,	ext{min}}} 
+ight]^{1/4}$$
+                    </div>
+                    <div class="f-notes">$P_t$ is peak transmit power, $G$ is antenna gain, $\sigma$ is radar cross-section, and $P_{r,	ext{min}}$ is minimum detectable echo power.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">VSWR Double Minimum Method (High SWR)</div>
+                    <div class="f-box">
+                        $$S pprox rac{\lambda_g}{\pi \Delta d} \quad (	ext{where } P = 2 P_{	ext{min}})$$
+                    </div>
+                    <div class="f-notes">$\Delta d = |d_1 - d_2|$ is distance between twice minimum points; eliminates detector saturation errors.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Specific Absorption Rate (SAR) Formula</div>
+                    <div class="f-box">
+                        $$	ext{SAR} = rac{\sigma |E|^2}{
+ho} \quad [	ext{W/kg}]$$
+                    </div>
+                    <div class="f-notes">$\sigma$ is tissue conductivity, $E$ is internal electric field, $
+ho$ is tissue mass density. Standard consumer limit = 1.6 W/kg.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VLSI Formulas -->
+        <section class="subj-sheet-block">
+            <div class="sheet-head">
+                <h2>⚡ VLSI Design & Technology (Course Code: 404182)</h2>
+                <span class="sheet-pill" style="background: #dcfce7; color: #166534;">Units 3, 4, 5, 6 (End-Sem)</span>
+            </div>
+            <div class="cards-grid">
+<div class="formula-card">
+                    <div class="f-title">CPLD vs FPGA Architectural Metrics (Unit 3)</div>
+                    <div class="f-box">
+                        $$\text{CPLD: Macrocell (Wide AND-OR)} \quad \longleftrightarrow \quad \text{FPGA: CLB (4/6-input LUT)}$$
+                    </div>
+                    <div class="f-notes">CPLD: Pin-to-pin propagation delay $t_{pd}$ is 100% deterministic, non-volatile (EEPROM/Flash), low standby power. FPGA: SRAM-based volatile, segmented routing delay dependent on place-and-route, ultra-high gate capacity (>100k gates).</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">CMOS Aspect Ratio (W/L) Sizing Rules (Unit 4)</div>
+                    <div class="f-box">
+                        $$\left(\frac{W}{L}\right)_p \approx 2.5 \cdot \left(\frac{W}{L}\right)_n, \quad W_{\text{series}} = k \cdot W, \quad W_{\text{parallel}} = W$$
+                    </div>
+                    <div class="f-notes">Because electron mobility $\mu_n \approx 2.5 \mu_p$, PMOS channel width must be sized 2.5 times NMOS width for symmetric rise and fall propagation delays ($t_{pLH} = t_{pHL}$). Series transistors scale width by $k$ to maintain unit driving resistance.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Short-Channel Effects: DIBL & Velocity Saturation (Unit 4)</div>
+                    <div class="f-box">
+                        $$\Delta V_{th} = -\eta \cdot V_{DS}, \quad I_{D,\text{sat}} = W \cdot C_{ox} \cdot v_{\text{sat}} \cdot (V_{GS} - V_{th})$$
+                    </div>
+                    <div class="f-notes">In short-channel MOSFETs ($L < 0.25\,\mu\text{m}$), drain bias lowers source barrier (DIBL), while velocity saturation clamps carrier speed at $v_{\text{sat}} \approx 10^7\text{ cm/s}$, collapsing quadratic saturation current to linear.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Mead-Conway Lambda (λ) Rules Summary (Unit 5)</div>
+                    <div class="f-box">
+                        $$\text{Poly: } 2\lambda, \quad \text{Diff: } 2\lambda, \quad \text{Metal-1: } 3\lambda, \quad \text{Contact Cut: } 2\lambda \times 2\lambda$$
+                    </div>
+                    <div class="f-notes">Polysilicon gate extension beyond active diffusion = $2\lambda$. Metal overlap of contact cut = $1\lambda$. Active-to-active spacing = $3\lambda$. Allows layout to scale seamlessly with technology shrink factor $\lambda$.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">LFSR State Count & JTAG Boundary Scan Pins (Unit 6)</div>
+                    <div class="f-box">
+                        $$N_{\text{states}} = 2^n - 1 \quad \text{(Maximal LFSR)}, \quad \text{JTAG: TCK, TMS, TDI, TDO, TRST*}$$
+                    </div>
+                    <div class="f-notes">LFSR characteristic polynomial generates $2^n-1$ non-zero pseudo-random vectors for BIST. IEEE 1149.1 JTAG uses 4 mandatory pins (and 1 optional TRST*) with a 16-state TAP FSM to test chip interconnects and boundary scan registers.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Deep Learning Formulas -->
+        <section class="subj-sheet-block">
+            <div class="sheet-head">
+                <h2>🧠 Deep Learning</h2>
+                <span class="sheet-pill" style="background: #fef3c7; color: #92400e;">Units 3, 4, 5, 6</span>
+            </div>
+            <div class="cards-grid">
+                <div class="formula-card">
+                    <div class="f-title">Convolutional Output Spatial Dimension</div>
+                    <div class="f-box">
+                        $$W_{	ext{out}} = \left\lfloor rac{W_{	ext{in}} - K + 2P}{S} 
+ight
+floor + 1$$
+                    </div>
+                    <div class="f-notes">$W_{	ext{in}}$ = input size, $K$ = kernel size, $P$ = padding, $S$ = stride. MaxPool output follows identical equation without padding.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">Batch Normalization Forward Transform</div>
+                    <div class="f-box">
+                        $$\hat{x}_i = rac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}, \quad y_i = \gamma \hat{x}_i + eta$$
+                    </div>
+                    <div class="f-notes">Normalizes activations across mini-batch; learnable parameters $\gamma$ and $eta$ restore network representational power.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">LSTM Cell Update & Gate Equations</div>
+                    <div class="f-box">
+                        $$C_t = f_t * C_{t-1} + i_t * 	ilde{C}_t, \quad h_t = o_t * 	anh(C_t)$$
+                    </div>
+                    <div class="f-notes">$f_t$ = Forget gate, $i_t$ = Input gate, $	ilde{C}_t$ = Candidate state, $o_t$ = Output gate. Asterisk $(*)$ denotes Hadamard element-wise product.</div>
+                </div>
+                <div class="formula-card">
+                    <div class="f-title">VGG 3x3 Parameter Reduction Ratio</div>
+                    <div class="f-box">
+                        $$	ext{Three } 3	imes3 = 27 C^2 \quad 	ext{vs} \quad 	ext{One } 7	imes7 = 49 C^2 \implies 45\% \downarrow$$
+                    </div>
+                    <div class="f-notes">Three stacked $3	imes3$ convolutions cover identical $7	imes7$ receptive field with 45% fewer parameters and 3 non-linear ReLUs.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="background: white; border-top: 1px solid #e2e8f0; padding: 24px; text-align: center; font-size: 13px; color: #64748b;">
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Sem 7 Exam Readiness Quiz & Mock Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        .navbar {
+            background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .brand-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: white;
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 700; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: inherit;
+        }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        /* Header */
+        .quiz-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+            color: white; padding: 40px 24px; text-align: center;
+        }
+        .quiz-hero h1 { font-size: 30px; font-weight: 800; margin-bottom: 6px; }
+        .quiz-hero p { font-size: 15px; opacity: 0.9; max-width: 650px; margin: 0 auto; }
+
+        /* Main Container */
+        .quiz-main {
+            max-width: 860px; margin: 30px auto 60px auto; padding: 0 24px; flex: 1; width: 100%;
+        }
+
+        /* Score Tracker Sticky Bar */
+        .score-bar {
+            background: #ffffff; border: 1px solid var(--border); border-radius: 14px; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: sticky; top: 75px; z-index: 50;
+        }
+        .score-stat { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; }
+        .score-pill { background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 13px; }
+
+        /* Question Card */
+        .q-card {
+            background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 26px; margin-bottom: 25px; box-shadow: 0 4px 16px rgba(0,0,0,0.03); transition: all 0.2s;
+        }
+        .q-top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .q-badge {
+            font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px; text-transform: uppercase;
+        }
+        .q-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 18px; line-height: 1.45; }
+
+        /* Options */
+        .options-list { display: grid; gap: 10px; }
+        .opt-btn {
+            display: flex; align-items: center; width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; font-size: 14px; font-weight: 600; color: #334155; text-align: left; cursor: pointer; transition: all 0.15s; font-family: inherit;
+        }
+        .opt-btn:hover:not([disabled]) { background: #eff6ff; border-color: #93c5fd; color: #1e40af; }
+        .opt-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; }
+        .opt-btn.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+
+        /* Explanation Box */
+        .exp-box {
+            display: none; margin-top: 16px; padding: 14px 18px; border-radius: 10px; background: #f0fdf4; border-left: 4px solid #22c55e; font-size: 13.5px; color: #166534; line-height: 1.5;
+        }
+        .exp-box.show { display: block; }
+
+        footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar" style="position: sticky; top: 0; z-index: 1000; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 10px 20px; margin-bottom: 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.05rem; color: var(--text-main);">
+                <span>🎓</span> <span>SPPU Prep Portal</span>
+            </a>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem;">
+                <a href="cram-mode.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-weight: 700;">⚡ Cram</a>
+                <a href="diagrams.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(139, 92, 246, 0.1); color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a>
+                <a href="calculators.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #10b981; font-weight: 700;">🧮 Calculators</a>
+                <a href="exam-guide.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; font-weight: 700;">🎯 Strategy</a>
+                <a href="cheatsheet.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(59, 130, 246, 0.1); color: #3b82f6; font-weight: 700;">📐 Formulas</a>
+                <a href="quiz.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(236, 72, 153, 0.1); color: #ec4899; font-weight: 700;">❓ Quiz</a>
+                <a href="tracker.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(20, 184, 166, 0.1); color: #14b8a6; font-weight: 700;">✅ Tracker</a>
+                <a href="index.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: var(--bg-body); border: 1px solid var(--border); color: var(--text-muted); font-weight: 600;">🏠 Home</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">🎯</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">Exam Readiness Mock Test & Quiz</div>
+                </div>
+            </a>
+            <div style="display: flex; gap: 8px;">
+                <a href="cheatsheet.html" class="btn" style="background: #eef2ff; color: #4338ca;">📐 Cheatsheet</a>
+                <a href="index.html" class="btn btn-primary">← Back to Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="quiz-hero">
+        <h1>🎯 SPPU End-Sem Exam Readiness Quiz</h1>
+        <p>Test your conceptual understanding across all 5 subjects with 20 high-frequency multiple-choice questions. Select your answer to receive immediate grading and complete scoring explanations.</p>
+    </header>
+
+    <main class="quiz-main">
+        <div class="score-bar">
+            <div class="score-stat">
+                <span>Score:</span>
+                <span class="score-pill" id="scoreCount">0 / 20</span>
+            </div>
+            <div class="score-stat">
+                <span>Attempted:</span>
+                <span class="score-pill" id="attemptCount" style="background: #f1f5f9; color: #475569;">0 / 20</span>
+            </div>
+            <button class="btn btn-primary" onclick="resetQuiz()" style="font-size: 12px; padding: 6px 14px;">Reset Quiz</button>
+        </div>
+
+        <div id="quizContainer"></div>
+    </main>
+
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "subject": "RMT",
+    "unit": 3,
+    "question": "In an ideal Magic Tee, what is the value of S34 (cross-isolation between E-arm and H-arm)?",
+    "options": [
+      "1 / √2",
+      "1",
+      "0",
+      "-1 / √2"
+    ],
+    "answer": 2,
+    "explanation": "Because of structural symmetry and orthogonal polarization, the E-plane arm (Port 4) and H-plane arm (Port 3) are completely isolated from each other, meaning S34 = S43 = 0."
+  },
+  {
+    "id": 2,
+    "subject": "RMT",
+    "unit": 3,
+    "question": "What is the spacing (d) between the two coupling holes in a Two-Hole Directional Coupler?",
+    "options": [
+      "λg / 2",
+      "λg / 4",
+      "λg",
+      "2 λg"
+    ],
+    "answer": 1,
+    "explanation": "Holes are placed at distance d = λg / 4 so that the round-trip path difference for backward traveling waves is 2d = λg / 2 (180° phase difference), resulting in destructive cancellation at the isolated port."
+  },
+  {
+    "id": 3,
+    "subject": "RMT",
+    "unit": 4,
+    "question": "In a Cavity Magnetron, what is the primary purpose of 'Strapping' alternate anode cavities?",
+    "options": [
+      "To increase output power",
+      "To prevent mode jumping by separating resonant frequencies",
+      "To focus the electron beam",
+      "To reduce cathode back-heating"
+    ],
+    "answer": 1,
+    "explanation": "Strapping connects alternate anode poles that have identical phase in the dominant π-mode, pulling their resonant frequency away from adjacent undesirable modes to eliminate mode jumping."
+  },
+  {
+    "id": 4,
+    "subject": "RMT",
+    "unit": 5,
+    "question": "What is the underlying mechanism that produces negative differential resistance in a Gunn Diode?",
+    "options": [
+      "Avalanche multiplication",
+      "Ridley-Watkins-Hilsum (RWH) two-valley electron transfer",
+      "Tunneling across narrow p-n barrier",
+      "Transit time delay of minority carriers"
+    ],
+    "answer": 1,
+    "explanation": "Under high electric fields (> 3.2 kV/cm), light high-mobility electrons in the lower Γ-valley scatter into the upper heavy low-mobility L-valley, causing drift velocity to decrease as electric field increases."
+  },
+  {
+    "id": 5,
+    "subject": "RMT",
+    "unit": 6,
+    "question": "Which method is specifically used to measure high VSWR (S > 10) to avoid crystal detector saturation errors?",
+    "options": [
+      "Reflectometer method",
+      "Double Minimum Method",
+      "Direct meter reading",
+      "Bolometric bridge"
+    ],
+    "answer": 1,
+    "explanation": "The Double Minimum Method measures the physical distance Δd between the two points where microwave power is exactly twice the minimum value, avoiding detector saturation near high voltage peaks."
+  },
+  {
+    "id": 6,
+    "subject": "VLSI",
+    "unit": 3,
+    "question": "Which programmable logic device features 100% deterministic timing delays and non-volatile Flash storage?",
+    "options": [
+      "SRAM FPGA",
+      "CPLD",
+      "ASIC",
+      "Look-Up Table (LUT)"
+    ],
+    "answer": 1,
+    "explanation": "CPLDs use continuous Global Interconnect Matrices (GIM) with fixed routing delays and on-chip Flash/EEPROM memory, ensuring deterministic timing and Instant-ON behavior."
+  },
+  {
+    "id": 7,
+    "subject": "VLSI",
+    "unit": 4,
+    "question": "Why is the aspect ratio (W/L) of a PMOS transistor typically designed twice as wide as an NMOS transistor?",
+    "options": [
+      "To increase PMOS gate oxide capacitance",
+      "Because hole mobility is roughly half of electron mobility (μp ≈ 0.5 μn)",
+      "To prevent latch-up",
+      "To reduce body effect"
+    ],
+    "answer": 1,
+    "explanation": "Electron mobility (μn) is approximately 2 to 3 times higher than hole mobility (μp) in silicon. Making Wp = 2 Wn equalizes channel on-resistances and ensures symmetric rise (tPLH) and fall (tPHL) propagation times."
+  },
+  {
+    "id": 8,
+    "subject": "VLSI",
+    "unit": 4,
+    "question": "How many total transistors are required to build a 2-to-1 Multiplexer using Transmission Gates (TG)?",
+    "options": [
+      "14 transistors",
+      "6 transistors",
+      "10 transistors",
+      "2 transistors"
+    ],
+    "answer": 1,
+    "explanation": "A TG-based 2:1 MUX uses 2 transmission gates (4 transistors) and 1 CMOS inverter for the select line (2 transistors), totalling only 6 transistors compared to 14 in static CMOS NAND logic."
+  },
+  {
+    "id": 9,
+    "subject": "VLSI",
+    "unit": 5,
+    "question": "In Mead-Conway Lambda (λ) design rules, what is the minimum width of polysilicon and active diffusion?",
+    "options": [
+      "1λ",
+      "2λ",
+      "3λ",
+      "4λ"
+    ],
+    "answer": 1,
+    "explanation": "Both minimum active diffusion width and minimum polysilicon gate width are standard 2λ, with polysilicon extending at least 2λ beyond the active channel boundaries."
+  },
+  {
+    "id": 10,
+    "subject": "VLSI",
+    "unit": 6,
+    "question": "In the IEEE 1149.1 Boundary Scan standard, which dedicated signal controls the 16-state TAP Controller state machine?",
+    "options": [
+      "TDI (Test Data In)",
+      "TDO (Test Data Out)",
+      "TMS (Test Mode Select)",
+      "TCK (Test Clock)"
+    ],
+    "answer": 2,
+    "explanation": "The Test Mode Select (TMS) line, sampled on the rising edge of TCK, controls all transitions in the 16-state TAP Controller state diagram."
+  },
+  {
+    "id": 11,
+    "subject": "Cloud",
+    "unit": 3,
+    "question": "What is the primary difference between Full Virtualization and Para-Virtualization?",
+    "options": [
+      "Full requires modified guest OS; Para does not",
+      "Para requires guest OS kernel modification to issue hypercalls; Full runs unmodified guest OS",
+      "Full only runs Linux; Para only runs Windows",
+      "Para requires Type-2 hosted hypervisors only"
+    ],
+    "answer": 1,
+    "explanation": "Para-virtualization recompiles the guest OS kernel with hypercalls for near-native performance, whereas Full Virtualization uses binary translation or hardware VT-x to run unmodified guest OS kernels."
+  },
+  {
+    "id": 12,
+    "subject": "Cloud",
+    "unit": 4,
+    "question": "In the CIA Cloud Security Model, which technology guarantees 'Integrity' of stored data?",
+    "options": [
+      "AES-256 Symmetric Encryption",
+      "Multi-AZ Auto-scaling",
+      "Cryptographic Hashing (SHA-256) and Digital Signatures",
+      "Identity & Access Management (IAM)"
+    ],
+    "answer": 2,
+    "explanation": "Integrity guarantees data has not been modified or corrupted in transit or storage, verified through cryptographic message digests (SHA-256) and digital certificates."
+  },
+  {
+    "id": 13,
+    "subject": "Cloud",
+    "unit": 5,
+    "question": "Which Amazon Web Services (AWS) storage service provides durable block-level virtual hard drives attached directly to EC2 instances?",
+    "options": [
+      "Amazon S3",
+      "Amazon EBS (Elastic Block Store)",
+      "Amazon Glacier",
+      "AWS Lambda"
+    ],
+    "answer": 1,
+    "explanation": "Amazon EBS provides persistent, low-latency block storage volumes attached to EC2 instances over a dedicated storage network, persisting independently of instance reboots."
+  },
+  {
+    "id": 14,
+    "subject": "Cloud",
+    "unit": 6,
+    "question": "Which of the following is considered a core enabling hardware technology for the Internet of Things (IoT)?",
+    "options": [
+      "Mainframe Computing",
+      "Wireless Sensor Networks (WSN) and RFID",
+      "Relational Database Schemas",
+      "Thin Provisioned LUNs"
+    ],
+    "answer": 1,
+    "explanation": "WSN and RFID provide the autonomous distributed sensory and identification layer that captures physical real-world environmental phenomena and transmits it to cloud backends."
+  },
+  {
+    "id": 15,
+    "subject": "DL",
+    "unit": 3,
+    "question": "What problem does Batch Normalization solve during neural network optimization?",
+    "options": [
+      "Over-smoothing in graph networks",
+      "Internal Covariate Shift",
+      "Gradient quantization noise",
+      "Floating point underflow"
+    ],
+    "answer": 1,
+    "explanation": "Batch Normalization stabilizes layer input distributions across mini-batches, mitigating Internal Covariate Shift and enabling significantly higher learning rates."
+  },
+  {
+    "id": 16,
+    "subject": "DL",
+    "unit": 4,
+    "question": "Why is stacking three 3x3 convolutions superior to using a single 7x7 convolution filter?",
+    "options": [
+      "It uses 45% fewer parameters and introduces 3 non-linear ReLU activations",
+      "It reduces channel depth to 1",
+      "It completely removes the need for backpropagation",
+      "It guarantees zero training loss"
+    ],
+    "answer": 0,
+    "explanation": "Three 3x3 filters share the identical 7x7 receptive field while requiring only 3*(3^2*C^2) = 27C^2 parameters vs 7^2*C^2 = 49C^2 parameters (a 45% reduction) with more non-linear decision boundaries."
+  },
+  {
+    "id": 17,
+    "subject": "DL",
+    "unit": 5,
+    "question": "In an LSTM cell, which gate decides what proportion of previous memory in the cell state (Ct-1) should be erased?",
+    "options": [
+      "Input Gate (it)",
+      "Forget Gate (ft)",
+      "Output Gate (ot)",
+      "Candidate Gate (C̃t)"
+    ],
+    "answer": 1,
+    "explanation": "The Forget Gate computes ft = σ(Wf [ht-1, xt] + bf). A value of 0 means completely discard/forget, while 1 means completely retain the cell state memory."
+  },
+  {
+    "id": 18,
+    "subject": "JS",
+    "unit": 3,
+    "question": "What is the recommended, reliable method to verify if a variable 'arr' is an Array in JavaScript?",
+    "options": [
+      "typeof arr === 'array'",
+      "Array.isArray(arr)",
+      "arr.type() == 'Array'",
+      "arr.isType(Array)"
+    ],
+    "answer": 1,
+    "explanation": "In JavaScript, 'typeof []' returns 'object'. The robust standard method to detect arrays is Array.isArray(arr) or 'arr instanceof Array'."
+  },
+  {
+    "id": 19,
+    "subject": "JS",
+    "unit": 4,
+    "question": "Which Regular Expression assertion matches pattern X only if it is immediately followed by pattern Y (without including Y in the match)?",
+    "options": [
+      "Negative Lookahead: X(?!Y)",
+      "Positive Lookahead: X(?=Y)",
+      "Positive Lookbehind: (?<=Y)X",
+      "Capturing Group: (X|Y)"
+    ],
+    "answer": 1,
+    "explanation": "Positive Lookahead syntax X(?=Y) is a zero-width assertion that checks for the presence of Y directly following X without consuming characters."
+  },
+  {
+    "id": 20,
+    "subject": "JS",
+    "unit": 5,
+    "question": "During JavaScript DOM event flow, what are the three sequential phases?",
+    "options": [
+      "Initiation -> Execution -> Termination",
+      "Capturing Phase -> Target Phase -> Bubbling Phase",
+      "Bubbling -> Capturing -> Loading",
+      "Listener -> Handler -> Callback"
+    ],
+    "answer": 1,
+    "explanation": "DOM Level 2 standard defines event flow in 3 distinct phases: (1) Capturing phase (trickling down from window to target), (2) Target phase, and (3) Bubbling phase (propagating upwards back to window)."
+  }
+];
+        let userScore = 0;
+        let answeredCount = 0;
+        const answersState = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = questions.map((q, idx) => `
+                <div class="q-card" id="qcard-${q.id}">
+                    <div class="q-top">
+                        <span class="q-badge" style="background: ${getBadgeColor(q.subject)}">${q.subject} • Unit ${q.unit}</span>
+                        <span style="font-size: 12px; color: #64748b; font-weight: 700; margin-left: auto;">Question ${idx + 1} of ${questions.length}</span>
+                    </div>
+                    <div class="q-title">${q.question}</div>
+                    <div class="options-list">
+                        ${q.options.map((opt, oIdx) => `
+                            <button class="opt-btn" id="opt-${q.id}-${oIdx}" onclick="handleAnswer(${q.id}, ${oIdx})">
+                                <span style="min-width: 24px; font-weight: 800;">${String.fromCharCode(65 + oIdx)}.</span>
+                                <span>${opt}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="exp-box" id="exp-${q.id}">
+                        <strong>💡 Concept Explanation:</strong> ${q.explanation}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getBadgeColor(subj) {
+            switch(subj) {
+                case 'RMT': return '#dbeafe; color: #1e40af;';
+                case 'VLSI': return '#dcfce7; color: #166534;';
+                case 'Cloud': return '#ede9fe; color: #5b21b6;';
+                case 'DL': return '#fef3c7; color: #92400e;';
+                default: return '#ffe4e6; color: #9f1239;';
+            }
+        }
+
+        function handleAnswer(qId, selectedIdx) {
+            if (answersState[qId] !== undefined) return; // already answered
+            answersState[qId] = selectedIdx;
+            answeredCount++;
+
+            const q = questions.find(item => item.id === qId);
+            const isCorrect = (selectedIdx === q.answer);
+            if (isCorrect) userScore++;
+
+            // Highlight chosen and correct options
+            const chosenBtn = document.getElementById(`opt-${qId}-${selectedIdx}`);
+            const correctBtn = document.getElementById(`opt-${qId}-${q.answer}`);
+
+            if (isCorrect) {
+                chosenBtn.classList.add('correct');
+            } else {
+                chosenBtn.classList.add('wrong');
+                correctBtn.classList.add('correct');
+            }
+
+            // Disable all options for this question
+            q.options.forEach((_, idx) => {
+                document.getElementById(`opt-${qId}-${idx}`).setAttribute('disabled', 'true');
+            });
+
+            // Reveal explanation
+            document.getElementById(`exp-${qId}`).classList.add('show');
+
+            // Update Score Tracker
+            document.getElementById('scoreCount').textContent = `${userScore} / ${questions.length}`;
+            document.getElementById('attemptCount').textContent = `${answeredCount} / ${questions.length}`;
+        }
+
+        function resetQuiz() {
+            userScore = 0;
+            answeredCount = 0;
+            for (let k in answersState) delete answersState[k];
+            document.getElementById('scoreCount').textContent = `0 / ${questions.length}`;
+            document.getElementById('attemptCount').textContent = `0 / ${questions.length}`;
+            renderQuiz();
+        }
+
+        window.onload = renderQuiz;
+    </script>
+
+    <footer>
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+    </footer>
+
+</body>
+</html>

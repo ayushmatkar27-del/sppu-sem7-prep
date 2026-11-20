@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ One-Night-Before Cram Mode | SPPU Sem 7 Exam Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .cram-header {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.12) 100%);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cram-timer-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .timer-digits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ef4444;
+      letter-spacing: 2px;
+    }
+    .timer-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .cram-nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+    .cram-nav-btn {
+      padding: 10px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cram-nav-btn.active, .cram-nav-btn:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+    .cram-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .cram-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .cram-card.done {
+      opacity: 0.65;
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.03);
+    }
+    .cram-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-prob-high { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .badge-prob-must { background: rgba(147, 51, 234, 0.15); color: #9333ea; }
+    .cram-formula {
+      background: var(--bg-body);
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      margin: 14px 0;
+      color: #b45309;
+    }
+    [data-theme="dark"] .cram-formula {
+      color: #fbbf24;
+    }
+    .cram-points {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 12px 0;
+    }
+    .cram-points li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 0.93rem;
+    }
+    .cram-points li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.85rem;
+    }
+    .check-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .check-btn input {
+      accent-color: #10b981;
+      cursor: pointer;
+    }
+    @media print {
+      header, .cram-header, .cram-nav, .cram-timer-box, .check-btn { display: none !important; }
+      .cram-card { break-inside: avoid; border: 1px solid #ccc; margin-bottom: 15px; }
+      body { background: #fff !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-icon">⚡</a>
+        <div class="logo-text">
+          <h1>One-Night-Before Cram Hub</h1>
+          <p>Super-High-Yield 80/20 Revision | Top 3 Guaranteed Questions Per Unit</p>
+        </div>
+      </div>
+      <div class="header-actions" style="display:flex; gap:8px; flex-wrap:wrap;"><a href="cram-mode.html" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; font-weight:700;">⚡ Cram</a><a href="diagrams.html" class="btn btn-outline" style="border-color:#8b5cf6; color:#8b5cf6; font-weight:700;">🖼️ Diagrams</a><a href="calculators.html" class="btn btn-outline" style="border-color:#10b981; color:#10b981; font-weight:700;">🧮 Calculators</a><a href="exam-guide.html" class="btn btn-outline" style="border-color:#f59e0b; color:#f59e0b; font-weight:700;">🎯 Strategy</a><a href="cheatsheet.html" class="btn btn-outline" style="border-color:#3b82f6; color:#3b82f6; font-weight:700;">📐 Formulas</a><a href="quiz.html" class="btn btn-outline" style="border-color:#ec4899; color:#ec4899; font-weight:700;">❓ Quiz</a><a href="tracker.html" class="btn btn-outline" style="border-color:#14b8a6; color:#14b8a6; font-weight:700;">✅ Tracker</a><a href="index.html" class="btn btn-outline">🏠 Home</a></div>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <div class="cram-header">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+          <span class="badge badge-prob-high">EMERGENCY PROTOCOL</span>
+          <h2 style="font-size:1.8rem; margin:8px 0 4px; font-weight:800; color:#ef4444;">Zero Fluff. Maximum Marks.</h2>
+          <p style="color:var(--text-muted); max-width:650px;">
+            Only the top 3 ultra-frequent, 100% repetitive SPPU university questions per unit. Review the bullet definitions, memorise the exact formula box, and cross them off.
+          </p>
+        </div>
+        <div class="cram-timer-box">
+          <div>
+            <div class="timer-label">Exam Starts In</div>
+            <div class="timer-digits" id="examTimer">14:28:40</div>
+          </div>
+          <button class="btn btn-sm btn-outline" onclick="resetTimer()">Set Time</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subject Tabs -->
+    <div class="cram-nav" id="subjectTabs">
+      <button class="cram-nav-btn active" onclick="switchSubject('rmt', this)">📡 RMT (Microwave)</button>
+      <button class="cram-nav-btn" onclick="switchSubject('vlsi', this)">⚡ VLSI Technology</button>
+      <button class="cram-nav-btn" onclick="switchSubject('cloud', this)">☁️ Cloud Computing</button>
+      <button class="cram-nav-btn" onclick="switchSubject('dl', this)">🧠 Deep Learning</button>
+      <button class="cram-nav-btn" onclick="switchSubject('js', this)">💻 JavaScript</button>
+    </div>
+
+    <!-- Container for Subject Cram Sections -->
+    <div id="cramContent">
+            <!-- RMT CRAM SECTION -->
+      <div id="sec-rmt" class="cram-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:800;">Radiation & Microwave Theory (Course Code: 404181) - Top End-Sem Questions</h3>
+          <span class="text-muted" style="font-size:0.85rem;">13 High-Yield Cards | Units 3, 4, 5, 6 (End-Sem)</span></div>
+
+        <!-- Unit 3 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 3: Waveguide Components & Ferrite Devices (End-Sem Q1/Q2)</h4>
+        
+        <div class="cram-card" id="card-rmt-7">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-7')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Magic Tee: Properties & [S]-Matrix Derivation</h4>
+          <div class="cram-formula">
+            S = (1/√2) · [ 0, 0, 1, 1 ; 0, 0, 1, -1 ; 1, 1, 0, 0 ; 1, -1, 0, 0 ]
+          </div>
+          <ul class="cram-points">
+            <li><strong>Port 1 & 2 (Collinear):</strong> S11 = S22 = 0 when perfectly matched.</li>
+            <li><strong>Port 3 (H-plane sum Σ):</strong> Signal entering Port 3 divides into 1 and 2 in equal magnitude and in-phase (S13 = S23 = 1/√2).</li>
+            <li><strong>Port 4 (E-plane difference Δ):</strong> Signal entering Port 4 divides into 1 and 2 in equal magnitude, 180° out of phase (S14 = -S24 = 1/√2).</li>
+            <li><strong>Cross-Isolation:</strong> Port 3 and 4 are completely isolated (S34 = S43 = 0; S12 = 0).</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-8">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-8')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Highly Repetitive</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Two-Hole Directional Coupler (Coupling, Directivity, Isolation)</h4>
+          <div class="cram-formula">
+            d = λ_g / 4  |  C = 10 log10(P1/P4)  |  D = 10 log10(P4/P3)  |  I = 10 log10(P1/P3) = C + D
+          </div>
+          <ul class="cram-points">
+            <li><strong>Construction:</strong> Two rectangular waveguides joined along broad wall with two small aperture holes spaced d = λ_g / 4 apart.</li>
+            <li><strong>Forward Direction (Port 4):</strong> Both aperture waves travel the exact same total path distance; they arrive IN-PHASE and add vectorially.</li>
+            <li><strong>Backward Direction (Port 3):</strong> Wave via hole 2 travels an extra 2d = λ_g / 2 (180° phase shift); waves arrive 180° OUT-OF-PHASE and cancel completely!</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-9">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-9')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Must Score</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Ferrite Isolator & Circulator (Faraday Rotation Non-Reciprocity)</h4>
+          <div class="cram-formula">
+            Isolator: S12 = 0, S21 = 1  |  Circulator: 1 → 2 → 3 → 1 (S31 = S12 = S23 = 1)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Ferrite Material:</strong> Non-conducting magnetic ceramics (Fe2O3 with Mn/Zn/Ni). Under static DC magnetic field, exhibits gyromagnetic precession.</li>
+            <li><strong>Faraday Rotation:</strong> Plane of polarization rotates as wave travels through magnetized ferrite rod. Rotation angle θ = V · B · l is non-reciprocal (continues rotating in same spatial direction regardless of wave propagation direction!).</li>
+            <li><strong>Isolator:</strong> Allows forward transmission from source to load (0 dB loss), absorbs reflected power from load in resistive card (prevents source pulling).</li>
+          </ul>
+        </div>
+
+        <!-- Unit 4 -->
+        <h4 style="margin:24px 0 12px; color:#9a3412; font-size:1.05rem;">📍 UNIT 4: Microwave Tubes & Amplifiers (End-Sem Q3/Q4)</h4>
+
+        <div class="cram-card" id="card-rmt-10">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-10')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Limitations of Conventional Vacuum Tubes at Microwaves</h4>
+          <div class="cram-formula">
+            Transit Time τ = d / v_0 ≈ T  |  Input Conductance G_in ∝ f²  |  X_C = 1/2πfC → 0  |  X_L = 2πfL → ∞
+          </div>
+          <ul class="cram-points">
+            <li><strong>Transit Time Effect:</strong> When transit time τ becomes comparable to signal period T, electrons absorb power from grid during transit, causing heavy input conductance loading (Gain plummets).</li>
+            <li><strong>Interelectrode Capacitance:</strong> Lowers reactance, short-circuiting high-frequency RF signals between electrodes.</li>
+            <li><strong>Lead Inductance:</strong> Wire pin inductances create huge degenerative feedback reactances.</li>
+            <li><strong>Solution:</strong> Microwave velocity-modulation tubes (Klystron, Magnetron, TWT) use transit time constructively!</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-11">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-11')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Highly Repetitive</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Reflex Klystron: Mechanism & Applegate Diagram</h4>
+          <div class="cram-formula">
+            Transit Time Mode: T_0 = (n + 3/4) · T  |  Modes: n = 1 (1¾), n = 2 (2¾)  |  Max Efficiency = 58.4%
+          </div>
+          <ul class="cram-points">
+            <li><strong>Single Resonant Cavity:</strong> Serves as both buncher and catcher. Repeller electrode held at high negative potential (-V_r).</li>
+            <li><strong>Velocity Modulation:</strong> Early electrons accelerated, reference electrons unchanged, late electrons decelerated in cavity gap.</li>
+            <li><strong>Applegate Diagram:</strong> In repeller space, faster electrons penetrate deeper and take longer path; slower electrons reverse sooner. All converge into a single dense electron bunch returning at the cavity grid!</li>
+            <li><strong>Optimum Phase:</strong> Bunches must enter cavity during retarding RF phase to transfer kinetic energy to cavity RF electric field.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-12">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-12')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Highly Repetitive</span>
+            <span class="badge">6-8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Cavity Magnetron: Crossed-Field (E ⊥ B), π-Mode & Strapping</h4>
+          <div class="cram-formula">
+            Hull Cut-Off: B_0 = √[ (8m·V_0) / (e·b² · (1 - a²/b²)²) ]  |  Phase Shift Between Cavities = 180° (π)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Crossed-Field Geometry:</strong> Radial DC electric field Er ⊥ Axial static magnetic field Bz. Electrons experience curved cycloidal trajectories under Lorentz force.</li>
+            <li><strong>π-Mode Operation:</strong> Adjacent anode resonator cavities oscillate with 180° (π radians) phase difference. Form rotating electron "spokes" that transfer DC energy into cavity RF oscillations.</li>
+            <li><strong>Strapping:</strong> Two copper rings interconnecting alternate anode vanes to lock frequency in the desired π-mode and eliminate mode-jumping.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-13">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-13')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Must Score</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Travelling Wave Tube Amplifier (TWTA) vs Klystron</h4>
+          <div class="cram-formula">
+            Slow-Wave Helix: v_p = c · (p / πd) ≈ 0.1c  |  TWTA Bandwidth: 1-2 Octaves (Broadband)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Slow-Wave Helix:</strong> Reduces axial phase velocity of microwave wave to match electron beam velocity (vp ≈ ve).</li>
+            <li><strong>Continuous vs Discrete Interaction:</strong> TWTA interacts continuously along full length of helix; Klystron interacts discretely only inside narrow cavity gaps.</li>
+            <li><strong>Bandwidth:</strong> TWTA has extremely wide bandwidth (> 30-50%); Klystron is narrowband (< 1-2%).</li>
+          </ul>
+        </div>
+
+        <!-- Unit 5 -->
+        <h4 style="margin:24px 0 12px; color:#065f46; font-size:1.05rem;">📍 UNIT 5: Solid-State Microwave Devices & Measurements (End-Sem Q5/Q6)</h4>
+
+        <div class="cram-card" id="card-rmt-14">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-14')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6-8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Gunn Diode: RWH Two-Valley Mechanism & Domain Dynamics</h4>
+          <div class="cram-formula">
+            ΔE = 0.36 eV  |  E_th ≈ 3.2 kV/cm for GaAs  |  Drift Frequency: f = v_d / L
+          </div>
+          <ul class="cram-points">
+            <li><strong>No P-N Junction:</strong> Bulk slice of compound semiconductor (GaAs or InP).</li>
+            <li><strong>RWH Model:</strong> Conduction band has two sub-bands: Lower valley (Γ) has light effective mass (m1* = 0.068 m0) and high mobility (μ1 ≈ 8000 cm²/V·s); Upper valley (L) has heavy mass (m2* = 1.2 m0) and low mobility (μ2 ≈ 180 cm²/V·s).</li>
+            <li><strong>Negative Differential Resistance:</strong> Above Eth, electrons scatter to upper valley, current drops as field increases (dv/dE < 0). High-field domain forms at cathode and drifts to anode.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-15">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-15')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Highly Repetitive</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">IMPATT & TRAPATT Diodes: Avalanche Transit Time</h4>
+          <div class="cram-formula">
+            Total Phase Shift = 90° (Avalanche) + 90° (Drift) = 180° Out-of-Phase (Dynamic -R)
+          </div>
+          <ul class="cram-points">
+            <li><strong>IMPATT (Read Diode):</strong> Reverse-biased p+-n-i-n+ structure. Impact avalanche ionization generates 90° delay between RF voltage and hole-electron current; drift through intrinsic region adds second 90° delay → 180° total phase lag.</li>
+            <li><strong>TRAPATT:</strong> Trapped Plasma Avalanche Triggered Transit mode. Operates in plasma state with massive carrier extraction; gives high efficiency (~75%) at lower frequencies (< 10 GHz) vs IMPATT (~15%).</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-16">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-16')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Standard</span>
+            <span class="badge">6-8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">VSWR Measurement: Low vs High (Double Minimum Method)</h4>
+          <div class="cram-formula">
+            For Low VSWR (< 10): S = V_max / V_min | For High (> 10): S = λ_g / [ π · (d2 - d1) ]
+          </div>
+          <ul class="cram-points">
+            <li><strong>Low VSWR Setup:</strong> Slotted line waveguide section; probe directly records maximum voltage crest (Vmax) and minimum voltage trough (Vmin).</li>
+            <li><strong>High VSWR Limitation:</strong> Direct Vmin is near zero, drowned by detector noise and probe square-law distortion.</li>
+            <li><strong>Double Minimum Method:</strong> Position probe at minimum, then move left (d1) and right (d2) to points where detector reading doubles (twice minimum power / 3 dB). Difference Δd = |d2 - d1| calculates exact high VSWR!</li>
+          </ul>
+        </div>
+
+        <!-- Unit 6 -->
+        <h4 style="margin:24px 0 12px; color:#881337; font-size:1.05rem;">📍 UNIT 6: RADAR Systems, Applications & Hazards (End-Sem Q7/Q8)</h4>
+
+        <div class="cram-card" id="card-rmt-17">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-17')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6-8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Fundamental Radar Range Equation Derivation</h4>
+          <div class="cram-formula">
+            R_max = [ (P_t · G · A_e · σ) / ( (4π)² · S_min ) ]^(1/4)  |  R_max ∝ (P_t)^(1/4)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Step 1:</strong> Transmitted power density at range R: S_iso = Pt / (4πR²); with gain G: S_target = Pt·G / (4πR²).</li>
+            <li><strong>Step 2:</strong> Power reradiated by target with cross section σ: P_scattered = [Pt·G·σ] / (4πR²).</li>
+            <li><strong>Step 3:</strong> Reflected echo power density at radar: S_echo = P_scattered / (4πR²) = [Pt·G·σ] / [(4π)²·R⁴].</li>
+            <li><strong>Step 4:</strong> Captured by antenna aperture Ae: Pr = S_echo · Ae. Setting Pr = S_min yields fundamental 4th-root Radar Range Equation!</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-18">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-18')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">Core Concept</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">MTI Radar, Delay Line Canceller & Blind Speeds</h4>
+          <div class="cram-formula">
+            Doppler Shift f_d = 2·v_r / λ  |  Blind Speeds: v_b = (n · λ · PRF) / 2  |  (n = 1, 2, 3...)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Moving Target Indicator (MTI):</strong> Eliminates massive stationary ground clutter echoes using Doppler frequency shift.</li>
+            <li><strong>Delay Line Canceller:</strong> Current pulse echo is subtracted from previous pulse delayed by exactly T = 1/PRF. Stationary targets cancel to zero; moving targets yield non-zero difference.</li>
+            <li><strong>Blind Speeds:</strong> Radial velocities where Doppler shift equals integer multiple of PRF (fd = n·PRF); output cancels completely, making moving aircraft invisible! Prevented by PRF staggering.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-rmt-19">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-rmt-19')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Must Score</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Microwave Biological Hazards & Radiation Standards</h4>
+          <div class="cram-formula">
+            Specific Absorption Rate SAR = (σ · |E|²) / (2 · ρ)  [W/kg]  |  Safety Limit: 10 mW/cm² (OSHA/ANSI)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Thermal Effects:</strong> Microwave EM waves cause dielectric heating of water molecules in biological tissue, raising localized temperatures.</li>
+            <li><strong>Vulnerable Organs:</strong> Eyes (cataract formation due to poor blood flow/cooling in lens) and Testes (sterility).</li>
+            <li><strong>Safety Standards:</strong> Maximum Permissible Exposure (MPE) = 10 mW/cm² for occupational workers; SAR safety limit = 0.4 W/kg whole-body average.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VLSI CRAM SECTION -->
+      <div id="sec-vlsi" class="cram-section" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:800;">VLSI Design & Technology (Course Code: 404182) - Top End-Sem Questions</h3>
+          <span class="text-muted" style="font-size:0.85rem;">13 High-Yield Cards | Units 3, 4, 5, 6 (End-Sem)</span></div>
+
+        <!-- Unit 3 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 3: PLDs, CPLD & FPGA Architectures (End-Sem)</h4>
+
+        <div class="cram-card" id="card-vlsi-8">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-8')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed (15x Across 7 Papers)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">CPLD vs FPGA Architectural & Feature Comparison</h4>
+          <div class="cram-formula">
+            CPLD: Coarse-Grained (Macrocells + Global Interconnect) | FPGA: Fine-Grained (LUTs + Segmented Mesh)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Architecture:</strong> CPLD uses SPLD-like Macrocells connected to a central Global Interconnect Matrix. FPGA uses an array of thousands of Configurable Logic Blocks (CLBs).</li>
+            <li><strong>Logic Implementation:</strong> CPLD relies on wide PAL/PLA-like AND-OR arrays (wide SOP expressions, 16+ inputs). FPGA relies on Small Look-Up Tables (LUT4 or LUT6).</li>
+            <li><strong>Timing Predictability:</strong> CPLD delay is 100% deterministic (pin-to-pin delay known in advance). FPGA delay is non-deterministic (depends heavily on place-and-route).</li>
+            <li><strong>Storage & Volatility:</strong> CPLD is Non-Volatile (EEPROM/Flash based, boots instantly). FPGA is Volatile (SRAM-based, requires external boot PROM on power-up).</li>
+            <li><strong>Standby Power:</strong> CPLD consumes ultra-low standby power; FPGA has higher quiescent static leakage current.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-9">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-9')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">75% Frequency (10x)</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Classification of PLDs (PROM, PAL, PLA, CPLD, FPGA)</h4>
+          <div class="cram-formula">
+            PROM: Fixed AND, Prog OR | PAL: Prog AND, Fixed OR | PLA: Prog AND, Prog OR
+          </div>
+          <ul class="cram-points">
+            <li><strong>PROM:</strong> Decodes all 2^n minterms with fixed AND array; only OR array is programmable. Inefficient for logic functions with few minterms.</li>
+            <li><strong>PAL (Programmable Array Logic):</strong> Programmable AND array feeds fixed OR gates (typically 2-4 AND gates per OR gate). Fast, inexpensive, widely used.</li>
+            <li><strong>PLA (Programmable Logic Array):</strong> Both AND and OR arrays are fully programmable. Maximum flexibility, but slower propagation delay due to dual programmable fuses.</li>
+            <li><strong>CPLD & FPGA:</strong> High-density evolutionary extensions integrating multiple PAL-like function blocks or distributed LUT matrices with programmable routing channels.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-10">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-10')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">75% Frequency (9x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">FPGA Architecture: CLB, LUT, Switch Matrix & IOB</h4>
+          <div class="cram-formula">
+            CLB = 2-4 Slices (LUTs + Multiplexers + Dedicated Flip-Flops + Fast Carry Logic)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Configurable Logic Block (CLB):</strong> Core functional building block containing Look-Up Tables (LUTs) that implement any arbitrary Boolean function of 4 or 6 variables via SRAM truth table addressing.</li>
+            <li><strong>Programmable Interconnect:</strong> Horizontal and vertical routing channels interconnected by Switch Matrices (SM) and Connection Blocks (CB) using pass transistors or transmission gates.</li>
+            <li><strong>Input/Output Blocks (IOB):</strong> Configurable pads supporting multi-standard voltages (LVTTL, LVCMOS, PCI, differential LVDS) with programmable slew rate, pull-up/down resistors, and input/output registers.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 4 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 4: CMOS Logic Design, Scaling & Non-Idealities (End-Sem)</h4>
+
+        <div class="cram-card" id="card-vlsi-11">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-11')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">85% Frequency (13x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">CMOS Logic Implementation & Aspect Ratio (W/L) Sizing</h4>
+          <div class="cram-formula">
+            Symmetric Inverter: (W/L)_p = 2.5 · (W/L)_n  |  Series: W_eff = W / k  |  Parallel: W_eff = k · W
+          </div>
+          <ul class="cram-points">
+            <li><strong>Complementary Structure:</strong> Pull-Up Network (PUN) of PMOS transistors connected to VDD; Pull-Down Network (PDN) of dual NMOS transistors connected to GND.</li>
+            <li><strong>Mobility Difference:</strong> Electron mobility μ_n ≈ 500 cm²/V·s is ~2.5 times hole mobility μ_p ≈ 200 cm²/V·s, requiring PMOS width to be 2 to 3 times NMOS width for equal rise and fall propagation delays (tpLH = tpHL).</li>
+            <li><strong>Equivalent Sizing:</strong> For k transistors in series, width must be multiplied by k to preserve equivalent on-resistance. In parallel, width is unchanged while effective resistance is halved.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-12">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-12')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">80% Frequency (10x)</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Transmission Gate (TG) & Multiplexer Transistor Savings</h4>
+          <div class="cram-formula">
+            TG = NMOS + PMOS in Parallel (Control S and S_bar) | Passes Full Rail-to-Rail Logic (0V to VDD)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Threshold Drop Fix:</strong> An isolated NMOS passes a weak logic 1 (VDD - Vtn); an isolated PMOS passes a weak logic 0 (|Vtp|). A Transmission Gate connects both in parallel to pass full rail-to-rail swing with low dynamic on-resistance across all voltage levels.</li>
+            <li><strong>2:1 Multiplexer Savings:</strong> Built with 2 TGs + 1 control inverter = 6 transistors (compared to 12 transistors in standard static CMOS NAND-NAND implementation).</li>
+            <li><strong>4:1 Multiplexer Savings:</strong> Built with 4 TGs or cascaded 2:1 stages = 10-14 transistors (compared to 36 transistors in static CMOS logic), saving massive silicon real estate and power.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-13">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-13')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">85% Frequency (11x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Short-Channel Effects (Velocity Saturation, CLM, DIBL, HCI, Punch-Through)</h4>
+          <div class="cram-formula">
+            DIBL: ΔV_th = -η · V_DS  |  Velocity Saturation: I_Dsat = W · C_ox · v_sat · (V_GS - V_th)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Velocity Saturation:</strong> High longitudinal electric field causes carrier drift velocity to plateau at v_sat ≈ 10^7 cm/s, changing drain current from quadratic (V_GS - V_th)^2 to strictly linear.</li>
+            <li><strong>Drain-Induced Barrier Lowering (DIBL):</strong> High drain voltage depletes the channel laterally, lowering the potential barrier at the source, causing threshold voltage (V_th) to drop and subthreshold leakage to soar.</li>
+            <li><strong>Channel Length Modulation (CLM):</strong> Effective channel length shortens (ΔL) in saturation, causing non-zero output conductance (g_ds = λ · I_D).</li>
+            <li><strong>Hot Carrier Injection (HCI):</strong> High-energy electrons tunnel into gate oxide, causing permanent threshold voltage shifts and oxide degradation over device lifetime.</li>
+            <li><strong>Punch-Through:</strong> Drain depletion region physically merges with source depletion region, bypassing gate control completely.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-14">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-14')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">70% Frequency (9x)</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">CMOS Latch-Up Effect: Mechanism & Layout Prevention Rules</h4>
+          <div class="cram-formula">
+            Condition: Loop Gain β_npn · β_pnp &gt;= 1 Creates Low-Impedance Path from VDD to GND
+          </div>
+          <ul class="cram-points">
+            <li><strong>Parasitic SCR Formation:</strong> In bulk CMOS, the p+ source/drain, n-well, p-substrate, and n+ source/drain form cross-coupled parasitic lateral npn and vertical pnp bipolar transistors.</li>
+            <li><strong>Trigger:</strong> Voltage spikes or substrate noise turn ON one BJT; collector current drives base of other BJT, locking into runaway high-current conduction that destroys the IC.</li>
+            <li><strong>Prevention Rules:</strong> Place Guard Rings (well/substrate taps) surrounding all diffusion regions; use heavily doped epitaxial substrates; minimize substrate resistance R_sub and well resistance R_well with frequent VDD and GND pick-ups.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 5 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 5: Physical Design, Stick Diagrams & Layout Rules (End-Sem)</h4>
+
+        <div class="cram-card" id="card-vlsi-15">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-15')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">80% Frequency (11x)</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Lambda (λ) Based Design Rules (Mead-Conway Rules)</h4>
+          <div class="cram-formula">
+            λ = Resolution Half-Pitch (Linear Scaling Metric) | Contact Window: 2λ × 2λ
+          </div>
+          <ul class="cram-points">
+            <li><strong>Why Lambda Rules:</strong> Express layout geometry (widths, spacings, overlaps) in terms of dimensionless scalable unit λ, allowing designs to easily translate across shrinking foundry generations without complete redraw.</li>
+            <li><strong>Key Mead-Conway Rules:</strong> Minimum Poly width = 2λ; Poly spacing = 2λ; Diffusion width = 2λ; Diffusion spacing = 3λ; Poly overlap of Diffusion (extension) = 2λ; Metal-1 width = 3λ; Metal-1 spacing = 3λ; Contact cut size = 2λ × 2λ; Metal overlap of contact = 1λ.</li>
+            <li><strong>Micron Rules:</strong> Industry foundries enforce absolute micron rules for sub-micron nodes to extract maximum packing density.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-16">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-16')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">80% Frequency (10x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Stick Diagrams & Euler's Path for Minimum Parasitic Area</h4>
+          <div class="cram-formula">
+            Euler Path: Traverses every edge exactly once | Yields Uninterrupted Diffusion Strip
+          </div>
+          <ul class="cram-points">
+            <li><strong>Color Coding:</strong> Green = n-diffusion; Yellow/Brown = p-diffusion; Red = Polysilicon; Blue = Metal-1; Black 'X' = Contact cut; Demarcation line = separates PUN and PDN.</li>
+            <li><strong>Euler's Path Algorithm:</strong> Construct dual graphs for PMOS pull-up and NMOS pull-down networks. Find a common Eulerian sequence of transistor input gate labels that can be traversed continuously without backtracking.</li>
+            <li><strong>Advantage:</strong> Eliminates internal diffusion breaks and isolation oxide gaps, drastically minimizing source/drain junction parasitic capacitance and total chip layout area.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-17">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-17')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">70% Frequency (9x)</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Layout Parasitics: Antenna Effect, Crosstalk & Electromigration</h4>
+          <div class="cram-formula">
+            Black's Equation: MTTF = A · J^(-n) · exp(E_a / kT) | Crosstalk: ΔV = V_swing · (C_c / (C_c + C_gnd))
+          </div>
+          <ul class="cram-points">
+            <li><strong>Antenna Effect (Plasma Induced Damage):</strong> Long metal wires collect static charge during reactive ion plasma etching. Discharges through thin gate oxide, blowing dielectric breakdown. Fixed by inserting reverse-biased Antenna Diodes or jumper metal layer hopping.</li>
+            <li><strong>Crosstalk:</strong> Parasitic coupling capacitance (C_c) between parallel adjacent routing tracks injects noise glitches into victim nets or causes dynamic delay jitter. Mitigated by shielding with VDD/GND tracks and wire spacing.</li>
+            <li><strong>Electromigration:</strong> High current density (J &gt; 1-2 MA/cm²) momentum transfers from electron wind to metal ions, creating voids (open circuit) and hillocks/whiskers (short circuit). Solved by widening power rails and adding redundant vias.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 6 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 6: Fault Modeling, Design for Testability (DFT) & Boundary Scan (End-Sem)</h4>
+
+        <div class="cram-card" id="card-vlsi-18">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-18')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">85% Frequency (12x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Design for Testability (DFT): Controllability, Observability & SCOAP</h4>
+          <div class="cram-formula">
+            Testability = Controllability × Observability | SCOAP: CC0(n), CC1(n), and CO(n)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Controllability:</strong> Measure of difficulty of setting an internal circuit node to a desired logic value ('0' or '1') by asserting primary inputs.</li>
+            <li><strong>Observability:</strong> Measure of difficulty of propagating the logic state of an internal circuit node to primary outputs for measurement.</li>
+            <li><strong>SCOAP Analysis:</strong> Sandia Controllability/Observability Analysis Program computes Combinational Controllability 0/1 and Combinational Observability step counts, pinpointing test bottlenecks.</li>
+            <li><strong>Scan Path Design:</strong> Replaces normal D-flip-flops with multiplexed Scan Flip-Flops (normal vs shift mode), chaining internal storage elements into long shift registers to make internal sequential states directly controllable and observable.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-19">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-19')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">75% Frequency (10x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Built-In Self-Test (BIST) Architecture: LFSR, PRPG, MISR & BILBO</h4>
+          <div class="cram-formula">
+            Primitive Polynomial: Generates Maximal-Length (2^n - 1) Pseudo-Random Test Vector Sequence
+          </div>
+          <ul class="cram-points">
+            <li><strong>BIST Core Architecture:</strong> On-chip Test Pattern Generator (TPG), Circuit Under Test (CUT), Output Response Analyzer (ORA), and BIST Controller.</li>
+            <li><strong>LFSR (Linear Feedback Shift Register):</strong> Generates pseudo-random test vectors using feedback XOR taps governed by primitive polynomials.</li>
+            <li><strong>MISR (Multiple Input Signature Register):</strong> Compresses multi-output responses into a unique compact signature (e.g., 32-bit), compared against golden fault-free reference.</li>
+            <li><strong>BILBO (Built-In Logic Block Observer):</strong> 4-mode reconfigurable register: (1) Normal parallel register, (2) Scan register, (3) PRPG pattern generator, (4) MISR signature compressor.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-vlsi-20">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-vlsi-20')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">85% Frequency (11x)</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">JTAG Boundary Scan (IEEE 1149.1) & TAP Controller</h4>
+          <div class="cram-formula">
+            5 Dedicated Pins: TCK, TMS, TDI, TDO, TRST* | 16-State TAP Finite State Machine
+          </div>
+          <ul class="cram-points">
+            <li><strong>Boundary Scan Architecture:</strong> Places Boundary Scan Cells (BSCs) around every I/O pad, forming a serial ring around the chip boundary for board-level testing without physical bed-of-nails test probes.</li>
+            <li><strong>TAP Controller:</strong> 16-state synchronous FSM driven entirely by TMS on rising edge of TCK. Transitions between Test-Logic-Reset, Run-Test/Idle, Select-DR-Scan, Capture-DR, Shift-DR, Exit1-DR, Pause-DR, Exit2-DR, Update-DR.</li>
+            <li><strong>Mandatory JTAG Instructions:</strong> <code>BYPASS</code> (1-bit shift register bypass for faster testing of other chips), <code>SAMPLE/PRELOAD</code> (captures normal I/O signals without interrupting chip operation), <code>EXTEST</code> (tests inter-chip board solder connections and PCB traces). Optional: <code>INTEST</code>, <code>IDCODE</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CLOUD CRAM SECTION -->
+      <div id="sec-cloud" class="cram-section" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:800;">Cloud Computing (304193) - Top Questions</h3>
+          <span class="text-muted" style="font-size:0.85rem;">8 High-Yield Cards | 4 Units</span>
+        </div>
+
+        <!-- Unit 3 & 4 -->
+        <h4 style="margin:20px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 3 & 4: Virtualization, Storage & AWS Architecture</h4>
+        
+        <div class="cram-card" id="card-cloud-1">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-cloud-1')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Type-1 vs Type-2 Hypervisors & Full vs Para Virtualization</h4>
+          <div class="cram-formula">
+            Type-1: Bare-Metal (ESXi, Xen, KVM) | Type-2: Hosted (VirtualBox, VMware Workstation)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Type-1 (Bare Metal):</strong> Runs directly on physical hardware; superior performance, low overhead, preferred in enterprise cloud datacenters.</li>
+            <li><strong>Type-2 (Hosted):</strong> Runs on top of an existing host OS; introduces double OS overhead, used for desktop development.</li>
+            <li><strong>Full Virtualization:</strong> Guest OS unmodified; hypervisor traps and emulates sensitive instructions (binary translation / hardware VT-x).</li>
+            <li><strong>Para-virtualization:</strong> Guest OS kernel modified with hypercalls directly to hypervisor for higher I/O throughput.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-cloud-2">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-cloud-2')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">AWS Core Ecosystem: EC2, S3, EBS, and VPC</h4>
+          <div class="cram-formula">
+            Storage: S3 (Object, 11 9's durability) | EBS (Block, Persistent SAN for EC2)
+          </div>
+          <ul class="cram-points">
+            <li><strong>EC2 (Elastic Compute Cloud):</strong> Resizable compute virtual instances with pricing models: On-Demand, Reserved, Spot.</li>
+            <li><strong>S3 (Simple Storage Service):</strong> Highly scalable object store with buckets, versioning, lifecycle policies, and 99.999999999% durability.</li>
+            <li><strong>VPC (Virtual Private Cloud):</strong> Logically isolated virtual network with public/private subnets, Internet Gateways, NAT Gateways, and Security Groups.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 5 & 6 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 5 & 6: Docker/Kubernetes & Cloud Security</h4>
+
+        <div class="cram-card" id="card-cloud-3">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-cloud-3')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Docker vs Virtual Machines & Container Architecture</h4>
+          <div class="cram-formula">
+            Containers: Shared Host Kernel + cgroups/namespaces | VMs: Full Guest OS + Hypervisor
+          </div>
+          <ul class="cram-points">
+            <li><strong>Resource Isolation:</strong> Containers use Linux kernel features: Namespaces (isolation of PID, net, mount) and Cgroups (CPU/RAM limits).</li>
+            <li><strong>Startup Speed:</strong> Containers start in milliseconds vs VMs taking minutes due to full OS boot sequence.</li>
+            <li><strong>Image Layers:</strong> Docker builds images with copy-on-write (CoW) layered filesystem, maximizing caching and storage efficiency.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-cloud-4">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-cloud-4')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Must Score</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">AWS Shared Responsibility Model & IAM</h4>
+          <div class="cram-formula">
+            AWS owns "Security OF the Cloud" | Customer owns "Security IN the Cloud"
+          </div>
+          <ul class="cram-points">
+            <li><strong>Security OF the Cloud (AWS):</strong> Physical data center security, host hardware, hypervisors, global networking facilities.</li>
+            <li><strong>Security IN the Cloud (Customer):</strong> Guest OS patching, firewall rules (Security Groups), IAM user roles, data encryption at rest and in transit.</li>
+            <li><strong>IAM Principle of Least Privilege:</strong> Grant users, groups, and roles only the exact permissions needed via JSON policy documents.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DEEP LEARNING CRAM SECTION -->
+      <div id="sec-dl" class="cram-section" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:800;">Deep Learning Elective IV (304199) - Top Questions</h3>
+          <span class="text-muted" style="font-size:0.85rem;">8 High-Yield Cards | 4 Units</span>
+        </div>
+
+        <!-- Unit 3 & 4 -->
+        <h4 style="margin:20px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 3 & 4: CNNs, Regularization & Optimizers</h4>
+        
+        <div class="cram-card" id="card-dl-1">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-dl-1')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">CNN Architecture: Convolution, Pooling, and Parameter Sharing</h4>
+          <div class="cram-formula">
+            Output Size O = ⌊ (W - K + 2P) / S ⌋ + 1  |  Params = (K_h * K_w * C_in + 1) * C_out
+          </div>
+          <ul class="cram-points">
+            <li><strong>Parameter Sharing:</strong> Same convolution kernel weights are slid across the entire image, drastically cutting down parameter count compared to dense FC layers.</li>
+            <li><strong>Local Receptive Field:</strong> Each neuron connects only to a small localized spatial patch of the input, capturing local edges and textures.</li>
+            <li><strong>Pooling:</strong> Max or Average pooling downsamples spatial dimensions, introduces translation invariance, and controls overfitting.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-dl-2">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-dl-2')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">High Frequency</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Batch Normalization vs Dropout Regularization</h4>
+          <div class="cram-formula">
+            BN: x̂ = (x - μ_B) / √(σ_B² + ε),  y = γ*x̂ + β  |  Dropout: r ~ Bernoulli(p)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Batch Normalization:</strong> Normalizes mini-batch activations to zero mean and unit variance. Mitigates Internal Covariate Shift, enables higher learning rates.</li>
+            <li><strong>Learnable Parameters:</strong> Scale (γ) and shift (β) restore representational capacity of the layer.</li>
+            <li><strong>Dropout:</strong> Randomly deactivates neurons during training with probability p, preventing co-adaptation of features. Scales weights by p during inference.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 5 & 6 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 5 & 6: RNNs, LSTM & Autoencoders</h4>
+
+        <div class="cram-card" id="card-dl-3">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-dl-3')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6/8 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">LSTM Architecture & 3 Gating Equations</h4>
+          <div class="cram-formula">
+            f_t = σ(W_f·[h,x] + b_f), i_t = σ(W_i·[h,x] + b_i), o_t = σ(W_o·[h,x] + b_o)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Forget Gate (f_t):</strong> Decides what proportion of information to throw away from prior cell state C_{t-1}.</li>
+            <li><strong>Input Gate (i_t):</strong> Decides which new candidate values (C̃_t = tanh(W_c·[h,x])) to update into the memory cell: C_t = f_t*C_{t-1} + i_t*C̃_t.</li>
+            <li><strong>Output Gate (o_t):</strong> Filters current cell state through tanh to output next hidden state h_t = o_t * tanh(C_t).</li>
+            <li><strong>Constant Error Carousel:</strong> The additive linear update of C_t cures the Vanishing Gradient Problem of vanilla RNNs.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-dl-4">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-dl-4')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Standard</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Autoencoders vs GANs (Generative Adversarial Networks)</h4>
+          <div class="cram-formula">
+            GAN Minimax Game: min_G max_D V(D, G) = E[log D(x)] + E[log(1 - D(G(z)))]
+          </div>
+          <ul class="cram-points">
+            <li><strong>Autoencoder:</strong> Unsupervised network comprising Encoder (compresses input x to latent bottleneck z) and Decoder (reconstructs x̂ from z). Minimizes MSE reconstruction loss.</li>
+            <li><strong>GAN:</strong> Two competing networks: Generator G (creates realistic synthetic data from random noise z) and Discriminator D (classifies real vs fake).</li>
+            <li><strong>Training Dynamic:</strong> Nash equilibrium zero-sum game. Discriminator learns to maximize accuracy; Generator learns to fool D.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- JAVASCRIPT CRAM SECTION -->
+      <div id="sec-js" class="cram-section" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:800;">JavaScript Elective III (304198) - Top Questions</h3>
+          <span class="text-muted" style="font-size:0.85rem;">8 High-Yield Cards | 4 Units</span>
+        </div>
+
+        <!-- Unit 3 & 4 -->
+        <h4 style="margin:20px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 3 & 4: Closures, Event Loop & Promises</h4>
+        
+        <div class="cram-card" id="card-js-1">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-js-1')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">JavaScript Closures & Lexical Scoping</h4>
+          <div class="cram-formula">
+            function makeCounter() { let c = 0; return () => ++c; } // 'c' persists in heap!
+          </div>
+          <ul class="cram-points">
+            <li><strong>Definition:</strong> A closure is a function bundled together with references to its surrounding lexical environment, allowing it to remember outer variables even after the outer function has returned.</li>
+            <li><strong>Use Cases:</strong> Data encapsulation (private variables), function currying, event listeners, and memoization.</li>
+            <li><strong>Memory Caveat:</strong> Variables in closures are not garbage-collected as long as the inner function reference is retained in memory.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-js-2">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-js-2')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">100% Guaranteed</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Event Loop, Call Stack & Microtask Queue</h4>
+          <div class="cram-formula">
+            Priority Order: Call Stack -> Microtask Queue (Promises) -> Macrotask Queue (setTimeout)
+          </div>
+          <ul class="cram-points">
+            <li><strong>Call Stack:</strong> Single-threaded LIFO execution stack for synchronous function calls.</li>
+            <li><strong>Microtask Queue:</strong> Holds Promise.then, queueMicrotask, MutationObserver callbacks. Executed immediately after stack empties, BEFORE any macrotask!</li>
+            <li><strong>Macrotask Queue:</strong> Holds setTimeout, setInterval, setImmediate, and I/O callbacks. Event loop pulls one macrotask per tick.</li>
+          </ul>
+        </div>
+
+        <!-- Unit 5 & 6 -->
+        <h4 style="margin:24px 0 12px; color:#4f46e5; font-size:1.05rem;">📍 UNIT 5 & 6: Async/Await, DOM & Node.js Express</h4>
+
+        <div class="cram-card" id="card-js-3">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-js-3')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-high">High Frequency</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Promises vs Async/Await & Error Handling</h4>
+          <div class="cram-formula">
+            async function get() { try { const d = await fetch(u); } catch(e) { console.error(e); } }
+          </div>
+          <ul class="cram-points">
+            <li><strong>Promise States:</strong> Pending -> Fulfilled (with value) OR Rejected (with reason). Immutable once settled.</li>
+            <li><strong>Async/Await:</strong> Syntactic sugar built over Promises. Enables asynchronous non-blocking code to be read and written like synchronous code.</li>
+            <li><strong>Error Handling:</strong> Standard try...catch blocks cleanly catch both synchronous runtime errors and rejected async Promises.</li>
+          </ul>
+        </div>
+
+        <div class="cram-card" id="card-js-4">
+          <label class="check-btn"><input type="checkbox" onchange="toggleDone(this, 'card-js-4')"> Mastered</label>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="cram-badge badge-prob-must">Standard</span>
+            <span class="badge">6 Marks</span>
+          </div>
+          <h4 style="margin:10px 0 6px; font-size:1.15rem;">Node.js Express REST API & Middleware Pipeline</h4>
+          <div class="cram-formula">
+            app.use((req, res, next) => { console.log(req.method); next(); });
+          </div>
+          <ul class="cram-points">
+            <li><strong>Middleware Pattern:</strong> Functions with access to (req, res, next) chained sequentially. Must invoke next() to pass control down the pipeline.</li>
+            <li><strong>Built-in & Third-Party:</strong> express.json(), cors(), helmet(), morgan().</li>
+            <li><strong>REST CRUD Endpoints:</strong> app.get(), app.post(), app.put(), app.delete() return structured JSON responses with proper HTTP status codes (200, 201, 400, 404, 500).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="margin-top:60px; padding:30px 20px; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.85rem;">
+    <p>⚡ SPPU Sem 7 (2019 Pattern) One-Night Cram Mode | Crafted for Savitribai Phule Pune University Students</p>
+  </footer>
+
+  <script>
+    function switchSubject(subId, btn) {
+      document.querySelectorAll('.cram-nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.cram-section').forEach(sec => sec.style.display = 'none');
+      const target = document.getElementById('sec-' + subId);
+      if (target) target.style.display = 'block';
+    }
+
+    function toggleDone(checkbox, cardId) {
+      const card = document.getElementById(cardId);
+      if (checkbox.checked) {
+        card.classList.add('done');
+        localStorage.setItem('cram_' + cardId, 'true');
+      } else {
+        card.classList.remove('done');
+        localStorage.removeItem('cram_' + cardId);
+      }
+    }
+
+    // Load persisted check states
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.cram-card').forEach(card => {
+        if (localStorage.getItem('cram_' + card.id) === 'true') {
+          card.classList.add('done');
+          const cb = card.querySelector('input[type="checkbox"]');
+          if (cb) cb.checked = true;
+        }
+      });
+      initTimer();
+    });
+
+    let timerInterval;
+    function initTimer() {
+      // Default to 12 hours from now if not saved
+      let targetTime = localStorage.getItem('cram_target_time');
+      if (!targetTime) {
+        targetTime = Date.now() + (12 * 60 * 60 * 1000);
+        localStorage.setItem('cram_target_time', targetTime);
+      } else {
+        targetTime = parseInt(targetTime, 10);
+      }
+
+      function update() {
+        const now = Date.now();
+        const diff = targetTime - now;
+        if (diff <= 0) {
+          document.getElementById('examTimer').innerText = "00:00:00 - GOOD LUCK!";
+          return;
+        }
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('examTimer').innerText = 
+          `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+      update();
+      timerInterval = setInterval(update, 1000);
+    }
+
+    function resetTimer() {
+      const hours = prompt("How many hours until your exam?", "10");
+      if (hours && !isNaN(hours)) {
+        const newTarget = Date.now() + (parseFloat(hours) * 60 * 60 * 1000);
+        localStorage.setItem('cram_target_time', newTarget);
+        initTimer();
+      }
+    }
+  </script>
+</body>
+</html>

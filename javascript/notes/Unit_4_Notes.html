@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Unit 4: Regular Expressions & Strings | SPPU Notes</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 11pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(4, 120, 87, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 24pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 11pt; opacity: 0.95; }
+
+    .tag-strip { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-tag {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    .index-card {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 35px;
+    }
+    .index-card h3 { margin-top: 0; color: #047857; font-size: 13pt; }
+
+    .index-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+    .index-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 12px;
+        background: #ffffff;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #334155;
+        font-size: 10pt;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+    }
+    .index-item:hover { border-color: #10b981; color: #047857; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 35px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        page-break-inside: avoid;
+    }
+
+    .question-header { border-bottom: 2px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 18px; }
+    .question-title { font-size: 15pt; font-weight: 700; color: #0f172a; margin: 8px 0 10px 0; line-height: 1.4; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-med { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    .badge-std { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-unit { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
+
+    h3.section-head { font-size: 12pt; font-weight: 700; color: #047857; margin: 18px 0 8px 0; }
+    h4 { color: #334155; font-size: 10.5pt; margin: 12px 0 4px 0; }
+
+    p { margin: 8px 0; color: #334155; font-size: 10.5pt; }
+    ul, ol { margin: 6px 0 12px 0; padding-left: 22px; color: #334155; }
+    li { margin-bottom: 5px; font-size: 10.5pt; }
+
+    .callout { border-radius: 10px; padding: 14px 16px; margin: 14px 0; font-size: 10pt; }
+    .callout-analogy { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e40af; }
+    .callout-tip { background: #f0fdf4; border-left: 4px solid #22c55e; color: #15803d; }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 14px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        color: #1e293b;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+    td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #fbfcfe; }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 9pt;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        border: 1px solid #1e293b;
+    }
+    code {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; font-weight: 400; font-size: 9pt; }
+
+    .c-kw { color: #f43f5e; font-weight: 600; }
+    .c-fn { color: #38bdf8; font-weight: 600; }
+    .c-str { color: #a3e635; }
+    .c-num { color: #fb923c; }
+    .c-cm { color: #64748b; font-style: italic;}
+    .c-tag { color: #c084fc; }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .question-block { box-shadow: none; border: 1px solid #cbd5e1; margin-bottom: 25px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <div class="header-box">
+        <h1>JavaScript (Elective - III)</h1>
+        <p><strong>Unit 4: Regular Expressions &amp; Strings — SPPU End-Semester Exam Model Answers</strong></p>
+        <p>B.E. (E&amp;TC / Electronics) | 2019 Course Pattern | Subject Code: 404184(C)</p>
+        <div class="tag-strip">
+            <span class="header-tag">🎯 Target: 6 / 6 Marks Each</span>
+            <span class="header-tag">📊 Based on 4 Years (2022–2026) Papers</span>
+            <span class="header-tag">💡 Pattern Matching &amp; String Algorithms</span>
+        </div>
+    </div>
+
+    <!-- Quick Index -->
+    <div class="index-card">
+        <h3>📌 Quick Navigation Index (15 Unit 4 Questions)</h3>
+        <div class="index-grid">
+            <a href="#q1" class="index-item"><span>1. Character Classes in Regular Expressions</span> <span class="badge badge-fire">7x Repeated</span></a>
+            <a href="#q2" class="index-item"><span>2. String Methods for Regular Expressions (match, search, replace, split)</span> <span class="badge badge-fire">7x Repeated</span></a>
+            <a href="#q3" class="index-item"><span>3. Limitations of Regular Expressions</span> <span class="badge badge-fire">5x Repeated</span></a>
+            <a href="#q4" class="index-item"><span>4. What is Regular Expression &amp; Need of Regular Expressions</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q5" class="index-item"><span>5. Look Ahead and Look Behind Concepts in JavaScript</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q6" class="index-item"><span>6. Program to Study String-Related Built-in Methods</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q7" class="index-item"><span>7. Repetition Quantifiers in Regular Expressions</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q8" class="index-item"><span>8. Short Note on Advanced Regular Expressions</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q9" class="index-item"><span>9. search() and split() Methods with Suitable Examples</span> <span class="badge badge-med">2x Repeated</span></a>
+            <a href="#q10" class="index-item"><span>10. Greedy Matching vs Lazy/Non-Greedy Matching</span> <span class="badge badge-med">2x Repeated</span></a>
+            <a href="#q11" class="index-item"><span>11. Static Properties of RegExp Class Object</span> <span class="badge badge-med">2x Repeated</span></a>
+            <a href="#q12" class="index-item"><span>12. Capturing Groups in Regular Expressions</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q13" class="index-item"><span>13. RegExp Object Properties (Explain any two)</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q14" class="index-item"><span>14. Program to Compare Two Strings using Various Methods</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q15" class="index-item"><span>15. Program: Reverse String, Replace Characters &amp; Palindrome Check</span> <span class="badge badge-std">1x Asked</span></a>
+        </div>
+    </div>
+
+    <!-- ==================== Q1 ==================== -->
+    <div class="question-block" id="q1">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">🔥 Top Priority (Repeated 7 Times)</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4: Q.3 or Q.4</span>
+            </div>
+            <div class="question-title">Q1. Explain Character Classes in JavaScript. What are common character classes in Regular Expressions?</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, Nov/Dec 2024, May/Jun 2025, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Think of a Character Class like an airport security scanner preset to detect a specific category of items (e.g., "detect all metals" or "detect liquids"). Instead of writing rules for every single digit (0, 1, 2, 3... 9), you use a single character class <code>\d</code> that matches any digit instantly!
+        </div>
+
+        <h3 class="section-head">1. Definition (1.5 Marks)</h3>
+        <p>A <strong>Character Class</strong> (also called a Character Set) tells the Regular Expression engine to match any <strong>one character</strong> out of an allowed set of characters. It allows you to define categories of characters (like digits, letters, or whitespace) easily.</p>
+        <p>There are two primary ways to write character classes in JavaScript:</p>
+        <ul>
+            <li><strong>Custom Bracket Notation (<code>[...]</code>):</strong> You explicitly specify the permitted characters, e.g., <code>[aeiou]</code> matches any single lowercase vowel.</li>
+            <li><strong>Predefined Metacharacter Shorthands (<code>\d, \w, \s</code>):</strong> Built-in shorthand shortcuts provided by the RegExp engine.</li>
+        </ul>
+
+        <h3 class="section-head">2. Master Table of Common Predefined Character Classes (2.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:15%;">Class</th>
+                    <th style="width:25%;">Equivalent Set</th>
+                    <th style="width:35%;">Matches What?</th>
+                    <th style="width:25%;">Example Match</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>\d</code></td>
+                    <td><code>[0-9]</code></td>
+                    <td>Any single decimal digit</td>
+                    <td><code>"9"</code> in <code>"Room 9"</code></td>
+                </tr>
+                <tr>
+                    <td><code>\D</code></td>
+                    <td><code>[^0-9]</code></td>
+                    <td>Any <strong>non-digit</strong> character</td>
+                    <td><code>"R"</code> in <code>"Room 9"</code></td>
+                </tr>
+                <tr>
+                    <td><code>\w</code></td>
+                    <td><code>[a-zA-Z0-9_]</code></td>
+                    <td>Any alphanumeric "word" character + underscore</td>
+                    <td><code>"a"</code>, <code>"7"</code>, <code>"_"</code></td>
+                </tr>
+                <tr>
+                    <td><code>\W</code></td>
+                    <td><code>[^a-zA-Z0-9_]</code></td>
+                    <td>Any <strong>non-word</strong> character (symbols, spaces)</td>
+                    <td><code>"@"</code>, <code>"!"</code>, <code>" "</code></td>
+                </tr>
+                <tr>
+                    <td><code>\s</code></td>
+                    <td><code>[ \t\r\n\v\f]</code></td>
+                    <td>Any whitespace character (space, tab, newline)</td>
+                    <td>Tab or Space</td>
+                </tr>
+                <tr>
+                    <td><code>\S</code></td>
+                    <td><code>[^ \s]</code></td>
+                    <td>Any <strong>non-whitespace</strong> character</td>
+                    <td>Any visible letter/number</td>
+                </tr>
+                <tr>
+                    <td><code>.</code> (Dot)</td>
+                    <td>Any except newline</td>
+                    <td>Matches almost any single character</td>
+                    <td><code>"a.c"</code> matches <code>"abc"</code>, <code>"a9c"</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Custom Character Classes using Square Brackets (1 Mark)</h3>
+        <ul>
+            <li><strong>Range <code>[a-z]</code>:</strong> Matches any lowercase alphabet from 'a' to 'z'.</li>
+            <li><strong>Negated Range <code>[^0-9]</code>:</strong> The caret <code>^</code> inside brackets inverts the meaning (matches anything <em>except</em> digits).</li>
+        </ul>
+
+        <h3 class="section-head">4. Practical Demonstration Code (1 Mark)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Validating an Indian Mobile Number (10 digits starting with 6, 7, 8, or 9)</span>
+    <span class="c-kw">var</span> phonePattern = <span class="c-str">/^[6-9]\d{9}$/</span>;
+
+    <span class="c-kw">var</span> test1 = <span class="c-str">"9876543210"</span>;
+    <span class="c-kw">var</span> test2 = <span class="c-str">"1234567890"</span>;
+
+    console.log(test1 + <span class="c-str">" valid? "</span> + phonePattern.test(test1)); <span class="c-cm">// true</span>
+    console.log(test2 + <span class="c-str">" valid? "</span> + phonePattern.test(test2)); <span class="c-cm">// false</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q2 ==================== -->
+    <div class="question-block" id="q2">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">🔥 Top Priority (Repeated 7 Times)</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4: Q.3 or Q.4</span>
+            </div>
+            <div class="question-title">Q2. Explain String Methods used for Regular Expression in JavaScript with suitable examples.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, Nov/Dec 2024, May/Jun 2025, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The 4 Big String Methods for RegEx (2 Marks)</h3>
+        <p>In JavaScript, the <code>String</code> object provides 4 built-in methods that accept a Regular Expression pattern to search, replace, and slice text:</p>
+        <ol>
+            <li><code>string.match(regexp)</code></li>
+            <li><code>string.search(regexp)</code></li>
+            <li><code>string.replace(regexp, newSubstr)</code></li>
+            <li><code>string.split(regexp)</code></li>
+        </ol>
+
+        <h3 class="section-head">2. Detailed Explanation &amp; Comparison Table (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%;">Method</th>
+                    <th style="width:38%;">Purpose / Description</th>
+                    <th style="width:40%;">Return Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>match(regex)</code></td>
+                    <td>Retrieves the matches when matching a string against a pattern.</td>
+                    <td>An array of matched strings, or <code>null</code> if no match found.</td>
+                </tr>
+                <tr>
+                    <td><code>search(regex)</code></td>
+                    <td>Tests for a match in a string.</td>
+                    <td>Returns the <strong>index (position)</strong> of first match, or <code>-1</code> if not found.</td>
+                </tr>
+                <tr>
+                    <td><code>replace(regex, newStr)</code></td>
+                    <td>Finds matches and replaces them with replacement text.</td>
+                    <td>A brand new modified string (original string remains unchanged).</td>
+                </tr>
+                <tr>
+                    <td><code>split(regex)</code></td>
+                    <td>Splits a string into an array of substrings using pattern as delimiter.</td>
+                    <td>An array of split string chunks.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Complete Working Program Demonstrating All 4 Methods (2 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-kw">var</span> sentence = <span class="c-str">"Contact us at info@sppu.ac.in or exam2026@sppu.ac.in for help."</span>;
+
+    <span class="c-cm">// 1. match(): Find all email IDs using global flag /g</span>
+    <span class="c-kw">var</span> emailRegex = <span class="c-str">/[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g</span>;
+    <span class="c-kw">var</span> emailsFound = sentence.match(emailRegex);
+    console.log(<span class="c-str">"1. match() found:"</span>, emailsFound);
+    <span class="c-cm">// Output: ['info@sppu.ac.in', 'exam2026@sppu.ac.in']</span>
+
+    <span class="c-cm">// 2. search(): Find starting index of the year 2026</span>
+    <span class="c-kw">var</span> yearIndex = sentence.search(<span class="c-str">/\d{4}/</span>);
+    console.log(<span class="c-str">"2. search() found year at index:"</span>, yearIndex); 
+    <span class="c-cm">// Output: index number</span>
+
+    <span class="c-cm">// 3. replace(): Mask out all numbers with 'XXXX'</span>
+    <span class="c-kw">var</span> maskedSentence = sentence.replace(<span class="c-str">/\d+/g</span>, <span class="c-str">"XXXX"</span>);
+    console.log(<span class="c-str">"3. replace() result:"</span>, maskedSentence);
+    <span class="c-cm">// "Contact us at info@sppu.ac.in or examXXXX@sppu.ac.in..."</span>
+
+    <span class="c-cm">// 4. split(): Split string by spaces or punctuation</span>
+    <span class="c-kw">var</span> data = <span class="c-str">"Pune;Mumbai,Nashik Nagpur"</span>;
+    <span class="c-kw">var</span> cities = data.split(<span class="c-str">/[;, ]+/</span>);
+    console.log(<span class="c-str">"4. split() result:"</span>, cities);
+    <span class="c-cm">// Output: ['Pune', 'Mumbai', 'Nashik', 'Nagpur']</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q3 ==================== -->
+    <div class="question-block" id="q3">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">⭐ High Priority (Repeated 5 Times)</span>
+                <span class="badge badge-marks">5 Marks / 6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q3. What are the limitations of Regular Expression? Describe limitations of RegEx.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, May/Jun 2025</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Regular Expressions are like a metal detector—they are lightning-fast at finding specific flat patterns of metal coins, but they cannot tell you who owns the wallet or solve a complex puzzle!
+        </div>
+
+        <h3 class="section-head">1. Core Limitations of Regular Expressions (3 Marks)</h3>
+        <ol>
+            <li><strong>Cannot Parse Arbitrarily Nested Structures (e.g. HTML / XML / JSON):</strong>
+                <ul>
+                    <li>Regular expressions operate on <em>Regular Grammars</em> (Chomsky Type-3). They have no memory stack to balance arbitrarily deep nested opening and closing tags (e.g., <code>&lt;div&gt;&lt;div&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</code>) or balanced parentheses <code>((a + b) * (c + (d / e)))</code>.</li>
+                    <li><em>Rule of Thumb:</em> Never use pure RegEx to parse complete HTML documents; use a DOM parser instead.</li>
+                </ul>
+            </li>
+            <li><strong>Performance Bottlenecks &amp; Catastrophic Backtracking (ReDoS):</strong>
+                <ul>
+                    <li>Poorly written patterns with nested quantifiers (e.g., <code>(a+)+$</code>) cause exponential computational complexity \(\mathcal{O}(2^n)\). An attacker can freeze the CPU by submitting a malicious string. This vulnerability is called <strong>Regular Expression Denial of Service (ReDoS)</strong>.</li>
+                </ul>
+            </li>
+            <li><strong>Low Readability &amp; High Maintenance ("Write-Once, Read-Never"):</strong>
+                <ul>
+                    <li>Complex regular expressions (such as RFC 5322 compliant full email validation) look like unreadable strings of symbols: <code>^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$</code>. They are notoriously hard for other developers to read, debug, and maintain.</li>
+                </ul>
+            </li>
+            <li><strong>No Arithmetic / Semantic Understanding:</strong>
+                <ul>
+                    <li>RegEx has zero understanding of numbers. To check if a number is between 1 and 255 (like an IP address segment), you cannot say <code>num &gt;= 1 &amp;&amp; num &lt;= 255</code>. You must write an awkward string pattern: <code>^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$</code>.</li>
+                </ul>
+            </li>
+            <li><strong>Limited Context-Sensitivity:</strong>
+                <ul>
+                    <li>Standard RegEx cannot easily enforce cross-field business logic, such as "EndDate must be greater than StartDate".</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 class="section-head">2. Summary Table of Limitations vs. Solutions (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>RegEx Limitation</th>
+                    <th>Why it fails?</th>
+                    <th>Proper Solution in Practice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nested HTML/XML Tags</td>
+                    <td>Lacks stack memory for balanced pairs</td>
+                    <td>Use DOMParser / HTML Parsers</td>
+                </tr>
+                <tr>
+                    <td>Catastrophic Backtracking</td>
+                    <td>Exponential branching permutations</td>
+                    <td>Atomic grouping, possessive quantifiers</td>
+                </tr>
+                <tr>
+                    <td>Numeric Range Checking (1-100)</td>
+                    <td>Sees characters, not numerical value</td>
+                    <td><code>parseInt()</code> + standard <code>if</code> condition</td>
+                </tr>
+                <tr>
+                    <td>Complex Validation Rules</td>
+                    <td>Becomes unreadable and error-prone</td>
+                    <td>Custom JavaScript validation functions</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ==================== Q4 ==================== -->
+    <div class="question-block" id="q4">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q4. What is Regular Expression in JavaScript and explain the need of regular expressions.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. Definition (2 Marks)</h3>
+        <p>A <strong>Regular Expression</strong> (often abbreviated as <strong>RegExp</strong> or <strong>Regex</strong>) is an object that describes a <strong>sequence of characters that forms a search pattern</strong>. It is used to perform powerful pattern matching and "search-and-replace" operations on text.</p>
+        <p>In JavaScript, regular expressions can be created in two ways:</p>
+        <ol>
+            <li><strong>RegExp Literal (Most common):</strong> Enclosed between forward slashes &rarr; <code>var pattern = /abc/i;</code></li>
+            <li><strong>RegExp Constructor:</strong> Using the <code>new RegExp()</code> object &rarr; <code>var pattern = new RegExp("abc", "i");</code></li>
+        </ol>
+
+        <h3 class="section-head">2. Why Do We Need Regular Expressions? (4 Crucial Needs) (3 Marks)</h3>
+        <ul>
+            <li><strong>1. Form Input Validation (Client-Side Checking):</strong>
+                <p>Before submitting user data to a database, you must verify if phone numbers contain 10 digits, pin codes have 6 digits, and emails contain an <code>@</code> and domain. Writing this with 20 nested <code>if-else</code> loops is messy; a 1-line regex validates it instantly.</p>
+            </li>
+            <li><strong>2. Text Scraping &amp; Data Extraction:</strong>
+                <p>Pulling out all dates (DD/MM/YYYY), URLs, or invoice numbers from a large body of unformatted text.</p>
+            </li>
+            <li><strong>3. Search and Replace / Formatting:</strong>
+                <p>Cleaning user input (e.g., removing leading/trailing spaces, replacing swear words with asterisks, reformatting phone numbers from <code>9876543210</code> to <code>+91-9876-543210</code>).</p>
+            </li>
+            <li><strong>4. High Execution Speed:</strong>
+                <p>Regular expressions in modern browsers are compiled directly to optimized native machine code by JavaScript engines (like Chrome V8), making them significantly faster than manual string scanning loops.</p>
+            </li>
+        </ul>
+
+        <h3 class="section-head">3. Quick Example Demonstrating the Need (1 Mark)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Manual check without Regex: Takes 10-15 lines of char checks!</span>
+    <span class="c-cm">// With Regex: Exactly 1 clean line!</span>
+    <span class="c-kw">function</span> <span class="c-fn">validatePincode</span>(pin) {
+        <span class="c-kw">var</span> pinPattern = <span class="c-str">/^[1-9][0-9]{5}$/</span>; <span class="c-cm">// Exactly 6 digits, cannot start with 0</span>
+        <span class="c-kw">return</span> pinPattern.test(pin);
+    }
+
+    console.log(<span class="c-str">"411041 valid?"</span>, validatePincode(<span class="c-str">"411041"</span>)); <span class="c-cm">// true</span>
+    console.log(<span class="c-str">"012345 valid?"</span>, validatePincode(<span class="c-str">"012345"</span>)); <span class="c-cm">// false</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q5 ==================== -->
+    <div class="question-block" id="q5">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q5. Explain Look Ahead and Look Behind concepts in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Imagine you are looking for the word "Chocolate", but you only want it if the next word is "Cake" (Look Ahead). You don't want to eat the word "Cake", you just want to verify it's there before picking "Chocolate"! Look-arounds check the surroundings <strong>without consuming</strong> the surrounding characters.
+        </div>
+
+        <h3 class="section-head">1. The Concept of "Zero-Width Assertions" (2 Marks)</h3>
+        <p><strong>Look Ahead</strong> and <strong>Look Behind</strong> are called <strong>Zero-Width Assertions</strong>. They match characters based on what comes <em>immediately after</em> or <em>immediately before</em> them, <strong>without including</strong> those surrounding characters in the final matched result.</p>
+
+        <h3 class="section-head">2. The 4 Types of Look-Arounds (2.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Type</th>
+                    <th style="width:18%;">Syntax</th>
+                    <th style="width:32%;">Meaning</th>
+                    <th style="width:25%;">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Positive Lookahead</strong></td>
+                    <td><code>X(?=Y)</code></td>
+                    <td>Matches <code>X</code> only if followed by <code>Y</code></td>
+                    <td><code>\d+(?=px)</code> matches <code>"100"</code> in <code>"100px"</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Negative Lookahead</strong></td>
+                    <td><code>X(?!Y)</code></td>
+                    <td>Matches <code>X</code> only if <strong>NOT</strong> followed by <code>Y</code></td>
+                    <td><code>\d+(?!px)</code> matches <code>"100"</code> in <code>"100kg"</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Positive Lookbehind</strong></td>
+                    <td><code>(?&lt;=Y)X</code></td>
+                    <td>Matches <code>X</code> only if preceded by <code>Y</code></td>
+                    <td><code>(?&lt;=\$) \d+</code> matches <code>"50"</code> in <code>"$50"</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Negative Lookbehind</strong></td>
+                    <td><code>(?&lt;!Y)X</code></td>
+                    <td>Matches <code>X</code> only if <strong>NOT</strong> preceded by <code>Y</code></td>
+                    <td><code>(?&lt;!\$) \d+</code> matches <code>"50"</code> in <code>"€50"</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Complete Program to Write in Exam (1.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// 1. Positive Lookahead: Match price number followed by 'USD'</span>
+    <span class="c-kw">var</span> text1 = <span class="c-str">"Item costs 250 USD and shipping is 20 INR"</span>;
+    <span class="c-kw">var</span> lookAheadRegex = <span class="c-str">/\d+(?=\s*USD)/</span>;
+    console.log(text1.match(lookAheadRegex)[<span class="c-num">0</span>]); <span class="c-cm">// Output: "250" (Notice 'USD' is NOT included!)</span>
+
+    <span class="c-cm">// 2. Negative Lookahead: Password validation (Must contain at least 1 digit)</span>
+    <span class="c-kw">var</span> hasDigit = <span class="c-str">/(?=.*\d)/</span>;
+
+    <span class="c-cm">// 3. Positive Lookbehind: Extract currency value preceded by '₹'</span>
+    <span class="c-kw">var</span> text2 = <span class="c-str">"Price: ₹1500"</span>;
+    <span class="c-kw">var</span> lookBehindRegex = <span class="c-str">/(?&lt;=₹)\d+/</span>;
+    console.log(text2.match(lookBehindRegex)[<span class="c-num">0</span>]); <span class="c-cm">// Output: "1500" (Notice '₹' is NOT included!)</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q6 ==================== -->
+    <div class="question-block" id="q6">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">5 Marks / 6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q6. Write a JavaScript program to study string-related built-in methods in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The Key String Methods in JavaScript (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Method</th>
+                    <th style="width:45%;">Action / Description</th>
+                    <th style="width:30%;">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>charAt(index)</code></td>
+                    <td>Returns the character at specified index.</td>
+                    <td><code>"Pune".charAt(0)</code> &rarr; <code>"P"</code></td>
+                </tr>
+                <tr>
+                    <td><code>indexOf(str)</code></td>
+                    <td>Returns first index of substring (or -1).</td>
+                    <td><code>"Hello".indexOf("l")</code> &rarr; <code>2</code></td>
+                </tr>
+                <tr>
+                    <td><code>substring(start, end)</code></td>
+                    <td>Extracts characters between two indices.</td>
+                    <td><code>"College".substring(0, 4)</code> &rarr; <code>"Coll"</code></td>
+                </tr>
+                <tr>
+                    <td><code>toLowerCase() / toUpperCase()</code></td>
+                    <td>Changes case of string.</td>
+                    <td><code>"sppu".toUpperCase()</code> &rarr; <code>"SPPU"</code></td>
+                </tr>
+                <tr>
+                    <td><code>trim()</code></td>
+                    <td>Removes whitespace from both ends.</td>
+                    <td><code>"  Hi  ".trim()</code> &rarr; <code>"Hi"</code></td>
+                </tr>
+                <tr>
+                    <td><code>concat()</code></td>
+                    <td>Joins two or more strings together.</td>
+                    <td><code>"A".concat("B")</code> &rarr; <code>"AB"</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">2. Complete Program (4 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>String Built-in Methods Demonstration<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"results"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">var</span> originalStr = <span class="c-str">"  Savitribai Phule Pune University  "</span>;
+
+        <span class="c-cm">// 1. length property</span>
+        <span class="c-kw">var</span> len = originalStr.length;
+
+        <span class="c-cm">// 2. trim(): Remove surrounding spaces</span>
+        <span class="c-kw">var</span> trimmed = originalStr.trim();
+
+        <span class="c-cm">// 3. toUpperCase() and toLowerCase()</span>
+        <span class="c-kw">var</span> upper = trimmed.toUpperCase();
+        <span class="c-kw">var</span> lower = trimmed.toLowerCase();
+
+        <span class="c-cm">// 4. charAt() and charCodeAt()</span>
+        <span class="c-kw">var</span> firstChar = trimmed.charAt(<span class="c-num">0</span>);      <span class="c-cm">// 'S'</span>
+        <span class="c-kw">var</span> asciiCode = trimmed.charCodeAt(<span class="c-num">0</span>);  <span class="c-cm">// 83 (ASCII of 'S')</span>
+
+        <span class="c-cm">// 5. indexOf() and lastIndexOf()</span>
+        <span class="c-kw">var</span> indexP = trimmed.indexOf(<span class="c-str">"Pune"</span>);
+
+        <span class="c-cm">// 6. substring(start, end)</span>
+        <span class="c-kw">var</span> sub = trimmed.substring(<span class="c-num">0</span>, <span class="c-num">10</span>); <span class="c-cm">// "Savitribai"</span>
+
+        <span class="c-cm">// 7. replace()</span>
+        <span class="c-kw">var</span> replaced = trimmed.replace(<span class="c-str">"University"</span>, <span class="c-str">"Campus"</span>);
+
+        <span class="c-cm">// 8. split()</span>
+        <span class="c-kw">var</span> wordsArray = trimmed.split(<span class="c-str">" "</span>);
+
+        <span class="c-cm">// Displaying all outputs</span>
+        document.getElementById(<span class="c-str">"results"</span>).innerHTML = 
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Raw Length:&lt;/b&gt; "</span> + len + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Trimmed:&lt;/b&gt; '"</span> + trimmed + <span class="c-str">"'&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Uppercase:&lt;/b&gt; "</span> + upper + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;First Char &amp; ASCII:&lt;/b&gt; "</span> + firstChar + <span class="c-str">" ("</span> + asciiCode + <span class="c-str">")&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Index of 'Pune':&lt;/b&gt; "</span> + indexP + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Substring(0, 10):&lt;/b&gt; "</span> + sub + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Replaced:&lt;/b&gt; "</span> + replaced + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;Split into Words:&lt;/b&gt; "</span> + wordsArray.join(<span class="c-str">" | "</span>) + <span class="c-str">"&lt;/p&gt;"</span>;
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q7 ==================== -->
+    <div class="question-block" id="q7">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q7. List the 6 Repetition Quantifiers with their meaning. Explain any 2 with example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. What is a Repetition Quantifier? (1 Mark)</h3>
+        <p>A <strong>Quantifier</strong> specifies <strong>how many times</strong> the preceding character, character class, or group must appear in the input string for a match to succeed.</p>
+
+        <h3 class="section-head">2. The 6 Repetition Quantifiers Table (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:18%;">Quantifier</th>
+                    <th style="width:30%;">Exact Meaning</th>
+                    <th style="width:25%;">Example Pattern</th>
+                    <th style="width:27%;">Matches / Does Not Match</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>*</code> (Star)</td>
+                    <td><strong>0 or more times</strong> (Optional, can repeat endlessly)</td>
+                    <td><code>/go*l/</code></td>
+                    <td>Matches <code>"gl"</code>, <code>"gol"</code>, <code>"goool"</code></td>
+                </tr>
+                <tr>
+                    <td><code>+</code> (Plus)</td>
+                    <td><strong>1 or more times</strong> (Must appear at least once)</td>
+                    <td><code>/go+l/</code></td>
+                    <td>Matches <code>"gol"</code>, <code>"gool"</code> (Does NOT match <code>"gl"</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>?</code> (Question)</td>
+                    <td><strong>0 or 1 time</strong> (Optional single appearance)</td>
+                    <td><code>/colou?r/</code></td>
+                    <td>Matches both <code>"color"</code> and <code>"colour"</code></td>
+                </tr>
+                <tr>
+                    <td><code>{n}</code></td>
+                    <td><strong>Exactly n times</strong></td>
+                    <td><code>/\d{4}/</code></td>
+                    <td>Matches exactly 4 digits: <code>"2026"</code></td>
+                </tr>
+                <tr>
+                    <td><code>{n,}</code></td>
+                    <td><strong>At least n times</strong> (n or more)</td>
+                    <td><code>/\d{2,}/</code></td>
+                    <td>Matches 2 or more digits: <code>"25"</code>, <code>"1000"</code></td>
+                </tr>
+                <tr>
+                    <td><code>{n, m}</code></td>
+                    <td><strong>Between n and m times</strong> (inclusive)</td>
+                    <td><code>/\w{6,12}/</code></td>
+                    <td>Matches usernames between 6 and 12 chars</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. In-Depth Explanation of Any Two Quantifiers (2 Marks)</h3>
+
+        <h4>Example A: The <code>?</code> (0 or 1 Time) Quantifier</h4>
+        <p>Used to make characters or protocols optional:</p>
+<pre><code><span class="c-cm">// Matches both 'http://' and secure 'https://'</span>
+<span class="c-kw">var</span> urlPattern = <span class="c-str">/^https?:\/\/[a-z.]+/</span>;
+
+console.log(urlPattern.test(<span class="c-str">"http://google.com"</span>));  <span class="c-cm">// true (s matched 0 times)</span>
+console.log(urlPattern.test(<span class="c-str">"https://google.com"</span>)); <span class="c-cm">// true (s matched 1 time)</span></code></pre>
+
+        <h4>Example B: The <code>{n, m}</code> Range Quantifier</h4>
+        <p>Used for strict field lengths like passwords or security codes:</p>
+<pre><code><span class="c-cm">// Validate password length between 8 and 16 characters</span>
+<span class="c-kw">var</span> passwordPattern = <span class="c-str">/^[A-Za-z0-9]{8,16}$/</span>;
+
+console.log(passwordPattern.test(<span class="c-str">"pass123"</span>));          <span class="c-cm">// false (too short: 7 chars)</span>
+console.log(passwordPattern.test(<span class="c-str">"SecretPass2026"</span>));    <span class="c-cm">// true (valid: 14 chars)</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q8 ==================== -->
+    <div class="question-block" id="q8">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q8. Write a short note on Advanced Regular Expressions.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. What are Advanced Regular Expressions? (1.5 Marks)</h3>
+        <p>While basic regular expressions match fixed literal characters and character classes, <strong>Advanced Regular Expressions</strong> introduce complex algorithmic controls for look-arounds, non-capturing groups, backreferences, and modifier flags to solve enterprise-level text processing tasks.</p>
+
+        <h3 class="section-head">2. Key Advanced RegEx Concepts (3 Marks)</h3>
+        <ol>
+            <li><strong>Non-Capturing Groups <code>(?:...)</code>:</strong>
+                <p>Groups tokens together for repetition without wasting memory storing the captured match for later backreferencing.</p>
+                <code>/(?:https|ftp):\/\/\S+/</code> &rarr; Groups protocols together without capturing.
+            </li>
+            <li><strong>Backreferences <code>\1, \2</code>:</strong>
+                <p>Allows referring back to a previously matched sub-expression inside the same pattern! Excellent for finding HTML matching tags or repeated words:</p>
+                <code>/&lt;([a-z]+)&gt;.*?&lt;\/\1&gt;/</code> &rarr; Ensures <code>&lt;b&gt;</code> closes with <code>&lt;/b&gt;</code>!
+            </li>
+            <li><strong>Look-Around Assertions (Zero-Width):</strong>
+                <p>Positive and negative lookaheads (<code>(?=...)</code>, <code>(?!...)</code>) and lookbehinds (<code>(?&lt;=...)</code>, <code>(?&lt;!...)</code>) match context without moving the matching index.</p>
+            </li>
+            <li><strong>RegExp Flags / Modifiers:</strong>
+                <ul>
+                    <li><code>g</code> (Global): Matches all occurrences, not just the first.</li>
+                    <li><code>i</code> (Case-Insensitive): Ignores upper/lower case.</li>
+                    <li><code>m</code> (Multiline): <code>^</code> and <code>$</code> match start/end of every line.</li>
+                    <li><code>s</code> (DotAll - ES2018): Allows <code>.</code> to match newlines too.</li>
+                    <li><code>u</code> (Unicode): Full handling of 16-bit Unicode characters.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 class="section-head">3. Code Example of Advanced Patterns (1.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Finding repeated words using Backreferences </span>
+    <span class="c-kw">var</span> sentence = <span class="c-str">"The the student passed the exam in in Pune."</span>;
+    <span class="c-kw">var</span> duplicateWordPattern = <span class="c-str">/([a-zA-Z]+)\s+/gi</span>;
+
+    <span class="c-kw">var</span> duplicates = sentence.match(duplicateWordPattern);
+    console.log(<span class="c-str">"Found Duplicates:"</span>, duplicates); <span class="c-cm">// ['The the', 'in in']</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q9 ==================== -->
+    <div class="question-block" id="q9">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 2 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q9. Explain search() and split() method used in regular expression with suitable example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2024, Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The <code>search()</code> Method (3 Marks)</h3>
+        <ul>
+            <li><strong>Syntax:</strong> <code>string.search(regexp)</code></li>
+            <li><strong>Purpose:</strong> Searches for a match between a regular expression and the calling string.</li>
+            <li><strong>Return Value:</strong> Returns the <strong>index (zero-based position)</strong> of the first match found. If no match is found, it returns <strong><code>-1</code></strong>.</li>
+            <li><em>Key Note:</em> <code>search()</code> ignores the global <code>/g</code> flag; it always returns the index of the very first match.</li>
+        </ul>
+<pre><code><span class="c-kw">var</span> statement = <span class="c-str">"Exam starts at 10:30 AM in November."</span>;
+
+<span class="c-cm">// Search for time pattern (digits:digits)</span>
+<span class="c-kw">var</span> timeIndex = statement.search(<span class="c-str">/\d{2}:\d{2}/</span>);
+console.log(<span class="c-str">"Time starts at index:"</span>, timeIndex); <span class="c-cm">// Output: 15</span>
+
+<span class="c-cm">// Search for pattern that does NOT exist</span>
+<span class="c-kw">var</span> notFound = statement.search(<span class="c-str">/December/</span>);
+console.log(<span class="c-str">"Not found result:"</span>, notFound);     <span class="c-cm">// Output: -1</span></code></pre>
+
+        <h3 class="section-head">2. The <code>split()</code> Method (3 Marks)</h3>
+        <ul>
+            <li><strong>Syntax:</strong> <code>string.split(separatorRegex, limit)</code></li>
+            <li><strong>Purpose:</strong> Divides a string into an ordered list of substrings by searching for a pattern, puts these substrings into an array, and returns the array.</li>
+            <li><strong>Strength:</strong> Unlike ordinary <code>split(",")</code> which only splits by a single comma, using a RegEx allows splitting by multiple inconsistent delimiters (spaces, commas, hyphens, semicolons) in one go!</li>
+        </ul>
+<pre><code><span class="c-cm">// Messy user input with inconsistent delimiters: comma, semicolon, multiple spaces</span>
+<span class="c-kw">var</span> rawInput = <span class="c-str">"JavaScript; Python, C++   Java - PHP"</span>;
+
+<span class="c-cm">// Split using regex matching any semicolon, comma, hyphen, or 1+ spaces</span>
+<span class="c-kw">var</span> languages = rawInput.split(<span class="c-str">/[;, -]+/</span>);
+
+console.log(<span class="c-str">"Parsed Array of Languages:"</span>, languages);
+<span class="c-cm">// Output: ['JavaScript', 'Python', 'C++', 'Java', 'PHP']</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q10 ==================== -->
+    <div class="question-block" id="q10">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 2 Times</span>
+                <span class="badge badge-marks">5 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q10. Describe the term Greedy Matching in regular expression with example. Differentiate between Greedy and Lazy (Non-Greedy) Matching.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2024, Nov/Dec 2025</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Think of <strong>Greedy</strong> like eating the biggest possible slice of pizza you can find. <strong>Lazy (Non-Greedy)</strong> is polite—it takes the smallest possible bite and stops immediately!
+        </div>
+
+        <h3 class="section-head">1. Definition of Greedy Matching (2 Marks)</h3>
+        <p>By default, all standard quantifiers in regular expressions (<code>*</code>, <code>+</code>, <code>?</code>, <code>{n, m}</code>) are <strong>GREEDY</strong>.</p>
+        <p><strong>Greedy</strong> means the quantifier will match <strong>as many characters as possible</strong> (the longest possible match) while still allowing the rest of the pattern to match.</p>
+
+        <h3 class="section-head">2. Lazy / Non-Greedy Matching (1.5 Marks)</h3>
+        <p>You can turn any greedy quantifier into a <strong>Lazy (Reluctant / Non-Greedy)</strong> quantifier by placing a question mark <code>?</code> immediately after it (e.g., <code>*?</code>, <code>+?</code>, <code>??</code>).</p>
+        <p>A <strong>Lazy quantifier</strong> matches <strong>as few characters as possible</strong> (the shortest possible match).</p>
+
+        <h3 class="section-head">3. Classic HTML Tag Extraction Example (1.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-kw">var</span> htmlCode = <span class="c-str">"&lt;p&gt;First Paragraph&lt;/p&gt;&lt;p&gt;Second Paragraph&lt;/p&gt;"</span>;
+
+    <span class="c-cm">// 1. GREEDY PATTERN: /&lt;p&gt;.*&lt;\/p&gt;/</span>
+    <span class="c-cm">// .* consumes everything until the LAST &lt;/p&gt; in the string!</span>
+    <span class="c-kw">var</span> greedyResult = htmlCode.match(<span class="c-str">/&lt;p&gt;.*&lt;\/p&gt;/</span>)[<span class="c-num">0</span>];
+    console.log(<span class="c-str">"Greedy match (Longest):"</span>, greedyResult);
+    <span class="c-cm">// Output: "&lt;p&gt;First Paragraph&lt;/p&gt;&lt;p&gt;Second Paragraph&lt;/p&gt;" (Entire String!)</span>
+
+    <span class="c-cm">// 2. LAZY PATTERN: /&lt;p&gt;.*?&lt;\/p&gt;/</span>
+    <span class="c-cm">// .*? stops at the VERY FIRST &lt;/p&gt; it encounters!</span>
+    <span class="c-kw">var</span> lazyResult = htmlCode.match(<span class="c-str">/&lt;p&gt;.*?&lt;\/p&gt;/</span>)[<span class="c-num">0</span>];
+    console.log(<span class="c-str">"Lazy match (Shortest):"</span>, lazyResult);
+    <span class="c-cm">// Output: "&lt;p&gt;First Paragraph&lt;/p&gt;"</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q11 ==================== -->
+    <div class="question-block" id="q11">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 2 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q11. Explain Static Properties of the RegExp Class Object.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Concept (1.5 Marks)</h3>
+        <p>In JavaScript, the <code>RegExp</code> constructor itself has several <strong>static properties</strong> that automatically store information about the most recent regular expression match executed anywhere in the script. They are accessed directly via the constructor: <code>RegExp.propertyName</code>.</p>
+
+        <h3 class="section-head">2. Key Static Properties Table (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Static Property</th>
+                    <th style="width:15%;">Short Alias</th>
+                    <th style="width:60%;">What it Stores?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>RegExp.input</code></td>
+                    <td><code>RegExp.$_</code></td>
+                    <td>The original string against which the regular expression was matched.</td>
+                </tr>
+                <tr>
+                    <td><code>RegExp.lastMatch</code></td>
+                    <td><code>RegExp["$&amp;"]</code></td>
+                    <td>The exact characters that matched the pattern.</td>
+                </tr>
+                <tr>
+                    <td><code>RegExp.lastParen</code></td>
+                    <td><code>RegExp["$+"]</code></td>
+                    <td>The substring matched by the last parenthesized capturing submatch.</td>
+                </tr>
+                <tr>
+                    <td><code>RegExp.leftContext</code></td>
+                    <td><code>RegExp["$`"]</code></td>
+                    <td>The substring of the input string that preceded the match.</td>
+                </tr>
+                <tr>
+                    <td><code>RegExp.rightContext</code></td>
+                    <td><code>RegExp["$'"]</code></td>
+                    <td>The substring of the input string that followed the match.</td>
+                </tr>
+                <tr>
+                    <td><code>RegExp.$1 ... $9</code></td>
+                    <td>-</td>
+                    <td>Stores the 1st through 9th captured parenthesized groups.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Working Code Demonstration (1.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-kw">var</span> pattern = <span class="c-str">/(Hello) (World)/</span>;
+    <span class="c-kw">var</span> str = <span class="c-str">"Prefix-Hello World-Suffix"</span>;
+
+    <span class="c-cm">// Execute match</span>
+    pattern.test(str);
+
+    console.log(<span class="c-str">"Input:"</span>, RegExp.input);             <span class="c-cm">// "Prefix-Hello World-Suffix"</span>
+    console.log(<span class="c-str">"Last Match:"</span>, RegExp.lastMatch);       <span class="c-cm">// "Hello World"</span>
+    console.log(<span class="c-str">"Left Context:"</span>, RegExp.leftContext);   <span class="c-cm">// "Prefix-"</span>
+    console.log(<span class="c-str">"Right Context:"</span>, RegExp.rightContext); <span class="c-cm">// "-Suffix"</span>
+    console.log(<span class="c-str">"Group $1:"</span>, RegExp.$1);               <span class="c-cm">// "Hello"</span>
+    console.log(<span class="c-str">"Group $2:"</span>, RegExp.$2);               <span class="c-cm">// "World"</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q12 ==================== -->
+    <div class="question-block" id="q12">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q12. Describe the term "Capturing Groups" in regular expression with suitable example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Definition of Capturing Groups (2 Marks)</h3>
+        <p>A <strong>Capturing Group</strong> is created by placing part of a regular expression pattern inside <strong>round parentheses <code>(...)</code></strong>.</p>
+        <p>It does two powerful things:</p>
+        <ol>
+            <li><strong>Treats multiple characters as a single unit:</strong> e.g., <code>(ha)+</code> matches <code>"haha"</code> or <code>"hahaha"</code>.</li>
+            <li><strong>Remembers the matched substring:</strong> The RegExp engine extracts the matched text inside the parentheses into temporary memory slots (<code>$1</code>, <code>$2</code>) so you can access them later or reuse them during string replacement.</li>
+        </ol>
+
+        <h3 class="section-head">2. Practical Example: Parsing Date Strings (4 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// We want to parse dates formatted as YYYY-MM-DD and rearrange to DD/MM/YYYY</span>
+    <span class="c-kw">var</span> dateStr = <span class="c-str">"Today's date is 2026-11-15"</span>;
+
+    <span class="c-cm">// Group 1: Year (\d{4}), Group 2: Month (\d{2}), Group 3: Day (\d{2})</span>
+    <span class="c-kw">var</span> datePattern = <span class="c-str">/(\d{4})-(\d{2})-(\d{2})/</span>;
+
+    <span class="c-kw">var</span> match = dateStr.match(datePattern);
+
+    <span class="c-cm">// match[0] is the full match: "2026-11-15"</span>
+    <span class="c-cm">// match[1] is Capturing Group 1: "2026"</span>
+    <span class="c-cm">// match[2] is Capturing Group 2: "11"</span>
+    <span class="c-cm">// match[3] is Capturing Group 3: "15"</span>
+
+    console.log(<span class="c-str">"Extracted Year:"</span>, match[<span class="c-num">1</span>]);
+    console.log(<span class="c-str">"Extracted Month:"</span>, match[<span class="c-num">2</span>]);
+    console.log(<span class="c-str">"Extracted Day:"</span>, match[<span class="c-num">3</span>]);
+
+    <span class="c-cm">// Using Capturing Groups in replace() using $1, $2, $3:</span>
+    <span class="c-kw">var</span> indianDateFormat = dateStr.replace(datePattern, <span class="c-str">"$3/$2/$1"</span>);
+    console.log(<span class="c-str">"Reformatted Date:"</span>, indianDateFormat);
+    <span class="c-cm">// Output: "Today's date is 15/11/2026"</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q13 ==================== -->
+    <div class="question-block" id="q13">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q13. List the RegExp object properties. Explain any two in detail.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Instance Properties of RegExp Object (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Property</th>
+                    <th style="width:15%;">Type</th>
+                    <th style="width:60%;">Meaning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>source</code></td>
+                    <td>String</td>
+                    <td>The raw text of the pattern (without slashes or flags).</td>
+                </tr>
+                <tr>
+                    <td><code>global</code></td>
+                    <td>Boolean</td>
+                    <td><code>true</code> if the <code>g</code> flag was set.</td>
+                </tr>
+                <tr>
+                    <td><code>ignoreCase</code></td>
+                    <td>Boolean</td>
+                    <td><code>true</code> if the <code>i</code> flag was set.</td>
+                </tr>
+                <tr>
+                    <td><code>multiline</code></td>
+                    <td>Boolean</td>
+                    <td><code>true</code> if the <code>m</code> flag was set.</td>
+                </tr>
+                <tr>
+                    <td><code>lastIndex</code></td>
+                    <td>Integer</td>
+                    <td>The index at which to start the next match (when using <code>/g</code>).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">2. Detailed Explanation of Two Properties (3 Marks)</h3>
+
+        <h4>A. <code>lastIndex</code> Property</h4>
+        <p>This is the most critical dynamic property. When a pattern has the global <code>/g</code> flag and you call <code>regex.exec()</code> in a loop, <code>lastIndex</code> holds the character position where the engine will resume searching on the next run.</p>
+<pre><code><span class="c-kw">var</span> regex = <span class="c-str">/SPPU/g</span>;
+<span class="c-kw">var</span> str = <span class="c-str">"SPPU Pune, SPPU Nashik"</span>;
+
+regex.exec(str);
+console.log(<span class="c-str">"After 1st match, next search starts at index:"</span>, regex.lastIndex); <span class="c-cm">// 4</span>
+
+regex.exec(str);
+console.log(<span class="c-str">"After 2nd match, next search starts at index:"</span>, regex.lastIndex); <span class="c-cm">// 15</span></code></pre>
+
+        <h4>B. <code>source</code> Property</h4>
+        <p>Returns the exact pattern string as written, which is useful when cloning regular expressions or serializing them:</p>
+<pre><code><span class="c-kw">var</span> pattern = <span class="c-str">/[0-9]+/i</span>;
+console.log(pattern.source); <span class="c-cm">// Output: "[0-9]+" (without / or i)</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q14 ==================== -->
+    <div class="question-block" id="q14">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">5 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q14. Write a JavaScript program to compare two strings using various methods.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The 4 Methods to Compare Strings in JavaScript (2 Marks)</h3>
+        <ol>
+            <li><strong>Strict Equality Operator (<code>===</code>):</strong> Checks if both value and type match exactly (case-sensitive).</li>
+            <li><strong>Relational Operators (<code>&lt;, &gt;, &lt;=, &gt;=</code>):</strong> Compares strings in alphabetical (lexicographical) order based on character Unicode values.</li>
+            <li><strong><code>string1.localeCompare(string2)</code>:</strong> Standard internationalized comparison. Returns <code>0</code> if equal, negative if <code>str1 &lt; str2</code>, and positive if <code>str1 &gt; str2</code>.</li>
+            <li><strong>Case-Insensitive Comparison:</strong> Using <code>toLowerCase()</code> with <code>===</code>, or using a case-insensitive regular expression.</li>
+        </ol>
+
+        <h3 class="section-head">2. Complete Program (3 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-kw">function</span> <span class="c-fn">compareStringsDemo</span>(s1, s2) {
+        console.log(<span class="c-str">"Comparing: '"</span> + s1 + <span class="c-str">"' and '"</span> + s2 + <span class="c-str">"'"</span>);
+
+        <span class="c-cm">// Method 1: Strict Equality (Case-Sensitive)</span>
+        <span class="c-kw">var</span> isStrictEqual = (s1 === s2);
+        console.log(<span class="c-str">"1. Strict Equality (===):"</span>, isStrictEqual);
+
+        <span class="c-cm">// Method 2: Case-Insensitive Equality</span>
+        <span class="c-kw">var</span> isCaseInsensitiveEqual = (s1.toLowerCase() === s2.toLowerCase());
+        console.log(<span class="c-str">"2. Case-Insensitive Equality:"</span>, isCaseInsensitiveEqual);
+
+        <span class="c-cm">// Method 3: Alphabetical Comparison (&lt;, &gt;)</span>
+        <span class="c-kw">if</span> (s1 &lt; s2) {
+            console.log(<span class="c-str">"3. Order: '"</span> + s1 + <span class="c-str">"' comes BEFORE '"</span> + s2 + <span class="c-str">"'"</span>);
+        } <span class="c-kw">else</span> <span class="c-kw">if</span> (s1 &gt; s2) {
+            console.log(<span class="c-str">"3. Order: '"</span> + s1 + <span class="c-str">"' comes AFTER '"</span> + s2 + <span class="c-str">"'"</span>);
+        }
+
+        <span class="c-cm">// Method 4: localeCompare()</span>
+        <span class="c-kw">var</span> cmpResult = s1.localeCompare(s2);
+        console.log(<span class="c-str">"4. localeCompare() result:"</span>, cmpResult); 
+        <span class="c-cm">// 0 = equal, -1 = s1 is smaller, 1 = s1 is larger</span>
+    }
+
+    compareStringsDemo(<span class="c-str">"Apple"</span>, <span class="c-str">"apple"</span>);
+    compareStringsDemo(<span class="c-str">"Pune"</span>, <span class="c-str">"Pune"</span>);
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q15 ==================== -->
+    <div class="question-block" id="q15">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">5 Marks</span>
+                <span class="badge badge-unit">Unit 4</span>
+            </div>
+            <div class="question-title">Q15. Write a JavaScript program to perform following operations on a given string: Reverse string, Replace characters of a string, Check if string is a Palindrome.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The 3 Algorithms Explained (1.5 Marks)</h3>
+        <ul>
+            <li><strong>Reverse String:</strong> Convert to array via <code>split('')</code>, invert array via <code>reverse()</code>, and rejoin via <code>join('')</code>.</li>
+            <li><strong>Replace Characters:</strong> Use <code>replace(/pattern/g, 'replacement')</code>.</li>
+            <li><strong>Palindrome Check:</strong> If the cleaned original string matches its reversed version, it is a Palindrome (e.g. <code>"MADAM"</code>).</li>
+        </ul>
+
+        <h3 class="section-head">2. Complete Program (3.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>String Operations Program<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"output"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">var</span> testString = <span class="c-str">"Radar"</span>;
+
+        <span class="c-cm">// Operation 1: Reverse String Function</span>
+        <span class="c-kw">function</span> <span class="c-fn">reverseString</span>(str) {
+            <span class="c-kw">return</span> str.split(<span class="c-str">""</span>).reverse().join(<span class="c-str">""</span>);
+        }
+
+        <span class="c-cm">// Operation 2: Replace Characters Function</span>
+        <span class="c-kw">function</span> <span class="c-fn">replaceVowels</span>(str) {
+            <span class="c-cm">// Replace all vowels with asterisk *</span>
+            <span class="c-kw">return</span> str.replace(<span class="c-str">/[aeiou]/gi</span>, <span class="c-str">"*"</span>);
+        }
+
+        <span class="c-cm">// Operation 3: Palindrome Verification</span>
+        <span class="c-kw">function</span> <span class="c-fn">isPalindrome</span>(str) {
+            <span class="c-kw">var</span> cleanStr = str.toLowerCase().replace(<span class="c-str">/[^a-z0-9]/g</span>, <span class="c-str">""</span>);
+            <span class="c-kw">var</span> reversed = cleanStr.split(<span class="c-str">""</span>).reverse().join(<span class="c-str">""</span>);
+            <span class="c-kw">return</span> cleanStr === reversed;
+        }
+
+        <span class="c-cm">// Execution and Display</span>
+        <span class="c-kw">var</span> reversedText = reverseString(testString);
+        <span class="c-kw">var</span> replacedText = replaceVowels(<span class="c-str">"Engineering"</span>);
+        <span class="c-kw">var</span> palindromeCheck = isPalindrome(testString);
+
+        document.getElementById(<span class="c-str">"output"</span>).innerHTML = 
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;1. Reversed String of '"</span> + testString + <span class="c-str">"':&lt;/b&gt; "</span> + reversedText + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;2. Replace vowels in 'Engineering':&lt;/b&gt; "</span> + replacedText + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;b&gt;3. Is '"</span> + testString + <span class="c-str">"' a Palindrome?&lt;/b&gt; "</span> + 
+            (palindromeCheck ? <span class="c-str">"&lt;span style='color:green'&gt;YES&lt;/span&gt;"</span> : <span class="c-str">"NO"</span>) + <span class="c-str">"&lt;/p&gt;"</span>;
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+</div>
+
+</body>
+</html>

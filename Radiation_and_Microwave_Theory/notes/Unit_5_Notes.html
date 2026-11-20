@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>📡 Unit 5: Solid-State Microwave Devices &amp; Measurements | SPPU Prep</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 10.5pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 24px 16px;
+    }
+
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+    .header-box.cyan {
+        background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+        box-shadow: 0 8px 24px rgba(14, 116, 144, 0.2);
+    }
+    .header-box.purple {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+        box-shadow: 0 8px 24px rgba(76, 29, 149, 0.2);
+    }
+    .header-box.amber {
+        background: linear-gradient(135deg, #9a3412 0%, #f97316 100%);
+        box-shadow: 0 8px 24px rgba(154, 52, 18, 0.2);
+    }
+    .header-box.green {
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.2);
+    }
+    .header-box.rose {
+        background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+        box-shadow: 0 8px 24px rgba(136, 19, 55, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 22pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 10.5pt; opacity: 0.95; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-white { background: rgba(255, 255, 255, 0.2); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 26px 28px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .question-block h2 {
+        margin-top: 0;
+        font-size: 15pt;
+        color: #0f172a;
+        font-weight: 700;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+    }
+    h3 {
+        color: #1e3a8a;
+        font-size: 12pt;
+        font-weight: 700;
+        margin: 20px 0 8px 0;
+    }
+    h4 {
+        color: #334155;
+        font-size: 11pt;
+        font-weight: 600;
+        margin: 14px 0 6px 0;
+    }
+    p {
+        margin: 8px 0;
+        color: #334155;
+    }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 16px 20px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 14px 0;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 16px 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        padding: 10px 14px;
+        font-weight: 700;
+        text-align: left;
+        color: #1e293b;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+    tr:last-child td {
+        border-bottom: none;
+    }
+    tr:nth-child(even) td {
+        background-color: #fbfcfe;
+    }
+
+    ul, ol {
+        margin: 8px 0 14px 0;
+        padding-left: 24px;
+        color: #334155;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+
+    .callout-info {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 14px 0;
+        color: #1e40af;
+        font-size: 10pt;
+    }
+    .callout-quote {
+        background: #f8fafc;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 12px 0;
+        color: #92400e;
+        font-weight: 500;
+    }
+
+    .back-nav {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .back-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 10pt;
+    }
+    .back-nav a:hover {
+        text-decoration: underline;
+    }
+    .print-btn {
+        background: #1e293b;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 9.5pt;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .print-btn:hover {
+        background: #334155;
+    }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .back-nav { display: none; }
+        .question-block { page-break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-nav">
+        <a href="../rmt.html">← Back to RMT Portal</a>
+        <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="header-box green">
+        <h1>📡 Unit 5: Solid-State Microwave Devices &amp; Measurements</h1>
+        <p>Radiation and Microwave Theory (Course Code: 404181) | SPPU 2019 Course Pattern</p>
+        <p>Based on Prof. Barapate&#x27;s Lecture Series (Videos 21, 22, 23, 24, 25, 26, 32, 33) &amp; 13 University Question Papers</p>
+        <div class="badge-bar">
+            <span class="badge badge-white">SPPU 2019 Pattern</span>
+            <span class="badge badge-white">Prof. Barapate Lecture Series</span>
+            <span class="badge badge-white">Model Answers & Derivations</span>
+        </div>
+    </div>
+
+<div class="question-block">
+<h2>📌 Syllabus &amp; Lecture Map</h2>
+<table><thead><tr>
+<th>Lecture #</th>
+<th>Topic Taught by Prof. Barapate</th>
+<th>SPPU Exam Focus</th>
+<th>Weightage</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Video 21</strong></td>
+<td>Microwave Transistors & Varactor Diode</td>
+<td>BJT/MESFET, variable capacitance $C(V)$ & figure of merit</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 22</strong></td>
+<td>Parametric Amplifiers & PIN Diode</td>
+<td>Manley-Rowe power formulas, PIN RF switch & limiter</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 23</strong></td>
+<td>Schottky Barrier Diode</td>
+<td>Metal-semiconductor junction, majority carriers vs PN junction</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 24</strong></td>
+<td>Tunnel Diode</td>
+<td>Quantum mechanical tunneling, energy band diagrams under forward bias</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 25</strong></td>
+<td>Gunn Diode</td>
+<td>RWH two-valley theory (GaAs), Negative Differential Resistance (NDR)</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 26</strong></td>
+<td>IMPATT and TRAPATT Diodes</td>
+<td>Read diode, avalanche impact ionization + transit time delay</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 33</strong></td>
+<td>Microwave Measurement Techniques</td>
+<td>Slotted line, Low VSWR vs Double Minimum high VSWR, Bolometer power</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 32</strong></td>
+<td>Quick Revision (Solid-State Devices)</td>
+<td>Complete diode comparison tables, formulas & exam keywords</td>
+<td>High Yield</td>
+</tr>
+</tbody></table>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 1: Gunn Diode: Two-Valley RWH Theory &amp; Transferred Electron Effect</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 8 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks (100% Repetitive!)</span></div>
+<p>Unlike ordinary diodes, the Gunn diode is a bulk semiconductor device fabricated from compound semiconductors like <strong>Gallium Arsenide (GaAs)</strong> or <strong>Indium Phosphide (InP)</strong>. It has <strong>no PN junction</strong> and relies entirely on bulk negative differential resistance.</p>
+<h3>1. Two-Valley Model (Ridley-Watkins-Hilsum / RWH Theory)</h3>
+<p>Prof. Barapate explains that the conduction band of GaAs possesses two distinct energy sub-bands (valleys) separated by an energy gap $\Delta E = 0.36\text{ eV}$:</p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Lower Valley (Central / $\Gamma$)</th>
+<th>Upper Valley (Satellite / $L$)</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Energy Level</strong></td>
+<td>Lower energy ground state.</td>
+<td>Higher by $\Delta E = 0.36\text{ eV}$.</td>
+</tr>
+<tr>
+<td>*<em>Effective Mass ($m^</em>$)**</td>
+<td>Small ($m_1^* = 0.068 m_0$).</td>
+<td>Large ($m_2^* = 1.2 m_0$).</td>
+</tr>
+<tr>
+<td><strong>Electron Mobility ($\mu$)</strong></td>
+<td><strong>Very High</strong> ($\mu_1 \approx 8000\text{ cm}^2/\text{V}\cdot\text{s}$).</td>
+<td><strong>Very Low</strong> ($\mu_2 \approx 180\text{ cm}^2/\text{V}\cdot\text{s}$).</td>
+</tr>
+</tbody></table>
+<h3>2. Negative Differential Resistance (NDR) Mechanism</h3>
+<ol>
+<li><strong>Low Electric Field ($E < E_{\text{th}} \approx 3.2\text{ kV/cm}$):</strong></li>
+</ol>
+<ul>
+<li>Thermal energy of electrons is low; virtually all electrons reside in the lower central valley.</li>
+<li>High mobility causes electron drift velocity to increase linearly with applied field: $v = \mu_1 E$ (Ohmic behavior).</li>
+</ul>
+<ol>
+<li><strong>Threshold Electric Field ($E = E_{\text{th}}$):</strong></li>
+</ol>
+<ul>
+<li>Electrons attain high kinetic energy and reach peak drift velocity ($v_{\text{peak}} \approx 2.2 \times 10^7\text{ cm/s}$).</li>
+</ul>
+<ol>
+<li><strong>High Electric Field ($E > E_{\text{th}}$):</strong></li>
+</ol>
+<ul>
+<li>Energetic electrons are scattered from the high-mobility lower valley into the low-mobility upper satellite valley (<strong>Transferred Electron Effect</strong>).</li>
+<li>Because upper valley electrons are much heavier and move sluggishly, the overall average drift velocity <strong>DROPS</strong> as electric field increases!</li>
+<li>This produces <strong>Negative Differential Mobility and Resistance (NDR)</strong>:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{\frac{dv}{dE} < 0 \implies R_d = \frac{dV}{dI} < 0}$$</p>
+<pre><code>    Electron Drift
+    Velocity (v)
+         ▲
+         │        Peak Velocity (2.2 x 10^7 cm/s)
+         │           ╭────╮
+         │          ╱      ╲  Negative Differential
+         │         ╱        ╲  Resistance (NDR) dv/dE &lt; 0
+         │        ╱          ╰──────────────────────
+         │       ╱             Saturation Velocity (~10^7 cm/s)
+         │      ╱
+         └─────┴─────────────────────────► Electric Field (E)
+             Eth = 3.2 kV/cm</code></pre>
+<h3>3. Gunn Domain Formation & Modes of Operation</h3>
+<ul>
+<li>High-field dipole domains form at the cathode, drift along the length $L$ at saturation velocity $v_{\text{sat}} \approx 10^7\text{ cm/s}$, and disappear at the anode, generating continuous microwave current pulses:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$f_{\text{Gunn}} = \frac{v_{\text{sat}}}{L}$$</p>
+<ul>
+<li><strong>Modes:</strong> (1) Transit-time domain mode, (2) Delayed domain mode, (3) Quenched domain mode, (4) LSA (Limited Space-Charge Accumulation) mode for high power and frequencies up to $100\text{ GHz}$.</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 2: IMPATT Diode (Impact Avalanche Transit Time)</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 10 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>The IMPATT diode is a reverse-biased PN junction semiconductor oscillator that generates negative resistance through two sequential physical mechanisms: <strong>Avalanche Multiplication</strong> and <strong>Transit-Time Delay</strong>.</p>
+<h3>1. The $180^\circ$ Phase Lag Mechanism</h3>
+<p>To produce dynamic negative resistance ($P_{\text{RF}} = V_{\text{RF}} I_{\text{RF}} \cos\theta < 0$), the AC RF current must lag the AC RF voltage by a total phase angle of <strong>$\mathbf{180^\circ}$ ($\pi$ radians)</strong>:</p>
+<ol>
+<li><strong>$90^\circ$ Phase Lag via Avalanche Multiplication:</strong></li>
+</ol>
+<ul>
+<li>Under heavy reverse bias near breakdown ($E > 400\text{ kV/cm}$), impact ionization generates electron-hole pairs.</li>
+<li>The rate of carrier generation is proportional to the number of existing carriers. Consequently, peak hole-electron concentration lags the peak RF voltage by exactly <strong>$90^\circ$</strong>.</li>
+</ul>
+<ol>
+<li><strong>$90^\circ$ Phase Lag via Drift Transit-Time:</strong></li>
+</ol>
+<ul>
+<li>The generated bunches of electrons/holes drift across the high-field depletion region $W$ at constant saturation velocity $v_s$.</li>
+<li>By engineering the depletion width $W$ such that transit time $\tau = \frac{W}{v_s} = \frac{T}{2}$, the current pulse emerges at the external terminals after an additional phase delay of <strong>$90^\circ$</strong>.</li>
+</ul>
+<ol>
+<li><strong>Total Phase Shift:</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{\theta_{\text{total}} = 90^\circ (\text{Avalanche}) + 90^\circ (\text{Transit Delay}) = \mathbf{180^\circ}}$$</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\text{Dynamic Resistance: } R_d = \frac{V_{\text{RF}}}{I_{\text{RF}} \angle 180^\circ} = \mathbf{-|R_d|}$$</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 3: PIN Diode Construction, Operation &amp; Applications</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 10 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>A PIN diode consists of an undoped, high-resistivity <strong>Intrinsic ($I$) layer</strong> sandwiched between heavily doped $P^+$ and $N^+$ semiconductor regions.</p>
+<pre><code>       P+ Region           Intrinsic (I) Region           N+ Region
+    [ Heavily Doped ]   [ High Resistivity Silicon ]   [ Heavily Doped ]
+         Anode ──►                 (W)                  ◄── Cathode</code></pre>
+<h3>1. Working Principles</h3>
+<ol>
+<li><strong>Under Forward Bias (Low RF Resistance):</strong></li>
+</ol>
+<ul>
+<li>DC forward current injects holes from $P^+$ and electrons from $N^+$ into the intrinsic layer.</li>
+<li>High carrier concentration floods the $I$-layer, dropping its RF resistance to less than <strong>$1\Omega$</strong>. The diode acts as a <strong>closed switch (short circuit)</strong>.</li>
+</ul>
+<ol>
+<li><strong>Under Reverse Bias (High RF Impedance):</strong></li>
+</ol>
+<ul>
+<li>Intrinsic layer is completely swept free of mobile charge carriers.</li>
+<li>The thick depletion width $W$ creates a tiny parasitic capacitance ($C_j \approx 0.1\text{ pF}$) and huge parallel resistance ($R_p > 10\text{ k}\Omega$). The diode acts as an <strong>open switch</strong>.</li>
+</ul>
+<h3>2. Primary University Applications</h3>
+<ul>
+<li><strong>Microwave Single-Pole Double-Throw (SPDT) Switches:</strong> High switching speed ($< 10\text{ ns}$).</li>
+<li><strong>Voltage-Controlled Attenuator:</strong> Varying DC bias continuously modulates the RF resistance of the $I$-layer.</li>
+<li><strong>Microwave Receiver Limiter / TR Switch:</strong> Protects sensitive radar mixers from high-power transmitted pulses.</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 4: VSWR Measurement: Low VSWR vs Double Minimum Method</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 12 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks (100% Guaranteed!)</span></div>
+<p>A slotted section of rectangular waveguide equipped with a movable carriage and tunable crystal detector probe is used to measure standing wave patterns.</p>
+<h3>1. Measurement of Low VSWR ($S < 10$)</h3>
+<ol>
+<li>Terminate the slotted line with the unknown load.</li>
+<li>Move the carriage probe along the longitudinal slot until the crystal detector reads maximum deflection ($V_{\max}$).</li>
+<li>Move the probe to an adjacent voltage minimum ($V_{\min}$).</li>
+<li>Calculate Voltage Standing Wave Ratio:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{S = \frac{V_{\max}}{V_{\min}}}$$</p>
+<ol>
+<li>Calculate magnitude of reflection coefficient:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$|\Gamma| = \frac{S - 1}{S + 1}$$</p>
+<h3>2. Measurement of High VSWR ($S > 10$): Double Minimum Method</h3>
+<ul>
+<li><strong>Problem with Direct Method:</strong> For high VSWR, $V_{\min}$ is extremely small (near noise floor), and probe square-law detector response introduces severe non-linear measurement errors.</li>
+<li><strong>Double Minimum Procedure:</strong></li>
+</ul>
+<ol>
+<li>Locate the exact position of minimum voltage $V_{\min}$ at distance $d_0$ and record the power level.</li>
+<li>Move probe to the right of $d_0$ until the power reading <strong>doubles (3 dB above minimum, $V = 2V_{\min}$)</strong>. Record position as $d_1$.</li>
+<li>Move probe to the left of $d_0$ until power reading doubles again. Record position as $d_2$.</li>
+<li>Measure the distance between double-minimum points: $\Delta d = |d_1 - d_2|$.</li>
+<li>Prof. Barapate derives the High VSWR formula:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{S = \frac{\lambda_g}{\pi \cdot \Delta d} = \frac{\lambda_g}{\pi |d_1 - d_2|}}$$</p>
+<p>Where $\lambda_g = 2 \times (\text{distance between consecutive minima})$.</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 5: Microwave Power Measurement: Bolometer Technique</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 6 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<h3>1. Bolometer Elements</h3>
+<p>A temperature-sensitive resistance element that absorbs microwave RF power and changes its electrical resistance:</p>
+<ul>
+<li><strong>Barretter:</strong> Thin platinum wire with <strong>Positive Temperature Coefficient (PTC)</strong> ($R$ increases with $T$).</li>
+<li><strong>Thermistor:</strong> Semiconductor bead of metal oxides with <strong>Negative Temperature Coefficient (NTC)</strong> ($R$ decreases with $T$). Highly rugged and widely used.</li>
+</ul>
+<h3>2. Balanced Wheatstone Bridge Operation</h3>
+<ol>
+<li>The bolometer element is mounted inside a waveguide mount and forms one active arm of a self-balancing Wheatstone bridge.</li>
+<li>The bridge is initially energized with low-frequency audio/DC power until balanced ($R_{\text{bolo}} = R$). Initial DC power is $P_{\text{DC1}}$.</li>
+<li>When microwave RF power ($P_{\text{RF}}$) enters the mount, it is absorbed by the thermistor, heating it and unbalancing the bridge.</li>
+<li>The audio bias supply automatically decreases its power until balance is restored ($P_{\text{DC2}}$).</li>
+<li>The unknown microwave RF power is equal to the substituted DC bias power:</li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{P_{\text{RF}} = P_{\text{DC1}} - P_{\text{DC2}}}$$</p>
+</div><!-- end question-block -->
+
+</div><!-- end container -->
+</body>
+</html>

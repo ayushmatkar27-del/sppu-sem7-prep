@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Unit 3: Functions & Objects | SPPU Exam Preparation Notes</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 11pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Header styling */
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+
+    .header-box h1 {
+        margin: 0 0 8px 0;
+        font-size: 24pt;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .header-box p {
+        margin: 4px 0;
+        font-size: 11pt;
+        opacity: 0.95;
+    }
+
+    .tag-strip {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .header-tag {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    /* Index TOC */
+    .index-card {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 35px;
+    }
+
+    .index-card h3 {
+        margin-top: 0;
+        color: #1e3a8a;
+        font-size: 13pt;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .index-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .index-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 12px;
+        background: #ffffff;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #334155;
+        font-size: 10pt;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+    }
+
+    .index-item:hover {
+        border-color: #3b82f6;
+        color: #1d4ed8;
+    }
+
+    /* Question Cards */
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 35px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        page-break-inside: avoid;
+    }
+
+    .question-header {
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 14px;
+        margin-bottom: 18px;
+    }
+
+    .question-title {
+        font-size: 15pt;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 8px 0 10px 0;
+        line-height: 1.4;
+    }
+
+    /* Badges */
+    .badge-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+    .badge-fire {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+    }
+
+    .badge-high {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+    }
+
+    .badge-med {
+        background: #e0f2fe;
+        color: #075985;
+        border: 1px solid #bae6fd;
+    }
+
+    .badge-std {
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #cbd5e1;
+    }
+
+    .badge-marks {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .badge-unit {
+        background: #ede9fe;
+        color: #5b21b6;
+        border: 1px solid #ddd6fe;
+    }
+
+    /* Subheadings */
+    h3.section-head {
+        font-size: 12pt;
+        font-weight: 700;
+        color: #1e40af;
+        margin: 18px 0 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    p {
+        margin: 8px 0;
+        color: #334155;
+        font-size: 10.5pt;
+    }
+
+    ul, ol {
+        margin: 6px 0 12px 0;
+        padding-left: 22px;
+        color: #334155;
+    }
+
+    li {
+        margin-bottom: 5px;
+        font-size: 10.5pt;
+    }
+
+    /* Callout boxes */
+    .callout {
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin: 14px 0;
+        font-size: 10pt;
+    }
+
+    .callout-analogy {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        color: #1e40af;
+    }
+
+    .callout-tip {
+        background: #f0fdf4;
+        border-left: 4px solid #22c55e;
+        color: #15803d;
+    }
+
+    .callout-warning {
+        background: #fffbeb;
+        border-left: 4px solid #f59e0b;
+        color: #b45309;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 14px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        font-size: 10pt;
+    }
+
+    th {
+        background: #f8fafc;
+        color: #1e293b;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+
+    td {
+        padding: 9px 12px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        vertical-align: top;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+        background: #fbfcfe;
+    }
+
+    /* Code blocks */
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 9pt;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        border: 1px solid #1e293b;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        font-weight: 400;
+        font-size: 9pt;
+    }
+
+    /* Syntax highlights in pre */
+    .c-kw { color: #f43f5e; font-weight: 600; }  /* keywords */
+    .c-fn { color: #38bdf8; font-weight: 600; }  /* functions */
+    .c-str { color: #a3e635; }                   /* strings */
+    .c-num { color: #fb923c; }                   /* numbers */
+    .c-cm { color: #64748b; font-style: italic;} /* comments */
+    .c-tag { color: #c084fc; }                   /* HTML tags */
+
+    .divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 30px 0;
+    }
+
+    @media print {
+        body {
+            background: #ffffff;
+            padding: 0;
+        }
+        .container {
+            box-shadow: none;
+            padding: 0;
+            max-width: 100%;
+        }
+        .question-block {
+            box-shadow: none;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 25px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <div class="header-box">
+        <h1>JavaScript (Elective - III)</h1>
+        <p><strong>Unit 3: Functions and Objects — SPPU End-Semester Exam Model Answers</strong></p>
+        <p>B.E. (E&amp;TC / Electronics) | 2019 Course Pattern | Subject Code: 404184(C)</p>
+        <div class="tag-strip">
+            <span class="header-tag">🎯 Target: 6 / 6 Marks Each</span>
+            <span class="header-tag">📊 Based on 4 Years (2022–2026) Papers</span>
+            <span class="header-tag">💡 Simple Student-Friendly Explanations</span>
+        </div>
+    </div>
+
+    <!-- Quick Index -->
+    <div class="index-card">
+        <h3>📌 Quick Navigation Index (15 Unit 3 Questions)</h3>
+        <div class="index-grid">
+            <a href="#q1" class="index-item"><span>1. Anonymous Functions in JavaScript (Definition, Use &amp; Example)</span> <span class="badge badge-fire">8x (100%)</span></a>
+            <a href="#q2" class="index-item"><span>2. Append Object to Array &amp; Check if Object is Array</span> <span class="badge badge-fire">5x Repeated</span></a>
+            <a href="#q3" class="index-item"><span>3. Functions: Parameters, Arguments &amp; Return Flow</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q4" class="index-item"><span>4. Common Properties and Methods of Object</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q5" class="index-item"><span>5. JavaScript Data Types: Primitive vs Non-Primitive</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q6" class="index-item"><span>6. The Concept of "Mask Out" (Scope Masking / Variable Shadowing)</span> <span class="badge badge-high">3x Repeated</span></a>
+            <a href="#q7" class="index-item"><span>7. Function Used as an Object (First-Class Objects)</span> <span class="badge badge-high">3x Repeated</span></a>
+            <a href="#q8" class="index-item"><span>8. Arrays as Stacks (LIFO) and Queues (FIFO)</span> <span class="badge badge-high">3x Repeated</span></a>
+            <a href="#q9" class="index-item"><span>9. Different Types of Objects in JavaScript</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q10" class="index-item"><span>10. Math Object Methods &amp; Deep-Dive into Math.random()</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q11" class="index-item"><span>11. Pass Function by Reference &amp; Add Two Objects Program</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q12" class="index-item"><span>12. Recursive Functions (Definition, Base Case &amp; Examples)</span> <span class="badge badge-med">2x Repeated</span></a>
+            <a href="#q13" class="index-item"><span>13. Taking Input from User and Displaying Output to Window</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q14" class="index-item"><span>14. Different Ways of Creating Objects and Accessing Properties</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q15" class="index-item"><span>15. Different Ways to Enumerate Properties of an Object</span> <span class="badge badge-std">1x Asked</span></a>
+        </div>
+    </div>
+
+    <!-- ==================== Q1 ==================== -->
+    <div class="question-block" id="q1">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">🔥 100% Guaranteed (Repeated 8/8 Times)</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3: Q.1 or Q.2</span>
+            </div>
+            <div class="question-title">Q1. What is an Anonymous Function in JavaScript? Explain its use with an example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Think of a normal function like a person with a nametag (e.g., "Alice"). An <strong>Anonymous Function</strong> is like a worker hired for a single quick job without a name badge—they do the work immediately and don't need to be called by name again!
+        </div>
+
+        <h3 class="section-head">1. Definition (1.5 Marks)</h3>
+        <p>An <strong>Anonymous Function</strong> is simply a function that has <strong>no name (identifier)</strong>. In standard JavaScript, you declare functions with a name like <code>function add()</code>, but an anonymous function is written without any name after the <code>function</code> keyword.</p>
+        <p>Because it doesn't have a name, it is usually stored inside a <strong>variable</strong>, passed as a <strong>callback argument</strong> to another function, or run <strong>immediately</strong>.</p>
+
+        <h3 class="section-head">2. Syntax Comparison (1 Mark)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Regular Named Function</th>
+                    <th>Anonymous Function (Assigned to Variable)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>function greet(name) {<br>&nbsp;&nbsp;return "Hello " + name;<br>}</code></td>
+                    <td><code>var greet = function(name) {<br>&nbsp;&nbsp;return "Hello " + name;<br>};</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Why and Where is it Used? (1.5 Marks)</h3>
+        <ul>
+            <li><strong>Function Expressions:</strong> Storing functional code in a variable so it can be passed around like data.</li>
+            <li><strong>Event Handlers &amp; Callbacks:</strong> Running quick code when a user clicks a button without creating an unnecessary named function.</li>
+            <li><strong>Timers (<code>setTimeout</code> &amp; <code>setInterval</code>):</strong> Executing a task after a delay.</li>
+            <li><strong>IIFE (Immediately Invoked Function Expressions):</strong> Creating a private box of code so variables don't clash globally: <code>(function() { ... })();</code></li>
+        </ul>
+
+        <h3 class="section-head">4. Complete Example Program to Write in Exam (2 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>Anonymous Function Demo<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-kw">id</span>=<span class="c-str">"calcBtn"</span><span class="c-tag">&gt;</span>Calculate Area<span class="c-tag">&lt;/button&gt;</span>
+    <span class="c-tag">&lt;p</span> <span class="c-kw">id</span>=<span class="c-str">"output"</span><span class="c-tag">&gt;&lt;/p&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-cm">// Case 1: Anonymous function stored in a variable</span>
+        <span class="c-kw">var</span> <span class="c-fn">getArea</span> = <span class="c-kw">function</span>(width, height) {
+            <span class="c-kw">return</span> width * height;
+        };
+
+        <span class="c-cm">// Case 2: Anonymous function as an Event Listener Callback</span>
+        document.getElementById(<span class="c-str">"calcBtn"</span>).addEventListener(<span class="c-str">"click"</span>, <span class="c-kw">function</span>() {
+            <span class="c-kw">var</span> result = getArea(<span class="c-num">10</span>, <span class="c-num">5</span>);
+            document.getElementById(<span class="c-str">"output"</span>).innerHTML = 
+                <span class="c-str">"Area of 10x5 Rectangle = "</span> + result;
+        });
+
+        <span class="c-cm">// Case 3: Anonymous function in a Timer (runs after 2 seconds)</span>
+        setTimeout(<span class="c-kw">function</span>() {
+            console.log(<span class="c-str">"Timer finished via anonymous function!"</span>);
+        }, <span class="c-num">2000</span>);
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+
+        <div class="callout callout-tip">
+            🎯 <strong>Examiner Tip for 6/6:</strong> Mention that anonymous functions are created at <em>runtime</em>, meaning they are <strong>not hoisted</strong> like regular function declarations. You cannot call them before the line where they are defined!
+        </div>
+    </div>
+
+
+    <!-- ==================== Q2 ==================== -->
+    <div class="question-block" id="q2">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">⭐ High Priority (Repeated 5 Times)</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q2. Write a JavaScript program that will append an object to an array and will check if an object is an array datatype.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, Nov/Dec 2025, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Think of an array like a student attendance register (a list), and an object like a student identity card with properties (name, roll no, branch). Appending an object is like clipping a new ID card to the bottom of the register.
+        </div>
+
+        <h3 class="section-head">1. The Two Steps Required (2 Marks)</h3>
+        <ol>
+            <li><strong>Appending to Array:</strong> We use the built-in <code>array.push(object)</code> method. It adds the object to the end of the array.</li>
+            <li><strong>Checking if variable is an Array:</strong>
+                <ul>
+                    <li>In JavaScript, <code>typeof []</code> returns <code>"object"</code>! That's confusing because ordinary objects also return <code>"object"</code>.</li>
+                    <li>Therefore, to accurately check if something is actually an Array, we use <code>Array.isArray(variable)</code> (returns <code>true</code> or <code>false</code>) or <code>variable instanceof Array</code>.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 class="section-head">2. Complete Program (4 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>Append Object to Array &amp; Type Checking<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"display"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-cm">// Step 1: Create an array of student objects</span>
+        <span class="c-kw">var</span> studentList = [
+            { rollNo: <span class="c-num">101</span>, name: <span class="c-str">"Rahul"</span>, branch: <span class="c-str">"E&amp;TC"</span> },
+            { rollNo: <span class="c-num">102</span>, name: <span class="c-str">"Pooja"</span>, branch: <span class="c-str">"Electronics"</span> }
+        ];
+
+        <span class="c-cm">// Step 2: Create a new single object to append</span>
+        <span class="c-kw">var</span> newStudent = { rollNo: <span class="c-num">103</span>, name: <span class="c-str">"Ayush"</span>, branch: <span class="c-str">"E&amp;TC"</span> };
+
+        <span class="c-cm">// Step 3: Append the new object using push()</span>
+        studentList.push(newStudent);
+
+        <span class="c-cm">// Step 4: Verify whether studentList and newStudent are Arrays</span>
+        <span class="c-kw">var</span> isListAnArray = Array.isArray(studentList);    <span class="c-cm">// Returns true</span>
+        <span class="c-kw">var</span> isStudentAnArray = Array.isArray(newStudent);  <span class="c-cm">// Returns false</span>
+
+        <span class="c-cm">// Display the results cleanly on the webpage</span>
+        <span class="c-kw">var</span> out = document.getElementById(<span class="c-str">"display"</span>);
+        out.innerHTML = 
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Total Students after Append:&lt;/strong&gt; "</span> + studentList.length + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Is studentList an Array?&lt;/strong&gt; "</span> + isListAnArray + 
+            <span class="c-str">" (checked using Array.isArray)&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Is newStudent an Array?&lt;/strong&gt; "</span> + isStudentAnArray + 
+            <span class="c-str">" (it is a single Object)&lt;/p&gt;"</span>;
+
+        <span class="c-cm">// Also log to Console</span>
+        console.log(<span class="c-str">"Updated Array:"</span>, studentList);
+        console.log(<span class="c-str">"studentList is Array:"</span>, isListAnArray);
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q3 ==================== -->
+    <div class="question-block" id="q3">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q3. What is a Function? Explain with example how to pass and return parameters and arguments from called function to calling function.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. Plain-English Concept Definitions (2 Marks)</h3>
+        <ul>
+            <li><strong>Function:</strong> A named, reusable block of instructions that performs a specific job. Instead of rewriting code 10 times, you define a function once and call it whenever needed.</li>
+            <li><strong>Calling Function (The Caller):</strong> The line of code that commands the function to run (e.g., <code>calculateBill(100, 18);</code>).</li>
+            <li><strong>Called Function (The Worker):</strong> The actual function definition that executes the calculations.</li>
+            <li><strong>Parameters vs. Arguments:</strong>
+                <ul>
+                    <li><em>Parameters:</em> The variable names written in the function definition header: <code>function add(a, b)</code> &rarr; <code>a</code> and <code>b</code> are parameters.</li>
+                    <li><em>Arguments:</em> The real values passed when calling it: <code>add(10, 20)</code> &rarr; <code>10</code> and <code>20</code> are arguments.</li>
+                </ul>
+            </li>
+            <li><strong>Return Statement:</strong> Sends the calculated answer back to the caller and exits the function immediately.</li>
+        </ul>
+
+        <h3 class="section-head">2. Visual Step-by-Step Flow (1 Mark)</h3>
+<pre><code>[ Calling Code: var res = computeTotal(500, 50) ]
+        |                               ^
+  1. Sends Arguments (500, 50)          | 3. Returns Result (550)
+        v                               |
+[ Called Function: function computeTotal(price, tax) { return price + tax; } ]
+        |
+  2. Executes calculations internally</code></pre>
+
+        <h3 class="section-head">3. Full Working Program with Input &amp; Return (3 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// CALLED FUNCTION (Receives parameters: p, r, t)</span>
+    <span class="c-kw">function</span> <span class="c-fn">calculateSimpleInterest</span>(p, r, t) {
+        <span class="c-cm">// Input Validation</span>
+        <span class="c-kw">if</span> (p &lt;= <span class="c-num">0</span> || r &lt;= <span class="c-num">0</span> || t &lt;= <span class="c-num">0</span>) {
+            <span class="c-kw">return</span> <span class="c-str">"Error: Please enter positive values."</span>;
+        }
+
+        <span class="c-cm">// Perform computation</span>
+        <span class="c-kw">var</span> interest = (p * r * t) / <span class="c-num">100</span>;
+        <span class="c-kw">var</span> totalAmount = p + interest;
+
+        <span class="c-cm">// Return an object containing both results back to the caller</span>
+        <span class="c-kw">return</span> {
+            interestEarned: interest,
+            finalBalance: totalAmount
+        };
+    }
+
+    <span class="c-cm">// CALLING CODE (Passes arguments: 10000, 7.5, 2)</span>
+    <span class="c-kw">var</span> principal = <span class="c-num">10000</span>;
+    <span class="c-kw">var</span> rate = <span class="c-num">7.5</span>;
+    <span class="c-kw">var</span> time = <span class="c-num">2</span>;
+
+    <span class="c-cm">// Calling the function and storing the returned value in 'statement'</span>
+    <span class="c-kw">var</span> statement = calculateSimpleInterest(principal, rate, time);
+
+    console.log(<span class="c-str">"Interest:"</span>, statement.interestEarned);  <span class="c-cm">// 1500</span>
+    console.log(<span class="c-str">"Final Balance:"</span>, statement.finalBalance); <span class="c-cm">// 11500</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q4 ==================== -->
+    <div class="question-block" id="q4">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q4. What are common properties and methods of the Object in JavaScript?</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. Concept (1 Mark)</h3>
+        <p>In JavaScript, almost everything is an Object! The top-level ancestor of all objects is <code>Object.prototype</code>. Every object you create automatically inherits its standard properties and helper methods.</p>
+
+        <h3 class="section-head">2. Common Properties (1.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Property</th>
+                    <th>What it does (Simple Explanation)</th>
+                    <th>Quick Code Snippet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>constructor</code></td>
+                    <td>Tells you which function created this object.</td>
+                    <td><code>var obj = {};<br>console.log(obj.constructor === Object); // true</code></td>
+                </tr>
+                <tr>
+                    <td><code>__proto__</code></td>
+                    <td>A pointer to the object's parent prototype (blueprint).</td>
+                    <td><code>console.log(obj.__proto__);</code></td>
+                </tr>
+                <tr>
+                    <td><code>length</code></td>
+                    <td>Available in Array/String/Function objects to tell count.</td>
+                    <td><code>[1,2,3].length; // 3</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Common Instance Methods (Inherited by all objects) (1.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30%;">Method</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>hasOwnProperty(prop)</code></td>
+                    <td>Checks if a property belongs <strong>directly</strong> to this object (not inherited from parent).</td>
+                    <td><code>car.hasOwnProperty("color"); // true</code></td>
+                </tr>
+                <tr>
+                    <td><code>toString()</code></td>
+                    <td>Converts the object into a text/string format.</td>
+                    <td><code>({a:1}).toString(); // "[object Object]"</code></td>
+                </tr>
+                <tr>
+                    <td><code>valueOf()</code></td>
+                    <td>Returns the raw primitive value of the object.</td>
+                    <td><code>(new Number(50)).valueOf(); // 50</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">4. Super Useful Static Methods of <code>Object</code> (2 Marks)</h3>
+        <p>These are called directly on the master <code>Object</code> keyword:</p>
+        <ul>
+            <li><code>Object.keys(myObj)</code>: Extracts all key names into an array &rarr; <code>Object.keys({name:"Ayush", age:21})</code> gives <code>["name", "age"]</code>.</li>
+            <li><code>Object.values(myObj)</code>: Extracts all values into an array &rarr; gives <code>["Ayush", 21]</code>.</li>
+            <li><code>Object.entries(myObj)</code>: Extracts key-value pairs as arrays of pairs &rarr; <code>[["name", "Ayush"], ["age", 21]]</code>.</li>
+            <li><code>Object.freeze(myObj)</code>: <strong>Locks</strong> the object completely so nobody can add, delete, or change its properties.</li>
+            <li><code>Object.assign(target, source)</code>: Copies properties from one object to another (cloning).</li>
+        </ul>
+    </div>
+
+
+    <!-- ==================== Q5 ==================== -->
+    <div class="question-block" id="q5">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q5. Explain Data Types in JavaScript. Differentiate between Primitive and Non-Primitive data types.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The Two Main Families of Data Types (1.5 Marks)</h3>
+        <p>JavaScript is a <strong>dynamically typed</strong> language. You do not need to specify <code>int</code> or <code>float</code>; JavaScript detects types automatically. All data types belong to two families:</p>
+        <ol>
+            <li><strong>Primitive Data Types (Basic Single Values):</strong>
+                <ul>
+                    <li><code>Number</code>: Both integers and decimals (e.g., <code>25</code>, <code>99.99</code>).</li>
+                    <li><code>String</code>: Text inside quotes (e.g., <code>"SPPU Exam"</code>).</li>
+                    <li><code>Boolean</code>: Logic flag (<code>true</code> or <code>false</code>).</li>
+                    <li><code>Undefined</code>: A variable declared but not assigned any value yet.</li>
+                    <li><code>Null</code>: An intentional empty / blank value.</li>
+                    <li><code>BigInt</code> &amp; <code>Symbol</code> (Modern additions).</li>
+                </ul>
+            </li>
+            <li><strong>Non-Primitive / Reference Types (Complex Collections):</strong>
+                <ul>
+                    <li><code>Object</code>, <code>Array</code>, <code>Function</code>, <code>Date</code>, <code>RegExp</code>.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 class="section-head">2. Differentiation Table (Easy to Memorize for 6/6 Marks) (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%;">Comparison Point</th>
+                    <th style="width:39%;">Primitive Data Types</th>
+                    <th style="width:39%;">Non-Primitive (Reference) Data Types</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Where stored?</strong></td>
+                    <td>Stored directly in the fast <strong>Stack Memory</strong>.</td>
+                    <td>Data is in <strong>Heap Memory</strong>; only its address pointer is on Stack.</td>
+                </tr>
+                <tr>
+                    <td><strong>Can it change? (Mutability)</strong></td>
+                    <td><strong>Immutable</strong> (The value itself cannot be modified in place).</td>
+                    <td><strong>Mutable</strong> (You can add, edit, or delete object properties anytime).</td>
+                </tr>
+                <tr>
+                    <td><strong>Copy Behavior</strong></td>
+                    <td><strong>Copy by Value</strong>: Creates an independent separate copy. Changing copy does NOT affect original.</td>
+                    <td><strong>Copy by Reference</strong>: Copies the memory address! Modifying the copy changes the original!</td>
+                </tr>
+                <tr>
+                    <td><strong>Comparison (<code>===</code>)</strong></td>
+                    <td>Compares the actual value: <code>10 === 10</code> is <code>true</code>.</td>
+                    <td>Compares memory location: <code>{} === {}</code> is <code>false</code> (different addresses).</td>
+                </tr>
+                <tr>
+                    <td><strong>Examples</strong></td>
+                    <td><code>Number, String, Boolean, Undefined, Null</code></td>
+                    <td><code>Objects, Arrays, Functions</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Code Example Showing Copy by Value vs Reference (1.5 Marks)</h3>
+<pre><code><span class="c-cm">// 1. Primitive: Copy by Value (Original is Safe)</span>
+<span class="c-kw">var</span> x = <span class="c-num">100</span>;
+<span class="c-kw">var</span> y = x;  <span class="c-cm">// Independent clone</span>
+y = <span class="c-num">200</span>;
+console.log(<span class="c-str">"x is still:"</span>, x); <span class="c-cm">// Output: 100</span>
+
+<span class="c-cm">// 2. Non-Primitive: Copy by Reference (Shared Address!)</span>
+<span class="c-kw">var</span> student1 = { name: <span class="c-str">"Rahul"</span> };
+<span class="c-kw">var</span> student2 = student1; <span class="c-cm">// Copies pointer, points to SAME memory!</span>
+student2.name = <span class="c-str">"Ayush"</span>;
+console.log(<span class="c-str">"student1.name changed to:"</span>, student1.name); <span class="c-cm">// Output: "Ayush"</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q6 ==================== -->
+    <div class="question-block" id="q6">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q6. Explain the concept of "Mask Out" with respect to functions in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Imagine you are at College and someone yells "Ayush!". Because there is an Ayush right inside your classroom (Local Scope), you assume they mean your classmate, not the Ayush sitting in the canteen outside (Global Scope). The classmate's presence <strong>"masks out"</strong> the outsider!
+        </div>
+
+        <h3 class="section-head">1. Definition of "Mask Out" (Scope Shadowing) (2 Marks)</h3>
+        <p><strong>Mask Out</strong> (also known in computer science as <strong>Variable Shadowing</strong>) happens when a local variable declared inside a function has the <strong>exact same name</strong> as a variable declared in the outer/global scope.</p>
+        <p>When this happens, the local variable takes priority inside that function and <strong>"masks out" (hides)</strong> the global variable from view. As long as you are inside the function, typing that variable name refers strictly to the local one.</p>
+
+        <h3 class="section-head">2. Visual Diagram of Mask Out (1.5 Marks)</h3>
+<pre><code>+---------------------------------------------------------+
+| GLOBAL SCOPE: var city = "Pune"                         |
+|                                                         |
+|   +-------------------------------------------------+   |
+|   | FUNCTION SCOPE: var city = "Mumbai" (MASKS OUT) |   |
+|   |   console.log(city); // Prints: "Mumbai"        |   |
+|   +-------------------------------------------------+   |
+|                                                         |
+|   console.log(city); // Prints: "Pune" (Unchanged!)     |
++---------------------------------------------------------+</code></pre>
+
+        <h3 class="section-head">3. Clean Working Example Program (2.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Global Variable</span>
+    <span class="c-kw">var</span> score = <span class="c-num">50</span>;
+
+    <span class="c-kw">function</span> <span class="c-fn">playGame</span>() {
+        <span class="c-cm">// Local Variable with identical name</span>
+        <span class="c-cm">// This 'score' MASKS OUT the outer global 'score'</span>
+        <span class="c-kw">var</span> score = <span class="c-num">95</span>;
+
+        console.log(<span class="c-str">"Inside function local score:"</span>, score); <span class="c-cm">// Output: 95</span>
+
+        <span class="c-cm">// How to still access the masked global variable in a browser?</span>
+        <span class="c-cm">// Through the top-level 'window' object:</span>
+        console.log(<span class="c-str">"Global score accessed via window:"</span>, window.score); <span class="c-cm">// Output: 50</span>
+    }
+
+    playGame();
+
+    <span class="c-cm">// Outside the function, the global variable is safe and untouched</span>
+    console.log(<span class="c-str">"Outside function score:"</span>, score); <span class="c-cm">// Output: 50</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+
+        <div class="callout callout-tip">
+            🎯 <strong>Exam Note:</strong> Explicitly mention that masking <strong>does not overwrite or destroy</strong> the global variable. It only hides it temporarily while that specific function is running.
+        </div>
+    </div>
+
+
+    <!-- ==================== Q7 ==================== -->
+    <div class="question-block" id="q7">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q7. Explain how a function is used as an object in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Core Theory: Functions are "First-Class Objects" (2 Marks)</h3>
+        <p>In many programming languages (like C or Java), functions are just executable blocks. But in JavaScript, <strong>functions are First-Class Citizens and actual Objects</strong>!</p>
+        <p>They are instances of the built-in <code>Function</code> object. Just like any normal object, a function can:</p>
+        <ul>
+            <li>Have its own custom <strong>properties</strong> and <strong>methods</strong> attached to it.</li>
+            <li>Be assigned to variables, passed as arguments, and returned from other functions.</li>
+            <li>Be used as an <strong>Object Constructor</strong> to create brand new objects using the <code>new</code> keyword.</li>
+        </ul>
+
+        <h3 class="section-head">2. Attaching Properties Directly to a Function (2 Marks)</h3>
+<pre><code><span class="c-kw">function</span> <span class="c-fn">car</span>() {
+    <span class="c-kw">return</span> <span class="c-str">"Vroom! Car is running."</span>;
+}
+
+<span class="c-cm">// Adding properties to the function object directly</span>
+car.brand = <span class="c-str">"Tesla"</span>;
+car.model = <span class="c-str">"Model 3"</span>;
+car.version = <span class="c-num">2.0</span>;
+
+<span class="c-cm">// Accessing properties like a regular object</span>
+console.log(car.brand);   <span class="c-cm">// "Tesla"</span>
+console.log(car());        <span class="c-cm">// "Vroom! Car is running."</span>
+console.log(car.length);   <span class="c-cm">// Built-in property: number of arguments</span></code></pre>
+
+        <h3 class="section-head">3. Using a Function as an Object Constructor (2 Marks)</h3>
+        <p>This is how JavaScript implemented Object-Oriented Programming before ES6 classes:</p>
+<pre><code><span class="c-cm">// Constructor Function acts as a class blueprint</span>
+<span class="c-kw">function</span> <span class="c-fn">Student</span>(id, name, branch) {
+    <span class="c-kw">this</span>.id = id;
+    <span class="c-kw">this</span>.name = name;
+    <span class="c-kw">this</span>.branch = branch;
+
+    <span class="c-cm">// Method attached to the created object</span>
+    <span class="c-kw">this</span>.introduce = <span class="c-kw">function</span>() {
+        <span class="c-kw">return</span> <span class="c-str">"I am "</span> + <span class="c-kw">this</span>.name + <span class="c-str">" from "</span> + <span class="c-kw">this</span>.branch;
+    };
+}
+
+<span class="c-cm">// Creating instances of objects using 'new' keyword</span>
+<span class="c-kw">var</span> s1 = <span class="c-kw">new</span> Student(<span class="c-num">1</span>, <span class="c-str">"Sneha"</span>, <span class="c-str">"E&amp;TC"</span>);
+<span class="c-kw">var</span> s2 = <span class="c-kw">new</span> Student(<span class="c-num">2</span>, <span class="c-str">"Aman"</span>, <span class="c-str">"Electronics"</span>);
+
+console.log(s1.introduce()); <span class="c-cm">// "I am Sneha from E&amp;TC"</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q8 ==================== -->
+    <div class="question-block" id="q8">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q8. Explain how Arrays can be used as Stacks and Queues in JavaScript with suitable examples.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Overview (1 Mark)</h3>
+        <p>In languages like C, implementing Stacks and Queues requires pointers, linked lists, or fixed arrays. But JavaScript arrays have built-in methods (<code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>) that let you use an array as both a <strong>Stack</strong> and a <strong>Queue</strong> effortlessly.</p>
+
+        <h3 class="section-head">2. Array as a Stack: LIFO (Last-In, First-Out) (2.5 Marks)</h3>
+        <p><strong>Concept:</strong> Just like a stack of dinner plates, the plate placed last on top is the first one picked up.</p>
+        <ul>
+            <li><code>push(item)</code> &rarr; Inserts element at the top.</li>
+            <li><code>pop()</code> &rarr; Removes and returns the top element.</li>
+        </ul>
+<pre><code><span class="c-kw">var</span> bookStack = [];
+
+<span class="c-cm">// Push operations (Adding to top)</span>
+bookStack.push(<span class="c-str">"Maths Book"</span>);
+bookStack.push(<span class="c-str">"Physics Book"</span>);
+bookStack.push(<span class="c-str">"JavaScript Book"</span>);
+console.log(<span class="c-str">"Stack after Pushes:"</span>, bookStack); 
+<span class="c-cm">// Output: ['Maths Book', 'Physics Book', 'JavaScript Book']</span>
+
+<span class="c-cm">// Pop operation (Removes the latest one added - LIFO)</span>
+<span class="c-kw">var</span> removedBook = bookStack.pop();
+console.log(<span class="c-str">"Popped Book:"</span>, removedBook); <span class="c-cm">// "JavaScript Book"</span>
+console.log(<span class="c-str">"Remaining Stack:"</span>, bookStack); <span class="c-cm">// ['Maths Book', 'Physics Book']</span></code></pre>
+
+        <h3 class="section-head">3. Array as a Queue: FIFO (First-In, First-Out) (2.5 Marks)</h3>
+        <p><strong>Concept:</strong> Just like people standing in a line at a ticket counter, the first person to join the queue is the first person served.</p>
+        <ul>
+            <li><code>push(item)</code> &rarr; Enqueue (adds new person to the back of the queue).</li>
+            <li><code>shift()</code> &rarr; Dequeue (removes the first person from the front).</li>
+        </ul>
+<pre><code><span class="c-kw">var</span> ticketQueue = [];
+
+<span class="c-cm">// Enqueue operations (Adding to the rear/end)</span>
+ticketQueue.push(<span class="c-str">"Customer 1 (Alice)"</span>);
+ticketQueue.push(<span class="c-str">"Customer 2 (Bob)"</span>);
+ticketQueue.push(<span class="c-str">"Customer 3 (Charlie)"</span>);
+console.log(<span class="c-str">"Queue:"</span>, ticketQueue);
+
+<span class="c-cm">// Dequeue operation (Served from the front - FIFO)</span>
+<span class="c-kw">var</span> servedCustomer = ticketQueue.shift();
+console.log(<span class="c-str">"Served:"</span>, servedCustomer);       <span class="c-cm">// "Customer 1 (Alice)"</span>
+console.log(<span class="c-str">"Remaining Queue:"</span>, ticketQueue); <span class="c-cm">// ['Customer 2 (Bob)', 'Customer 3 (Charlie)']</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q9 ==================== -->
+    <div class="question-block" id="q9">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q9. Explain different types of Objects in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The 3 Main Classes of Objects (1.5 Marks)</h3>
+        <p>In JavaScript, all objects are categorized into 3 broad groups based on where they come from:</p>
+        <ol>
+            <li><strong>User-Defined Objects:</strong> Created by you (the programmer).</li>
+            <li><strong>Built-In / Core Native Objects:</strong> Provided standard by JavaScript itself.</li>
+            <li><strong>Host / Browser Objects (DOM &amp; BOM):</strong> Provided by the web browser environment.</li>
+        </ol>
+
+        <h3 class="section-head">2. Detailed Breakdown with Examples (4.5 Marks)</h3>
+
+        <h4>Group 1: User-Defined Objects</h4>
+        <p>Objects that developers define to store specific data. You create them using literals or constructors:</p>
+<pre><code><span class="c-cm">// Created by programmer</span>
+<span class="c-kw">var</span> smartphone = {
+    brand: <span class="c-str">"Samsung"</span>,
+    price: <span class="c-num">25000</span>,
+    ring: <span class="c-kw">function</span>() { <span class="c-kw">return</span> <span class="c-str">"Ringing..."</span>; }
+};</code></pre>
+
+        <h4>Group 2: Built-in / Native Objects (ECMAScript Core)</h4>
+        <p>Always available in JavaScript regardless of whether you run it in a browser, in Node.js, or on an embedded system:</p>
+        <ul>
+            <li><code>Math</code>: Mathematical utilities (<code>Math.PI</code>, <code>Math.sqrt</code>).</li>
+            <li><code>Date</code>: Date and calendar management (<code>new Date()</code>).</li>
+            <li><code>Array</code>: Ordered lists with indexed keys.</li>
+            <li><code>String, Number, Boolean</code>: Wrapper objects for primitive types.</li>
+            <li><code>RegExp</code>: Regular expression pattern matching.</li>
+        </ul>
+
+        <h4>Group 3: Host / Browser Objects</h4>
+        <p>Supplied by the Browser window so JavaScript can interact with HTML and user actions:</p>
+        <ul>
+            <li><strong>DOM (Document Object Model):</strong> The <code>document</code> object. Lets you read and manipulate HTML elements (e.g., <code>document.getElementById()</code>, <code>document.title</code>).</li>
+            <li><strong>BOM (Browser Object Model):</strong>
+                <ul>
+                    <li><code>window</code>: The top parent object representing the browser tab.</li>
+                    <li><code>location</code>: Current page URL (e.g., <code>location.href</code>).</li>
+                    <li><code>history</code>: Browser back and forward buttons.</li>
+                    <li><code>navigator</code>: Browser details and device info.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- ==================== Q10 ==================== -->
+    <div class="question-block" id="q10">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q10. List various methods of the Math Object. Explain any one with an example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Introduction to Math Object (1 Mark)</h3>
+        <p>The <code>Math</code> object is a built-in static object. You cannot do <code>new Math()</code>. All its properties and functions are static and invoked directly as <code>Math.methodName()</code>.</p>
+
+        <h3 class="section-head">2. Table of Popular Math Methods (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Method</th>
+                    <th style="width:50%;">What it does</th>
+                    <th style="width:25%;">Example &amp; Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Math.round(x)</code></td>
+                    <td>Rounds to nearest integer (.5 goes up).</td>
+                    <td><code>Math.round(4.6)</code> &rarr; <code>5</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.ceil(x)</code></td>
+                    <td>Always rounds <strong>UP</strong> to the next integer.</td>
+                    <td><code>Math.ceil(4.1)</code> &rarr; <code>5</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.floor(x)</code></td>
+                    <td>Always rounds <strong>DOWN</strong> (chops off decimal).</td>
+                    <td><code>Math.floor(4.9)</code> &rarr; <code>4</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.pow(x, y)</code></td>
+                    <td>Calculates \(x^y\) ($x$ raised to power $y$).</td>
+                    <td><code>Math.pow(2, 3)</code> &rarr; <code>8</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.sqrt(x)</code></td>
+                    <td>Square root of $x$.</td>
+                    <td><code>Math.sqrt(81)</code> &rarr; <code>9</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.abs(x)</code></td>
+                    <td>Absolute positive value (strips negative sign).</td>
+                    <td><code>Math.abs(-42)</code> &rarr; <code>42</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.min(...)</code></td>
+                    <td>Finds lowest value among arguments.</td>
+                    <td><code>Math.min(10, 5, 20)</code> &rarr; <code>5</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.max(...)</code></td>
+                    <td>Finds highest value among arguments.</td>
+                    <td><code>Math.max(10, 5, 20)</code> &rarr; <code>20</code></td>
+                </tr>
+                <tr>
+                    <td><code>Math.random()</code></td>
+                    <td>Generates random float between $0$ and $1$.</td>
+                    <td><code>Math.random()</code> &rarr; <code>0.4821...</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Deep-Dive Example: Explaining <code>Math.random()</code> (2 Marks)</h3>
+        <p><code>Math.random()</code> generates a number from <code>0</code> (inclusive) up to <code>1</code> (exclusive). In real projects and exams, we use it to generate <strong>random whole numbers between any Min and Max</strong> (e.g., rolling dice or OTP generation):</p>
+<pre><code><span class="c-cm">// Formula: Math.floor(Math.random() * (max - min + 1)) + min</span>
+
+<span class="c-kw">function</span> <span class="c-fn">getDiceRoll</span>() {
+    <span class="c-cm">// Simulates rolling a 6-sided die (Numbers 1 to 6)</span>
+    <span class="c-kw">var</span> roll = Math.floor(Math.random() * <span class="c-num">6</span>) + <span class="c-num">1</span>;
+    <span class="c-kw">return</span> roll;
+}
+
+<span class="c-kw">function</span> <span class="c-fn">generateOTP</span>() {
+    <span class="c-cm">// Generates a 4-digit OTP between 1000 and 9999</span>
+    <span class="c-kw">var</span> otp = Math.floor(Math.random() * <span class="c-num">9000</span>) + <span class="c-num">1000</span>;
+    <span class="c-kw">return</span> otp;
+}
+
+console.log(<span class="c-str">"Dice Roll:"</span>, getDiceRoll()); <span class="c-cm">// e.g., 4</span>
+console.log(<span class="c-str">"Generated OTP:"</span>, generateOTP()); <span class="c-cm">// e.g., 7349</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q11 ==================== -->
+    <div class="question-block" id="q11">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q11. Write a JavaScript program to pass a function by reference, perform addition of two objects inside the function, and display the result in the calling function.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023</small>
+        </div>
+
+        <h3 class="section-head">1. Understanding the Question Requirements (2 Marks)</h3>
+        <ul>
+            <li><strong>Passing Function by Reference:</strong> When calling a function, you pass the name of another function <em>without parentheses</em> (e.g., <code>compute(obj1, obj2, addFunc)</code>). You are passing the function like a callback reference.</li>
+            <li><strong>Adding Two Objects:</strong> Inside the function, we read properties from both objects (e.g., <code>obj1.marks + obj2.marks</code>), combine them, and return a result object.</li>
+            <li><strong>Displaying in Calling Function:</strong> The calling function receives the returned object and prints it.</li>
+        </ul>
+
+        <h3 class="section-head">2. Complete Program (4 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>Pass Function by Reference Program<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"resultBox"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-cm">// 1. The operation function that will be passed by reference</span>
+        <span class="c-kw">function</span> <span class="c-fn">addMarksOfStudents</span>(studentA, studentB) {
+            <span class="c-cm">// Performing addition of object properties</span>
+            <span class="c-kw">var</span> combinedResult = {
+                combinedTheory: studentA.theory + studentB.theory,
+                combinedPractical: studentA.practical + studentB.practical,
+                totalAggregate: (studentA.theory + studentB.theory) + 
+                                (studentA.practical + studentB.practical)
+            };
+            <span class="c-kw">return</span> combinedResult;
+        }
+
+        <span class="c-cm">// 2. Master function that receives a function by reference (callback)</span>
+        <span class="c-kw">function</span> <span class="c-fn">executeCalculation</span>(obj1, obj2, operationRef) {
+            <span class="c-cm">// Invoking the function via its reference</span>
+            <span class="c-kw">var</span> output = operationRef(obj1, obj2);
+            <span class="c-kw">return</span> output;
+        }
+
+        <span class="c-cm">// --- CALLING FUNCTION / SCRIPT ---</span>
+        <span class="c-kw">var</span> s1 = { theory: <span class="c-num">65</span>, practical: <span class="c-num">22</span> };
+        <span class="c-kw">var</span> s2 = { theory: <span class="c-num">70</span>, practical: <span class="c-num">24</span> };
+
+        <span class="c-cm">// Notice: addMarksOfStudents is passed WITHOUT () - this is pass-by-reference!</span>
+        <span class="c-kw">var</span> finalScores = executeCalculation(s1, s2, addMarksOfStudents);
+
+        <span class="c-cm">// Displaying the results in the calling scope</span>
+        document.getElementById(<span class="c-str">"resultBox"</span>).innerHTML = 
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Combined Theory:&lt;/strong&gt; "</span> + finalScores.combinedTheory + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Combined Practical:&lt;/strong&gt; "</span> + finalScores.combinedPractical + <span class="c-str">"&lt;/p&gt;"</span> +
+            <span class="c-str">"&lt;p&gt;&lt;strong&gt;Total Aggregate:&lt;/strong&gt; "</span> + finalScores.totalAggregate + <span class="c-str">"&lt;/p&gt;"</span>;
+
+        console.log(<span class="c-str">"Final Output:"</span>, finalScores);
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q12 ==================== -->
+    <div class="question-block" id="q12">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 2 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q12. What is a Recursive Function? Explain with an example program.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> Recursion is like looking between two parallel mirrors where you see reflections inside reflections. You keep stepping inward until you reach the final reflection (Base Case), and then step back out!
+        </div>
+
+        <h3 class="section-head">1. Definition &amp; Two Must-Have Components (2 Marks)</h3>
+        <p>A <strong>Recursive Function</strong> is simply a function that <strong>calls itself</strong> to solve a problem by breaking it into smaller pieces.</p>
+        <p>Every recursive function must have two mandatory parts:</p>
+        <ol>
+            <li><strong>Base Case (Stopping Condition):</strong> The condition that stops recursion. If you forget this, the function will call itself infinitely and crash the browser with a <code>RangeError: Maximum call stack size exceeded</code>!</li>
+            <li><strong>Recursive Step:</strong> The part where the function calls itself with a smaller input (moving closer to the base case).</li>
+        </ol>
+
+        <h3 class="section-head">2. Visual Call Stack for Factorial(3) (1 Mark)</h3>
+<pre><code>factorial(3) calls 3 * factorial(2)
+                       |
+               calls 2 * factorial(1)
+                             |
+                     Base Case Reached! returns 1
+                       |
+               returns 2 * 1 = 2
+        |
+returns 3 * 2 = 6 (Final Answer)</code></pre>
+
+        <h3 class="section-head">3. Standard Exam Program (Factorial &amp; Fibonacci) (3 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Example 1: Recursive Factorial Calculation (n! = n * (n-1)!)</span>
+    <span class="c-kw">function</span> <span class="c-fn">factorial</span>(n) {
+        <span class="c-cm">// 1. Base Case: 0! = 1 and 1! = 1</span>
+        <span class="c-kw">if</span> (n === <span class="c-num">0</span> || n === <span class="c-num">1</span>) {
+            <span class="c-kw">return</span> <span class="c-num">1</span>;
+        }
+        <span class="c-cm">// 2. Recursive Step</span>
+        <span class="c-kw">return</span> n * factorial(n - <span class="c-num">1</span>);
+    }
+
+    <span class="c-cm">// Example 2: Recursive Countdown</span>
+    <span class="c-kw">function</span> <span class="c-fn">countdown</span>(num) {
+        <span class="c-kw">if</span> (num &lt;= <span class="c-num">0</span>) {
+            console.log(<span class="c-str">"Blastoff!"</span>);
+            <span class="c-kw">return</span>;
+        }
+        console.log(num);
+        countdown(num - <span class="c-num">1</span>); <span class="c-cm">// Calls itself with smaller number</span>
+    }
+
+    console.log(<span class="c-str">"Factorial of 5:"</span>, factorial(<span class="c-num">5</span>)); <span class="c-cm">// Output: 120</span>
+    countdown(<span class="c-num">3</span>); <span class="c-cm">// Prints: 3, 2, 1, Blastoff!</span>
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q13 ==================== -->
+    <div class="question-block" id="q13">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q13. Write a JavaScript program to explain how to get input from the user and display output to window. List different methods used to display output.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Methods Used to Display Output in JavaScript (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Output Method</th>
+                    <th>Where it displays</th>
+                    <th>Syntax Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>window.alert()</code></td>
+                    <td>Pops up a modal alert box on screen.</td>
+                    <td><code>alert("Hello Student!");</code></td>
+                </tr>
+                <tr>
+                    <td><code>element.innerHTML</code></td>
+                    <td>Writes directly inside an HTML tag/card.</td>
+                    <td><code>document.getElementById("box").innerHTML = "Result";</code></td>
+                </tr>
+                <tr>
+                    <td><code>document.write()</code></td>
+                    <td>Writes directly into the raw HTML stream.</td>
+                    <td><code>document.write("&lt;h1&gt;Page Content&lt;/h1&gt;");</code></td>
+                </tr>
+                <tr>
+                    <td><code>console.log()</code></td>
+                    <td>Prints in browser Developer Tools Console.</td>
+                    <td><code>console.log("Debugging value:", x);</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">2. Methods Used to Get Input from the User (1.5 Marks)</h3>
+        <ul>
+            <li><code>window.prompt("Enter text:", "default")</code>: Shows a popup text box. Returns entered string or <code>null</code>.</li>
+            <li><code>window.confirm("Are you sure?")</code>: Shows OK/Cancel popup. Returns <code>true</code> or <code>false</code>.</li>
+            <li>HTML Form Elements (<code>input.value</code>): Clean input via input boxes.</li>
+        </ul>
+
+        <h3 class="section-head">3. Complete Program (2.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>User Input and Output Demo<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-kw">onclick</span>=<span class="c-str">"runDemo()"</span><span class="c-tag">&gt;</span>Start User Prompt<span class="c-tag">&lt;/button&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"outputArea"</span> <span class="c-kw">style</span>=<span class="c-str">"margin-top:15px; padding:10px; border:1px solid #0284c7;"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-fn">runDemo</span>() {
+            <span class="c-cm">// 1. Get User Input via prompt</span>
+            <span class="c-kw">var</span> studentName = prompt(<span class="c-str">"Please enter your Name:"</span>, <span class="c-str">"Ayush"</span>);
+            <span class="c-kw">var</span> marks = prompt(<span class="c-str">"Please enter your Marks (out of 100):"</span>, <span class="c-str">"85"</span>);
+
+            <span class="c-kw">if</span> (studentName !== <span class="c-kw">null</span> &amp;&amp; marks !== <span class="c-kw">null</span>) {
+                <span class="c-cm">// 2. Confirm input via confirm</span>
+                <span class="c-kw">var</span> isConfirmed = confirm(<span class="c-str">"Confirm submission for "</span> + studentName + <span class="c-str">"?"</span>);
+
+                <span class="c-kw">if</span> (isConfirmed) {
+                    <span class="c-cm">// Method 1: Display using innerHTML</span>
+                    document.getElementById(<span class="c-str">"outputArea"</span>).innerHTML = 
+                        <span class="c-str">"&lt;h3&gt;Admission Slip&lt;/h3&gt;"</span> +
+                        <span class="c-str">"&lt;p&gt;Candidate: &lt;strong&gt;"</span> + studentName + <span class="c-str">"&lt;/strong&gt;&lt;/p&gt;"</span> +
+                        <span class="c-str">"&lt;p&gt;Recorded Score: &lt;strong&gt;"</span> + marks + <span class="c-str">"/100&lt;/strong&gt;&lt;/p&gt;"</span>;
+
+                    <span class="c-cm">// Method 2: Display popup alert</span>
+                    alert(<span class="c-str">"Welcome, "</span> + studentName + <span class="c-str">"! Details saved."</span>);
+
+                    <span class="c-cm">// Method 3: Display in Console</span>
+                    console.log(<span class="c-str">"Student Logged:"</span>, studentName, <span class="c-str">"Marks:"</span>, marks);
+                }
+            }
+        }
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q14 ==================== -->
+    <div class="question-block" id="q14">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q14. Describe different ways of creating an object in JavaScript. Explain how to access object properties with an example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The 4 Ways to Create an Object in JavaScript (3 Marks)</h3>
+
+        <h4>Method 1: Object Literal Syntax (Most Popular &amp; Simplest)</h4>
+<pre><code><span class="c-kw">var</span> car = {
+    brand: <span class="c-str">"Toyota"</span>,
+    speed: <span class="c-num">120</span>,
+    drive: <span class="c-kw">function</span>() { <span class="c-kw">return</span> <span class="c-str">"Driving..."</span>; }
+};</code></pre>
+
+        <h4>Method 2: Using the <code>new Object()</code> Constructor</h4>
+<pre><code><span class="c-kw">var</span> book = <span class="c-kw">new</span> Object();
+book.title = <span class="c-str">"JavaScript Mastery"</span>;
+book.pages = <span class="c-num">350</span>;</code></pre>
+
+        <h4>Method 3: Using a Constructor Function (For multiple instances)</h4>
+<pre><code><span class="c-kw">function</span> <span class="c-fn">Laptop</span>(brand, ram) {
+    <span class="c-kw">this</span>.brand = brand;
+    <span class="c-kw">this</span>.ram = ram;
+}
+<span class="c-kw">var</span> myLaptop = <span class="c-kw">new</span> Laptop(<span class="c-str">"HP"</span>, <span class="c-str">"16GB"</span>);</code></pre>
+
+        <h4>Method 4: Using <code>Object.create()</code> (Inheritance from prototype)</h4>
+<pre><code><span class="c-kw">var</span> animal = { eats: <span class="c-kw">true</span> };
+<span class="c-kw">var</span> dog = Object.create(animal); <span class="c-cm">// dog inherits eats = true</span>
+dog.barks = <span class="c-kw">true</span>;</code></pre>
+
+        <h3 class="section-head">2. How to Access Object Properties (3 Marks)</h3>
+        <p>There are two notations to read or write properties:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Notation</th>
+                    <th style="width:35%;">Syntax</th>
+                    <th style="width:40%;">When to use it?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Dot Notation</strong></td>
+                    <td><code>myObject.propertyName</code></td>
+                    <td>Used 90% of the time when the property name is a standard word without spaces.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bracket Notation</strong></td>
+                    <td><code>myObject["propertyName"]</code></td>
+                    <td><strong>Mandatory</strong> if the key has spaces (e.g. <code>"pin code"</code>) or is stored in a dynamic variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre><code><span class="c-kw">var</span> profile = {
+    username: <span class="c-str">"ayush_m"</span>,
+    <span class="c-str">"full address"</span>: <span class="c-str">"Pune, Maharashtra"</span>,
+    reputation: <span class="c-num">95</span>
+};
+
+<span class="c-cm">// 1. Dot Notation:</span>
+console.log(profile.username);         <span class="c-cm">// "ayush_m"</span>
+
+<span class="c-cm">// 2. Bracket Notation (for keys with spaces):</span>
+console.log(profile[<span class="c-str">"full address"</span>]);   <span class="c-cm">// "Pune, Maharashtra"</span>
+
+<span class="c-cm">// 3. Dynamic Access via variable:</span>
+<span class="c-kw">var</span> lookupKey = <span class="c-str">"reputation"</span>;
+console.log(profile[lookupKey]);        <span class="c-cm">// 95</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q15 ==================== -->
+    <div class="question-block" id="q15">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 3</span>
+            </div>
+            <div class="question-title">Q15. What are the different ways to enumerate properties of an object? Explain with an example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The 4 Enumeration Techniques (3 Marks)</h3>
+        <p><strong>"Enumerating"</strong> simply means looping through or listing all the properties inside an object. In JavaScript, there are 4 main techniques:</p>
+        <ol>
+            <li><strong><code>for...in</code> Loop:</strong> The classic loop. Iterates over all enumerable keys, <em>including</em> properties inherited from prototypes.</li>
+            <li><strong><code>Object.keys(obj)</code>:</strong> Returns an array of an object's <em>own</em> enumerable property names.</li>
+            <li><strong><code>Object.values(obj)</code>:</strong> Returns an array of an object's <em>own</em> property values.</li>
+            <li><strong><code>Object.entries(obj)</code>:</strong> Returns an array of <code>[key, value]</code> pairs for easy looping.</li>
+        </ol>
+
+        <h3 class="section-head">2. Complete Example Demonstrating All 4 Methods (3 Marks)</h3>
+<pre><code><span class="c-tag">&lt;script&gt;</span>
+    <span class="c-cm">// Sample Student Object</span>
+    <span class="c-kw">var</span> student = {
+        name: <span class="c-str">"Rohan"</span>,
+        branch: <span class="c-str">"E&amp;TC"</span>,
+        year: <span class="c-str">"Final Year"</span>,
+        gpa: <span class="c-num">8.9</span>
+    };
+
+    <span class="c-cm">// Method 1: Traditional for...in Loop</span>
+    console.log(<span class="c-str">"--- 1. for...in Loop ---"</span>);
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> key <span class="c-kw">in</span> student) {
+        console.log(key + <span class="c-str">" = "</span> + student[key]);
+    }
+
+    <span class="c-cm">// Method 2: Object.keys() array</span>
+    console.log(<span class="c-str">"--- 2. Object.keys() ---"</span>);
+    <span class="c-kw">var</span> keys = Object.keys(student);
+    console.log(<span class="c-str">"All Keys:"</span>, keys); <span class="c-cm">// ['name', 'branch', 'year', 'gpa']</span>
+
+    <span class="c-cm">// Method 3: Object.values() array</span>
+    console.log(<span class="c-str">"--- 3. Object.values() ---"</span>);
+    <span class="c-kw">var</span> values = Object.values(student);
+    console.log(<span class="c-str">"All Values:"</span>, values); <span class="c-cm">// ['Rohan', 'E&amp;TC', 'Final Year', 8.9]</span>
+
+    <span class="c-cm">// Method 4: Object.entries() (Key-Value pairs)</span>
+    console.log(<span class="c-str">"--- 4. Object.entries() ---"</span>);
+    Object.entries(student).forEach(<span class="c-kw">function</span>([k, v]) {
+        console.log(k + <span class="c-str">" : "</span> + v);
+    });
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+</div>
+
+</body>
+</html>

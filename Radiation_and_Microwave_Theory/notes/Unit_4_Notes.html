@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>📡 Unit 4: Microwave Tubes &amp; Amplifiers | SPPU Prep</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 10.5pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 24px 16px;
+    }
+
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+    .header-box.cyan {
+        background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+        box-shadow: 0 8px 24px rgba(14, 116, 144, 0.2);
+    }
+    .header-box.purple {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+        box-shadow: 0 8px 24px rgba(76, 29, 149, 0.2);
+    }
+    .header-box.amber {
+        background: linear-gradient(135deg, #9a3412 0%, #f97316 100%);
+        box-shadow: 0 8px 24px rgba(154, 52, 18, 0.2);
+    }
+    .header-box.green {
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.2);
+    }
+    .header-box.rose {
+        background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+        box-shadow: 0 8px 24px rgba(136, 19, 55, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 22pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 10.5pt; opacity: 0.95; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-white { background: rgba(255, 255, 255, 0.2); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 26px 28px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .question-block h2 {
+        margin-top: 0;
+        font-size: 15pt;
+        color: #0f172a;
+        font-weight: 700;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+    }
+    h3 {
+        color: #1e3a8a;
+        font-size: 12pt;
+        font-weight: 700;
+        margin: 20px 0 8px 0;
+    }
+    h4 {
+        color: #334155;
+        font-size: 11pt;
+        font-weight: 600;
+        margin: 14px 0 6px 0;
+    }
+    p {
+        margin: 8px 0;
+        color: #334155;
+    }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 16px 20px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 14px 0;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 16px 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        padding: 10px 14px;
+        font-weight: 700;
+        text-align: left;
+        color: #1e293b;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+    tr:last-child td {
+        border-bottom: none;
+    }
+    tr:nth-child(even) td {
+        background-color: #fbfcfe;
+    }
+
+    ul, ol {
+        margin: 8px 0 14px 0;
+        padding-left: 24px;
+        color: #334155;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+
+    .callout-info {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 14px 0;
+        color: #1e40af;
+        font-size: 10pt;
+    }
+    .callout-quote {
+        background: #f8fafc;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 12px 0;
+        color: #92400e;
+        font-weight: 500;
+    }
+
+    .back-nav {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .back-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 10pt;
+    }
+    .back-nav a:hover {
+        text-decoration: underline;
+    }
+    .print-btn {
+        background: #1e293b;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 9.5pt;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .print-btn:hover {
+        background: #334155;
+    }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .back-nav { display: none; }
+        .question-block { page-break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-nav">
+        <a href="../rmt.html">← Back to RMT Portal</a>
+        <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="header-box amber">
+        <h1>📡 Unit 4: Microwave Tubes &amp; Amplifiers</h1>
+        <p>Radiation and Microwave Theory (Course Code: 404181) | SPPU 2019 Course Pattern</p>
+        <p>Based on Prof. Barapate&#x27;s Lecture Series (Videos 17, 18, 19, 20, 31) &amp; 13 University Question Papers</p>
+        <div class="badge-bar">
+            <span class="badge badge-white">SPPU 2019 Pattern</span>
+            <span class="badge badge-white">Prof. Barapate Lecture Series</span>
+            <span class="badge badge-white">Model Answers & Derivations</span>
+        </div>
+    </div>
+
+<div class="question-block">
+<h2>📌 Syllabus &amp; Lecture Map</h2>
+<table><thead><tr>
+<th>Lecture #</th>
+<th>Topic Taught by Prof. Barapate</th>
+<th>SPPU Exam Focus</th>
+<th>Weightage</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Intro</strong></td>
+<td>Limitations of Conventional Tubes at Microwaves</td>
+<td>Transit time effect, lead inductance, interelectrode capacitance</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 17</strong></td>
+<td>Two Cavity Klystron Amplifier</td>
+<td>Velocity modulation, buncher/catcher cavities, Applegate diagram</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 18</strong></td>
+<td>Reflex Klystron</td>
+<td>Single cavity oscillator, transit time mode $(n + 3/4)T$, electronic tuning</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 19</strong></td>
+<td>Magnetron</td>
+<td>Crossed-field ($E \perp B$), $\pi$-mode, Hull cut-off condition, strapping</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 20</strong></td>
+<td>Travelling Wave Tube Amplifier (TWTA)</td>
+<td>Helical slow-wave structure, continuous wave-beam interaction, vs Klystron</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 31</strong></td>
+<td>Quick Revision (Active Microwave Components)</td>
+<td>Summary comparisons, formulas & examiner grading tips</td>
+<td>High Yield</td>
+</tr>
+</tbody></table>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 1: Limitations of Conventional Vacuum Tubes at Microwave Frequencies</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 8 times across all 8 End-Sem Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>Conventional vacuum tubes (triodes, tetrodes, pentodes) fail at microwave frequencies ($f > 1\text{ GHz}$) due to three major fundamental physical limitations:</p>
+<h3>1. Interelectrode Capacitance ($C$) & Lead Inductance ($L$) Effects</h3>
+<ul>
+<li>In conventional tubes, physical internal electrodes have small parasitic capacitances between them: grid-cathode ($C_{gk}$), grid-plate ($C_{gp}$), and plate-cathode ($C_{pk}$).</li>
+<li>As frequency increases into gigahertz range, capacitive reactance $X_C = \frac{1}{2\pi f C}$ drops to near-zero, effectively short-circuiting input and output signals.</li>
+<li>Wire leads connecting pins to internal electrodes have parasitic inductance ($L \approx 1\text{ to }10\text{ nH}$). At microwave frequencies, inductive reactance $X_L = 2\pi f L$ becomes excessively large, dropping signal voltages and causing strong feedback oscillations.</li>
+</ul>
+<h3>2. Electron Transit Time Effect ($\tau$)</h3>
+<ul>
+<li><strong>Transit Time ($\tau = d/v_0$):</strong> The time taken by an electron emitted from cathode to travel across the physical gap distance $d$ to the anode.</li>
+<li>At low RF (kHz/MHz), $\tau$ is negligible compared to the time period of the signal ($\tau \ll T$).</li>
+<li>At microwave frequencies ($3\text{ GHz} \to T = 333\text{ ps}$), transit time becomes comparable to or greater than the signal time period ($\tau \approx T/2$ or $T$).</li>
+<li><strong>Consequences:</strong></li>
+<li>Electrons traveling between grid and plate experience a rapidly reversing alternating electric field during their transit.</li>
+<li>Electrons absorb RF power from the grid circuit rather than delivering power, creating a heavy resistive <strong>input conductance loading</strong> ($G_{\text{in}} \propto f^2$).</li>
+<li>Gain plummets and noise figure skyrockets.</li>
+</ul>
+<h3>3. Gain-Bandwidth Product Limitation & Dielectric / Skin Effect Losses</h3>
+<ul>
+<li>Interelectrode losses limit the maximum achievable gain-bandwidth product ($GBW$).</li>
+<li>RF currents concentrate exclusively in a microscopic skin depth layer ($\delta = \sqrt{1/\pi f \mu \sigma}$), causing enormous ohmic heat dissipation.</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 2: Two-Cavity Klystron Amplifier: Velocity Modulation &amp; Operation</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 8 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<p>The Two-Cavity Klystron is a linear-beam (O-type) velocity-modulated vacuum tube amplifier used to amplify weak microwave signals.</p>
+<pre><code>  Cathode ───►  [ Buncher Cavity ]  ──────► [ Drift Space ] ──────►  [ Catcher Cavity ] ───► Collector
+   (Gun)        (Input RF Signal)          (Velocity Mod)          (Induced High RF)      (Spent e-)</code></pre>
+<h3>1. Principle of Operation & Step-by-Step Mechanism</h3>
+<ol>
+<li><strong>Electron Gun:</strong> Emits a high-density, collimated DC electron beam with uniform velocity $v_0 = \sqrt{2e V_0 / m}$.</li>
+<li><strong>Buncher Cavity (Velocity Modulation):</strong></li>
+</ol>
+<ul>
+<li>The weak input RF signal is coupled into the first re-entrant cavity (Buncher Cavity).</li>
+<li>An alternating electric field $E_{\text{gap}} = \frac{V_1}{d} \sin(\omega t)$ appears across the buncher grids.</li>
+<li><strong>Early electrons ($E_{\text{gap}} > 0$):</strong> Accelerated to higher velocity ($v_{\max} > v_0$).</li>
+<li><strong>Reference electrons ($E_{\text{gap}} = 0$):</strong> Pass unperturbed with initial velocity $v_0$.</li>
+<li><strong>Late electrons ($E_{\text{gap}} < 0$):</strong> Decelerated to lower velocity ($v_{\min} < v_0$).</li>
+<li><em>Result:</em> The uniform DC beam is converted into a <strong>velocity-modulated beam</strong>.</li>
+</ul>
+<ol>
+<li><strong>Drift Space (Bunching Formation):</strong></li>
+</ol>
+<ul>
+<li>In the field-free drift tube of length $L$, the faster electrons catch up with the slower electrons that left earlier.</li>
+<li>Spatial compression creates dense periodic clumps of electrons called <strong>electron bunches</strong>.</li>
+</ul>
+<ol>
+<li><strong>Catcher Cavity (Energy Extraction):</strong></li>
+</ol>
+<ul>
+<li>Placed at the exact location of maximum bunching.</li>
+<li>The bunches enter the catcher cavity grids during the retarding phase of the cavity electric field.</li>
+<li>Electrons decelerate, yielding their kinetic energy to the RF cavity field, inducing a large amplified output RF wave.</li>
+</ul>
+<ol>
+<li><strong>Collector:</strong> Collects the spent, decelerated electrons and dissipates residual heat.</li>
+</ol>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 3: Reflex Klystron Oscillator &amp; Applegate Diagram</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 12 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks (100% Guaranteed!)</span></div>
+<p>A single-cavity velocity-modulated oscillator where an opposing negative repeller electrode reflects electrons back through the same cavity.</p>
+<pre><code>  Cathode ──► [ Resonant Cavity ] ──────► [ Repeller Space ] ──────► (Reflected back to Cavity)
+  (-V0)        (Buncher + Catcher)         Repeller Plate (-Vr)</code></pre>
+<h3>1. Construction & Mechanism</h3>
+<ul>
+<li><strong>Single Cavity:</strong> Performs the dual role of buncher cavity (on first pass) and catcher cavity (on return pass).</li>
+<li><strong>Repeller Electrode:</strong> Held at a high negative DC potential ($-V_r$) relative to the cavity.</li>
+</ul>
+<h3>2. The Applegate Space-Time ($z\text{-vs-}t$) Diagram</h3>
+<ul>
+<li>As electrons cross the cavity for the first time, velocity modulation occurs:</li>
+<li><strong>Accelerated electron ($e_1$):</strong> Has higher velocity, penetrates deeply into the negative repeller space, takes a long parabolic turn, and returns.</li>
+<li><strong>Reference electron ($e_0$):</strong> Passes at zero field, penetrates to intermediate depth.</li>
+<li><strong>Decelerated electron ($e_2$):</strong> Has lower velocity, penetrates only a shallow distance, and turns back quickly.</li>
+<li><strong>The Bunching Condition:</strong> Because the early/fast electron took a longer turnaround path and the late/slow electron took a short path, <strong>all three electrons arrive back at the cavity gap simultaneously</strong>, forming a tight bunch!</li>
+</ul>
+<h3>3. Optimum Transit Time & Mode Condition</h3>
+<p>To deliver maximum kinetic energy to the cavity field, the bunch must return when the oscillating cavity voltage is at its maximum negative/retarding peak.</p>
+<p>Prof. Barapate derives the optimum transit time condition:</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{T_0 = \left(n + \frac{3}{4}\right) T \quad \text{where } n = 1, 2, 3, \dots}$$</p>
+<ul>
+<li><strong>Mode $1\frac{3}{4}$ ($n=1$):</strong> Transit time $= 1.75 T$. Highest output power mode.</li>
+<li><strong>Mode $2\frac{3}{4}$ ($n=2$):</strong> Transit time $= 2.75 T$. Moderate power.</li>
+<li><strong>Mode $3\frac{3}{4}$ ($n=3$):</strong> Transit time $= 3.75 T$. Lower power.</li>
+</ul>
+<h3>4. Electronic Tuning vs Mechanical Tuning</h3>
+<ul>
+<li><strong>Electronic Tuning:</strong> By varying repeller voltage $V_r$, electron transit time changes slightly, pulling the oscillation frequency over a narrow range ($\Delta f \approx 10\text{ to }50\text{ MHz}$) without adjusting cavity dimensions.</li>
+<li><strong>Mechanical Tuning:</strong> Changing cavity volume with a mechanical tuning screw alters the resonant frequency over a broad range ($\Delta f \approx 1\text{ to }2\text{ GHz}$).</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 4: Cavity Magnetron: Crossed-Field Oscillator &amp; $\pi$-Mode</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 10 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks</span></div>
+<p>The Cavity Magnetron is a high-power crossed-field (M-type) microwave oscillator capable of generating megawatts of pulsed power (used in Radar transmitters and microwave ovens).</p>
+<h3>1. Construction</h3>
+<ul>
+<li><strong>Cylindrical Cathode:</strong> Centrally mounted heated cylinder coated with barium/strontium oxide.</li>
+<li><strong>Anode Block:</strong> Heavy solid copper cylindrical block surrounding the cathode, containing an even number of drilled resonant cavities (typically 8, 12, or 16).</li>
+<li><strong>Crossed Fields ($E \perp B$):</strong></li>
+<li><strong>DC Electric Field ($\vec{E}$):</strong> Directed radially outward from cathode to positive anode.</li>
+<li><strong>DC Magnetic Field ($\vec{B}$):</strong> Applied axially (parallel to cathode axis, perpendicular to $\vec{E}$) by powerful permanent magnets.</li>
+</ul>
+<h3>2. Hull Cut-Off Magnetic Field & Voltage Condition</h3>
+<p>Electrons experience two perpendicular forces: radial electric force $F_E = eE$ and Lorentz magnetic force $F_B = e(\vec{v} \times \vec{B})$.</p>
+<ul>
+<li><strong>Weak $B < B_c$:</strong> Electrons curve slightly but reach the anode.</li>
+<li><strong>Critical $B = B_c$ (Hull Cut-off):</strong> Trajectory grazes the inner anode surface tangentially without touching it.</li>
+<li><strong>Strong $B > B_c$:</strong> Electrons curve tightly back to cathode (zero anode current).</li>
+</ul>
+<p>Prof. Barapate derives Hull Cut-off Voltage:</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{V_{0c} = \frac{e B^2 b^2}{8m} \left(1 - \frac{a^2}{b^2}\right)^2}$$</p>
+<p>Where $a = \text{cathode radius}$, $b = \text{anode radius}$.</p>
+<h3>3. $\pi$-Mode Operation & Rotating Electron Spokes</h3>
+<ul>
+<li>In $\pi$-mode, adjacent cavity gap fields differ in phase by $\mathbf{\pi\text{ radians (180°)}}$.</li>
+<li><strong>Favorable Electrons:</strong> Give up kinetic energy to the decelerating RF field, drop in velocity, shift to larger radii, and form <strong>4 rotating electron spokes</strong> (for an 8-cavity magnetron).</li>
+<li><strong>Unfavorable Electrons:</strong> Gain energy, curve back rapidly, and strike the cathode, causing <strong>back heating</strong> (which keeps cathode emitting without external heater power).</li>
+<li><strong>Strapping:</strong> Copper rings connect alternate anode poles to lock the frequency in the desired $\pi$-mode and eliminate unwanted mode-jumping.</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 5: Travelling Wave Tube Amplifier (TWTA) vs Klystron</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 8 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Travelling Wave Tube (TWTA)</th>
+<th>Two-Cavity Klystron</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Circuit Type</strong></td>
+<td><strong>Non-Resonant Slow-Wave Structure</strong> (typically a helical wire or coupled cavities).</td>
+<td><strong>Resonant Cavities</strong> (narrowband tuned LC cavities).</td>
+</tr>
+<tr>
+<td><strong>Beam-Wave Interaction</strong></td>
+<td><strong>Continuous Interaction</strong> over the entire physical length of the helix.</td>
+<td><strong>Discrete Interaction</strong> confined strictly to narrow cavity gaps.</td>
+</tr>
+<tr>
+<td><strong>Bandwidth</strong></td>
+<td><strong>Extremely Broad</strong> ($> 1\text{ to }2\text{ octaves}$, or $30\text{ to }50\%$).</td>
+<td><strong>Narrowband</strong> ($< 1\text{ to }2\%$).</td>
+</tr>
+<tr>
+<td><strong>Phase Velocity Synchronization</strong></td>
+<td>Helix pitch reduces phase velocity of RF wave to match electron beam velocity ($v_p \approx v_e \approx 0.1c$).</td>
+<td>Electrons modulated by localized cavity voltages.</td>
+</tr>
+<tr>
+<td><strong>Primary Applications</strong></td>
+<td>Broadband satellite transponders, electronic warfare (EW), radar tracking.</td>
+<td>High-power fixed-frequency radar transmitters, UHF TV broadcast transmitters.</td>
+</tr>
+</tbody></table>
+</div><!-- end question-block -->
+
+</div><!-- end container -->
+</body>
+</html>

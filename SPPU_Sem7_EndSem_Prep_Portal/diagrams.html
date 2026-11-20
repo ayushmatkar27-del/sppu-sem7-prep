@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖼️ Verified Technical Diagram & Waveform Gallery | SPPU Sem 7 Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .diagram-filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 12px 0 20px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .filter-pill {
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .filter-pill.active, .filter-pill:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+        }
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+            gap: 28px;
+        }
+        @media (max-width: 768px) {
+            .diagram-grid { grid-template-columns: 1fr; }
+        }
+        .diagram-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .diagram-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .diagram-card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .diagram-svg-container {
+            padding: 24px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 260px;
+        }
+        [data-theme="dark"] .diagram-svg-container {
+            background: #0f172a;
+        }
+        .diagram-details {
+            padding: 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .textbook-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 4px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .chalkboard-box {
+            background: #1e293b;
+            color: #38bdf8;
+            border-radius: var(--radius-md);
+            padding: 14px 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin-top: 14px;
+            border-left: 4px solid #38bdf8;
+        }
+        .view-toggle-btns {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .toggle-btn {
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-muted);
+        }
+        .toggle-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">🎓</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">2019 Pattern • Verified Textbook Diagrams</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="cram-mode.html" class="nav-item" style="color: #ef4444; font-weight: 700;">⚡ Cram Mode</a>
+                <a href="diagrams.html" class="nav-item active" style="color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a>
+                <a href="calculators.html" class="nav-item" style="color: #10b981; font-weight: 700;">🧮 Calculators</a>
+                <a href="exam-guide.html" class="nav-item" style="color: #f59e0b; font-weight: 700;">🎯 Strategy</a>
+                <a href="cheatsheet.html" class="nav-item" style="color: #3b82f6; font-weight: 700;">📐 Formulas</a>
+                <a href="quiz.html" class="nav-item" style="color: #ec4899; font-weight: 700;">❓ Quiz</a>
+                <a href="tracker.html" class="nav-item" style="color: #14b8a6; font-weight: 700;">✅ Tracker</a>
+                <a href="index.html" class="nav-item">🏠 Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-badge">Verified Textbook Standards</div>
+        <h1>🖼️ Technical Diagrams & Waveforms Gallery</h1>
+        <p>In SPPU Engineering Exams, <strong>labeled diagrams carry 2 to 3 marks out of 6</strong>. Every schematic below is matched directly to official university reference textbooks (Pozar, Liao, Weste & Harris, Goodfellow, Skolnik) with a 30-second exam blackboard draft for quick memorization.</p>
+    </header>
+
+    <main class="portal-main">
+        <!-- Filter Tabs -->
+        <div class="diagram-filter-bar">
+            <button class="filter-pill active" onclick="filterDiagrams('all', this)">All Diagrams (10)</button>
+            <button class="filter-pill" onclick="filterDiagrams('rmt', this)">📡 Microwave (RMT)</button>
+            <button class="filter-pill" onclick="filterDiagrams('vlsi', this)">⚡ VLSI Technology</button>
+            <button class="filter-pill" onclick="filterDiagrams('dl', this)">🧠 Deep Learning</button>
+            <button class="filter-pill" onclick="filterDiagrams('cloud', this)">☁️ Cloud Computing</button>
+            <button class="filter-pill" onclick="filterDiagrams('js', this)">💻 JavaScript</button>
+        </div>
+
+        <div class="diagram-grid">
+
+                        <!-- 0A. Antenna Radiation Mechanism (Unit 1) -->
+            <div class="diagram-card" data-subject="rmt">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Pozar Ch. 3 • Microwave Engineering</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Rectangular Waveguide TE10 Mode Field Pattern (Unit 3)</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • End-Sem / Unit 3</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 520 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Waveguide Outer Box -->
+                        <rect x="50" y="30" width="220" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="3" rx="4"/>
+                        <text x="160" y="200" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Width a (Broad Wall)</text>
+                        <text x="30" y="110" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle" transform="rotate(-90 30 110)">Height b</text>
+
+                        <!-- E-Field Lines (Vertical half-sine variation) -->
+                        <!-- Center: Max length -->
+                        <line x1="160" y1="40" x2="160" y2="170" stroke="#2563eb" stroke-width="3"/>
+                        <path d="M 155 50 L 160 40 L 165 50" fill="#2563eb"/>
+                        <!-- Flanks: shorter lines -->
+                        <line x1="125" y1="55" x2="125" y2="155" stroke="#3b82f6" stroke-width="2.5"/>
+                        <path d="M 121 65 L 125 55 L 129 65" fill="#3b82f6"/>
+                        <line x1="195" y1="55" x2="195" y2="155" stroke="#3b82f6" stroke-width="2.5"/>
+                        <path d="M 191 65 L 195 55 L 199 65" fill="#3b82f6"/>
+                        <!-- Edges: tiny lines -->
+                        <line x1="90" y1="75" x2="90" y2="135" stroke="#93c5fd" stroke-width="2"/>
+                        <path d="M 87 83 L 90 75 L 93 83" fill="#93c5fd"/>
+                        <line x1="230" y1="75" x2="230" y2="135" stroke="#93c5fd" stroke-width="2"/>
+                        <path d="M 227 83 L 230 75 L 233 83" fill="#93c5fd"/>
+
+                        <text x="160" y="15" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">E-Field (Ey): Max at x = a/2, Zero at walls</text>
+
+                        <!-- Top-View H-Field Loops (Right side) -->
+                        <g transform="translate(300, 30)">
+                            <rect x="0" y="0" width="180" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="3" rx="4"/>
+                            <text x="90" y="170" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Top View (H-Field Loops)</text>
+                            <!-- Closed magnetic loops -->
+                            <ellipse cx="50" cy="75" rx="35" ry="50" fill="none" stroke="#d97706" stroke-width="2"/>
+                            <path d="M 85 70 L 85 75 M 82 72 L 85 77 L 88 72" stroke="#d97706" stroke-width="2" fill="none"/>
+                            <ellipse cx="130" cy="75" rx="35" ry="50" fill="none" stroke="#d97706" stroke-width="2"/>
+                            <path d="M 95 80 L 95 75 M 92 78 L 95 73 L 98 78" stroke="#d97706" stroke-width="2" fill="none"/>
+                            <!-- Propagation direction -->
+                            <line x1="0" y1="75" x2="180" y2="75" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+                            <text x="90" y="20" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">Magnetic Loops (Hx, Hz)</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        For dominant $\text{TE}_{10}$ mode in rectangular waveguide ($a > b$), the electric field $E_y = E_0 \sin(\pi x/a)$ is purely vertical and varies sinusoidally across broad wall width $a$ (maximum at center $x = a/2$, zero at conducting sidewalls $x=0, a$). Magnetic field lines form closed horizontal loops in the $x-z$ plane.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw a rectangle ($a \times b$). Draw 5 vertical arrows pointing UP: tallest in center, shorter towards sides, zero at left and right edges. Write: <code>λ_c = 2a, fc = c / 2a, Ey ∝ sin(πx/a)</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. Magic Tee -->
+            <div class="diagram-card" data-subject="rmt">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Pozar Ch. 7 • Microwave Engineering</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Magic Tee (Hybrid 4-Port Junction)</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q1/Q2</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Horizontal Waveguide (Collinear Ports 1 & 2) -->
+                        <rect x="50" y="90" width="360" height="40" fill="#e0e7ff" stroke="#4338ca" stroke-width="2.5" rx="4"/>
+                        <!-- Port 3: H-Plane Arm (Sum Port) Shunt -->
+                        <rect x="195" y="10" width="70" height="80" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5" rx="4"/>
+                        <!-- Port 4: E-Plane Arm (Difference Port) Series (downward) -->
+                        <rect x="195" y="130" width="70" height="75" fill="#fef3c7" stroke="#b45309" stroke-width="2.5" rx="4"/>
+
+                        <!-- Center Junction Marker -->
+                        <circle cx="230" cy="110" r="8" fill="#4f46e5"/>
+
+                        <!-- Port Labels -->
+                        <text x="15" y="115" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#1e1b4b">Port 1 (Collinear)</text>
+                        <text x="365" y="115" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#1e1b4b">Port 2 (Collinear)</text>
+                        <text x="230" y="32" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">Port 3: H-Plane (Σ Sum)</text>
+                        <text x="230" y="195" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">Port 4: E-Plane (Δ Diff)</text>
+
+                        <!-- Arrows -->
+                        <path d="M 230 45 L 230 85 M 225 80 L 230 88 L 235 80" stroke="#1d4ed8" stroke-width="2" fill="none"/>
+                        <path d="M 230 140 L 230 180 M 225 175 L 230 183 L 235 175" stroke="#b45309" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Combines an E-plane and H-plane tee. Symmetric input at Port 3 splits in-phase into Port 1 & 2. Anti-symmetric input at Port 4 splits 180° out-of-phase into Port 1 & 2. Port 3 and 4 are completely isolated ($S_{34}=S_{43}=0$).
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw 1 horizontal bar (Ports 1 & 2) + 1 vertical upward arm (Port 3, H-plane Sum) + 1 downward arm (Port 4, E-plane Diff). Write: <code>[S] = 1/√2 * [ 0 0 1 1 ; 0 0 1 -1 ; 1 1 0 0 ; 1 -1 0 0 ]</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Reflex Klystron & Applegate Diagram -->
+            <div class="diagram-card" data-subject="rmt">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Liao Ch. 9 • Microwave Devices & Circuits</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Reflex Klystron & Applegate Diagram</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6/8 Marks • Q1/Q2</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Space axis vs Time axis -->
+                        <line x1="50" y1="200" x2="420" y2="200" stroke="#475569" stroke-width="2"/>
+                        <line x1="50" y1="200" x2="50" y2="20" stroke="#475569" stroke-width="2"/>
+                        <text x="425" y="205" font-family="'JetBrains Mono', monospace" font-size="11" fill="#475569">Time (t)</text>
+                        <text x="35" y="15" font-family="'JetBrains Mono', monospace" font-size="11" fill="#475569">Distance (z)</text>
+
+                        <!-- Cavity Grid level (z = 0) -->
+                        <line x1="50" y1="160" x2="420" y2="160" stroke="#2563eb" stroke-dasharray="4" stroke-width="1.5"/>
+                        <text x="380" y="152" font-family="'JetBrains Mono', monospace" font-size="10" fill="#2563eb">Cavity Grid (z=0)</text>
+
+                        <!-- Repeller Electrode level -->
+                        <line x1="50" y1="40" x2="420" y2="40" stroke="#ef4444" stroke-width="2"/>
+                        <text x="330" y="32" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#ef4444">Repeller Plate (-Vr)</text>
+
+                        <!-- Trajectories -->
+                        <!-- Early electron (Accelerated, penetrates deep) -->
+                        <path d="M 80 160 Q 150 45 220 160" fill="none" stroke="#10b981" stroke-width="2.2"/>
+                        <text x="95" y="90" font-family="sans-serif" font-size="10" fill="#10b981">Accelerated (e1)</text>
+
+                        <!-- Reference electron (passes at V=0, intermediate penetration) -->
+                        <path d="M 120 160 Q 170 75 220 160" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
+                        <text x="145" y="115" font-family="sans-serif" font-size="10" fill="#f59e0b">Reference (e0)</text>
+
+                        <!-- Late electron (Decelerated, shallow penetration) -->
+                        <path d="M 160 160 Q 190 105 220 160" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                        <text x="175" y="140" font-family="sans-serif" font-size="10" fill="#ef4444">Decelerated (e2)</text>
+
+                        <!-- Bunch point -->
+                        <circle cx="220" cy="160" r="6" fill="#7c3aed"/>
+                        <text x="230" y="175" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#7c3aed">Bunching Center (n + 3/4)T</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Applegate space-time diagram illustrates velocity modulation. Early electrons accelerate, travel deep into the repeller space, and return later; late electrons decelerate, take a shallow turn, and converge together to form dense electron bunches at the cavity during the retarding phase.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw z vs t axes. Draw 3 parabolic curves meeting at 1 focal bunching point on the cavity line. Write: <code>Transit time T0 = (n + 3/4)T | Max efficiency = 58.4%</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Cavity Magnetron Cross Section -->
+                        <!-- 3. Cavity Magnetron Cross Section -->
+            <div class="diagram-card" data-subject="rmt">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Liao Ch. 9 • Microwave Electron Tubes</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Cavity Magnetron (8-Cavity π-Mode Spokes)</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q1/Q2</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Outer Anode Block Copper Shell -->
+                        <circle cx="230" cy="110" r="95" fill="#f8fafc" stroke="#b45309" stroke-width="5"/>
+                        
+                        <!-- 8 Resonant Cavities drilled in copper block -->
+                        <!-- Cavity holes -->
+                        <circle cx="230" cy="35" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="283" cy="57" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="305" cy="110" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="283" cy="163" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="230" cy="185" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="177" cy="163" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="155" cy="110" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="177" cy="57" r="14" fill="#fed7aa" stroke="#b45309" stroke-width="2"/>
+
+                        <!-- Central Heated Cathode Cylinder -->
+                        <circle cx="230" cy="110" r="24" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                        <text x="230" y="114" font-family="'JetBrains Mono', monospace" font-size="9" fill="#ffffff" font-weight="bold" text-anchor="middle">CATHODE</text>
+
+                        <!-- 4 Rotating Electron Spokes in pi-mode -->
+                        <path d="M 230 110 L 230 65 M 230 110 L 275 110 M 230 110 L 230 155 M 230 110 L 185 110" stroke="#2563eb" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+
+                        <!-- Annotations -->
+                        <text x="50" y="35" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#b45309">Anode Block (+V0)</text>
+                        <text x="50" y="55" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">8 Resonant Cavities</text>
+                        <text x="330" y="180" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#2563eb">4 Electron Spokes</text>
+                        <text x="330" y="195" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Crossed Fields (E ⟂ B)</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Crossed-field tube where radial DC electric field is perpendicular to axial magnetic field. Electrons emitted from the central cathode swirl into 4 rotating spoke clouds under $\pi$-mode oscillation (adjacent cavities 180° out-of-phase), transferring kinetic energy to cavity RF fields.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw concentric circles (small cathode, large anode). Draw 8 mini-holes on perimeter. Sketch 4 pinwheel arms between cathode and cavities. Label: <code>E radial, B axial, π-mode Phase shift = 180°</code>.
+                    </div>
+                </div>
+            </div>
+
+<!-- 4. 6T SRAM Cell -->
+            <div class="diagram-card" data-subject="vlsi">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Weste & Harris Ch. 12 • CMOS VLSI Design</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">6T SRAM Cell (Hold, Read & Write)</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6/8 Marks • Q3/Q4</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- VDD Rail -->
+                        <line x1="120" y1="20" x2="340" y2="20" stroke="#ef4444" stroke-width="3"/>
+                        <text x="230" y="15" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">VDD</text>
+
+                        <!-- GND Rail -->
+                        <line x1="120" y1="200" x2="340" y2="200" stroke="#0f172a" stroke-width="3"/>
+                        <text x="230" y="215" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">GND</text>
+
+                        <!-- Cross-Coupled Inverter Pair (Boxes) -->
+                        <rect x="140" y="75" width="60" height="70" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="4"/>
+                        <text x="170" y="105" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#4f46e5" text-anchor="middle">INV 1</text>
+                        <text x="170" y="125" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b" text-anchor="middle">PU1, PD1</text>
+
+                        <rect x="260" y="75" width="60" height="70" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="4"/>
+                        <text x="290" y="105" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#4f46e5" text-anchor="middle">INV 2</text>
+                        <text x="290" y="125" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b" text-anchor="middle">PU2, PD2</text>
+
+                        <!-- Cross-Coupled Feedback Wires -->
+                        <path d="M 200 100 L 230 100 L 230 85 L 260 85" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                        <path d="M 260 120 L 230 120 L 230 135 L 200 135" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+
+                        <!-- Storage Nodes Q and QB -->
+                        <circle cx="210" cy="100" r="4" fill="#10b981"/>
+                        <text x="210" y="92" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#047857">Q</text>
+                        <circle cx="250" cy="120" r="4" fill="#10b981"/>
+                        <text x="250" y="132" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#047857">Q_bar</text>
+
+                        <!-- Access Transistors -->
+                        <rect x="65" y="90" width="45" height="40" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="4"/>
+                        <text x="87" y="114" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">M5 (PG1)</text>
+
+                        <rect x="350" y="90" width="45" height="40" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="4"/>
+                        <text x="372" y="114" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">M6 (PG2)</text>
+
+                        <!-- Bitlines BL and BLB -->
+                        <line x1="35" y1="30" x2="35" y2="190" stroke="#059669" stroke-width="2.5"/>
+                        <text x="35" y="25" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">BL</text>
+
+                        <line x1="425" y1="30" x2="425" y2="190" stroke="#059669" stroke-width="2.5"/>
+                        <text x="425" y="25" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">BL_bar</text>
+
+                        <!-- Word Line (WL) Control -->
+                        <line x1="87" y1="165" x2="372" y2="165" stroke="#7c3aed" stroke-width="2" stroke-dasharray="3"/>
+                        <line x1="87" y1="130" x2="87" y2="165" stroke="#7c3aed" stroke-width="2"/>
+                        <line x1="372" y1="130" x2="372" y2="165" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="230" y="160" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#7c3aed" text-anchor="middle">Word Line (WL)</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Standard 6-transistor SRAM cell consists of 2 pull-up PMOS (PU1, PU2), 2 pull-down NMOS (PD1, PD2) creating cross-coupled bistable latch, and 2 NMOS pass-gate access transistors (PG1, PG2) activated by Word Line (WL).
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw 2 CMOS inverters facing each other with cross-wires connecting input to opposite output. Connect Left to BL via NMOS, Right to BLB via NMOS. Label gates: <code>WL</code>. Sizing: <code>Cell Ratio (PD/PG) > 1.2 | Pull-up Ratio (PU/PG) < 1.0</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Domino CMOS Logic -->
+            <div class="diagram-card" data-subject="vlsi">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Weste & Harris Ch. 9 • CMOS VLSI Design</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Dynamic Domino CMOS Logic Stage</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q4</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Power rails -->
+                        <line x1="60" y1="20" x2="400" y2="20" stroke="#ef4444" stroke-width="2.5"/>
+                        <text x="415" y="24" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#ef4444">VDD</text>
+                        <line x1="60" y1="200" x2="400" y2="200" stroke="#0f172a" stroke-width="2.5"/>
+                        <text x="415" y="204" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#0f172a">GND</text>
+
+                        <!-- PMOS Precharge Transistor -->
+                        <rect x="130" y="35" width="40" height="30" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="4"/>
+                        <text x="150" y="54" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">Mp</text>
+                        <text x="80" y="52" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7c3aed">CLK ──o</text>
+
+                        <!-- Dynamic Node V_dynamic -->
+                        <circle cx="150" cy="90" r="5" fill="#4f46e5"/>
+                        <text x="165" y="93" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#4f46e5">Dynamic Node</text>
+
+                        <!-- NMOS Logic Network (PDN) -->
+                        <rect x="115" y="105" width="70" height="40" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="4"/>
+                        <text x="150" y="130" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#4338ca" text-anchor="middle">Logic PDN</text>
+
+                        <!-- NMOS Evaluation Footer Transistor -->
+                        <rect x="130" y="155" width="40" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+                        <text x="150" y="174" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Me</text>
+                        <text x="80" y="172" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7c3aed">CLK ───</text>
+
+                        <!-- Connecting wire to static inverter -->
+                        <line x1="150" y1="90" x2="260" y2="90" stroke="#0f172a" stroke-width="2"/>
+
+                        <!-- Static CMOS Inverter (The Domino Restorer) -->
+                        <polygon points="260,70 260,110 300,90" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                        <circle cx="304" cy="90" r="4" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                        <text x="270" y="130" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#b45309">Static Buffer</text>
+
+                        <!-- Output line -->
+                        <line x1="308" y1="90" x2="380" y2="90" stroke="#10b981" stroke-width="3"/>
+                        <text x="385" y="94" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#047857">V_out</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Composed of a dynamic CMOS stage followed by a static CMOS inverter. During Precharge ($\text{CLK}=0$), $M_p$ pulls dynamic node high, so $V_{\text{out}}=0$. During Evaluate ($\text{CLK}=1$), footer $M_e$ enables discharge only if logic evaluates true, ensuring cascading stages never falsely discharge.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw vertical column: PMOS (CLK) $\to$ Logic Box $\to$ NMOS Footer (CLK). Draw wire from intermediate node into a standard inverter triangle. Label: <code>Precharge: CLK=0, Vdyn=VDD, Vout=0 | Eval: CLK=1</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. LSTM Cell Architecture -->
+            <div class="diagram-card" data-subject="dl">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Goodfellow Ch. 10 • Deep Learning (MIT)</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">LSTM Cell: 3 Gates & Cell State Highway</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6/8 Marks • Q7/Q8</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Outer Cell Boundary -->
+                        <rect x="40" y="20" width="380" height="180" fill="#f8fafc" stroke="#4f46e5" stroke-width="2" rx="12"/>
+
+                        <!-- Cell State Top Highway Line -->
+                        <line x1="20" y1="50" x2="440" y2="50" stroke="#10b981" stroke-width="3.5"/>
+                        <text x="25" y="42" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#059669">C_{t-1}</text>
+                        <text x="405" y="42" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#059669">C_t</text>
+
+                        <!-- Forget Gate (sigma) -->
+                        <rect x="90" y="115" width="45" height="35" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="4"/>
+                        <text x="112" y="137" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#b91c1c" text-anchor="middle">σ</text>
+                        <text x="112" y="165" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Forget ft</text>
+
+                        <!-- Input Gate (sigma & tanh) -->
+                        <rect x="180" y="115" width="45" height="35" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="4"/>
+                        <text x="202" y="137" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#b45309" text-anchor="middle">σ</text>
+                        <text x="202" y="165" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Input it</text>
+
+                        <rect x="245" y="115" width="45" height="35" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="4"/>
+                        <text x="267" y="137" font-family="sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">tanh</text>
+                        <text x="267" y="165" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Candidate C̃</text>
+
+                        <!-- Output Gate (sigma) -->
+                        <rect x="330" y="115" width="45" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+                        <text x="352" y="137" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">σ</text>
+                        <text x="352" y="165" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Output ot</text>
+
+                        <!-- Mathematical Junctions -->
+                        <!-- Forget multiply (X) -->
+                        <circle cx="112" cy="50" r="10" fill="#ffffff" stroke="#ef4444" stroke-width="2"/>
+                        <text x="112" y="54" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">×</text>
+                        <line x1="112" y1="115" x2="112" y2="60" stroke="#ef4444" stroke-width="2"/>
+
+                        <!-- Input addition (+) -->
+                        <circle cx="235" cy="50" r="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                        <text x="235" y="54" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#d97706" text-anchor="middle">+</text>
+
+                        <!-- Hidden states line -->
+                        <line x1="20" y1="180" x2="440" y2="180" stroke="#4f46e5" stroke-width="2" stroke-dasharray="3"/>
+                        <text x="25" y="195" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#4f46e5">h_{t-1}</text>
+                        <text x="415" y="195" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#4f46e5">h_t</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        The Long Short-Term Memory cell resolves vanishing gradients with an additive Constant Error Carousel (cell state $C_t$). Information flow is modulated by 3 sigmoid ($\sigma$) gates: Forget Gate ($f_t$), Input Gate ($i_t$), and Output Gate ($o_t$).
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw 1 horizontal top line ($C_{t-1} \to C_t$). Place a ($\times$) circle, then a ($+$) circle. Below draw 3 boxes labeled $\sigma$ (Forget), $\sigma$ (Input), $\sigma$ (Output). Write: <code>Ct = ft·C_{t-1} + it·C̃t | ht = ot·tanh(Ct)</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. JavaScript Event Loop -->
+            <div class="diagram-card" data-subject="js">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 MDN Web Docs • Runtime Architecture</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">JavaScript Event Loop & Concurrency Model</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q5/Q6</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Call Stack Box (LIFO) -->
+                        <rect x="40" y="30" width="100" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+                        <text x="90" y="50" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">CALL STACK</text>
+                        <text x="90" y="65" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">(LIFO Engine)</text>
+                        <!-- Stack items -->
+                        <rect x="50" y="135" width="80" height="20" fill="#93c5fd" rx="3"/>
+                        <text x="90" y="149" font-family="sans-serif" font-size="9" fill="#1e3a8a" text-anchor="middle">main()</text>
+                        <rect x="50" y="105" width="80" height="20" fill="#bfdbfe" rx="3"/>
+                        <text x="90" y="119" font-family="sans-serif" font-size="9" fill="#1e3a8a" text-anchor="middle">fetchData()</text>
+
+                        <!-- Central Event Loop Orbit -->
+                        <circle cx="215" cy="105" r="30" fill="none" stroke="#7c3aed" stroke-width="3" stroke-dasharray="6"/>
+                        <text x="215" y="102" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#7c3aed" text-anchor="middle">EVENT</text>
+                        <text x="215" y="116" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#7c3aed" text-anchor="middle">LOOP</text>
+
+                        <!-- Web APIs / Node Background -->
+                        <rect x="300" y="25" width="125" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="6"/>
+                        <text x="362" y="44" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">WEB APIs</text>
+                        <text x="362" y="60" font-family="sans-serif" font-size="8.5" fill="#b45309" text-anchor="middle">DOM, setTimeout, fetch</text>
+
+                        <!-- Microtask Queue (High Priority) -->
+                        <rect x="300" y="95" width="125" height="40" fill="#fce7f3" stroke="#db2777" stroke-width="2" rx="6"/>
+                        <text x="362" y="112" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#9d174d" text-anchor="middle">MICROTASK QUEUE</text>
+                        <text x="362" y="126" font-family="sans-serif" font-size="8" fill="#be185d" text-anchor="middle">Promises (Priority 1)</text>
+
+                        <!-- Callback / Macrotask Queue -->
+                        <rect x="300" y="145" width="125" height="40" fill="#f1f5f9" stroke="#64748b" stroke-width="2" rx="6"/>
+                        <text x="362" y="162" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#334155" text-anchor="middle">MACROTASK QUEUE</text>
+                        <text x="362" y="176" font-family="sans-serif" font-size="8" fill="#64748b" text-anchor="middle">setTimeout, I/O</text>
+
+                        <!-- Flow Arrow from Queue to Stack -->
+                        <path d="M 300 115 L 255 115 M 175 105 L 140 105" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        JavaScript executes synchronous code on single-threaded Call Stack. Asynchronous tasks offload to Web APIs. Upon completion, Promise callbacks land in the high-priority Microtask Queue, while timers land in the Macrotask Queue. The Event Loop prioritizes Microtasks before touching Macrotasks.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw 1 vertical rectangle (Call Stack) $\leftrightarrow$ Circular arrow (Event Loop) $\leftrightarrow$ 2 horizontal queues: (1) Microtask Queue (Promises), (2) Macrotask Queue (setTimeout). Write priority rule: <code>Stack Empty -> All Microtasks -> 1 Macrotask</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. MTI Radar with Delay Line Canceller -->
+            <div class="diagram-card" data-subject="rmt">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Skolnik Ch. 4 • Introduction to Radar Systems</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">MTI Radar Delay Line Canceller</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q5/Q6</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Input signal path -->
+                        <line x1="30" y1="70" x2="110" y2="70" stroke="#0f172a" stroke-width="2.5"/>
+                        <text x="35" y="60" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#0f172a">Video f(t)</text>
+
+                        <!-- Junction split -->
+                        <circle cx="110" cy="70" r="4" fill="#0f172a"/>
+
+                        <!-- Direct path to subtractor -->
+                        <line x1="110" y1="70" x2="310" y2="70" stroke="#059669" stroke-width="2.5"/>
+                        <text x="210" y="62" font-family="sans-serif" font-size="9" fill="#059669">Direct Channel f(t)</text>
+
+                        <!-- Branch down into Delay Line -->
+                        <line x1="110" y1="70" x2="110" y2="150" stroke="#2563eb" stroke-width="2"/>
+                        <line x1="110" y1="150" x2="150" y2="150" stroke="#2563eb" stroke-width="2"/>
+
+                        <!-- Delay Line Box (T = 1/PRF) -->
+                        <rect x="150" y="125" width="120" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+                        <text x="210" y="148" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">DELAY LINE</text>
+                        <text x="210" y="163" font-family="'JetBrains Mono', monospace" font-size="9" fill="#3b82f6" text-anchor="middle">T = 1 / PRF</text>
+
+                        <!-- Path from delay line to subtractor -->
+                        <line x1="270" y1="150" x2="330" y2="150" stroke="#2563eb" stroke-width="2"/>
+                        <line x1="330" y1="150" x2="330" y2="90" stroke="#2563eb" stroke-width="2"/>
+
+                        <!-- Subtractor Circle ( - ) -->
+                        <circle cx="330" cy="70" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                        <text x="330" y="76" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="bold" fill="#b91c1c" text-anchor="middle">−</text>
+                        <text x="312" y="62" font-family="'JetBrains Mono', monospace" font-size="11" fill="#059669">(+)</text>
+                        <text x="338" y="100" font-family="'JetBrains Mono', monospace" font-size="11" fill="#ef4444">(−)</text>
+
+                        <!-- Output line to Display -->
+                        <line x1="348" y1="70" x2="425" y2="70" stroke="#7c3aed" stroke-width="3"/>
+                        <text x="420" y="60" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#7c3aed">To Display</text>
+                        <text x="360" y="95" font-family="sans-serif" font-size="8.5" fill="#64748b">Clutter Cancelled!</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Cancels stationary ground clutter by subtracting previous pulse echoes from the current pulse echo. Stationary echo signals have zero Doppler shift and cancel completely ($V(t) - V(t-T) = 0$), whereas moving targets with Doppler frequency $f_d$ pass through.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw split line: Top path direct to ($+$) terminal of circle; Bottom path through box labeled [Delay T = 1/PRF] to ($-$) terminal. Formula: <code>Blind speed vb = n·λ·PRF / 2</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Hypervisor Type-1 vs Type-2 Stack -->
+            <div class="diagram-card" data-subject="cloud">
+                <div class="diagram-card-header">
+                    <div>
+                        <span class="textbook-badge">📖 Buyya Ch. 3 • Mastering Cloud Computing</span>
+                        <h3 style="font-size:1.15rem; font-weight:800; margin-top:4px;">Type-1 (Bare Metal) vs Type-2 (Hosted) Stack</h3>
+                    </div>
+                    <span class="badge badge-prob-100">6 Marks • Q3/Q4</span>
+                </div>
+                <div class="diagram-svg-container">
+                    <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- TYPE-1 COLUMN (Left) -->
+                        <text x="115" y="25" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">TYPE-1: BARE METAL</text>
+                        
+                        <!-- Guest VMs -->
+                        <rect x="40" y="40" width="70" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+                        <text x="75" y="62" font-family="sans-serif" font-size="9" fill="#1e40af" text-anchor="middle">App / Guest OS</text>
+
+                        <rect x="120" y="40" width="70" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+                        <text x="155" y="62" font-family="sans-serif" font-size="9" fill="#1e40af" text-anchor="middle">App / Guest OS</text>
+
+                        <!-- Hypervisor (Directly on hardware) -->
+                        <rect x="40" y="85" width="150" height="40" fill="#d1fae5" stroke="#059669" stroke-width="2" rx="4"/>
+                        <text x="115" y="105" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#047857" text-anchor="middle">HYPERVISOR (ESXi/KVM)</text>
+                        <text x="115" y="118" font-family="sans-serif" font-size="8" fill="#065f46" text-anchor="middle">Runs directly on bare metal</text>
+
+                        <!-- Physical Hardware -->
+                        <rect x="40" y="135" width="150" height="45" fill="#f1f5f9" stroke="#475569" stroke-width="2" rx="4"/>
+                        <text x="115" y="162" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">HARDWARE (Server)</text>
+
+
+                        <!-- TYPE-2 COLUMN (Right) -->
+                        <text x="345" y="25" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#d97706" text-anchor="middle">TYPE-2: HOSTED</text>
+
+                        <!-- Guest VMs -->
+                        <rect x="270" y="40" width="70" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+                        <text x="305" y="58" font-family="sans-serif" font-size="8.5" fill="#1e40af" text-anchor="middle">App / Guest OS</text>
+
+                        <rect x="350" y="40" width="70" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+                        <text x="385" y="58" font-family="sans-serif" font-size="8.5" fill="#1e40af" text-anchor="middle">App / Guest OS</text>
+
+                        <!-- Hypervisor (Hosted) -->
+                        <rect x="270" y="77" width="150" height="30" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="4"/>
+                        <text x="345" y="96" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#b45309" text-anchor="middle">HYPERVISOR (VirtualBox)</text>
+
+                        <!-- Host Operating System -->
+                        <rect x="270" y="113" width="150" height="30" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="4"/>
+                        <text x="345" y="132" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#b91c1c" text-anchor="middle">HOST OS (Windows/Linux)</text>
+
+                        <!-- Physical Hardware -->
+                        <rect x="270" y="150" width="150" height="35" fill="#f1f5f9" stroke="#475569" stroke-width="2" rx="4"/>
+                        <text x="345" y="172" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">HARDWARE (PC)</text>
+                    </svg>
+                </div>
+                <div class="diagram-details">
+                    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">
+                        Type-1 (Bare-Metal) installs directly onto physical server hardware with zero host OS overhead, giving near-native performance for AWS/Azure datacenters. Type-2 (Hosted) runs as software inside a host OS, incurring double-kernel virtualization overhead.
+                    </p>
+                    <div class="chalkboard-box">
+                        <strong>✏️ 30-Second Exam Blackboard Draft:</strong><br>
+                        Draw 2 stacked towers side-by-side. Left: Hardware $\to$ Hypervisor $\to$ VMs. Right: Hardware $\to$ Host OS $\to$ Hypervisor $\to$ VMs. Mention: <code>Type-1 = VMware ESXi, Xen | Type-2 = VirtualBox, VMware Workstation</code>.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="margin-top:60px; padding:30px 20px; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.85rem;">
+        <p>🖼️ Verified Technical Diagram & Waveform Gallery | Savitribai Phule Pune University Sem 7 End-Sem</p>
+    </footer>
+
+    <script>
+        function filterDiagrams(category, btn) {
+            document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.diagram-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-subject') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

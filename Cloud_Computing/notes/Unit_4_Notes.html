@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Unit 4: Unit 4: Cloud Security Architecture & Threats | SPPU Exam Model Answers</title>
+    <style>
+        
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 11pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+
+    .header-box.green {
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.2);
+    }
+    .header-box.purple {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+        box-shadow: 0 8px 24px rgba(76, 29, 149, 0.2);
+    }
+    .header-box.amber {
+        background: linear-gradient(135deg, #78350f 0%, #d97706 100%);
+        box-shadow: 0 8px 24px rgba(120, 53, 15, 0.2);
+    }
+    .header-box.rose {
+        background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+        box-shadow: 0 8px 24px rgba(136, 19, 55, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 24pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 11pt; opacity: 0.95; }
+
+    .tag-strip { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-tag {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    .index-card {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 35px;
+    }
+    .index-card h3 { margin-top: 0; color: #1e3a8a; font-size: 13pt; }
+
+    .index-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+    .index-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        background: #ffffff;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #334155;
+        font-size: 10pt;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+    }
+    .index-item:hover { border-color: #3b82f6; color: #1e3a8a; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 35px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        page-break-inside: avoid;
+    }
+
+    .question-header { border-bottom: 2px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 18px; }
+    .question-title { font-size: 15pt; font-weight: 700; color: #0f172a; margin: 8px 0 10px 0; line-height: 1.4; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-med { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    .badge-std { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-unit { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
+
+    h3.section-head { font-size: 12pt; font-weight: 700; color: #1e3a8a; margin: 18px 0 8px 0; }
+    h4 { color: #334155; font-size: 10.5pt; margin: 12px 0 4px 0; }
+
+    p { margin: 8px 0; color: #334155; font-size: 10.5pt; }
+    ul, ol { margin: 6px 0 12px 0; padding-left: 22px; color: #334155; }
+    li { margin-bottom: 5px; font-size: 10.5pt; }
+
+    .callout { border-radius: 10px; padding: 14px 16px; margin: 14px 0; font-size: 10pt; }
+    .callout-analogy { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e40af; }
+    .callout-tip { background: #f0fdf4; border-left: 4px solid #22c55e; color: #15803d; }
+    .callout-formula { background: #faf5ff; border-left: 4px solid #a855f7; color: #6b21a8; font-family: 'JetBrains Mono', monospace; }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 14px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        color: #1e293b;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+    td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #fbfcfe; }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 9pt;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        border: 1px solid #1e293b;
+    }
+    code {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .question-block { box-shadow: none; border: 1px solid #cbd5e1; margin-bottom: 25px; }
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-box purple">
+            <h1>Unit 4: Unit 4: Cloud Security Architecture & Threats</h1>
+            <p><strong>Subject:</strong> Cloud Computing | <strong>Course Pattern:</strong> SPPU 2019 Pattern</p>
+            <p><strong>SPPU Question Mapping:</strong> Q.3 OR Q.4 | Comprehensive 4-Year Solved Question Bank</p>
+            <div class="tag-strip">
+                <span class="header-tag">SPPU 2019 Pattern</span>
+                <span class="header-tag">Unit 4 Solved Notes</span>
+                <span class="header-tag">Full Cloud Architecture & AWS/Azure</span>
+            </div>
+        </div>
+
+        <div class="index-card">
+            <h3>📑 Quick Navigation Index</h3>
+            <div class="index-grid">
+                
+        <a href="#q1" class="index-item">
+            <span><strong>Q1.</strong> Explain Cloud Security Architecture and CIA Security Model (Confidenti...</span>
+            <span style="font-size: 8.5pt; font-weight: 700; color: #dc2626;">14x repeated</span>
+        </a>
+        
+        <a href="#q2" class="index-item">
+            <span><strong>Q2.</strong> Explain Cloud Security Alliance (CSA) Top Threats, Attacks, and Securi...</span>
+            <span style="font-size: 8.5pt; font-weight: 700; color: #dc2626;">13x repeated</span>
+        </a>
+        
+        <a href="#q3" class="index-item">
+            <span><strong>Q3.</strong> Explain Service-Oriented Architecture (SOA) and Cloud Computing Archit...</span>
+            <span style="font-size: 8.5pt; font-weight: 700; color: #dc2626;">11x repeated</span>
+        </a>
+        
+            </div>
+        </div>
+
+        
+        <div class="question-block" id="q1">
+            <div class="question-header">
+                <div class="badge-bar">
+                    <span class="badge badge-fire">🔥 14x repeated</span>
+                    <span class="badge badge-marks">6 Marks</span>
+                    <span class="badge badge-unit">SPPU Pattern</span>
+                </div>
+                <div class="question-title">Q1. Explain Cloud Security Architecture and CIA Security Model (Confidentiality, Integrity, Availability).</div>
+                <div style="font-size: 9.5pt; color: #64748b;"><strong>Appeared In:</strong> May 2023, May 2024, May 2025, May 2026, Nov 2022, Nov 2023, Nov 2024, Nov 2025</div>
+            </div>
+            
+            <div class="callout callout-tip">
+                <strong>Cloud Computing Exam Strategy:</strong> Draw neat layered architectural diagrams, clearly differentiate virtualization and platform layers, and state enterprise cloud use cases.
+            </div>
+
+            
+        <h3 class="section-head">1. CIA Triad in Cloud Computing</h3>
+        <ul>
+            <li><strong>Confidentiality:</strong> Ensuring customer data is inaccessible to unauthorized entities, malicious tenants, or cloud administrators. Enforced via strong symmetric/asymmetric encryption (AES-256, RSA), Key Management Services (KMS), and Identity & Access Management (IAM) role-based permissions.</li>
+            <li><strong>Integrity:</strong> Guaranteeing that cloud data and configurations remain accurate, authentic, and unaltered during transit and storage. Achieved through cryptographic hashing (SHA-256), digital signatures, and write-once-read-many (WORM) storage controls.</li>
+            <li><strong>Availability:</strong> Ensuring authorized users have uninterrupted, low-latency access to cloud services. Maintained via multi-availability zone redundancy, automated failover, load balancing, and anti-DDoS scrubbing mitigation.</li>
+        </ul>
+        <h3 class="section-head">2. Defense-in-Depth Cloud Security Layers</h3>
+        <p><strong>Physical Security $\to$ Network Security (VPC, Firewalls) $\to$ Host Security (Hypervisor Hardening) $\to$ Application Security (WAF) $\to$ Data Security (Encryption at Rest and in Transit).</strong></p>
+        
+        </div>
+        
+        <div class="question-block" id="q2">
+            <div class="question-header">
+                <div class="badge-bar">
+                    <span class="badge badge-fire">🔥 13x repeated</span>
+                    <span class="badge badge-marks">6 Marks</span>
+                    <span class="badge badge-unit">SPPU Pattern</span>
+                </div>
+                <div class="question-title">Q2. Explain Cloud Security Alliance (CSA) Top Threats, Attacks, and Security Issues for Cloud Service Providers.</div>
+                <div style="font-size: 9.5pt; color: #64748b;"><strong>Appeared In:</strong> May 2023, May 2024, May 2025, May 2026, Nov 2022, Nov 2023, Nov 2024</div>
+            </div>
+            
+            <div class="callout callout-tip">
+                <strong>Cloud Computing Exam Strategy:</strong> Draw neat layered architectural diagrams, clearly differentiate virtualization and platform layers, and state enterprise cloud use cases.
+            </div>
+
+            
+        <h3 class="section-head">CSA Top Cloud Threats</h3>
+        <ol>
+            <li><strong>Data Breaches & Exfiltration:</strong> Sensitive customer databases exposed through misconfigured S3 buckets, compromised IAM credentials, or unencrypted storage volumes.</li>
+            <li><strong>Weak Identity, Credential, and Access Management:</strong> Inadequate Multi-Factor Authentication (MFA), shared root account usage, and hardcoded API keys in client-side code.</li>
+            <li><strong>Insecure APIs and User Interfaces:</strong> Cloud service APIs exposed without rate-limiting or robust authentication, allowing malicious injection attacks and data harvesting.</li>
+            <li><strong>System & Hypervisor Vulnerabilities (VM Escape):</strong> Bugs in hypervisor code allowing an attacker in a guest VM to break out into the host OS, compromising all other co-located tenants.</li>
+            <li><strong>Account Hijacking:</strong> Attackers gaining control of admin accounts via phishing or session token spoofing, gaining full capability to delete cloud instances and backups.</li>
+            <li><strong>Denial of Service (DoS / DDoS):</strong> Volumetric botnet attacks flooding cloud edge endpoints, degrading availability and inflicting massive auto-scaling billing charges (Economic Denial of Sustainability).</li>
+        </ol>
+        
+        </div>
+        
+        <div class="question-block" id="q3">
+            <div class="question-header">
+                <div class="badge-bar">
+                    <span class="badge badge-high">🔥 11x repeated</span>
+                    <span class="badge badge-marks">6 Marks</span>
+                    <span class="badge badge-unit">SPPU Pattern</span>
+                </div>
+                <div class="question-title">Q3. Explain Service-Oriented Architecture (SOA) and Cloud Computing Architecture (COA) / Life Cycle.</div>
+                <div style="font-size: 9.5pt; color: #64748b;"><strong>Appeared In:</strong> May 2023, May 2024, May 2025, Nov 2022, Nov 2023, Nov 2025</div>
+            </div>
+            
+            <div class="callout callout-tip">
+                <strong>Cloud Computing Exam Strategy:</strong> Draw neat layered architectural diagrams, clearly differentiate virtualization and platform layers, and state enterprise cloud use cases.
+            </div>
+
+            
+        <h3 class="section-head">1. Fundamental SOA Components</h3>
+        <ul>
+            <li><strong>Service Provider:</strong> Creates the web service and publishes its interface contract (WSDL / OpenAPI) to a registry.</li>
+            <li><strong>Service Consumer / Requestor:</strong> Finds the service contract via discovery registry and binds to it using standard protocols (SOAP, REST, JSON/HTTP).</li>
+            <li><strong>Service Broker / Registry:</strong> Central directory (e.g., UDDI) maintaining searchable listings of available services.</li>
+        </ul>
+        <h3 class="section-head">2. Cloud Computing Life Cycle Phases</h3>
+        <p><strong>1. Requirement Analysis & Planning $\to$ 2. Cloud Architecture Design (IaaS/PaaS/SaaS selection) $\to$ 3. Deployment & Migration $\to$ 4. Operations, Monitoring & Auto-Scaling $\to$ 5. Governance, Audit & Decommissioning.</strong></p>
+        
+        </div>
+        
+    </div>
+</body>
+</html>

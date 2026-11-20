@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Unit 5: DOM & Event Handling | SPPU Notes</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 11pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 24pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 11pt; opacity: 0.95; }
+
+    .tag-strip { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-tag {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+
+    .index-card {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 35px;
+    }
+    .index-card h3 { margin-top: 0; color: #4f46e5; font-size: 13pt; }
+
+    .index-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+    .index-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 12px;
+        background: #ffffff;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #334155;
+        font-size: 10pt;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+    }
+    .index-item:hover { border-color: #818cf8; color: #4f46e5; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 35px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        page-break-inside: avoid;
+    }
+
+    .question-header { border-bottom: 2px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 18px; }
+    .question-title { font-size: 15pt; font-weight: 700; color: #0f172a; margin: 8px 0 10px 0; line-height: 1.4; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-med { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    .badge-std { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-unit { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
+
+    h3.section-head { font-size: 12pt; font-weight: 700; color: #4f46e5; margin: 18px 0 8px 0; }
+    h4 { color: #334155; font-size: 10.5pt; margin: 12px 0 4px 0; }
+
+    p { margin: 8px 0; color: #334155; font-size: 10.5pt; }
+    ul, ol { margin: 6px 0 12px 0; padding-left: 22px; color: #334155; }
+    li { margin-bottom: 5px; font-size: 10.5pt; }
+
+    .callout { border-radius: 10px; padding: 14px 16px; margin: 14px 0; font-size: 10pt; }
+    .callout-analogy { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e40af; }
+    .callout-tip { background: #f0fdf4; border-left: 4px solid #22c55e; color: #15803d; }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 14px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        color: #1e293b;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+    td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #fbfcfe; }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 9pt;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        border: 1px solid #1e293b;
+    }
+    code {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 9pt;
+        font-weight: 600;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; font-weight: 400; font-size: 9pt; }
+
+    .c-kw { color: #f43f5e; font-weight: 600; }
+    .c-fn { color: #38bdf8; font-weight: 600; }
+    .c-str { color: #a3e635; }
+    .c-num { color: #fb923c; }
+    .c-cm { color: #64748b; font-style: italic;}
+    .c-tag { color: #c084fc; }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .question-block { box-shadow: none; border: 1px solid #cbd5e1; margin-bottom: 25px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <div class="header-box">
+        <h1>JavaScript (Elective - III)</h1>
+        <p><strong>Unit 5: Document Object Model &amp; Event Handling — SPPU Model Answers</strong></p>
+        <p>B.E. (E&amp;TC / Electronics) | 2019 Course Pattern | Subject Code: 404184(C)</p>
+        <div class="tag-strip">
+            <span class="header-tag">🎯 Target: 6 / 6 Marks Each</span>
+            <span class="header-tag">📊 Based on 4 Years (2022–2026) Papers</span>
+            <span class="header-tag">💡 DOM Tree, Event Models &amp; DHTML</span>
+        </div>
+    </div>
+
+    <!-- Quick Index -->
+    <div class="index-card">
+        <h3>📌 Quick Navigation Index (14 Unit 5 Questions)</h3>
+        <div class="index-grid">
+            <a href="#q1" class="index-item"><span>1. Event and Event Handler with Example (Role of Event Handlers)</span> <span class="badge badge-fire">8/8 (100%)</span></a>
+            <a href="#q2" class="index-item"><span>2. Netscape 4 Event Model in Detail</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q3" class="index-item"><span>3. JavaScript Object Models (4 Distinct Models)</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q4" class="index-item"><span>4. Program: Change Background Color using onmouseover &amp; onfocus</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q5" class="index-item"><span>5. Document Properties &amp; Methods with HTML Relationship</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q6" class="index-item"><span>6. Differentiate between HTML and DHTML</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q7" class="index-item"><span>7. Explain DOM and CSS Elements with Example</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q8" class="index-item"><span>8. DOM and HTML Elements (Definition &amp; Short Note)</span> <span class="badge badge-high">4x Repeated</span></a>
+            <a href="#q9" class="index-item"><span>9. DOM Methods for Accessing Elements (Explain Any Two)</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q10" class="index-item"><span>10. How to Create, Insert and Append Nodes in DOM</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q11" class="index-item"><span>11. Different Event Model Issues (Cross-Browser Problems)</span> <span class="badge badge-med">3x Repeated</span></a>
+            <a href="#q12" class="index-item"><span>12. Document Tree &amp; DOM Methods to Create Nodes</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q13" class="index-item"><span>13. How DOM Standard is Supported by Today's Browsers in CSS</span> <span class="badge badge-std">1x Asked</span></a>
+            <a href="#q14" class="index-item"><span>14. Explain DOM Level 2 Event Model (Capturing &amp; Bubbling)</span> <span class="badge badge-std">1x Asked</span></a>
+        </div>
+    </div>
+
+    <!-- ==================== Q1 ==================== -->
+    <div class="question-block" id="q1">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-fire">🔥 100% Guaranteed (Repeated 8/8 Times)</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5: Q.5 or Q.6</span>
+            </div>
+            <div class="question-title">Q1. Explain Event and Event Handler with an example. What is the role of Event Handlers in JavaScript?</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025, May/Jun 2026</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Simple Analogy to Remember:</strong> An <strong>Event</strong> is like a doorbell ringing (something happened in the physical world). The <strong>Event Handler</strong> is the person who gets up, walks to the door, and opens it (the code that reacts to the event).
+        </div>
+
+        <h3 class="section-head">1. Definitions (2 Marks)</h3>
+        <ul>
+            <li><strong>Event:</strong> An occurrence or state change that happens in the browser, usually initiated by a user action (clicking, typing, hovering, resizing) or the system (page finished loading, error occurred).
+                <ul>
+                    <li>Examples: <code>click</code>, <code>mouseover</code>, <code>keydown</code>, <code>load</code>, <code>submit</code>, <code>change</code>.</li>
+                </ul>
+            </li>
+            <li><strong>Event Handler (or Event Listener):</strong> A JavaScript function written specifically to listen for and <strong>execute code in response</strong> to an event occurring on a specific HTML element.</li>
+            <li><strong>Role of Event Handlers:</strong> They bridge static HTML pages and dynamic JavaScript logic. Without event handlers, a web page is completely static and cannot react to user clicks, keyboard typing, or form submissions!</li>
+        </ul>
+
+        <h3 class="section-head">2. Three Ways to Register an Event Handler (2 Marks)</h3>
+        <ol>
+            <li><strong>Inline HTML Attribute:</strong> <code>&lt;button onclick="handleClick()"&gt;Click&lt;/button&gt;</code> (Outdated).</li>
+            <li><strong>DOM Property Assignment:</strong> <code>button.onclick = handleClick;</code> (Only allows one handler).</li>
+            <li><strong>Modern W3C Standard:</strong> <code>button.addEventListener("click", handleClick);</code> (Allows multiple handlers).</li>
+        </ol>
+
+        <h3 class="section-head">3. Complete Working Program (2 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>Event &amp; Event Handler Demonstration<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-kw">id</span>=<span class="c-str">"actionBtn"</span><span class="c-tag">&gt;</span>Hover Over Me or Click Me<span class="c-tag">&lt;/button&gt;</span>
+    <span class="c-tag">&lt;p</span> <span class="c-kw">id</span>=<span class="c-str">"statusMessage"</span><span class="c-tag">&gt;</span>Awaiting action...<span class="c-tag">&lt;/p&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">var</span> btn = document.getElementById(<span class="c-str">"actionBtn"</span>);
+        <span class="c-kw">var</span> statusText = document.getElementById(<span class="c-str">"statusMessage"</span>);
+
+        <span class="c-cm">// Event Handler 1: Responding to 'click' event</span>
+        btn.addEventListener(<span class="c-str">"click"</span>, <span class="c-kw">function</span>(<span class="c-fn">event</span>) {
+            statusText.innerHTML = <span class="c-str">"&lt;b style='color:green;'&gt;Button Click Event Handled!&lt;/b&gt;"</span>;
+            console.log(<span class="c-str">"Event Type:"</span>, event.type, <span class="c-str">"Target:"</span>, event.target.tagName);
+        });
+
+        <span class="c-cm">// Event Handler 2: Responding to 'mouseover' event</span>
+        btn.addEventListener(<span class="c-str">"mouseover"</span>, <span class="c-kw">function</span>() {
+            btn.style.backgroundColor = <span class="c-str">"#4f46e5"</span>;
+            btn.style.color = <span class="c-str">"#ffffff"</span>;
+        });
+
+        <span class="c-cm">// Event Handler 3: Responding to 'mouseout' event</span>
+        btn.addEventListener(<span class="c-str">"mouseout"</span>, <span class="c-kw">function</span>() {
+            btn.style.backgroundColor = <span class="c-str">""</span>;
+            btn.style.color = <span class="c-str">""</span>;
+        });
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q2 ==================== -->
+    <div class="question-block" id="q2">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q2. Describe Netscape 4 Event Model in detail.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024, Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025</small>
+        </div>
+
+        <div class="callout callout-analogy">
+            💡 <strong>Historical Context:</strong> In the late 1990s "Browser Wars", Microsoft Internet Explorer and Netscape Navigator had completely opposite ideas of how events should travel. Netscape invented <strong>Event Capturing</strong> (top-down), while IE invented <strong>Event Bubbling</strong> (bottom-up).
+        </div>
+
+        <h3 class="section-head">1. The Core Philosophy: Top-Down Event Capturing (2.5 Marks)</h3>
+        <ul>
+            <li>In the <strong>Netscape 4 Event Model</strong>, events originate at the highest level of the browser hierarchy (the <code>window</code> or <code>document</code>) and trickle <strong>DOWNWARDS</strong> through the element tree until they hit the intended target element.</li>
+            <li>This mechanism is called <strong>Event Capturing (Trickling)</strong>.</li>
+            <li>Parent elements have the authority to intercept ("capture") an event before their child elements ever know it happened!</li>
+        </ul>
+
+        <h3 class="section-head">2. Key Methods of Netscape 4 Model (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30%;">Method</th>
+                    <th style="width:70%;">Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>captureEvents(Event.TYPE)</code></td>
+                    <td>Instructs the window or document to intercept specific event types before lower elements.</td>
+                </tr>
+                <tr>
+                    <td><code>releaseEvents(Event.TYPE)</code></td>
+                    <td>Stops intercepting that event type and lets it pass normally.</td>
+                </tr>
+                <tr>
+                    <td><code>routeEvent(event)</code></td>
+                    <td>Passes the captured event down to the next lower element in the chain.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Example Syntax &amp; Why It Was Replaced (1.5 Marks)</h3>
+<pre><code><span class="c-cm">// Classic Netscape 4 Code Pattern</span>
+window.captureEvents(Event.CLICK);
+
+window.onclick = <span class="c-kw">function</span>(<span class="c-fn">e</span>) {
+    alert(<span class="c-str">"Window intercepted the click event first!"</span>);
+    <span class="c-cm">// Route to child button</span>
+    <span class="c-kw">return</span> window.routeEvent(e);
+};</code></pre>
+        <p><strong>Why It Became Obsolete:</strong> It was non-standard and incompatible with Microsoft IE. Later, W3C unified both Netscape's <em>Capturing</em> and IE's <em>Bubbling</em> into the unified <strong>DOM Level 2 Event Model</strong>.</p>
+    </div>
+
+
+    <!-- ==================== Q3 ==================== -->
+    <div class="question-block" id="q3">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q3. Define JavaScript Object Model and explain four distinct object models used in JavaScript.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. Definition of JavaScript Object Model (1.5 Marks)</h3>
+        <p>The <strong>JavaScript Object Model</strong> is a structured architectural hierarchy that organizes all internal, document, and browser entities as interconnected objects with properties and methods, allowing scripts to programmatically read and modify the environment.</p>
+
+        <h3 class="section-head">2. Four Distinct Object Models (4.5 Marks)</h3>
+        <ol>
+            <li><strong>1. Core / Built-in Object Model (ECMAScript Objects):</strong>
+                <p>Standard language objects provided by JavaScript regardless of browser environment. Examples: <code>Object, Array, Function, String, Number, Boolean, Math, Date, RegExp, Error</code>.</p>
+            </li>
+            <li><strong>2. Browser Object Model (BOM):</strong>
+                <p>Represents the web browser window and device environment. The top parent object is <code>window</code>. Includes: <code>window.location, window.history, window.navigator, window.screen</code>.</p>
+            </li>
+            <li><strong>3. Document Object Model (DOM Level 0 / Legacy DOM):</strong>
+                <p>The early model introduced in Netscape 2/3. Organized elements strictly as arrays off the document object, such as <code>document.forms[]</code>, <code>document.images[]</code>, <code>document.links[]</code>.</p>
+            </li>
+            <li><strong>4. Standard W3C Document Object Model (DOM Level 1, 2, 3):</strong>
+                <p>Represents the HTML page as a complete hierarchical <strong>Node Tree</strong> where every single HTML tag, attribute, and text chunk is an accessible node object with standard APIs (<code>getElementById</code>, <code>querySelector</code>, <code>addEventListener</code>).</p>
+            </li>
+        </ol>
+    </div>
+
+
+    <!-- ==================== Q4 ==================== -->
+    <div class="question-block" id="q4">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q4. Write a JavaScript program to create a Home page of any website and change background color using: onmouseover event &amp; onfocus event.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. Events Explained (1.5 Marks)</h3>
+        <ul>
+            <li><code>onmouseover</code>: Fires when the user moves the mouse cursor over an element.</li>
+            <li><code>onmouseout</code>: Fires when the mouse leaves the element (used to reset color).</li>
+            <li><code>onfocus</code>: Fires when an input element gains focus (user clicks or tabs into a text box).</li>
+            <li><code>onblur</code>: Fires when the input element loses focus.</li>
+        </ul>
+
+        <h3 class="section-head">2. Complete Working HTML/JS Program (4.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+    <span class="c-tag">&lt;title&gt;</span>College Home Page - Event Demo<span class="c-tag">&lt;/title&gt;</span>
+    <span class="c-tag">&lt;style&gt;</span>
+        body { font-family: Arial, sans-serif; transition: background-color 0.4s ease; padding: 20px; }
+        .nav-btn { padding: 12px 20px; font-size: 16px; margin: 10px; cursor: pointer; border-radius: 6px; }
+        .input-box { padding: 10px; font-size: 15px; width: 300px; margin: 10px 0; }
+    <span class="c-tag">&lt;/style&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body</span> <span class="c-kw">id</span>=<span class="c-str">"pageBody"</span><span class="c-tag">&gt;</span>
+
+    <span class="c-tag">&lt;h1&gt;</span>Welcome to Pune Engineering College<span class="c-tag">&lt;/h1&gt;</span>
+    <span class="c-tag">&lt;p&gt;</span>Hover over the cards or focus the input box below to trigger background changes.<span class="c-tag">&lt;/p&gt;</span>
+
+    <span class="c-cm">&lt;!-- Case 1: onmouseover and onmouseout on Buttons --&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-kw">class</span>=<span class="c-str">"nav-btn"</span> 
+            <span class="c-kw">onmouseover</span>=<span class="c-str">"changeBgColor('#e0f2fe')"</span> 
+            <span class="c-kw">onmouseout</span>=<span class="c-str">"resetBgColor()"</span><span class="c-tag">&gt;</span>
+        Department of E&amp;TC (Hover Blue)
+    <span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-tag">&lt;button</span> <span class="c-kw">class</span>=<span class="c-str">"nav-btn"</span> 
+            <span class="c-kw">onmouseover</span>=<span class="c-str">"changeBgColor('#dcfce7')"</span> 
+            <span class="c-kw">onmouseout</span>=<span class="c-str">"resetBgColor()"</span><span class="c-tag">&gt;</span>
+        Department of Computer (Hover Green)
+    <span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-tag">&lt;br&gt;&lt;br&gt;</span>
+    <span class="c-cm">&lt;!-- Case 2: onfocus and onblur on Input Text Field --&gt;</span>
+    <span class="c-tag">&lt;label&gt;</span>Student Feedback Input:<span class="c-tag">&lt;/label&gt;&lt;br&gt;</span>
+    <span class="c-tag">&lt;input</span> <span class="c-kw">type</span>=<span class="c-str">"text"</span> <span class="c-kw">class</span>=<span class="c-str">"input-box"</span> <span class="c-kw">placeholder</span>=<span class="c-str">"Click here to focus..."</span>
+           <span class="c-kw">onfocus</span>=<span class="c-str">"changeBgColor('#fef3c7')"</span> 
+           <span class="c-kw">onblur</span>=<span class="c-str">"resetBgColor()"</span><span class="c-tag">&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-fn">changeBgColor</span>(color) {
+            document.getElementById(<span class="c-str">"pageBody"</span>).style.backgroundColor = color;
+        }
+
+        <span class="c-kw">function</span> <span class="c-fn">resetBgColor</span>() {
+            document.getElementById(<span class="c-str">"pageBody"</span>).style.backgroundColor = <span class="c-str">"#ffffff"</span>;
+        }
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q5 ==================== -->
+    <div class="question-block" id="q5">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q5. Describe Document properties and methods with their HTML relationship.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The HTML-Document Relationship (1.5 Marks)</h3>
+        <p>The <code>document</code> object is the JavaScript representation of the root <code>&lt;html&gt;</code> page currently loaded in the browser window. When a browser loads HTML, it converts every tag into a node inside the <code>document</code> object. The <code>document</code> object is the sole entry point for accessing all HTML elements.</p>
+
+        <h3 class="section-head">2. Common Document Properties (2 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>HTML Relationship</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>document.title</code></td>
+                    <td>Reads or sets the text inside the <code>&lt;title&gt;</code> tag in the head.</td>
+                </tr>
+                <tr>
+                    <td><code>document.URL</code></td>
+                    <td>Returns the complete URL address string of the document.</td>
+                </tr>
+                <tr>
+                    <td><code>document.body</code></td>
+                    <td>Direct reference to the <code>&lt;body&gt;</code> HTML element.</td>
+                </tr>
+                <tr>
+                    <td><code>document.forms</code></td>
+                    <td>Collection/array of all <code>&lt;form&gt;</code> tags on the page.</td>
+                </tr>
+                <tr>
+                    <td><code>document.images</code></td>
+                    <td>Collection of all <code>&lt;img&gt;</code> tags on the page.</td>
+                </tr>
+                <tr>
+                    <td><code>document.cookie</code></td>
+                    <td>Reads and writes key-value cookies associated with the page.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Common Document Methods (2.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>getElementById(id)</code></td>
+                    <td>Finds the single element whose <code>id</code> attribute matches.</td>
+                </tr>
+                <tr>
+                    <td><code>getElementsByTagName(tag)</code></td>
+                    <td>Finds all elements matching HTML tag (e.g. <code>"p"</code>, <code>"div"</code>).</td>
+                </tr>
+                <tr>
+                    <td><code>createElement(tag)</code></td>
+                    <td>Creates a brand new HTML element node in memory.</td>
+                </tr>
+                <tr>
+                    <td><code>createTextNode(text)</code></td>
+                    <td>Creates a raw text node to place inside elements.</td>
+                </tr>
+                <tr>
+                    <td><code>write(content)</code></td>
+                    <td>Writes raw text/HTML directly into the open page stream.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ==================== Q6 ==================== -->
+    <div class="question-block" id="q6">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q6. Differentiate between HTML and DHTML.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The Big Picture (1.5 Marks)</h3>
+        <ul>
+            <li><strong>HTML (HyperText Markup Language):</strong> A standard markup language used to structure web content into headings, paragraphs, tables, and forms. HTML alone is <strong>completely static</strong>. Once rendered, it cannot change unless the user reloads the page.</li>
+            <li><strong>DHTML (Dynamic HTML):</strong> <strong>Not a separate programming language</strong>! DHTML is a term describing the combination of <strong>HTML + CSS + JavaScript + DOM</strong> to create interactive, dynamic web pages that animate and change styles in real time without refreshing the page.</li>
+        </ul>
+
+        <h3 class="section-head">2. Master Differentiation Table (4.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:20%;">Parameter</th>
+                    <th style="width:40%;">HTML</th>
+                    <th style="width:40%;">DHTML</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Definition</strong></td>
+                    <td>A static markup language for creating web pages.</td>
+                    <td>A combination of HTML, CSS, JavaScript, and DOM.</td>
+                </tr>
+                <tr>
+                    <td><strong>Interactivity</strong></td>
+                    <td>Static. Pages do not change after being loaded.</td>
+                    <td>Dynamic. Pages react to user clicks, hovers, and inputs.</td>
+                </tr>
+                <tr>
+                    <td><strong>Server Load</strong></td>
+                    <td>Higher: Any visual update requires reloading from server.</td>
+                    <td>Lower: Content updates instantly on client-side via JavaScript.</td>
+                </tr>
+                <tr>
+                    <td><strong>Animations / Effects</strong></td>
+                    <td>Cannot animate or dynamically hide/show content.</td>
+                    <td>Supports animations, dropdown menus, modals, and tickers.</td>
+                </tr>
+                <tr>
+                    <td><strong>Database / Form Validation</strong></td>
+                    <td>No built-in real-time validation without refresh.</td>
+                    <td>Validates user input instantly before submitting.</td>
+                </tr>
+                <tr>
+                    <td><strong>File Size &amp; Complexity</strong></td>
+                    <td>Simpler, lightweight, small code size.</td>
+                    <td>More complex, requires styling rules and script logic.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ==================== Q7 ==================== -->
+    <div class="question-block" id="q7">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-high">⭐ Repeated 4 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q7. Explain DOM and CSS Elements with example. Write short note on DOM and HTML Elements.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2022, May/Jun 2023, Nov/Dec 2023, May/Jun 2024, Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025, May/Jun 2026</small>
+        </div>
+
+        <h3 class="section-head">1. The Relationship: DOM &amp; CSS (2 Marks)</h3>
+        <p>The <strong>Document Object Model (DOM)</strong> exposes every HTML element as an object with a <code>style</code> property. This <code>style</code> property contains all CSS attributes represented in <strong>camelCase</strong> (e.g., CSS <code>background-color</code> becomes JavaScript <code>style.backgroundColor</code>).</p>
+        <p>This allows scripts to dynamically change colors, fonts, visibility, and layout positions in real time!</p>
+
+        <h3 class="section-head">2. CSS Property Naming Rule in JavaScript (1.5 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>CSS Rule (Kebab-Case)</th>
+                    <th>DOM Property (CamelCase)</th>
+                    <th>Code Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>background-color</code></td>
+                    <td><code>element.style.backgroundColor</code></td>
+                    <td><code>box.style.backgroundColor = "blue";</code></td>
+                </tr>
+                <tr>
+                    <td><code>font-size</code></td>
+                    <td><code>element.style.fontSize</code></td>
+                    <td><code>box.style.fontSize = "20px";</code></td>
+                </tr>
+                <tr>
+                    <td><code>display: none</code></td>
+                    <td><code>element.style.display</code></td>
+                    <td><code>box.style.display = "none";</code> (Hides element)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">3. Complete Program (2.5 Marks)</h3>
+<pre><code><span class="c-tag">&lt;div</span> <span class="c-kw">id</span>=<span class="c-str">"card"</span> <span class="c-kw">style</span>=<span class="c-str">"width:200px; padding:20px; border:1px solid #333;"</span><span class="c-tag">&gt;</span>
+    Sample Card Box
+<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;button</span> <span class="c-kw">onclick</span>=<span class="c-str">"toggleHighlight()"</span><span class="c-tag">&gt;</span>Toggle Style<span class="c-tag">&lt;/button&gt;</span>
+
+<span class="c-tag">&lt;script&gt;</span>
+    <span class="c-kw">function</span> <span class="c-fn">toggleHighlight</span>() {
+        <span class="c-kw">var</span> card = document.getElementById(<span class="c-str">"card"</span>);
+
+        <span class="c-cm">// Reading and writing CSS styles via DOM</span>
+        <span class="c-kw">if</span> (card.style.backgroundColor === <span class="c-str">"yellow"</span>) {
+            card.style.backgroundColor = <span class="c-str">"white"</span>;
+            card.style.fontSize = <span class="c-str">"14px"</span>;
+            card.style.border = <span class="c-str">"1px solid #333"</span>;
+        } <span class="c-kw">else</span> {
+            card.style.backgroundColor = <span class="c-str">"yellow"</span>;
+            card.style.fontSize = <span class="c-str">"18px"</span>;
+            card.style.border = <span class="c-str">"3px solid red"</span>;
+        }
+    }
+<span class="c-tag">&lt;/script&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q8 ==================== -->
+    <div class="question-block" id="q8">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q8. List different DOM methods used for accessing elements. Explain any two with suitable example.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The 5 DOM Element Access Methods (3 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30%;">Method</th>
+                    <th style="width:35%;">What it Searches?</th>
+                    <th style="width:35%;">Returns</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>getElementById("id")</code></td>
+                    <td>Single unique ID attribute</td>
+                    <td>Single Element object (or <code>null</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>getElementsByClassName("class")</code></td>
+                    <td>Class attribute name</td>
+                    <td>HTMLCollection (Array-like list)</td>
+                </tr>
+                <tr>
+                    <td><code>getElementsByTagName("tag")</code></td>
+                    <td>HTML tag name (e.g. <code>"p"</code>)</td>
+                    <td>HTMLCollection</td>
+                </tr>
+                <tr>
+                    <td><code>querySelector("cssSelector")</code></td>
+                    <td>CSS Selector (e.g. <code>"#id"</code>, <code>".cls"</code>)</td>
+                    <td><strong>First</strong> matching Element</td>
+                </tr>
+                <tr>
+                    <td><code>querySelectorAll("cssSelector")</code></td>
+                    <td>CSS Selector</td>
+                    <td>NodeList of <strong>all</strong> matches</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-head">2. Detailed Explanation of Two Methods (3 Marks)</h3>
+
+        <h4>Method A: <code>getElementById("myId")</code></h4>
+        <p>The fastest and most reliable method when you need a single distinct element on the page:</p>
+<pre><code><span class="c-kw">var</span> title = document.getElementById(<span class="c-str">"headerTitle"</span>);
+title.textContent = <span class="c-str">"Updated Title"</span>;</code></pre>
+
+        <h4>Method B: <code>querySelectorAll(".highlight")</code></h4>
+        <p>Uses standard CSS selector syntax to retrieve a collection of all matching elements and loops through them:</p>
+<pre><code><span class="c-kw">var</span> badges = document.querySelectorAll(<span class="c-str">".badge"</span>);
+badges.forEach(<span class="c-kw">function</span>(<span class="c-fn">badge</span>) {
+    badge.style.color = <span class="c-str">"red"</span>;
+});</code></pre>
+    </div>
+
+
+    <!-- ==================== Q9 ==================== -->
+    <div class="question-block" id="q9">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q9. Describe how to create, insert and append nodes in DOM with an example program.</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. Core Node Manipulation APIs (2 Marks)</h3>
+        <ol>
+            <li><code>document.createElement("tagName")</code>: Creates a new element node in browser memory (not yet visible on page).</li>
+            <li><code>document.createTextNode("text")</code>: Creates a text node to put inside the element.</li>
+            <li><code>parent.appendChild(childNode)</code>: Attaches the newly created node as the <strong>last child</strong> of the parent.</li>
+            <li><code>parent.insertBefore(newNode, existingNode)</code>: Inserts a new element before a specific sibling.</li>
+            <li><code>parent.removeChild(childNode)</code>: Deletes an element from the DOM.</li>
+        </ol>
+
+        <h3 class="section-head">2. Complete Program: Dynamic To-Do List (4 Marks)</h3>
+<pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+    <span class="c-tag">&lt;h2&gt;</span>DOM Node Creation &amp; Appending Demo<span class="c-tag">&lt;/h2&gt;</span>
+    <span class="c-tag">&lt;input</span> <span class="c-kw">type</span>=<span class="c-str">"text"</span> <span class="c-kw">id</span>=<span class="c-str">"itemInput"</span> <span class="c-kw">placeholder</span>=<span class="c-str">"Enter new subject..."</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-kw">onclick</span>=<span class="c-str">"addItem()"</span><span class="c-tag">&gt;</span>Add to List<span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-tag">&lt;ul</span> <span class="c-kw">id</span>=<span class="c-str">"subjectList"</span><span class="c-tag">&gt;</span>
+        <span class="c-tag">&lt;li&gt;</span>JavaScript (Elective III)<span class="c-tag">&lt;/li&gt;</span>
+    <span class="c-tag">&lt;/ul&gt;</span>
+
+    <span class="c-tag">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-fn">addItem</span>() {
+            <span class="c-kw">var</span> input = document.getElementById(<span class="c-str">"itemInput"</span>);
+            <span class="c-kw">var</span> textValue = input.value.trim();
+
+            <span class="c-kw">if</span> (textValue !== <span class="c-str">""</span>) {
+                <span class="c-cm">// Step 1: Create a new &lt;li&gt; element node</span>
+                <span class="c-kw">var</span> newLi = document.createElement(<span class="c-str">"li"</span>);
+
+                <span class="c-cm">// Step 2: Create a text node with the user text</span>
+                <span class="c-kw">var</span> textNode = document.createTextNode(textValue);
+
+                <span class="c-cm">// Step 3: Append text node into the &lt;li&gt;</span>
+                newLi.appendChild(textNode);
+
+                <span class="c-cm">// Step 4: Append the &lt;li&gt; into the parent &lt;ul&gt;</span>
+                <span class="c-kw">var</span> parentUl = document.getElementById(<span class="c-str">"subjectList"</span>);
+                parentUl.appendChild(newLi);
+
+                <span class="c-cm">// Clear input</span>
+                input.value = <span class="c-str">""</span>;
+            }
+        }
+    <span class="c-tag">&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </div>
+
+
+    <!-- ==================== Q10 ==================== -->
+    <div class="question-block" id="q10">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-med">⭐ Repeated 3 Times</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q10. Describe different Event Model Issues in JavaScript (Cross-Browser Compatibility).</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> Nov/Dec 2024, May/Jun 2025, Nov/Dec 2025</small>
+        </div>
+
+        <h3 class="section-head">1. The Core Problem: Browser Incompatibility (2 Marks)</h3>
+        <p>In the legacy era, different browser vendors implemented incompatible event mechanisms. Developers had to write complex fallback code to support Internet Explorer and Netscape/W3C browsers.</p>
+
+        <h3 class="section-head">2. The 4 Major Event Model Incompatibilities (4 Marks)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%;">Issue Parameter</th>
+                    <th style="width:38%;">W3C Standard (Modern / Netscape)</th>
+                    <th style="width:37%;">Legacy Microsoft IE (&lt;= IE 8)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Event Registration</strong></td>
+                    <td><code>addEventListener("click", fn, false)</code></td>
+                    <td><code>attachEvent("onclick", fn)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Event Object Passing</strong></td>
+                    <td>Passed automatically as function argument (<code>fn(e)</code>)</td>
+                    <td>Stored as global variable <code>window.event</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Target Element</strong></td>
+                    <td><code>e.target</code></td>
+                    <td><code>e.srcElement</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Stopping Bubbling</strong></td>
+                    <td><code>e.stopPropagation()</code></td>
+                    <td><code>e.cancelBubble = true;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Preventing Default Action</strong></td>
+                    <td><code>e.preventDefault()</code></td>
+                    <td><code>e.returnValue = false;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ==================== Q11 ==================== -->
+    <div class="question-block" id="q11">
+        <div class="question-header">
+            <div class="badge-bar">
+                <span class="badge badge-std">⭐ Standard Question</span>
+                <span class="badge badge-marks">6 Marks</span>
+                <span class="badge badge-unit">Unit 5</span>
+            </div>
+            <div class="question-title">Q11. Explain DOM Level 2 Event Model (Event Flow: Capturing Phase &amp; Bubbling Phase).</div>
+            <small style="color: #64748b;"><strong>Appeared in:</strong> May/Jun 2024</small>
+        </div>
+
+        <h3 class="section-head">1. The 3 Phases of W3C DOM Level 2 Event Flow (3 Marks)</h3>
+        <p>The W3C DOM Level 2 standard unified Netscape and Microsoft models into a 3-phase lifecycle whenever an event occurs:</p>
+<pre><code>            Phase 1: CAPTURING (Top-Down)
+[window] &rarr; [document] &rarr; [&lt;body&gt;] &rarr; [&lt;div&gt;]
+                                       |
+                   Phase 2: TARGET &rarr; [&lt;button&gt;] (Executed on Target)
+                                       |
+[window] &larr; [document] &larr; [&lt;body&gt;] &larr; [&lt;div&gt;]
+             Phase 3: BUBBLING (Bottom-Up)</code></pre>
+        <ol>
+            <li><strong>Phase 1: Capturing Phase:</strong> The event travels downwards from the <code>window</code> object, through parent elements, down to the target.</li>
+            <li><strong>Phase 2: Target Phase:</strong> The event reaches the exact element that was clicked.</li>
+            <li><strong>Phase 3: Bubbling Phase:</strong> The event bubbles back upwards from the target through all its ancestor elements back to the <code>window</code>.</li>
+        </ol>
+
+        <h3 class="section-head">2. Controlling Bubbling vs Capturing via <code>addEventListener</code> (3 Marks)</h3>
+        <p>The 3rd argument (boolean <code>useCapture</code>) controls whether the listener runs in Capturing or Bubbling phase:</p>
+<pre><code><span class="c-cm">// False (default) = Listens during BUBBLING Phase (Bottom-Up)</span>
+element.addEventListener(<span class="c-str">"click"</span>, handler, <span class="c-kw">false</span>);
+
+<span class="c-cm">// True = Listens during CAPTURING Phase (Top-Down)</span>
+element.addEventListener(<span class="c-str">"click"</span>, handler, <span class="c-kw">true</span>);
+
+<span class="c-cm">// Stopping event propagation to parent elements:</span>
+<span class="c-kw">function</span> <span class="c-fn">handler</span>(event) {
+    event.stopPropagation(); <span class="c-cm">// Halts bubbling immediately!</span>
+}</code></pre>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing Exam Code & Config Bank | SPPU Sem 7</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #7c3aed;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        .navbar {
+            background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container {
+            max-width: 1240px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .brand-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: white;
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; letter-spacing: -0.3px; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .nav-search-box { position: relative; flex: 1; max-width: 440px; }
+        .nav-search-input {
+            width: 100%; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 20px; padding: 8px 16px 8px 36px; font-size: 13px; outline: none; transition: all 0.2s; font-family: inherit;
+        }
+        .nav-search-input:focus { background: #ffffff; border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        .nav-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #94a3b8; pointer-events: none; }
+
+        .search-suggestions-dropdown {
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #ffffff; border-radius: 14px; border: 1px solid #cbd5e1; box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.2); max-height: 480px; overflow-y: auto; z-index: 1000; display: none;
+        }
+        .search-suggestions-dropdown.open { display: block; }
+        .suggestion-header { padding: 10px 14px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; background: #f8fafc; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; }
+        .suggestion-item { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; cursor: pointer; text-decoration: none; display: block; color: inherit; }
+        .suggestion-item:hover { background: #eff6ff; }
+        .sugg-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .sugg-subj { font-size: 10.5px; font-weight: 700; color: #2563eb; background: #e0f2fe; padding: 2px 8px; border-radius: 10px; }
+        .sugg-unit { font-size: 10.5px; font-weight: 700; color: #475569; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; }
+        .sugg-freq { font-size: 10.5px; font-weight: 700; color: #991b1b; background: #fee2e2; padding: 2px 8px; border-radius: 10px; margin-left: auto; }
+        .sugg-title { font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 3px; line-height: 1.35; }
+        .sugg-snippet { font-size: 12px; color: #64748b; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .sugg-match { background: #fef08a; color: #854d0e; font-weight: 700; padding: 0 2px; border-radius: 2px; }
+
+        .nav-links { display: flex; align-items: center; gap: 6px; }
+        .nav-item { padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+        .nav-item:hover, .nav-item.active { background: #f1f5f9; color: var(--text-main); }
+
+        /* Hero */
+        .code-hero {
+            background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); color: #ffffff; padding: 45px 24px;
+        }
+        .code-hero-container {
+            max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+        }
+        .code-hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+        .code-hero p { font-size: 15px; opacity: 0.95; max-width: 680px; line-height: 1.5; }
+
+        /* Main */
+        .code-main {
+            max-width: 1100px; margin: 35px auto 60px auto; padding: 0 24px; flex: 1;
+        }
+        .code-card {
+            background: #ffffff; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(0,0,0,0.03); margin-bottom: 40px; overflow: hidden;
+        }
+        .code-card-header { padding: 24px 28px 18px 28px; border-bottom: 1px solid #f1f5f9; }
+        .code-badges { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+        .badge-u { background: #ede9fe; color: #5b21b6; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px; }
+        .badge-freq { background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+        .badge-marks { background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+        .code-card-title { font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+        .code-card-exp { font-size: 13.5px; color: #475569; line-height: 1.5; }
+
+        .code-section-block { padding: 22px 28px; }
+        .code-section-block.detailed { background: #ffffff; border-bottom: 2px dashed #e2e8f0; }
+        .code-section-block.exam { background: #fdfaf6; }
+        .section-label { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+        .detailed-lbl { color: #1e40af; }
+        .exam-lbl { color: #b45309; }
+
+        .copy-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer; color: #334155; transition: all 0.15s; font-family: inherit;
+        }
+        .copy-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+        pre.code-pre {
+            background: #0f172a; color: #f8fafc; padding: 16px 20px; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; overflow-x: auto; margin-bottom: 14px;
+        }
+        pre.exam-pre {
+            background: #1c1917; border: 1px solid #fbbf24; color: #fef08a;
+        }
+        .code-notes { font-size: 13px; color: #475569; }
+        .code-notes ul { margin: 6px 0 0 0; padding-left: 20px; }
+        .exam-tip {
+            background: #fef3c7; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 6px; font-size: 12.5px; color: #92400e;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; font-family: inherit;
+        }
+        .btn-white { background: #ffffff; color: var(--text-main); }
+        .btn-white:hover { background: #f8fafc; transform: translateY(-2px); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-container {
+            background: #ffffff; width: 100%; max-width: 1120px; height: 90vh; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); display: flex; flex-direction: column; overflow: hidden;
+        }
+        .modal-header {
+            padding: 16px 24px; background: #0f172a; color: white; display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-close {
+            background: rgba(255, 255, 255, 0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-body { flex: 1; background: #f8fafc; }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+
+        footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">☁️</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">Cloud Computing Exam Code Bank</div>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="nav-search-box">
+                <span class="nav-search-icon">🔍</span>
+                <input type="text" id="globalSearchInput" class="nav-search-input" placeholder="Search any topic, code, or question..." autocomplete="off">
+                <div id="searchDropdown" class="search-suggestions-dropdown"></div>
+            </div>
+
+            <div class="nav-links"><a href="cram-mode.html" class="nav-item" style="color: #ef4444; font-weight: 700;">⚡ Cram Mode</a><a href="diagrams.html" class="nav-item" style="color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a><a href="calculators.html" class="nav-item" style="color: #10b981; font-weight: 700;">🧮 Calculators</a><a href="exam-guide.html" class="nav-item" style="color: #f59e0b; font-weight: 700;">🎯 Strategy</a><a href="cheatsheet.html" class="nav-item" style="color: #3b82f6; font-weight: 700;">📐 Formulas</a><a href="quiz.html" class="nav-item" style="color: #ec4899; font-weight: 700;">❓ Quiz</a><a href="tracker.html" class="nav-item" style="color: #14b8a6; font-weight: 700;">✅ Tracker</a><a href="index.html" class="nav-item">🏠 Home</a><a href="rmt.html" class="nav-item">📡 RMT</a><a href="vlsi.html" class="nav-item">⚡ VLSI</a><a href="cloud.html" class="nav-item">☁️ Cloud</a><a href="deep-learning.html" class="nav-item">🧠 DL</a><a href="javascript.html" class="nav-item">💻 JS</a></div>
+        </div>
+    </nav>
+
+    <header class="code-hero">
+        <div class="code-hero-container">
+            <div>
+                <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                    SPPU End-Sem Code Bank
+                </span>
+                <h1 style="margin-top: 8px;">☁️ Cloud Computing Models & Codes</h1>
+                <p>Every coding, VHDL/Verilog, PyTorch, and CLI configuration question asked in SPPU End-Sem exams. Each question has a <strong>Detailed Architecture Model</strong> followed by an <strong>Ultra-Short Exam Snippet</strong> to write quickly and score full marks.</p>
+            </div>
+            <div>
+                <a href="cloud.html" class="btn btn-white">
+                    ← Back to Subject Page
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="code-main">
+        
+        <div class="code-card" id="ccode1">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 5</span>
+                    <span class="badge-freq">🔥 5x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #1. AWS CLI: Launch EC2 Instance with Security Group & Key Pair</h3>
+                <p class="code-card-exp">Scripting automated provisioning of virtual machines (EC2) using the Amazon Web Services Command Line Interface (AWS CLI).</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-1', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-1"># Step 1: Create a Security Group allowing SSH (Port 22) and HTTP (Port 80)
+aws ec2 create-security-group \
+    --group-name "WebserverSG" \
+    --description "Security group for web server" \
+    --vpc-id "vpc-0a1b2c3d4e5f6g7h8"
+
+# Step 2: Add Ingress Firewall Rules
+aws ec2 authorize-security-group-ingress \
+    --group-name "WebserverSG" \
+    --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+aws ec2 authorize-security-group-ingress \
+    --group-name "WebserverSG" \
+    --protocol tcp --port 80 --cidr 0.0.0.0/0
+
+# Step 3: Launch Amazon EC2 Instance
+aws ec2 run-instances \
+    --image-id ami-0c55b159cbfafe1f0 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name "my-sppu-key" \
+    --security-groups "WebserverSG" \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=SPPU-WebServer}]'</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li><code>t2.micro</code> provides 1 vCPU and 1 GiB RAM (AWS Free Tier eligible).</li><li>Security Groups act as stateful firewalls at the hypervisor network interface layer.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-1', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-1"># --- EXAM SHORT FORM (AWS EC2 Launch CLI) ---
+aws ec2 run-instances \
+    --image-id ami-12345678 \
+    --instance-type t2.micro \
+    --key-name mykey \
+    --security-groups my-sg</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Mention the corresponding AWS Console UI navigation path alongside this CLI snippet for full marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="ccode2">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 5</span>
+                    <span class="badge-freq">🔥 4x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #2. Amazon EBS Snapshot Creation via CLI & Python Boto3</h3>
+                <p class="code-card-exp">Automating point-in-time incremental backups of Amazon Elastic Block Store (EBS) volumes attached to instances.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-2', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-2"># Method 1: Using AWS CLI command
+aws ec2 create-snapshot \
+    --volume-id vol-0123456789abcdef0 \
+    --description "Automated daily backup of root production volume" \
+    --tag-specifications 'ResourceType=snapshot,Tags=[{Key=Environment,Value=Production}]'
+
+# Method 2: Python Script using AWS Boto3 SDK
+import boto3
+
+ec2_client = boto3.client('ec2', region_name='ap-south-1')
+
+def backup_volume(vol_id):
+    response = ec2_client.create_snapshot(
+        VolumeId=vol_id,
+        Description='Daily automated backup via Python Boto3',
+        TagSpecifications=[{
+            'ResourceType': 'snapshot',
+            'Tags': [{'Key': 'CreatedBy', 'Value': 'BackupScript'}]
+        }]
+    )
+    print("Snapshot created successfully. Snapshot ID:", response['SnapshotId'])
+    return response['SnapshotId']
+
+# backup_volume('vol-0123456789abcdef0')</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>Snapshots are stored in Amazon S3 for 11 9's durability.</li><li>Subsequent snapshots are <em>incremental</em>—only changed blocks since the previous snapshot are billed.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-2', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-2"># --- EXAM SHORT FORM (AWS CLI Snapshot) ---
+aws ec2 create-snapshot \
+    --volume-id vol-0a1b2c3d \
+    --description "Exam Backup Snapshot" </code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Mention the corresponding AWS Console UI navigation path alongside this CLI snippet for full marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="ccode3">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 5</span>
+                    <span class="badge-freq">🔥 4x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #3. Google App Engine (GAE) Deployment Configuration (app.yaml)</h3>
+                <p class="code-card-exp">The YAML descriptor file (`app.yaml`) configuring runtime environment, URL routing handlers, and autoscaling thresholds for Google App Engine applications.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-3', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-3"># app.yaml - Google App Engine Standard Environment Configuration
+runtime: python39
+instance_class: F2
+
+# Environment variables accessible in application code
+env_variables:
+  ENV_TYPE: 'production'
+  DATABASE_URL: 'cloudsql-proxy-connection-string'
+
+# Routing Handlers for Static Files &amp; Dynamic App
+handlers:
+  # Static assets (images, css, js) served directly from GAE CDN edge
+  - url: /static
+    static_dir: static/
+
+  # Dynamic script handler routing to WSGI/ASGI app entrypoint
+  - url: /.*
+    script: auto
+    secure: always # Forces HTTPS redirect
+
+# Automatic Scaling Configuration
+automatic_scaling:
+  min_idle_instances: 1
+  max_idle_instances: 5
+  min_pending_latency: 30ms
+  max_pending_latency: automatic
+  target_cpu_utilization: 0.65</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>Deploying is executed via a single command: <code>gcloud app deploy app.yaml</code>.</li><li><code>secure: always</code> automatically enforces TLS/HTTPS encryption.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-3', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-3"># --- EXAM SHORT FORM (app.yaml - 6 Lines) ---
+runtime: python39
+instance_class: F1
+handlers:
+  - url: /.*
+    script: auto
+    secure: always</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Mention the corresponding AWS Console UI navigation path alongside this CLI snippet for full marks.
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="search-index.js"></script>
+    <div class="modal-overlay" id="readerModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h4 id="modalTitle" style="font-size: 15px; font-weight: 700;">Document Viewer</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a id="modalOpenExternal" href="#" target="_blank" class="btn btn-white" style="padding: 4px 12px; font-size: 11px;">Open in New Tab ↗</a>
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                </div>
+            </div>
+            <div class="modal-body"><iframe id="modalIframe" class="modal-iframe" src=""></iframe></div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(elementId, btn) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "✓ Copied!";
+                btn.style.background = "#dcfce7";
+                btn.style.color = "#166534";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "#f1f5f9";
+                    btn.style.color = "#334155";
+                }, 2000);
+            });
+        }
+
+        // Universal Search
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        if (searchInput && searchDropdown) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                if (query.length < 2) { searchDropdown.classList.remove('open'); return; }
+                const index = window.SPPU_SEARCH_INDEX || [];
+                const terms = query.split(/\s+/).filter(Boolean);
+                const matches = index.filter(item => {
+                    const corpus = (item.title + ' ' + item.subject + ' ' + item.snippet).toLowerCase();
+                    return terms.every(t => corpus.includes(t));
+                });
+                if (matches.length === 0) { searchDropdown.classList.remove('open'); return; }
+                searchDropdown.innerHTML = '<div class="suggestion-header"><span>Suggested Questions</span><span>' + matches.length + ' found</span></div>' +
+                    matches.slice(0, 8).map(m => `
+                        <div class="suggestion-item" onclick="openDoc('${m.title}', '${m.htmlUrl}')">
+                            <div class="sugg-top">
+                                <span class="sugg-subj">${m.icon} ${m.short}</span>
+                                <span class="sugg-unit">Unit ${m.unit}</span>
+                                ${m.freq ? `<span class="sugg-freq">${m.freq}</span>` : ''}
+                            </div>
+                            <div class="sugg-title">${m.title}</div>
+                            <div class="sugg-snippet">${m.snippet}</div>
+                        </div>
+                    `).join('');
+                searchDropdown.classList.add('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.remove('open');
+                }
+            });
+        }
+
+        function openDoc(title, url) {
+            if (searchDropdown) searchDropdown.classList.remove('open');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalIframe').src = url;
+            document.getElementById('modalOpenExternal').href = url;
+            document.getElementById('readerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('readerModal').classList.remove('active');
+            document.getElementById('modalIframe').src = '';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+    <footer>
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+    </footer>
+</body>
+</html>

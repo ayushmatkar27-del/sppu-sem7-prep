@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Sem 7 Exam Syllabus & Preparation Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        .navbar {
+            background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .brand-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: white;
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 700; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: inherit;
+        }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+            color: white; padding: 45px 24px; text-align: center;
+        }
+        .hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 6px; }
+        .hero p { font-size: 15px; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1080px; margin: 30px auto 60px auto; padding: 0 24px; flex: 1; width: 100%;
+        }
+
+        /* Overall Progress Banner */
+        .progress-card {
+            background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .progress-info h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+        .progress-info p { font-size: 13.5px; color: var(--text-muted); }
+        .progress-bar-box { flex: 1; min-width: 240px; }
+        .progress-track {
+            background: #f1f5f9; height: 12px; border-radius: 20px; overflow: hidden; position: relative; border: 1px solid #e2e8f0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%); height: 100%; width: 0%; border-radius: 20px; transition: width 0.4s ease;
+        }
+        .progress-percentage { font-size: 24px; font-weight: 800; color: #059669; min-width: 70px; text-align: right; }
+
+        /* Filter Tabs */
+        .subj-tabs {
+            display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 6px;
+        }
+        .tab-btn {
+            padding: 8px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #ffffff; color: #475569; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+        }
+        .tab-btn:hover { background: #f1f5f9; }
+        .tab-btn.active { background: #0f172a; color: white; border-color: #0f172a; }
+
+        /* Checklist Blocks */
+        .subj-block {
+            background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+        }
+        .subj-block-head {
+            display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 16px;
+        }
+        .subj-block-head h3 { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .subj-count { font-size: 12px; font-weight: 700; background: #f1f5f9; color: #475569; padding: 3px 10px; border-radius: 12px; }
+
+        /* Checklist Item */
+        .check-item {
+            display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 10px; border: 1px solid #f1f5f9; margin-bottom: 8px; transition: all 0.15s; background: #fbfcfe;
+        }
+        .check-item:hover { background: #f8fafc; border-color: #e2e8f0; }
+        .check-item.done { background: #f0fdf4; border-color: #bbf7d0; }
+        .check-item.done .item-text { text-decoration: line-through; color: #64748b; }
+
+        .check-input {
+            width: 20px; height: 20px; accent-color: #10b981; cursor: pointer; border-radius: 6px;
+        }
+        .item-text-group { flex: 1; }
+        .item-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 2px; }
+        .badge-u { font-size: 10.5px; font-weight: 800; background: #ede9fe; color: #5b21b6; padding: 2px 7px; border-radius: 6px; }
+        .badge-f { font-size: 10.5px; font-weight: 700; background: #fee2e2; color: #991b1b; padding: 2px 7px; border-radius: 6px; }
+        .badge-w { font-size: 10.5px; font-weight: 700; background: #dcfce7; color: #166534; padding: 2px 7px; border-radius: 6px; }
+        .item-text { font-size: 14px; font-weight: 600; color: #1e293b; line-height: 1.4; }
+
+        footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar" style="position: sticky; top: 0; z-index: 1000; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 10px 20px; margin-bottom: 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.05rem; color: var(--text-main);">
+                <span>🎓</span> <span>SPPU Prep Portal</span>
+            </a>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem;">
+                <a href="cram-mode.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-weight: 700;">⚡ Cram</a>
+                <a href="diagrams.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(139, 92, 246, 0.1); color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a>
+                <a href="calculators.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #10b981; font-weight: 700;">🧮 Calculators</a>
+                <a href="exam-guide.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; font-weight: 700;">🎯 Strategy</a>
+                <a href="cheatsheet.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(59, 130, 246, 0.1); color: #3b82f6; font-weight: 700;">📐 Formulas</a>
+                <a href="quiz.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(236, 72, 153, 0.1); color: #ec4899; font-weight: 700;">❓ Quiz</a>
+                <a href="tracker.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: rgba(20, 184, 166, 0.1); color: #14b8a6; font-weight: 700;">✅ Tracker</a>
+                <a href="index.html" style="text-decoration: none; padding: 6px 12px; border-radius: 6px; background: var(--bg-body); border: 1px solid var(--border); color: var(--text-muted); font-weight: 600;">🏠 Home</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">✅</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">Syllabus & IMP Topics Revision Tracker</div>
+                </div>
+            </a>
+            <div style="display: flex; gap: 8px;">
+                <a href="quiz.html" class="btn" style="background: #ecfdf5; color: #059669;">🎯 Mock Quiz</a>
+                <a href="index.html" class="btn btn-primary">← Back to Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>✅ SPPU End-Sem Preparation & Revision Tracker</h1>
+        <p>Track your study progress across all high-frequency repeated questions in Sem 7. Check off topics as you master them—your progress is automatically saved in your browser.</p>
+    </header>
+
+    <main class="main-container">
+        <!-- Progress Summary -->
+        <div class="progress-card">
+            <div class="progress-info">
+                <h2>Your Revision Readiness</h2>
+                <p><span id="doneCount">0</span> of <span id="totalCount">0</span> Key Topics Mastered</p>
+            </div>
+            <div class="progress-bar-box">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div class="progress-percentage" id="progressPct">0%</div>
+            <button class="btn" style="background: #f1f5f9; color: #475569; font-size: 11px;" onclick="resetProgress()">Reset All</button>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="subj-tabs">
+            <button class="tab-btn active" onclick="filterSubj('all', this)">All Subjects</button>
+            <button class="tab-btn" onclick="filterSubj('rmt', this)">📡 RMT</button>
+            <button class="tab-btn" onclick="filterSubj('vlsi', this)">⚡ VLSI</button>
+            <button class="tab-btn" onclick="filterSubj('cloud', this)">☁️ Cloud</button>
+            <button class="tab-btn" onclick="filterSubj('dl', this)">🧠 Deep Learning</button>
+            <button class="tab-btn" onclick="filterSubj('js', this)">⚡ JavaScript</button>
+        </div>
+
+        <!-- Checklist Container -->
+        <div id="checklistContainer"></div>
+    </main>
+
+    <script>
+        const syllabusData = [
+  {
+    "id": "rmt",
+    "name": "Radiation & Microwave Theory",
+    "icon": "📡",
+    "color": "#2563eb",
+    "items": [
+      {
+        "id": "r1",
+        "unit": 3,
+        "topic": "Magic Tee Construction & S-Matrix Derivation",
+        "freq": "17x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r2",
+        "unit": 3,
+        "topic": "Two-Hole Directional Coupler (Coupling, Directivity, Isolation)",
+        "freq": "13x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r3",
+        "unit": 3,
+        "topic": "Ferrite Isolator & Circulator S-Matrix Working",
+        "freq": "12x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r4",
+        "unit": 4,
+        "topic": "Cavity Magnetron (Hull Cut-Off, Hartree & Strapping)",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r5",
+        "unit": 4,
+        "topic": "Traveling Wave Tube (TWT) Slow Wave Structure vs Klystron",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r6",
+        "unit": 4,
+        "topic": "Limitations of Conventional Tubes at Microwave Frequencies",
+        "freq": "8x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "r7",
+        "unit": 5,
+        "topic": "Gunn Diode RWH Two-Valley Theory & Domain Formation",
+        "freq": "8x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r8",
+        "unit": 5,
+        "topic": "IMPATT vs TRAPATT Diodes Avalanche Transit Time Delay",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r9",
+        "unit": 5,
+        "topic": "PIN Diode as Microwave SPST Switch & Equivalent Circuit",
+        "freq": "7x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "r10",
+        "unit": 6,
+        "topic": "Microwave Radiation Hazards on Humans (SAR, PEL, PET)",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r11",
+        "unit": 6,
+        "topic": "Radar Range Equation Derivation & Block Diagram",
+        "freq": "7x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "r12",
+        "unit": 6,
+        "topic": "VSWR Double Minimum Method for High SWR Measurement",
+        "freq": "6x",
+        "priority": "med",
+        "weight": "6M"
+      }
+    ]
+  },
+  {
+    "id": "vlsi",
+    "name": "VLSI Design & Technology",
+    "icon": "⚡",
+    "color": "#059669",
+    "items": [
+      {
+        "id": "v3_1",
+        "unit": 3,
+        "topic": "CPLD vs FPGA Architectural Comparison Table",
+        "freq": "15x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v3_2",
+        "unit": 3,
+        "topic": "FPGA Architecture: Configurable Logic Block (CLB & LUT)",
+        "freq": "9x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v3_3",
+        "unit": 3,
+        "topic": "Classification of PLDs (PROM, PAL, PLA, CPLD, FPGA)",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v3_4",
+        "unit": 3,
+        "topic": "FPGA CAD Synthesis Flow & Stages",
+        "freq": "7x",
+        "priority": "med",
+        "weight": "8M"
+      },
+      {
+        "id": "v4_1",
+        "unit": 4,
+        "topic": "Static CMOS Logic Implementation & Aspect Ratio (W/L) Sizing",
+        "freq": "13x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v4_2",
+        "unit": 4,
+        "topic": "Transmission Gate (TG) 2:1 & 4:1 Multiplexer Savings",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v4_3",
+        "unit": 4,
+        "topic": "Short Channel Non-Idealities (Velocity Sat., DIBL, CLM, HCI)",
+        "freq": "11x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v4_4",
+        "unit": 4,
+        "topic": "CMOS Latch-Up Effect: Mechanism & Layout Prevention Rules",
+        "freq": "9x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v5_1",
+        "unit": 5,
+        "topic": "Lambda (λ) Based Mead-Conway Design Rules with Diagrams",
+        "freq": "11x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v5_2",
+        "unit": 5,
+        "topic": "Stick Diagrams & Euler's Path for Minimum Parasitic Area",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "6M-8M"
+      },
+      {
+        "id": "v5_3",
+        "unit": 5,
+        "topic": "Layout Parasitics: Antenna Effect, Crosstalk, Electromigration",
+        "freq": "9x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "v6_1",
+        "unit": 6,
+        "topic": "Design for Testability (DFT): Controllability, Observability & SCOAP",
+        "freq": "12x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v6_2",
+        "unit": 6,
+        "topic": "Built-In Self-Test (BIST): LFSR, PRPG, MISR & BILBO",
+        "freq": "10x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v6_3",
+        "unit": 6,
+        "topic": "Boundary Scan & JTAG (IEEE 1149.1) 16-State TAP Controller",
+        "freq": "11x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "v6_4",
+        "unit": 6,
+        "topic": "Stuck-at Fault Models (SA0/SA1) & Path Sensitization ATPG",
+        "freq": "7x",
+        "priority": "med",
+        "weight": "6M-8M"
+      }
+    ]
+  },
+  {
+    "id": "cloud",
+    "name": "Cloud Computing",
+    "icon": "☁️",
+    "color": "#7c3aed",
+    "items": [
+      {
+        "id": "c1",
+        "unit": 3,
+        "topic": "Full vs Para Virtualization & Type-1 vs Type-2 Hypervisors",
+        "freq": "16x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c2",
+        "unit": 3,
+        "topic": "Virtualization of CPU, Memory, Storage & Network",
+        "freq": "15x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c3",
+        "unit": 3,
+        "topic": "Virtual Clusters & Live VM Migration Technique",
+        "freq": "10x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "c4",
+        "unit": 4,
+        "topic": "Cloud Security Architecture & CIA Triad Model",
+        "freq": "14x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c5",
+        "unit": 4,
+        "topic": "Cloud Security Alliance (CSA) Top Threats & Attacks",
+        "freq": "13x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c6",
+        "unit": 4,
+        "topic": "Service-Oriented Architecture (SOA) & Cloud Life Cycle",
+        "freq": "11x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "c7",
+        "unit": 5,
+        "topic": "AWS Core Services: EC2, S3, EBS & EBS Snapshot Creation",
+        "freq": "13x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c8",
+        "unit": 5,
+        "topic": "Google App Engine (GAE) Architecture & Life Cycle",
+        "freq": "12x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c9",
+        "unit": 5,
+        "topic": "Cloud Cost Models (Pay-as-you-go, Reserved, Spot Instances)",
+        "freq": "11x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "c10",
+        "unit": 6,
+        "topic": "IoT Enabling Technologies (WSN, RFID, Actuators, Cloud of Things)",
+        "freq": "14x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c11",
+        "unit": 6,
+        "topic": "Distributed Computing vs Cloud Computing & Distributed Types",
+        "freq": "13x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "c12",
+        "unit": 6,
+        "topic": "Innovative IoT Real-World Applications (Smart Cities, IoMT)",
+        "freq": "12x",
+        "priority": "med",
+        "weight": "6M"
+      }
+    ]
+  },
+  {
+    "id": "dl",
+    "name": "Deep Learning (Elective IV)",
+    "icon": "🧠",
+    "color": "#d97706",
+    "items": [
+      {
+        "id": "d1",
+        "unit": 3,
+        "topic": "Batch Normalization Mathematical Formulation & Covariate Shift",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "7M-8M"
+      },
+      {
+        "id": "d2",
+        "unit": 3,
+        "topic": "Activation Functions: Sigmoid, ReLU, Leaky ReLU & Vanishing Gradient",
+        "freq": "1x",
+        "priority": "high",
+        "weight": "10M"
+      },
+      {
+        "id": "d3",
+        "unit": 3,
+        "topic": "Dropout Regularization Intuition & Overfitting vs Underfitting",
+        "freq": "2x",
+        "priority": "med",
+        "weight": "7M-10M"
+      },
+      {
+        "id": "d4",
+        "unit": 4,
+        "topic": "VGGNet vs AlexNet: Receptive Field & Parameter Reduction Proof",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "10M-11M"
+      },
+      {
+        "id": "d5",
+        "unit": 4,
+        "topic": "DenseNet Architecture: Dense Blocks, Growth Rate k & Transitions",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "10M"
+      },
+      {
+        "id": "d6",
+        "unit": 5,
+        "topic": "Recurrent Neural Networks (RNN) & Vanishing Gradient in BPTT",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "d7",
+        "unit": 5,
+        "topic": "LSTM Cell Architecture: Forget, Input, Output Gates Formulation",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "8M-10M"
+      },
+      {
+        "id": "d8",
+        "unit": 5,
+        "topic": "Generative Adversarial Networks (GANs) Generator vs Discriminator",
+        "freq": "1x",
+        "priority": "med",
+        "weight": "10M"
+      },
+      {
+        "id": "d9",
+        "unit": 6,
+        "topic": "NLP Text Pre-Processing Pipeline & Spam Mail Classification",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "6M-9M"
+      },
+      {
+        "id": "d10",
+        "unit": 6,
+        "topic": "Transfer Learning: Feature Extraction vs Fine-Tuning",
+        "freq": "2x",
+        "priority": "high",
+        "weight": "8M-12M"
+      }
+    ]
+  },
+  {
+    "id": "js",
+    "name": "JavaScript (Elective III)",
+    "icon": "⚡",
+    "color": "#e11d48",
+    "items": [
+      {
+        "id": "j1",
+        "unit": 3,
+        "topic": "Anonymous Functions Definition, Syntax & Callback Usage",
+        "freq": "8x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "j2",
+        "unit": 3,
+        "topic": "Append Object to Array & Check Array Datatype Program",
+        "freq": "5x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "j3",
+        "unit": 3,
+        "topic": "Pass by Reference & Addition of Two Object Values",
+        "freq": "4x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j4",
+        "unit": 3,
+        "topic": "Arrays as Stacks (push/pop) and Queues (push/shift)",
+        "freq": "3x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j5",
+        "unit": 4,
+        "topic": "Character Classes in RegEx: \\d, \\w, \\s, [a-z] with Examples",
+        "freq": "7x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "j6",
+        "unit": 4,
+        "topic": "String Methods for RegEx: match(), search(), replace(), split()",
+        "freq": "7x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "j7",
+        "unit": 4,
+        "topic": "Lookahead (?=) and Lookbehind (?<=) Assertions with Examples",
+        "freq": "4x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j8",
+        "unit": 5,
+        "topic": "DOM Event Propagation: Capturing vs Target vs Bubbling Phase",
+        "freq": "7x",
+        "priority": "high",
+        "weight": "6M"
+      },
+      {
+        "id": "j9",
+        "unit": 5,
+        "topic": "Dynamic Background Color Changer using DOM Events Program",
+        "freq": "4x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j10",
+        "unit": 5,
+        "topic": "Create, Insert, and Append Nodes in DOM (createElement)",
+        "freq": "3x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j11",
+        "unit": 6,
+        "topic": "Simple Calculator Implementation using JavaScript",
+        "freq": "3x",
+        "priority": "med",
+        "weight": "6M"
+      },
+      {
+        "id": "j12",
+        "unit": 6,
+        "topic": "Student Form Validation (Name, Mobile, Email Pattern Test)",
+        "freq": "3x",
+        "priority": "med",
+        "weight": "6M"
+      }
+    ]
+  }
+];
+        let savedState = JSON.parse(localStorage.getItem('SPPU_TRACKER_STATE') || '{}');
+
+        function initTracker() {
+            renderChecklists('all');
+            updateOverallProgress();
+        }
+
+        function renderChecklists(filterId) {
+            const container = document.getElementById('checklistContainer');
+            const filtered = (filterId === 'all') ? syllabusData : syllabusData.filter(s => s.id === filterId);
+
+            container.innerHTML = filtered.map(subj => {
+                const totalInSubj = subj.items.length;
+                const doneInSubj = subj.items.filter(item => savedState[item.id]).length;
+
+                return `
+                    <div class="subj-block" id="block-${subj.id}">
+                        <div class="subj-block-head">
+                            <h3>
+                                <span>${subj.icon}</span>
+                                <span>${subj.name}</span>
+                            </h3>
+                            <span class="subj-count" id="count-${subj.id}">${doneInSubj} / ${totalInSubj} Mastered</span>
+                        </div>
+                        <div class="items-list">
+                            ${subj.items.map(item => {
+                                const isDone = !!savedState[item.id];
+                                return `
+                                    <div class="check-item ${isDone ? 'done' : ''}" id="item-${item.id}">
+                                        <input type="checkbox" class="check-input" ${isDone ? 'checked' : ''} onchange="toggleItem('${item.id}', '${subj.id}')">
+                                        <div class="item-text-group">
+                                            <div class="item-meta">
+                                                <span class="badge-u">Unit ${item.unit}</span>
+                                                <span class="badge-f">${item.freq}</span>
+                                                <span class="badge-w">${item.weight}</span>
+                                            </div>
+                                            <div class="item-text">${item.topic}</div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleItem(itemId, subjId) {
+            savedState[itemId] = !savedState[itemId];
+            if (!savedState[itemId]) delete savedState[itemId];
+            localStorage.setItem('SPPU_TRACKER_STATE', JSON.stringify(savedState));
+
+            const elem = document.getElementById(`item-${itemId}`);
+            if (elem) elem.classList.toggle('done', !!savedState[itemId]);
+
+            updateSubjCount(subjId);
+            updateOverallProgress();
+        }
+
+        function updateSubjCount(subjId) {
+            const subj = syllabusData.find(s => s.id === subjId);
+            if (!subj) return;
+            const done = subj.items.filter(i => savedState[i.id]).length;
+            const countElem = document.getElementById(`count-${subjId}`);
+            if (countElem) countElem.textContent = `${done} / ${subj.items.length} Mastered`;
+        }
+
+        function updateOverallProgress() {
+            let total = 0;
+            let done = 0;
+            syllabusData.forEach(s => {
+                s.items.forEach(i => {
+                    total++;
+                    if (savedState[i.id]) done++;
+                });
+            });
+
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+            document.getElementById('doneCount').textContent = done;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('progressFill').style.width = `${pct}%`;
+            document.getElementById('progressPct').textContent = `${pct}%`;
+        }
+
+        function filterSubj(subjId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderChecklists(subjId);
+        }
+
+        function resetProgress() {
+            if (confirm("Reset your revision progress tracker?")) {
+                savedState = {};
+                localStorage.removeItem('SPPU_TRACKER_STATE');
+                initTracker();
+            }
+        }
+
+        window.onload = initTracker;
+    </script>
+
+    <footer>
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+    </footer>
+
+</body>
+</html>

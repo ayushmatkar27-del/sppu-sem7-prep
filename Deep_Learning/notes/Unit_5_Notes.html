@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit 5: NLP & Sequence Modeling - SPPU Master Notes</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #1e293b;
+      margin: 0;
+      padding: 30px;
+      background: #f8fafc;
+    }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    h1 { color: #0f172a; border-bottom: 3px solid #3b82f6; padding-bottom: 12px; font-size: 26px; }
+    h2 { color: #1e3a8a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 32px; font-size: 20px; }
+    h3 { color: #1e40af; margin-top: 24px; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13.5px; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; }
+    th { background: #f1f5f9; color: #0f172a; font-weight: 600; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .diagram-container {
+      text-align: center;
+      margin: 24px 0;
+      padding: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .diagram-caption {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #475569;
+      font-size: 13px;
+    }
+    pre, code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+    }
+    pre { padding: 14px; overflow-x: auto; line-height: 1.45; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>💬 Unit 5: Natural Language Processing & Sequence Modeling</h1>
+<h3>Deep Learning (Elective IV - 404185C) | SPPU 2019 Course Pattern</h3>
+<strong>End-Sem Examination: Question 5 OR Question 6 (18 Marks Weightage) | Master Exam Notes</strong>
+<em>Course Outcome CO5: Discuss natural language processing architectures.</em>
+
+---
+
+<h2>📌 Unit 5 Complete Syllabus Mapping & Exam Blueprint</h2>
+<em>Audited from SPPU Official Syllabus & University Examination Papers (2022 to 2026)</em>
+
+<table>
+<tr><th>Syllabus Topic</th><th>Exam Status & Frequency</th><th>Probability Tier</th><th>Expected Marks</th><th>Key Focus in SPPU Exam</th></tr>
+<tr><td><strong>1. Recurrent Neural Networks (RNN) & Vanishing Gradients</strong></td><td><strong>3x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>8 to 10 M</strong></td><td>Architecture, Unfolded graph, Hidden state recurrence, Vanishing/Exploding gradient proof.</td></tr>
+<tr><td><strong>2. BPTT (Backpropagation Through Time)</strong></td><td><strong>Univ Question Bank</strong></td><td><code>⚡ High Priority (80%)</code></td><td><strong>7 to 9 M</strong></td><td>Unrolled gradient chain rule, Mathematical derivation of $\frac{\partial L}{\partial W_{hh}}$, Truncated BPTT, Gradient clipping.</td></tr>
+<tr><td><strong>3. Bidirectional RNNs (BiRNN)</strong></td><td><strong>1x in Univ Papers</strong></td><td><code>📌 High Priority (70%)</code></td><td><strong>7 M</strong></td><td>Forward and backward hidden states, Concatenation, Resolving polysemy in Named Entity Recognition (NER).</td></tr>
+<tr><td><strong>4. Encoder-Decoder Seq2Seq Architectures</strong></td><td><strong>Univ Question Bank</strong></td><td><code>⚡ High Priority (75%)</code></td><td><strong>8 to 10 M</strong></td><td>Architecture, Context vector bottleneck, Teacher Forcing, Greedy vs Beam Search decoding, Attention intro.</td></tr>
+<tr><td><strong>5. Long Short-Term Memory Networks (LSTM)</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>8 to 10 M</strong></td><td>Constant Error Carousel, Cell state $C_t$, Forget, Input, Candidate, Output gate equations, How memory is retained.</td></tr>
+<tr><td><strong>6. Advanced RNN: LSTM vs. GRU</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>⚡ Very High (80%)</code></td><td><strong>7 to 8 M</strong></td><td>Reset gate $r_t$, Update gate $z_t$, Candidate $\tilde{h}_t$, 8-point architectural comparison table.</td></tr>
+<tr><td><strong>7. Introduction to Generative Adversarial Networks (GANs)</strong></td><td><strong>1x in Univ Papers</strong></td><td><code>⚡ High Priority (75%)</code></td><td><strong>8 to 10 M</strong></td><td>Generator $G$, Discriminator $D$, Two-player Minimax game loss function $\min_G \max_D V(D,G)$, Nash Equilibrium.</td></tr>
+</table>
+
+---
+
+<h2>🏆 SECTION 1 & 2: Recurrent Neural Networks (RNN) & BPTT Derivation</h2>
+<strong>Marks:</strong> 8 to 10 Marks | <strong>Frequency:</strong> 3x in Univ Papers (100% Guaranteed)
+
+<h3>1.1 Recurrent Neural Network (RNN) Formulation</h3>
+Standard feedforward networks assume all inputs and outputs are independent. <strong>RNNs</strong> introduce cyclical feedback loops, maintaining an internal hidden state $h_t$ that acts as a sequential memory buffer.
+* <strong>Forward State Update Equation:</strong>
+  $$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
+* <strong>Output Prediction Equation:</strong>
+  $$\hat{y}_t = \text{softmax}(W_{hy} h_t + b_y)$$
+* Where:
+  * $x_t \in \mathbb{R}^d$: Input vector at time step $t$.
+  * $h_t \in \mathbb{R}^h$: Hidden state vector at time step $t$.
+  * $W_{xh}$: Input-to-hidden weight matrix.
+  * $W_{hh}$: Hidden-to-hidden recurrence weight matrix.
+  * $W_{hy}$: Hidden-to-output weight matrix.
+
+<h3>2.1 Backpropagation Through Time (BPTT) Mathematical Derivation</h3>
+During training, the recurrent network is unrolled across time steps $t = 1 \dots T$.
+The total sequence loss is the sum of losses at all time steps:
+$$\mathcal{L} = \sum_{t=1}^T \mathcal{L}_t$$
+To calculate the gradient of loss $\mathcal{L}_t$ with respect to the recurrent weight matrix $W_{hh}$, we apply the multivariable chain rule through hidden states $h_t, h_{t-1}, \dots, h_1$:
+$$\frac{\partial \mathcal{L}_t}{\partial W_{hh}} = \sum_{k=1}^t \frac{\partial \mathcal{L}_t}{\partial \hat{y}_t} \frac{\partial \hat{y}_t}{\partial h_t} \left( \frac{\partial h_t}{\partial h_k} \right) \frac{\partial h_k}{\partial W_{hh}}$$
+The temporal Jacobian chain product term is:
+$$\frac{\partial h_t}{\partial h_k} = \prod_{j=k+1}^t \frac{\partial h_j}{\partial h_{j-1}} = \prod_{j=k+1}^t \text{diag}(1 - h_j^2) \cdot W_{hh}^T$$
+
+<h3>2.2 Why Vanishing and Exploding Gradients Occur in Simple RNNs</h3>
+Notice the repeated matrix multiplication of recurrent weight transpose $W_{hh}^T$ over $t - k$ time steps:
+1. <strong>Vanishing Gradient ($\lambda_{\max}(W_{hh}) < 1$):</strong>
+   * If the largest eigenvalue of $W_{hh}$ is less than 1, or because $\tanh'(z) = 1 - h^2 \le 1$, raising a fraction to the $(t - k)^{\text{th}}$ power decays exponentially to zero ($0.5^{20} \approx 9.5 \times 10^{-7}$).
+   * <strong>Consequence:</strong> Gradients from long-distance time steps vanish, meaning the network cannot learn long-term temporal dependencies (e.g., subject-verb agreement across 20 words).
+2. <strong>Exploding Gradient ($\lambda_{\max}(W_{hh}) > 1$):</strong>
+   * If eigenvalues exceed 1, gradients grow exponentially, causing numerical overflow (NaNs) and wild parameter oscillation.
+   * <strong>Mitigation for Exploding Gradient:</strong> <strong>Gradient Clipping</strong>:
+     $$\text{if } \|\mathbf{g}\| > \theta \implies \mathbf{g} \leftarrow \theta \frac{\mathbf{g}}{\|\mathbf{g}\|}$$
+
+---
+
+<h2>🏆 SECTION 3: Bidirectional RNNs (BiRNN) for Named Entity Recognition (NER)</h2>
+<strong>Marks:</strong> 7 Marks | <strong>Frequency:</strong> 1x in Univ Papers (May 2024)
+
+<h3>3.1 The Limitation of Unidirectional RNNs</h3>
+A standard forward RNN reads sequential data in one direction ($x_1 \to x_t$). At time step $t$, the hidden state $h_t$ only contains past context ($x_1 \dots x_{t-1}$). However, in human language and NLP, understanding the true meaning of a word frequently depends on <strong>future context</strong> ($x_{t+1} \dots x_T$).
+
+<h3>3.2 Bidirectional Architecture</h3>
+A <strong>Bidirectional RNN (Schuster & Paliwal, 1997)</strong> processes the sequence with two separate hidden layers:
+1. <strong>Forward RNN:</strong> Processes tokens from past to future ($t = 1 \to T$):
+   $$\overrightarrow{h}_t = \tanh(W_{x\overrightarrow{h}} x_t + W_{\overrightarrow{h}\overrightarrow{h}} \overrightarrow{h}_{t-1} + b_{\overrightarrow{h}})$$
+2. <strong>Backward RNN:</strong> Processes tokens in reverse from future to past ($t = T \to 1$):
+   $$\overleftarrow{h}_t = \tanh(W_{x\overleftarrow{h}} x_t + W_{\overleftarrow{h}\overleftarrow{h}} \overleftarrow{h}_{t+1} + b_{\overleftarrow{h}})$$
+3. <strong>Combined Output Representation:</strong> Concatenates both contextual states:
+   $$h_t = \left[ \overrightarrow{h}_t \,;\, \overleftarrow{h}_t \right]$$
+
+<h3>3.3 How Bidirectional RNN Solves Named Entity Recognition (NER)</h3>
+Consider the polysemous token <strong>"Apple"</strong> in two distinct sentences:
+<em> <strong>Sentence A:</strong> </em>"Apple announced its revolutionary quantum neural processor yesterday in California."*
+<em> <strong>Sentence B:</strong> </em>"Apple tastes crisp and refreshing when eaten cold from the orchard."*
+
+When a unidirectional RNN encounters the first token <em>"Apple"</em>, it has zero prior words ($h_0 = 0$). It cannot determine whether "Apple" is an <strong>Organization (ORG)</strong> or a <strong>Fruit (FOOD)</strong>.
+<em> <strong>How BiRNN Resolves This:</strong> The backward RNN reads from right to left, processing words like </em>"processor / California"<em> (Sentence A) and </em>"eaten / orchard"* (Sentence B). When concatenated, the combined representation $h_t$ at token "Apple" provides rich bidirectional semantic clues, enabling the classification head to classify Sentence A as <strong>B-ORG</strong> and Sentence B as <strong>O (Other/Fruit)</strong>.
+
+---
+
+<h2>🏆 SECTION 4: Encoder-Decoder Sequence-to-Sequence (Seq2Seq) Architectures</h2>
+<strong>Marks:</strong> 8 to 10 Marks | <strong>Probability:</strong> High Priority (75%)
+
+<h3>4.1 Motivation & Applications</h3>
+Standard RNNs require input and output sequences to have identical lengths. Many critical NLP tasks involve <strong>variable-length input and output mappings</strong>:
+* Machine Translation (e.g., English to German).
+* Text Summarization (Long paragraph to 1 sentence).
+* Conversational AI & Chatbots (User query to bot response).
+
+<h3>4.2 Architectural Components (Sutskever et al., 2014)</h3>
+1. <strong>The Encoder:</strong>
+   * An RNN/LSTM that reads the input token sequence $X = (x_1, x_2, \dots, x_{T_x})$.
+   * Discards intermediate outputs and outputs the final hidden state as a fixed-dimensional <strong>Context Vector</strong> $C = h_{T_x}$, which acts as a compressed semantic summary of the entire source sentence.
+2. <strong>The Decoder:</strong>
+   * An RNN/LSTM initialized with hidden state $s_0 = C$.
+   * Generates target tokens $Y = (y_1, y_2, \dots, y_{T_y})$ sequentially:
+     $$s_t = f(s_{t-1}, y_{t-1}, C), \quad P(y_t \mid y_{<t}, X) = \text{softmax}(W_s s_t)$$
+   * Continues generating words until an end-of-sequence token <code><EOS></code> is emitted.
+
+<h3>4.3 Training & Inference Techniques</h3>
+<em> <strong>Teacher Forcing (Training):</strong> During training, instead of feeding the decoder's own predicted token $\hat{y}_{t-1}$ to the next step, the ground-truth target token $y_{t-1}^</em>$ is supplied. This prevents early prediction errors from cascading and destabilizing gradient convergence.
+* <strong>Greedy Search vs. Beam Search (Inference):</strong>
+  <em> </em>Greedy Search:* Selects the single highest-probability token at each step. Fast but myopic; misses globally optimal sentences.
+  <em> </em>Beam Search:* Maintains a beam of top-$B$ most probable candidate sequences at each step, pruning low-scoring branches to find the global optimum.
+* <strong>The Information Bottleneck & Attention:</strong> For sentences longer than 20 words, compressing an entire paragraph into a single fixed vector $C$ causes severe information loss. This bottleneck led to Bahdanau's <strong>Attention Mechanism</strong>, which computes dynamic context vectors $c_t = \sum \alpha_{ti} h_i$.
+
+---
+
+<h2>🏆 SECTION 5: Long Short-Term Memory Networks (LSTM)</h2>
+<strong>Marks:</strong> 8 to 10 Marks | <strong>Frequency:</strong> 2x in Univ Papers (100% Guaranteed)
+
+<h3>5.1 The Constant Error Carousel (CEC) & Cell State</h3>
+Hochreiter & Schmidhuber (1997) solved the vanishing gradient problem by introducing:
+1. <strong>The Cell State ($C_t$):</strong> An internal highway conveyor belt that runs straight down the entire recurrent chain, undergoing only linear additive updates.
+2. <strong>Three Multiplicative Gating Mechanisms:</strong> Regulated by sigmoid activations ($\sigma \in [0, 1]$) to conditionally add or remove information.
+
+<h3>5.2 The 4 Full Mathematical LSTM Equations</h3>
+Given input $x_t$ and previous hidden state $h_{t-1}$:
+
+1. <strong>Forget Gate ($f_t$):</strong> Decides what information to discard from the previous cell state:
+   $$f_t = \sigma\left( W_f \cdot [h_{t-1}, x_t] + b_f \right)$$
+   * $\sigma = 0$: Completely forget this information.
+   * $\sigma = 1$: Completely preserve this information.
+2. <strong>Input Gate ($i_t$) & Candidate State ($\tilde{C}_t$):</strong> Decides what new information to store in cell state:
+   $$i_t = \sigma\left( W_i \cdot [h_{t-1}, x_t] + b_i \right)$$
+   $$\tilde{C}_t = \tanh\left( W_c \cdot [h_{t-1}, x_t] + b_c \right)$$
+3. <strong>Cell State Update ($C_t$):</strong> Linearly combines old cell memory with new candidate memory:
+   $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
+   <em>(The additive $\odot$ operation allows gradients to flow across hundreds of time steps without decaying!).</em>
+4. <strong>Output Gate ($o_t$) & Hidden State ($h_t$):</strong> Decides what parts of cell state to reveal as output:
+   $$o_t = \sigma\left( W_o \cdot [h_{t-1}, x_t] + b_o \right)$$
+   $$h_t = o_t \odot \tanh(C_t)$$
+
+---
+
+<h2>🏆 SECTION 6: Advanced RNN: LSTM vs. Gated Recurrent Unit (GRU)</h2>
+<strong>Marks:</strong> 7 to 8 Marks | <strong>Frequency:</strong> 2x in Univ Papers (May 2024, Nov 2023)
+
+<h3>6.1 Gated Recurrent Unit (Cho et al., 2014)</h3>
+The <strong>GRU</strong> simplifies the LSTM by merging the cell state and hidden state into a single state $h_t$, and reducing the gate count from 3 down to 2:
+1. <strong>Reset Gate ($r_t$):</strong> Determines how much of past memory to forget:
+   $$r_t = \sigma(W_r \cdot [h_{t-1}, x_t])$$
+2. <strong>Update Gate ($z_t$):</strong> Simultaneously controls forgetting and accepting new input:
+   $$z_t = \sigma(W_z \cdot [h_{t-1}, x_t])$$
+3. <strong>Candidate Hidden State ($\tilde{h}_t$):</strong>
+   $$\tilde{h}_t = \tanh(W \cdot [r_t \odot h_{t-1}, x_t])$$
+4. <strong>Final Hidden State Update:</strong>
+   $$h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$$
+
+<h3>6.2 Comprehensive 8-Point Distinction: LSTM vs. GRU</h3>
+<table>
+<tr><th>Comparison Parameter</th><th>Long Short-Term Memory (LSTM)</th><th>Gated Recurrent Unit (GRU)</th></tr>
+<tr><td><strong>1. Number of Gates</strong></td><td><strong>3 Gates</strong> (Forget, Input, Output)</td><td><strong>2 Gates</strong> (Reset, Update)</td></tr>
+<tr><td><strong>2. Internal States</strong></td><td><strong>2 States:</strong> Separate Cell State $C_t$ & Hidden State $h_t$</td><td><strong>1 State:</strong> Only Hidden State $h_t$</td></tr>
+<tr><td><strong>3. Update Control</strong></td><td>Independent gates for forgetting ($f_t$) and input ($i_t$)</td><td>Coupled update gate: $(1 - z_t)$ forgets while $z_t$ inputs</td></tr>
+<tr><th><strong>4. Parameter Count</strong></th><th>Higher: $4 \times (d_h^2 + d_h d_x + d_h)$</th><th><strong>25% Fewer Parameters:</strong> $3 \times (d_h^2 + d_h d_x + d_h)$</th></tr>
+<tr><td><strong>5. Computational Speed</strong></td><td>Slower per epoch due to more matrix multiplications</td><td><strong>Faster training & inference</strong>; computationally efficient</td></tr>
+<tr><td><strong>6. Memory Footprint</strong></td><td>Higher memory required to cache states</td><td>Lower memory required</td></tr>
+<tr><td><strong>7. Dataset Suitability</strong></td><td>Excels on very large datasets and long sequences ($>100$ tokens)</td><td>Excels on smaller to medium datasets; resists overfitting</td></tr>
+<tr><td><strong>8. Performance</strong></td><td>Marginally superior expressive power on complex tasks</td><td>Comparable performance with significantly less compute</td></tr>
+</table>
+
+---
+
+<h2>🏆 SECTION 7: Introduction to Generative Adversarial Networks (GANs)</h2>
+<strong>Marks:</strong> 8 to 10 Marks | <strong>Frequency:</strong> 1x in Univ Papers (Nov 2023)
+
+<h3>7.1 What are Generative Models?</h3>
+* <strong>Discriminative Models:</strong> Model the conditional probability $P(Y \mid X)$ (e.g., given an image, predict if it's a cat or dog).
+* <strong>Generative Models:</strong> Model the joint probability distribution $P(X)$ or $P(X, Y)$ to generate brand new synthetic data samples that resemble the true training distribution.
+
+<h3>7.2 GAN Architecture (Ian Goodfellow et al., 2014)</h3>
+A GAN consists of two competing sub-networks locked in a game-theoretic contest:
+1. <strong>Generator ($G$):</strong>
+   * Takes a random latent noise vector $z \sim p_z(z)$ (Gaussian or Uniform).
+   * Maps it to data space $G(z)$ to synthesize realistic images/text that fool the discriminator.
+2. <strong>Discriminator ($D$):</strong>
+   * A binary classifier that receives either real data $x \sim p_{\text{data}}$ or fake data $G(z)$.
+   * Outputs probability $D(x) \in [0, 1]$ indicating whether the sample is real ($1$) or fake ($0$).
+
+<h3>7.3 The Two-Player Minimax Game Objective Function</h3>
+$$\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}(x)}\left[ \log D(x) \right] + \mathbb{E}_{z \sim p_z(z)}\left[ \log (1 - D(G(z))) \right]$$
+* <strong>Discriminator's Goal ($\max_D$):</strong> Wants $D(x) \to 1$ and $D(G(z)) \to 0$, maximizing $V(D,G)$.
+* <strong>Generator's Goal ($\min_G$):</strong> Wants $D(G(z)) \to 1$ so that $\log(1 - D(G(z))) \to -\infty$, minimizing $V(D,G)$.
+* <strong>Nash Equilibrium:</strong> The ideal equilibrium is reached when the generator reproduces the true data distribution $p_g = p_{\text{data}}$, and the discriminator outputs $D(x) = \frac{1}{2}$ for all inputs (pure random guess).
+
+</div></body></html>

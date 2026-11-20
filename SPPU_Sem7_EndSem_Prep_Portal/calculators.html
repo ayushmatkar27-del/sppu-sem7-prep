@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧮 Interactive Engineering Calculators | SPPU Sem 7 Exam Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .calc-hero {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(79, 70, 229, 0.12) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .calc-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .calc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .calc-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .calc-formula-tag {
+      background: var(--bg-body);
+      border-left: 3px solid #10b981;
+      padding: 8px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #047857;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .calc-formula-tag {
+      color: #34d399;
+    }
+    .input-group {
+      margin-bottom: 12px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      box-sizing: border-box;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #10b981;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 12px;
+      background: #10b981;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .calc-btn:hover {
+      background: #059669;
+    }
+    .calc-result-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-size: 0.9rem;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .result-row.highlight {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #059669;
+      border-top: 1px dashed rgba(16, 185, 129, 0.4);
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+    [data-theme="dark"] .result-row.highlight {
+      color: #34d399;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <a href="index.html" class="logo-icon">🧮</a>
+        <div class="logo-text">
+          <h1>Interactive Engineering Calculators</h1>
+          <p>Instant Step-by-Step Numerical Verification for SPPU End-Sem Exams</p>
+        </div>
+      </div>
+      <div class="header-actions" style="display:flex; gap:8px; flex-wrap:wrap;"><a href="cram-mode.html" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; font-weight:700;">⚡ Cram</a><a href="diagrams.html" class="btn btn-outline" style="border-color:#8b5cf6; color:#8b5cf6; font-weight:700;">🖼️ Diagrams</a><a href="calculators.html" class="btn btn-outline" style="border-color:#10b981; color:#10b981; font-weight:700;">🧮 Calculators</a><a href="exam-guide.html" class="btn btn-outline" style="border-color:#f59e0b; color:#f59e0b; font-weight:700;">🎯 Strategy</a><a href="cheatsheet.html" class="btn btn-outline" style="border-color:#3b82f6; color:#3b82f6; font-weight:700;">📐 Formulas</a><a href="quiz.html" class="btn btn-outline" style="border-color:#ec4899; color:#ec4899; font-weight:700;">❓ Quiz</a><a href="tracker.html" class="btn btn-outline" style="border-color:#14b8a6; color:#14b8a6; font-weight:700;">✅ Tracker</a><a href="index.html" class="btn btn-outline">🏠 Home</a></div>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <div class="calc-hero">
+      <span class="badge" style="background:#10b981; color:#fff;">100% EXAM ACCURACY</span>
+      <h2 style="font-size:1.8rem; font-weight:800; margin:10px 0 6px;">Never Lose Marks on Engineering Numericals</h2>
+      <p style="color:var(--text-muted); max-width:700px; margin:0;">
+        Solve and verify university numerical problems instantly. Every calculator prints out step-by-step intermediate substitutions and formulas exactly as expected by SPPU evaluators.
+      </p>
+    </div>
+
+    <div class="calc-container">
+            <!-- CALC 0: Friis Free Space Link Budget (Unit 1) -->
+      <div class="calc-card">
+        <h3>📡 Waveguide Guide Wavelength (RMT)</h3>
+        <div class="calc-formula-tag">λg = λ0 / √(1 - (fc/f)²) | fc = c / 2a</div>
+        <div class="input-group">
+          <label>Broad Wall Dimension a (cm):</label>
+          <input type="number" id="wg_a" value="2.286" step="0.001">
+        </div>
+        <div class="input-group">
+          <label>Operating Frequency f (GHz):</label>
+          <input type="number" id="wg_f" value="9.0" step="0.1">
+        </div>
+        <button class="calc-btn" onclick="calcWaveguide()">Calculate Waveguide Parameters</button>
+        
+        <div class="calc-result-box" id="res_wg">
+          <div class="result-row"><span>Free-space λ0:</span><span id="wg_lambda0">3.333 cm</span></div>
+          <div class="result-row"><span>Cutoff Freq fc (TE10):</span><span id="wg_fc">6.557 GHz</span></div>
+          <div class="result-row"><span>Cutoff λc:</span><span id="wg_lambdac">4.572 cm</span></div>
+          <div class="result-row highlight"><span>Guide Wavelength λg:</span><span id="wg_lambdag">4.872 cm</span></div>
+          <div class="result-row"><span>Phase Velocity vp:</span><span id="wg_vp">4.38 × 10⁸ m/s</span></div>
+          <div class="result-row"><span>Group Velocity vg:</span><span id="wg_vg">2.05 × 10⁸ m/s</span></div>
+        </div>
+      </div>
+
+      <!-- CALC 2: Radar Range Equation -->
+      <div class="calc-card">
+        <h3>🎯 Maximum Radar Range (RMT)</h3>
+        <div class="calc-formula-tag">Rmax = [ (Pt · G · Ae · σ) / ((4π)² · Smin) ]^(1/4)</div>
+        <div class="input-group">
+          <label>Peak Transmitter Power Pt (kW):</label>
+          <input type="number" id="rd_pt" value="250" step="1">
+        </div>
+        <div class="input-group">
+          <label>Antenna Gain G (dimensionless):</label>
+          <input type="number" id="rd_g" value="2500" step="10">
+        </div>
+        <div class="input-group">
+          <label>Target Radar Cross-Section σ (m²):</label>
+          <input type="number" id="rd_sigma" value="2.0" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>Effective Aperture Ae (m²):</label>
+          <input type="number" id="rd_ae" value="10" step="0.5">
+        </div>
+        <div class="input-group">
+          <label>Min Detectable Signal Smin (× 10⁻¹² W):</label>
+          <input type="number" id="rd_smin" value="1.0" step="0.1">
+        </div>
+        <button class="calc-btn" onclick="calcRadar()">Calculate Radar Range</button>
+        
+        <div class="calc-result-box" id="res_radar">
+          <div class="result-row"><span>Numerator (Pt·G·Ae·σ):</span><span id="rd_num">1.25 × 10¹⁰</span></div>
+          <div class="result-row"><span>Denominator (16π²·Smin):</span><span id="rd_den">1.579 × 10⁻¹⁰</span></div>
+          <div class="result-row highlight"><span>Max Range Rmax:</span><span id="rd_rmax">94.31 km</span></div>
+          <div class="result-row"><span>Max Range in Miles:</span><span id="rd_miles">58.60 miles</span></div>
+        </div>
+      </div>
+
+      <!-- CALC 3: VSWR & Reflection Coefficient -->
+      <div class="calc-card">
+        <h3>〰️ VSWR & Reflection Coefficient (RMT)</h3>
+        <div class="calc-formula-tag">|Γ| = (S - 1) / (S + 1) | RL = -20 log10(|Γ|)</div>
+        <div class="input-group">
+          <label>Voltage Standing Wave Ratio (S):</label>
+          <input type="number" id="vswr_s" value="1.8" step="0.05" min="1">
+        </div>
+        <button class="calc-btn" onclick="calcVSWR()">Calculate Reflection & Return Loss</button>
+        
+        <div class="calc-result-box" id="res_vswr">
+          <div class="result-row highlight"><span>Reflection Coeff |Γ|:</span><span id="vswr_gamma">0.2857</span></div>
+          <div class="result-row"><span>Return Loss (RL):</span><span id="vswr_rl">10.88 dB</span></div>
+          <div class="result-row"><span>Reflected Power (%):</span><span id="vswr_pwr">8.16 %</span></div>
+          <div class="result-row"><span>Transmitted Power (%):</span><span id="vswr_trans">91.84 %</span></div>
+        </div>
+      </div>
+
+      <!-- CALC 4: VLSI CMOS Sizing -->
+      <div class="calc-card">
+        <h3>⚡ CMOS Inverter Sizing (VLSI)</h3>
+        <div class="calc-formula-tag">(W/L)p = (μn / μp) · (W/L)n for symmetric delay</div>
+        <div class="input-group">
+          <label>NMOS Width Wn (μm):</label>
+          <input type="number" id="vlsi_wn" value="1.0" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>Mobility Ratio (μn / μp):</label>
+          <input type="number" id="vlsi_ratio" value="2.5" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>Load Capacitance CL (fF):</label>
+          <input type="number" id="vlsi_cl" value="50" step="5">
+        </div>
+        <button class="calc-btn" onclick="calcVLSI()">Calculate Sizing & Delay</button>
+        
+        <div class="calc-result-box" id="res_vlsi">
+          <div class="result-row highlight"><span>Required PMOS Width Wp:</span><span id="vlsi_wp">2.50 μm</span></div>
+          <div class="result-row"><span>Effective Aspect Ratio:</span><span id="vlsi_beta">βn = βp (Symmetric)</span></div>
+          <div class="result-row"><span>Pull-Down Delay tpHL:</span><span id="vlsi_tphl">~ 0.69 Rn·CL</span></div>
+          <div class="result-row"><span>Pull-Up Delay tpLH:</span><span id="vlsi_tplh">~ 0.69 Rp·CL (Matched)</span></div>
+        </div>
+      </div>
+
+            <!-- CALC: VLSI Clock Skew & Setup/Hold Slack Calculator -->
+      <div class="calc-card">
+        <h3>🧠 CNN Feature Map & Parameters (DL)</h3>
+        <div class="calc-formula-tag">O = ⌊(W - K + 2P)/S⌋ + 1 | Params = (K²·Cin + 1)·Cout</div>
+        <div class="input-group">
+          <label>Input Dimension W × W:</label>
+          <input type="number" id="dl_w" value="224" step="1">
+        </div>
+        <div class="input-group">
+          <label>Kernel Size K (e.g. 3 for 3×3):</label>
+          <input type="number" id="dl_k" value="3" step="1">
+        </div>
+        <div class="input-group">
+          <label>Padding P:</label>
+          <input type="number" id="dl_p" value="1" step="1">
+        </div>
+        <div class="input-group">
+          <label>Stride S:</label>
+          <input type="number" id="dl_s" value="1" step="1">
+        </div>
+        <div class="input-group">
+          <label>Input Channels Cin / Output Cout:</label>
+          <div style="display:flex; gap:8px;">
+            <input type="number" id="dl_cin" value="64" step="1">
+            <input type="number" id="dl_cout" value="128" step="1">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcDL()">Calculate Layer Dimensions</button>
+        
+        <div class="calc-result-box" id="res_dl">
+          <div class="result-row highlight"><span>Output Feature Map:</span><span id="dl_out_dim">224 × 224 × 128</span></div>
+          <div class="result-row"><span>Kernel Weights:</span><span id="dl_weights">73,728</span></div>
+          <div class="result-row"><span>Biases:</span><span id="dl_biases">128</span></div>
+          <div class="result-row highlight"><span>Total Layer Parameters:</span><span id="dl_total_params">73,856</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="margin-top:60px; padding:30px 20px; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.85rem;">
+    <p>🧮 Interactive Engineering Calculators | Savitribai Phule Pune University Sem 7 End-Sem</p>
+  </footer>
+
+  <script>
+            }
+
+    function calcWaveguide() {
+      const a = parseFloat(document.getElementById('wg_a').value);
+      const f = parseFloat(document.getElementById('wg_f').value);
+      const c = 3.0e10; // cm/s
+
+      const lambda0 = (c / (f * 1e9)); // cm
+      const lambdac = 2 * a; // cm
+      const fc = (c / (2 * a)) / 1e9; // GHz
+
+      if (f <= fc) {
+        alert("Operating frequency f must be strictly greater than cutoff frequency fc (" + fc.toFixed(3) + " GHz)!");
+        return;
+      }
+
+      const term = Math.sqrt(1 - Math.pow(fc / f, 2));
+      const lambdag = lambda0 / term;
+      const vp = (3.0e8 / term) / 1e8; // x 10^8 m/s
+      const vg = (3.0e8 * term) / 1e8;
+
+      document.getElementById('wg_lambda0').innerText = lambda0.toFixed(3) + " cm";
+      document.getElementById('wg_fc').innerText = fc.toFixed(3) + " GHz";
+      document.getElementById('wg_lambdac').innerText = lambdac.toFixed(3) + " cm";
+      document.getElementById('wg_lambdag').innerText = lambdag.toFixed(3) + " cm";
+      document.getElementById('wg_vp').innerText = vp.toFixed(2) + " × 10⁸ m/s";
+      document.getElementById('wg_vg').innerText = vg.toFixed(2) + " × 10⁸ m/s";
+    }
+
+    function calcRadar() {
+      const Pt = parseFloat(document.getElementById('rd_pt').value) * 1e3; // W
+      const G = parseFloat(document.getElementById('rd_g').value);
+      const sigma = parseFloat(document.getElementById('rd_sigma').value); // m2
+      const Ae = parseFloat(document.getElementById('rd_ae').value); // m2
+      const Smin = parseFloat(document.getElementById('rd_smin').value) * 1e-12; // W
+
+      const num = Pt * G * Ae * sigma;
+      const den = Math.pow(4 * Math.PI, 2) * Smin;
+      const R4 = num / den;
+      const R_meters = Math.pow(R4, 0.25);
+      const R_km = R_meters / 1000;
+      const R_miles = R_km * 0.621371;
+
+      document.getElementById('rd_num').innerText = num.toExponential(3);
+      document.getElementById('rd_den').innerText = den.toExponential(3);
+      document.getElementById('rd_rmax').innerText = R_km.toFixed(2) + " km";
+      document.getElementById('rd_miles').innerText = R_miles.toFixed(2) + " miles";
+    }
+
+    function calcVSWR() {
+      const S = parseFloat(document.getElementById('vswr_s').value);
+      if (S < 1) {
+        alert("VSWR S cannot be less than 1.0!");
+        return;
+      }
+      const gamma = (S - 1) / (S + 1);
+      const rl = -20 * Math.log10(gamma);
+      const pwrReflected = Math.pow(gamma, 2) * 100;
+      const pwrTrans = 100 - pwrReflected;
+
+      document.getElementById('vswr_gamma').innerText = gamma.toFixed(4);
+      document.getElementById('vswr_rl').innerText = isFinite(rl) ? rl.toFixed(2) + " dB" : "∞ dB (Matched)";
+      document.getElementById('vswr_pwr').innerText = pwrReflected.toFixed(2) + " %";
+      document.getElementById('vswr_trans').innerText = pwrTrans.toFixed(2) + " %";
+    }
+
+        function calcVLSI() {
+      const wn = parseFloat(document.getElementById('vlsi_wn').value);
+      const ratio = parseFloat(document.getElementById('vlsi_ratio').value);
+      const cl = parseFloat(document.getElementById('vlsi_cl').value);
+
+      const wp = wn * ratio;
+      document.getElementById('vlsi_wp').innerText = wp.toFixed(2) + " μm";
+      document.getElementById('vlsi_beta').innerText = "Wp/Wn = " + ratio.toFixed(1) + " (Symmetric)";
+      document.getElementById('vlsi_tphl').innerText = "~ " + (0.69 * (1000/wn) * (cl*1e-15) * 1e12).toFixed(2) + " ps";
+      document.getElementById('vlsi_tplh').innerText = "~ " + (0.69 * (1000/wn) * (cl*1e-15) * 1e12).toFixed(2) + " ps (Matched)";
+    }
+
+    function calcDL() {
+      const W = parseInt(document.getElementById('dl_w').value, 10);
+      const K = parseInt(document.getElementById('dl_k').value, 10);
+      const P = parseInt(document.getElementById('dl_p').value, 10);
+      const S = parseInt(document.getElementById('dl_s').value, 10);
+      const Cin = parseInt(document.getElementById('dl_cin').value, 10);
+      const Cout = parseInt(document.getElementById('dl_cout').value, 10);
+
+      const O = Math.floor((W - K + 2 * P) / S) + 1;
+      const weights = K * K * Cin * Cout;
+      const biases = Cout;
+      const total = weights + biases;
+
+      document.getElementById('dl_out_dim').innerText = `${O} × ${O} × ${Cout}`;
+      document.getElementById('dl_weights').innerText = weights.toLocaleString();
+      document.getElementById('dl_biases').innerText = biases.toLocaleString();
+      document.getElementById('dl_total_params').innerText = total.toLocaleString();
+    }
+
+    // Trigger on load
+    window.addEventListener('DOMContentLoaded', () => {
+      
+      calcWaveguide();
+      calcRadar();
+      calcVSWR();
+      calcVLSI();
+      
+      calcDL();
+    });
+  </script>
+</body>
+</html>

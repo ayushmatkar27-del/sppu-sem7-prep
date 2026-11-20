@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VLSI Unit 4: CMOS Logic, Scaling & Non-Idealities - SPPU Master Notes</title>
+  <style>
+    @page { size: A4; margin: 15mm; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; color: #0f172a; background: #ffffff; padding: 20px; max-width: 900px; margin: 0 auto; font-size: 13.5px; }
+    h1 { color: #064e3b; font-size: 1.8rem; border-bottom: 3px solid #059669; padding-bottom: 6px; margin-bottom: 6px; }
+    h2 { color: #065f46; font-size: 1.3rem; margin-top: 26px; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; }
+    h3 { color: #0f766e; font-size: 1.1rem; margin-top: 18px; margin-bottom: 6px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.8rem; }
+    .badge-critical { background: #fee2e2; color: #b91c1c; }
+    .badge-high { background: #fef3c7; color: #b45309; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; }
+    th, td { border: 1px solid #cbd5e1; padding: 7px 9px; text-align: left; }
+    th { background: #064e3b; color: #ffffff; font-weight: 700; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .meta-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 12px 16px; margin: 14px 0; }
+    .blueprint-box { background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 12.5px; }
+    .diagram-container { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin: 14px 0; text-align: center; }
+    .diagram-caption { font-size: 12px; color: #475569; font-weight: 700; margin-top: 8px; text-align: center; }
+    ul { margin: 6px 0; padding-left: 22px; }
+    li { margin-bottom: 4px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 11.5px; color: #0f766e; }
+    pre { background: #0f172a; color: #f8fafc; padding: 12px; border-radius: 6px; font-size: 11.5px; overflow-x: auto; }
+    @media print { .diagram-container { break-inside: avoid; } table { break-inside: avoid; } pre { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<h1>⚡ Unit 4: Static & Dynamic CMOS Logic, Scaling & Non-Idealities</h1>
+<div style="font-weight:700; color:#475569; margin-bottom:12px;">VLSI Design and Technology (Course Code: 404182) | SPPU 2019 Course Pattern</div>
+
+<div class="meta-box">
+  <strong>Scope:</strong> SPPU End-Semester Exam — Question 3 OR Question 4 (18 Marks Weightage)<br>
+  <strong>Exam Analysis:</strong> 13 University Papers Audited (Nov/Dec 2022 to May/Jun 2026)<br>
+  <strong>Core High-Yield Questions:</strong> CMOS Logic Implementation & Sizing (13x, 100% Guaranteed), Short-Channel Effects (11x, 100% Guaranteed), CMOS Inverter VTC & Noise Margins (8x), CMOS SPICE Code (4x), Power Dissipation & Solved Numerical (4x), Technology Scaling (3x), Transmission Gates & 2:1 Mux (3x), Latch-Up Effect (3x).
+</div>
+
+<h2>🏆 Question 1: Static CMOS Logic & Transistor Aspect Ratio (W/L) Sizing</h2>
+<p><strong>Marks:</strong> 8 to 10 Marks | <strong>Frequency:</strong> 13x across 10 papers (<span class="badge badge-critical">100% Guaranteed</span>)</p>
+
+<div class="blueprint-box">
+  <strong>🎯 SPPU 10-Mark Scoring Blueprint:</strong><br>
+  • Pull-Down Network (NMOS) Schematic (2 Marks)<br>
+  • Pull-Up Network (PMOS) Dual Schematic (2 Marks)<br>
+  • Step-by-Step Aspect Ratio $(W/L)$ Sizing Derivations ($\mu_n pprox 2.5\mu_p$) (4 Marks)<br>
+  • Total Transistor Gate Area Calculation ($180\lambda^2$) (2 Marks)
+</div>
+
+<div class="diagram-container">
+  <svg viewBox="0 0 720 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+    <!-- VDD Rail Top -->
+    <line x1="80" y1="20" x2="640" y2="20" stroke="#b45309" stroke-width="4"/>
+    <text x="660" y="24" font-family="sans-serif" font-size="12" font-weight="bold" fill="#b45309">VDD</text>
+
+    <!-- PUN: PMOS Network -->
+    <g transform="translate(180, 20)">
+      <!-- Series Path: Branch (Ap || Bp) in series with (Cp || (Dp - Ep)) -->
+      <!-- Ap || Bp parallel pair -->
+      <line x1="180" y1="0" x2="180" y2="25" stroke="#b45309" stroke-width="2"/>
+      <line x1="120" y1="25" x2="240" y2="25" stroke="#b45309" stroke-width="2"/>
+
+      <line x1="120" y1="25" x2="120" y2="40" stroke="#b45309" stroke-width="2"/>
+      <circle cx="120" cy="50" r="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <circle cx="106" cy="50" r="2.5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+      <text x="120" y="53" font-family="sans-serif" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">Ap</text>
+      <text x="75" y="53" font-family="monospace" font-size="8" fill="#b45309">(W/L=7.5)</text>
+
+      <line x1="240" y1="25" x2="240" y2="40" stroke="#b45309" stroke-width="2"/>
+      <circle cx="240" cy="50" r="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <circle cx="226" cy="50" r="2.5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+      <text x="240" y="53" font-family="sans-serif" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">Bp</text>
+      <text x="285" y="53" font-family="monospace" font-size="8" fill="#b45309">(W/L=7.5)</text>
+
+      <line x1="120" y1="60" x2="120" y2="75" stroke="#b45309" stroke-width="2"/>
+      <line x1="240" y1="60" x2="240" y2="75" stroke="#b45309" stroke-width="2"/>
+      <line x1="120" y1="75" x2="240" y2="75" stroke="#b45309" stroke-width="2"/>
+      <line x1="180" y1="75" x2="180" y2="90" stroke="#b45309" stroke-width="2"/>
+
+      <!-- Lower PMOS block: Cp || (Dp - Ep) -->
+      <line x1="120" y1="90" x2="240" y2="90" stroke="#b45309" stroke-width="2"/>
+      <!-- Cp on left -->
+      <line x1="120" y1="90" x2="120" y2="105" stroke="#b45309" stroke-width="2"/>
+      <circle cx="120" cy="115" r="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <circle cx="106" cy="115" r="2.5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+      <text x="120" y="118" font-family="sans-serif" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">Cp</text>
+      <text x="75" y="118" font-family="monospace" font-size="8" fill="#b45309">(W/L=5.0)</text>
+      <line x1="120" y1="125" x2="120" y2="150" stroke="#b45309" stroke-width="2"/>
+
+      <!-- Dp - Ep series on right -->
+      <line x1="240" y1="90" x2="240" y2="100" stroke="#b45309" stroke-width="2"/>
+      <circle cx="240" cy="110" r="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <circle cx="226" cy="110" r="2.5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+      <text x="240" y="113" font-family="sans-serif" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">Dp</text>
+      <line x1="240" y1="120" x2="240" y2="130" stroke="#b45309" stroke-width="2"/>
+      <circle cx="240" cy="140" r="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <circle cx="226" cy="140" r="2.5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+      <text x="240" y="143" font-family="sans-serif" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">Ep</text>
+      <line x1="240" y1="150" x2="240" y2="150" stroke="#b45309" stroke-width="2"/>
+
+      <line x1="120" y1="150" x2="240" y2="150" stroke="#b45309" stroke-width="2"/>
+      <line x1="180" y1="150" x2="180" y2="170" stroke="#b45309" stroke-width="2"/>
+    </g>
+
+    <!-- Output Y Wire -->
+    <line x1="360" y1="190" x2="480" y2="190" stroke="#047857" stroke-width="3"/>
+    <circle cx="480" cy="190" r="4" fill="#047857"/>
+    <text x="495" y="194" font-family="sans-serif" font-size="12" font-weight="bold" fill="#047857">Output Y = [AB + C(D+E)]'</text>
+
+    <!-- GND Rail Bottom -->
+    <line x1="80" y1="260" x2="640" y2="260" stroke="#1e3a8a" stroke-width="4"/>
+    <text x="660" y="264" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e3a8a">GND</text>
+  </svg>
+  <div class="diagram-caption">Figure 4.1: Static CMOS Complex Gate Schematic with Dimensioned (W/L) Sizing Annotations</div>
+</div>
+
+<h2>🏆 Question 2: CMOS Inverter Voltage Transfer Characteristics (VTC) & Noise Margins</h2>
+<p><strong>Marks:</strong> 8 to 10 Marks | <strong>Frequency:</strong> 8x across 7 papers (<span class="badge badge-critical">100% Guaranteed</span>)</p>
+
+<div class="diagram-container">
+  <svg viewBox="0 0 680 230" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+    <!-- Axes -->
+    <line x1="80" y1="200" x2="580" y2="200" stroke="#0f172a" stroke-width="2"/>
+    <line x1="80" y1="200" x2="80" y2="20" stroke="#0f172a" stroke-width="2"/>
+    <text x="590" y="204" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">Vin</text>
+    <text x="75" y="15" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="end">Vout</text>
+
+    <text x="70" y="35" font-family="monospace" font-size="10" font-weight="bold" fill="#b45309" text-anchor="end">VDD = VOH</text>
+    <text x="70" y="198" font-family="monospace" font-size="10" font-weight="bold" fill="#1e3a8a" text-anchor="end">VOL = 0V</text>
+
+    <!-- VTC S-Curve -->
+    <path d="M 80 35 L 180 35 C 230 35 250 80 280 115 C 310 150 330 195 380 195 L 540 195" fill="none" stroke="#059669" stroke-width="3"/>
+
+    <!-- Critical Voltage Points -->
+    <!-- VIL -->
+    <circle cx="210" cy="50" r="4" fill="#dc2626"/>
+    <line x1="210" y1="50" x2="210" y2="200" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="210" y="215" font-family="monospace" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">VIL (Slope = -1)</text>
+
+    <!-- Switching Threshold Vth -->
+    <circle cx="280" cy="115" r="4" fill="#0284c7"/>
+    <line x1="280" y1="115" x2="280" y2="200" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="280" y="215" font-family="monospace" font-size="9" font-weight="bold" fill="#0284c7" text-anchor="middle">Vth = VDD/2</text>
+
+    <!-- VIH -->
+    <circle cx="350" cy="180" r="4" fill="#dc2626"/>
+    <line x1="350" y1="180" x2="350" y2="200" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="350" y="215" font-family="monospace" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">VIH (Slope = -1)</text>
+
+    <!-- 5 Region Labels -->
+    <text x="130" y="55" font-family="sans-serif" font-size="10" font-weight="bold" fill="#475569">Region A</text>
+    <text x="195" y="90" font-family="sans-serif" font-size="10" font-weight="bold" fill="#475569">Reg B</text>
+    <text x="295" y="110" font-family="sans-serif" font-size="10" font-weight="bold" fill="#0284c7">Reg C</text>
+    <text x="360" y="145" font-family="sans-serif" font-size="10" font-weight="bold" fill="#475569">Reg D</text>
+    <text x="450" y="180" font-family="sans-serif" font-size="10" font-weight="bold" fill="#475569">Region E</text>
+  </svg>
+  <div class="diagram-caption">Figure 4.2: CMOS Inverter Voltage Transfer Characteristic (VTC) with 5 Distinct Operating Regions</div>
+</div>
+
+<h3>Operating States in the 5 VTC Regions</h3>
+<table>
+  <tr><th>Region</th><th>Input Condition</th><th>NMOS Operating State</th><th>PMOS Operating State</th><th>Output Voltage ($V_{	ext{out}}$)</th></tr>
+  <tr><td><strong>A</strong></td><td>$0 \le V_{	ext{in}} < V_{thn}$</td><td><strong>Cutoff</strong> ($I_{Dn} = 0$)</td><td><strong>Linear</strong> ($V_{DS} pprox 0$)</td><td>$V_{	ext{out}} = V_{DD}$ (High '1')</td></tr>
+  <tr><td><strong>B</strong></td><td>$V_{thn} \le V_{	ext{in}} < V_{th}$</td><td><strong>Saturation</strong></td><td><strong>Linear</strong></td><td>High, dropping with slope $< -1$</td></tr>
+  <tr><td><strong>C</strong></td><td>$V_{	ext{in}} = V_{th}$ ($V_{DD}/2$)</td><td><strong>Saturation</strong></td><td><strong>Saturation</strong></td><td>Sharp transition ($dV/dt 	o -\infty$)</td></tr>
+  <tr><td><strong>D</strong></td><td>$V_{th} < V_{	ext{in}} \le V_{DD}-|V_{thp}|$</td><td><strong>Linear</strong></td><td><strong>Saturation</strong></td><td>Low, approaching $V_{OL}$</td></tr>
+  <tr><td><strong>E</strong></td><td>$V_{	ext{in}} > V_{DD}-|V_{thp}|$</td><td><strong>Linear</strong> ($V_{DS} pprox 0$)</td><td><strong>Cutoff</strong> ($I_{Dp} = 0$)</td><td>$V_{	ext{out}} = 0	ext{ V}$ (Low '0')</td></tr>
+</table>
+
+<h2>🏆 Question 3: SPICE Code for CMOS Inverter AC Analysis</h2>
+<p><strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 4x across 3 papers (<span class="badge badge-high">65% Priority</span>)</p>
+
+<pre>
+* SPICE AC Analysis of CMOS Inverter
+* Course: VLSI Design &amp; Technology (404182)
+
+* --- Power Supplies ---
+Vdd 1 0 DC 3.3V
+Vin 2 0 DC 1.65V AC 1.0V
+
+* --- MOSFET Netlist: Mname Drain Gate Source Substrate Model W L ---
+Mp 3 2 1 1 PMOS_MODEL W=5u L=0.5u
+Mn 3 2 0 0 NMOS_MODEL W=2u L=0.5u
+
+* --- Load Capacitance ---
+Cload 3 0 50fF
+
+* --- Transistor Model Cards ---
+.MODEL NMOS_MODEL NMOS (LEVEL=1 VTO=0.7 KP=100u GAMMA=0.4 LAMBDA=0.02)
+.MODEL PMOS_MODEL PMOS (LEVEL=1 VTO=-0.7 KP=40u GAMMA=0.4 LAMBDA=0.02)
+
+* --- AC Analysis Command: Decade sweep, 10 pts/dec, 1kHz to 100MHz ---
+.AC DEC 10 1K 100MEG
+
+* --- Print and Plot Output Voltage Gain &amp; Phase ---
+.PRINT AC V(3) VP(3)
+.PLOT AC V(3) VP(3)
+
+.END
+</pre>
+
+<h2>🏆 Question 4: Short-Channel Non-Ideal Effects</h2>
+<p><strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 11x across 9 papers (<span class="badge badge-critical">100% Guaranteed</span>)</p>
+<ul>
+  <li><strong>Velocity Saturation:</strong> High lateral electric field causes drift velocity to saturate at $v_{	ext{sat}} pprox 10^7	ext{ cm/s}$, collapsing quadratic saturation current to a linear relation: <code>I_D,sat = W &middot; Cox &middot; vsat &middot; (Vgs - Vth)</code>.</li>
+  <li><strong>Hot Carrier Injection (HCI):</strong> High kinetic energy electrons near the drain punch through the Si-SiO<sub>2</sub> barrier, causing permanent trapped oxide charges and threshold voltage drift.</li>
+  <li><strong>Drain-Induced Barrier Lowering (DIBL):</strong> High drain bias lowers the source-to-channel potential barrier, leading to threshold reduction: <code>&Delta;Vth = -&eta; &middot; Vds</code> and exponential subthreshold leakage.</li>
+  <li><strong>Channel Length Modulation (CLM):</strong> Pinch-off point moves inward, reducing effective channel length $L' = L - \Delta L$ and creating finite output resistance $r_o = 1/(\lambda I_D)$.</li>
+  <li><strong>Body Effect:</strong> Reverse substrate bias $V_{SB} > 0$ widens channel depletion layer: <code>Vth = Vth0 + &gamma;(&radic;(2&phi;F + Vsb) - &radic;(2&phi;F))</code>.</li>
+</ul>
+
+<h2>🏆 Question 5: CMOS Power Dissipation & Solved University Numerical</h2>
+<p><strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 4x across 3 papers (<span class="badge badge-high">50% Priority</span>)</p>
+
+<div class="blueprint-box">
+  <strong>📝 Solved University Numerical Problem:</strong><br>
+  <em>"A CMOS logic circuit operates at 10 MHz and 3 V with a load of 100 pF. The static power is 100 &mu;W. Calculate total power dissipation if frequency increases to 100 MHz."</em><br><br>
+  <strong>Step 1: Dynamic Power at 10 MHz:</strong><br>
+  <code>P_dyn1 = C_L &middot; Vdd^2 &middot; f1 = (100 &times; 10^-12) &times; 3^2 &times; (10 &times; 10^6) = 9.0 mW</code><br>
+  <code>P_total1 = 9.0 mW + 0.1 mW = 9.1 mW</code><br><br>
+  <strong>Step 2: Dynamic Power at 100 MHz:</strong><br>
+  <code>P_dyn2 = C_L &middot; Vdd^2 &middot; f2 = (100 &times; 10^-12) &times; 3^2 &times; (100 &times; 10^6) = 90.0 mW</code><br>
+  <code>P_total2 = 90.0 mW + 0.1 mW = <strong>90.1 mW</strong></code>
+</div>
+
+<h2>🏆 Question 6: Technology Scaling (Constant Field vs Constant Voltage)</h2>
+<p><strong>Marks:</strong> 6 Marks | <strong>Frequency:</strong> 3x across 3 papers (<span class="badge badge-high">40% Priority</span>)</p>
+
+<table>
+  <tr><th>Device Parameter</th><th>Constant Field Scaling ($\kappa$)</th><th>Constant Voltage Scaling ($\kappa$)</th><th>Significance</th></tr>
+  <tr><td><strong>Dimensions ($W, L, t_{ox}$)</strong></td><td>$1/\kappa$</td><td>$1/\kappa$</td><td>Scaled down linearly</td></tr>
+  <tr><td><strong>Supply Voltage ($V_{DD}$)</strong></td><td><strong>$1/\kappa$</strong></td><td><strong>$1$ (Constant)</strong></td><td>Constant field reduces voltage to keep field constant</td></tr>
+  <tr><td><strong>Gate Delay ($	au$)</strong></td><td><strong>$1/\kappa$</strong></td><td><strong>$1/\kappa^2$</strong></td><td>Speed increases per generation</td></tr>
+  <tr><td><strong>Power per Gate ($P$)</strong></td><td><strong>$1/\kappa^2$</strong></td><td><strong>$\kappa$</strong></td><td>Constant voltage leads to power increase!</td></tr>
+  <tr><td><strong>Power Density ($P/A$)</strong></td><td><strong>$1$ (Safe constant)</strong></td><td><strong>$\kappa^3$ (Thermal explosion)</strong></td><td>Why modern industry uses constant electric field scaling</td></tr>
+</table>
+
+<h2>🏆 Question 7: Transmission Gate (TG) Working & 2:1 MUX Savings</h2>
+<p><strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 3x across 3 papers (<span class="badge badge-high">40% Priority</span>)</p>
+
+<div class="diagram-container">
+  <svg viewBox="0 0 680 180" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
+    <!-- TG 2:1 MUX Schematic -->
+    <g transform="translate(60, 20)">
+      <!-- Input In0 -->
+      <line x1="20" y1="50" x2="80" y2="50" stroke="#0f172a" stroke-width="2"/>
+      <text x="5" y="54" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">In0</text>
+
+      <!-- TG 0 (Controlled by S=0, S_bar=1) -->
+      <g transform="translate(80, 25)">
+        <polygon points="0,25 30,5 30,45" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <polygon points="30,25 0,5 0,45" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <line x1="15" y1="0" x2="15" y2="10" stroke="#dc2626" stroke-width="2"/>
+        <text x="15" y="-3" font-family="monospace" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">S_bar</text>
+        <line x1="15" y1="40" x2="15" y2="50" stroke="#2563eb" stroke-width="2"/>
+        <text x="15" y="62" font-family="monospace" font-size="9" font-weight="bold" fill="#1d4ed8" text-anchor="middle">S</text>
+      </g>
+      <line x1="110" y1="50" x2="180" y2="50" stroke="#0f172a" stroke-width="2"/>
+
+      <!-- Input In1 -->
+      <line x1="20" y1="120" x2="80" y2="120" stroke="#0f172a" stroke-width="2"/>
+      <text x="5" y="124" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">In1</text>
+
+      <!-- TG 1 (Controlled by S=1, S_bar=0) -->
+      <g transform="translate(80, 95)">
+        <polygon points="0,25 30,5 30,45" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <polygon points="30,25 0,5 0,45" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <line x1="15" y1="0" x2="15" y2="10" stroke="#2563eb" stroke-width="2"/>
+        <text x="15" y="-3" font-family="monospace" font-size="9" font-weight="bold" fill="#1d4ed8" text-anchor="middle">S</text>
+        <line x1="15" y1="40" x2="15" y2="50" stroke="#dc2626" stroke-width="2"/>
+        <text x="15" y="62" font-family="monospace" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">S_bar</text>
+      </g>
+      <line x1="110" y1="120" x2="180" y2="120" stroke="#0f172a" stroke-width="2"/>
+
+      <!-- Join outputs -->
+      <line x1="180" y1="50" x2="180" y2="120" stroke="#047857" stroke-width="3"/>
+      <line x1="180" y1="85" x2="260" y2="85" stroke="#047857" stroke-width="3"/>
+      <circle cx="260" cy="85" r="4" fill="#047857"/>
+      <text x="270" y="89" font-family="sans-serif" font-size="12" font-weight="bold" fill="#047857">Output Y = S &middot; In1 + S' &middot; In0</text>
+
+      <!-- Transistor Savings Box -->
+      <rect x="350" y="25" width="200" height="95" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" rx="4"/>
+      <text x="450" y="48" font-family="sans-serif" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Transistor Savings:</text>
+      <text x="450" y="70" font-family="sans-serif" font-size="10" fill="#14532d" text-anchor="middle">&bull; TG MUX: 6 Transistors</text>
+      <text x="450" y="88" font-family="sans-serif" font-size="10" fill="#14532d" text-anchor="middle">&bull; Static CMOS: 14 Transistors</text>
+      <text x="450" y="106" font-family="sans-serif" font-size="10" font-weight="bold" fill="#166534" text-anchor="middle">&rArr; 57.1% Silicon Savings!</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Figure 4.3: High-Efficiency 2:1 Multiplexer Implemented with Transmission Gates (57.1% Transistor Savings)</div>
+</div>
+
+<h2>🏆 Question 8: Latch-Up Effect & SCR Prevention in CMOS</h2>
+<p><strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 3x across 3 papers (<span class="badge badge-high">40% Priority</span>)</p>
+<p>Latch-up is caused by parasitic bipolar transistors forming a regenerative 4-layer $p	ext{-}n	ext{-}p	ext{-}n$ Silicon Controlled Rectifier (SCR) path between $V_{DD}$ and $GND$. When loop gain $eta_1 \cdot eta_2 \ge 1$, massive short-circuit currents melt the chip.</p>
+<ul>
+  <li><strong>Prevention 1 (Guard Rings):</strong> Surround n-wells with $p^+$ rings tied to $GND$, and NMOS with $n^+$ rings tied to $V_{DD}$.</li>
+  <li><strong>Prevention 2 (Well Taps):</strong> Insert substrate/well contacts every $20\,\mu	ext{m}$ to minimize parasitic resistances.</li>
+  <li><strong>Prevention 3 (Epitaxial Substrate):</strong> Use heavily doped low-resistivity substrates with thin epitaxial layers.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>📡 Unit 6: RADAR Systems, Microwave Applications &amp; Radiation Hazards | SPPU Prep</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+        size: A4;
+        margin: 14mm 12mm 14mm 12mm;
+        @bottom-right {
+            content: "Page " counter(page);
+            font-size: 9pt;
+            color: #64748b;
+        }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        line-height: 1.65;
+        font-size: 10.5pt;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 24px 16px;
+    }
+
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-box {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: #ffffff;
+        padding: 30px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+    .header-box.cyan {
+        background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+        box-shadow: 0 8px 24px rgba(14, 116, 144, 0.2);
+    }
+    .header-box.purple {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+        box-shadow: 0 8px 24px rgba(76, 29, 149, 0.2);
+    }
+    .header-box.amber {
+        background: linear-gradient(135deg, #9a3412 0%, #f97316 100%);
+        box-shadow: 0 8px 24px rgba(154, 52, 18, 0.2);
+    }
+    .header-box.green {
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.2);
+    }
+    .header-box.rose {
+        background: linear-gradient(135deg, #881337 0%, #e11d48 100%);
+        box-shadow: 0 8px 24px rgba(136, 19, 55, 0.2);
+    }
+
+    .header-box h1 { margin: 0 0 8px 0; font-size: 22pt; font-weight: 800; letter-spacing: -0.5px; }
+    .header-box p { margin: 4px 0; font-size: 10.5pt; opacity: 0.95; }
+
+    .badge-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    .badge-white { background: rgba(255, 255, 255, 0.2); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+    .badge-fire { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-marks { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+    .question-block {
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 26px 28px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .question-block h2 {
+        margin-top: 0;
+        font-size: 15pt;
+        color: #0f172a;
+        font-weight: 700;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+    }
+    h3 {
+        color: #1e3a8a;
+        font-size: 12pt;
+        font-weight: 700;
+        margin: 20px 0 8px 0;
+    }
+    h4 {
+        color: #334155;
+        font-size: 11pt;
+        font-weight: 600;
+        margin: 14px 0 6px 0;
+    }
+    p {
+        margin: 8px 0;
+        color: #334155;
+    }
+
+    pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 16px 20px;
+        border-radius: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 14px 0;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9.5pt;
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 16px 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 10pt;
+    }
+    th {
+        background: #f8fafc;
+        padding: 10px 14px;
+        font-weight: 700;
+        text-align: left;
+        color: #1e293b;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+    tr:last-child td {
+        border-bottom: none;
+    }
+    tr:nth-child(even) td {
+        background-color: #fbfcfe;
+    }
+
+    ul, ol {
+        margin: 8px 0 14px 0;
+        padding-left: 24px;
+        color: #334155;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+
+    .callout-info {
+        background: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 14px 0;
+        color: #1e40af;
+        font-size: 10pt;
+    }
+    .callout-quote {
+        background: #f8fafc;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 12px 0;
+        color: #92400e;
+        font-weight: 500;
+    }
+
+    .back-nav {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .back-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 10pt;
+    }
+    .back-nav a:hover {
+        text-decoration: underline;
+    }
+    .print-btn {
+        background: #1e293b;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 9.5pt;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .print-btn:hover {
+        background: #334155;
+    }
+
+    @media print {
+        body { background: #ffffff; padding: 0; }
+        .container { box-shadow: none; padding: 0; max-width: 100%; }
+        .back-nav { display: none; }
+        .question-block { page-break-inside: avoid; border: 1px solid #cbd5e1; }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-nav">
+        <a href="../rmt.html">← Back to RMT Portal</a>
+        <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="header-box rose">
+        <h1>📡 Unit 6: RADAR Systems, Microwave Applications &amp; Radiation Hazards</h1>
+        <p>Radiation and Microwave Theory (Course Code: 404181) | SPPU 2019 Course Pattern</p>
+        <p>Based on Prof. Barapate&#x27;s Lecture Series (Videos 27, 28, 29, 34) &amp; 13 University Question Papers</p>
+        <div class="badge-bar">
+            <span class="badge badge-white">SPPU 2019 Pattern</span>
+            <span class="badge badge-white">Prof. Barapate Lecture Series</span>
+            <span class="badge badge-white">Model Answers & Derivations</span>
+        </div>
+    </div>
+
+<div class="question-block">
+<h2>📌 Syllabus &amp; Lecture Map</h2>
+<table><thead><tr>
+<th>Lecture #</th>
+<th>Topic Taught by Prof. Barapate</th>
+<th>SPPU Exam Focus</th>
+<th>Weightage</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Video 27</strong></td>
+<td>Terrestrial & Satellite Communication Systems</td>
+<td>LOS towers, transponders, satellite vs terrestrial comparison</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 28</strong></td>
+<td>Fundamentals of RADAR</td>
+<td>Block diagram, Radar Range Equation derivation & solved numericals</td>
+<td>6-8 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 28B</strong></td>
+<td>MTI Radar & Delay Line Canceller</td>
+<td>Doppler effect, delay line subtractor, blind speeds derivation</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 29</strong></td>
+<td>Microwave Applications & Radiation Hazards</td>
+<td>Industrial heating, diathermy, biological thermal effects & SAR</td>
+<td>6 Marks</td>
+</tr>
+<tr>
+<td><strong>Video 34</strong></td>
+<td>Quick Revision (Microwave Systems & Hazards)</td>
+<td>Key equations, radar displays (PPI), standards & summary</td>
+<td>High Yield</td>
+</tr>
+</tbody></table>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 1: Derive the Fundamental Radar Range Equation</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 7 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 to 8 Marks (100% Guaranteed Derivation!)</span></div>
+<p>RADAR (<strong>RA</strong>dio <strong>D</strong>etection <strong>A</strong>nd <strong>R</strong>anging) transmits high-power RF electromagnetic pulses and captures weak echoes reflected by distant targets to calculate target range ($R = \frac{c \cdot \Delta t}{2}$) and radial velocity.</p>
+<h3>Step-by-Step Derivation (Prof. Barapate's Exam Template)</h3>
+<p>Consider a radar transmitter with peak power $P_t$ and antenna directive gain $G$, radiating into free space toward a target at distance $R$ having Radar Cross Section $\sigma$ ($\text{m}^2$).</p>
+<ol>
+<li><strong>Power Density from an Isotropic Radiator at Distance $R$:</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{\text{iso}} = \frac{P_t}{4\pi R^2} \quad (\text{W/m}^2)$$</p>
+<ol>
+<li><strong>Power Density Incident on the Target with Directive Antenna (Gain $G$):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{\text{target}} = \frac{P_t G}{4\pi R^2}$$</p>
+<ol>
+<li><strong>Power Reradiated / Scattered by Target with Radar Cross Section $\sigma$:</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$P_{\text{scattered}} = S_{\text{target}} \cdot \sigma = \frac{P_t G \sigma}{4\pi R^2} \quad (\text{Watts})$$</p>
+<ol>
+<li><strong>Power Density of Target Echo Returning Back to Radar Antenna:</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{\text{echo}} = \frac{P_{\text{scattered}}}{4\pi R^2} = \frac{P_t G \sigma}{(4\pi R^2)^2} = \frac{P_t G \sigma}{(4\pi)^2 R^4}$$</p>
+<ol>
+<li><strong>Echo Power Captured by Radar Receiver (Aperture $A_e$):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$P_r = S_{\text{echo}} \cdot A_e = \frac{P_t G A_e \sigma}{(4\pi)^2 R^4}$$</p>
+<ol>
+<li><strong>Maximum Radar Range ($R_{\max}$):</strong></li>
+</ol>
+<ul>
+<li>The maximum range is reached when the received echo power attenuates to the <strong>Minimum Detectable Signal ($S_{\min}$)</strong> of the radar receiver ($P_r = S_{\min}$):</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$S_{\min} = \frac{P_t G A_e \sigma}{(4\pi)^2 R_{\max}^4}$$</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{R_{\max} = \left[\frac{P_t \cdot G \cdot A_e \cdot \sigma}{(4\pi)^2 \cdot S_{\min}}\right]^{1/4}}$$</p>
+<ol>
+<li><strong>Alternative Form (Using $A_e = \frac{G \lambda^2}{4\pi}$ for identical antennas):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{R_{\max} = \left[\frac{P_t \cdot G^2 \cdot \lambda^2 \cdot \sigma}{(4\pi)^3 \cdot S_{\min}}\right]^{1/4}}$$</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Solved SPPU University Numericals</h2>
+<h3>Numerical 1: Maximum Radar Range Calculation (SPPU May-Jun 2024 / May-Jun 2025 - 6 Marks)</h3>
+<p><strong>Problem:</strong> Calculate the maximum range of a marine radar operating at $\lambda = 3\text{ cm}$ with a peak pulse power of $P_t = 600\text{ kW}$. The effective antenna aperture is $A_e = 5\text{ m}^2$, target cross-section is $\sigma = 20\text{ m}^2$, and receiver sensitivity is $S_{\min} = 10^{-12}\text{ W}$.</p>
+<p><strong>Step-by-Step Solution:</strong></p>
+<ol>
+<li><strong>Given Data:</strong></li>
+</ol>
+<ul>
+<li>$P_t = 600\text{ kW} = 600 \times 10^3\text{ W} = 6 \times 10^5\text{ W}$</li>
+<li>$\lambda = 3\text{ cm} = 0.03\text{ m}$</li>
+<li>$A_e = 5\text{ m}^2$</li>
+<li>$\sigma = 20\text{ m}^2$</li>
+<li>$S_{\min} = 10^{-12}\text{ W}$</li>
+</ul>
+<ol>
+<li><strong>Antenna Gain ($G$):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$G = \frac{4\pi A_e}{\lambda^2} = \frac{4\pi \times 5}{(0.03)^2} = \frac{62.8318}{0.0009} = \mathbf{69,813.17}$$</p>
+<ol>
+<li><strong>Numerator ($P_t \cdot G \cdot A_e \cdot \sigma$):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\text{Num} = (6 \times 10^5) \times (69,813.17) \times 5 \times 20 = \mathbf{4.1888 \times 10^{12}}$$</p>
+<ol>
+<li><strong>Denominator ($(4\pi)^2 \cdot S_{\min}$):</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\text{Den} = 16\pi^2 \times 10^{-12} = 157.9137 \times 10^{-12} = \mathbf{1.5791 \times 10^{-10}}$$</p>
+<ol>
+<li><strong>Solve for $R_{\max}^4$ and $R_{\max}$:</strong></li>
+</ol>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$R_{\max}^4 = \frac{4.1888 \times 10^{12}}{1.5791 \times 10^{-10}} = 2.6526 \times 10^{22}\text{ m}^4$$</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$R_{\max} = \left(2.6526 \times 10^{22}\right)^{0.25} = \mathbf{127,585.6\text{ meters}}$$</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{R_{\max} = \mathbf{127.59\text{ km}}}$$</p>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 2: MTI Radar &amp; Delay Line Canceller (Blind Speeds)</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 6 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks</span></div>
+<h3>1. Moving Target Indicator (MTI) Principle</h3>
+<ul>
+<li>Primary goal: Distinguish weak echoes reflected from moving aircraft from massive stationary clutter echoes (mountains, buildings, rain clouds).</li>
+<li>Moving targets introduce a <strong>Doppler Frequency Shift</strong>:</li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$f_d = \frac{2 v_r}{\lambda} = \frac{2 v_r f_0}{c}$$</p>
+<p>Where $v_r = v \cos\theta$ is the radial target velocity.</p>
+<h3>2. Single Delay Line Canceller</h3>
+<p>The returned video signal from a phase detector is split into two channels:</p>
+<ul>
+<li>Channel 1: Transmits current pulse echo $V(t)$ directly to a subtractor.</li>
+<li>Channel 2: Passes through a delay element providing a time delay equal to the <strong>Pulse Repetition Interval ($T = 1/\text{PRF}$)</strong>.</li>
+<li><strong>Output:</strong></li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$V_{\text{out}}(t) = V(t) - V(t - T)$$</p>
+<ul>
+<li><strong>For Stationary Clutter ($v_r = 0 \to f_d = 0$):</strong></li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$V(t) = V(t - T) \implies V_{\text{out}} = 0 \quad (\text{Clutter 100\% Cancelled!})$$</p>
+<ul>
+<li><strong>For Moving Target ($f_d \neq 0$):</strong></li>
+</ul>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$V_{\text{out}}(t) = 2 V_0 \sin(\pi f_d T) \cos\left(2\pi f_d t - \pi f_d T\right) \neq 0$$</p>
+<h3>3. Blind Speeds Derivation</h3>
+<p>When target Doppler frequency is an exact multiple of the radar Pulse Repetition Frequency ($\text{PRF} = f_r = 1/T$):</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$f_d = n \cdot \text{PRF} = n \cdot f_r = \frac{n}{T} \quad (n = 1, 2, 3, \dots)$$</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\sin(\pi f_d T) = \sin(\pi n) = 0 \implies V_{\text{out}} = 0$$</p>
+<p>The radar output becomes zero—the moving aircraft appears completely invisible to the radar!</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\frac{2 v_{\text{blind}}}{\lambda} = n f_r \implies \boxed{v_{\text{blind}} = \frac{n \cdot \lambda \cdot \text{PRF}}{2} = \frac{n \cdot \lambda}{2T}}$$</p>
+<ul>
+<li><strong>Elimination of Blind Speeds:</strong> Solved in modern radars by using <strong>Staggered PRF</strong> (transmitting pulses with alternating, non-uniform time intervals $T_1, T_2, T_3$).</li>
+</ul>
+</div><!-- end question-block -->
+<div class="question-block">
+<h2>🎯 Question 3: Biological Effects of Microwave Radiation &amp; Safety Standards</h2>
+<div class="badge-bar" style="margin-bottom: 12px;"><span class="badge badge-fire">🔥 Exam Repetition: 12 times in SPPU Papers</span><span class="badge badge-marks">🎯 Marks: 6 Marks (100% Repetitive!)</span></div>
+<p>High-frequency microwave electromagnetic fields penetrate human tissue and interact with water molecules and ions.</p>
+<h3>1. Thermal Effects vs Non-Thermal Effects</h3>
+<ol>
+<li><strong>Thermal Effects (Primary Hazard):</strong></li>
+</ol>
+<ul>
+<li>Microwave energy causes polar water molecules to oscillate billions of times per second, generating internal frictional heat (<strong>dielectric heating</strong>).</li>
+<li><strong>Vulnerable Organs (Poor Blood Circulation):</strong></li>
+<li><strong>The Human Eye (Lens):</strong> The eye has almost zero vascular blood circulation to dissipate localized heat. Exposure to microwave power densities above $100\text{ mW/cm}^2$ causes coagulative protein denaturation in the lens, resulting in <strong>Cataracts and permanent blindness</strong>.</li>
+<li><strong>Testes:</strong> Highly temperature-sensitive; thermal elevation leads to temporary or permanent sterility.</li>
+</ul>
+<ol>
+<li><strong>Non-Thermal Effects:</strong></li>
+</ol>
+<ul>
+<li>Alteration of cell membrane permeability, calcium ion efflux, and nervous system headaches/fatigue at power densities too low to cause measurable thermal rise.</li>
+</ul>
+<h3>2. Specific Absorption Rate (SAR)</h3>
+<p>The fundamental metric used to quantify the rate at which radio frequency (RF) energy is absorbed per unit mass of human biological tissue:</p>
+<p style="text-align: center; margin: 14px 0; overflow-x: auto;">$$\boxed{\text{SAR} = \frac{\sigma \cdot E^2}{\rho} = c_t \frac{\Delta T}{\Delta t} \quad (\text{W/kg})}$$</p>
+<p>Where:</p>
+<ul>
+<li>$\sigma = \text{tissue electrical conductivity (S/m)}$</li>
+<li>$E = \text{internal electric field (V/m)}$</li>
+<li>$\rho = \text{tissue mass density (kg/m}^3\text{)}$</li>
+<li>$c_t = \text{specific heat capacity of tissue}$</li>
+</ul>
+<h3>3. International Safety Standards & Radiation Limits</h3>
+<ul>
+<li><strong>ICNIRP & IEEE C95.1 Standards:</strong></li>
+<li><strong>Occupational (Controlled Environment):</strong> Maximum permissible exposure $= \mathbf{5\text{ mW/cm}^2}$ averaged over 6 minutes.</li>
+<li><strong>General Public (Uncontrolled Environment):</strong> Maximum permissible exposure $= \mathbf{1\text{ mW/cm}^2}$ (or $0.2\text{ mW/cm}^2$ in stringent zones).</li>
+<li><strong>Mobile Phone Handsets:</strong> Maximum SAR limit $= \mathbf{1.6\text{ W/kg}}$ averaged over $1\text{ gram}$ of head tissue (FCC standard) or $2.0\text{ W/kg}$ over $10\text{ grams}$ (ICNIRP standard).</li>
+</ul>
+</div><!-- end question-block -->
+
+</div><!-- end container -->
+</body>
+</html>

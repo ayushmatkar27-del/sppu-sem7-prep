@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLSI Design & Technology Exam Code & Config Bank | SPPU Sem 7</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #059669;
+            --bg-page: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        .navbar {
+            background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container {
+            max-width: 1240px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .brand-icon {
+            width: 38px; height: 38px; background: linear-gradient(135deg, #064e3b 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: white;
+        }
+        .brand-title { font-size: 15.5px; font-weight: 800; letter-spacing: -0.3px; }
+        .brand-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .nav-search-box { position: relative; flex: 1; max-width: 440px; }
+        .nav-search-input {
+            width: 100%; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 20px; padding: 8px 16px 8px 36px; font-size: 13px; outline: none; transition: all 0.2s; font-family: inherit;
+        }
+        .nav-search-input:focus { background: #ffffff; border-color: #059669; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        .nav-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #94a3b8; pointer-events: none; }
+
+        .search-suggestions-dropdown {
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #ffffff; border-radius: 14px; border: 1px solid #cbd5e1; box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.2); max-height: 480px; overflow-y: auto; z-index: 1000; display: none;
+        }
+        .search-suggestions-dropdown.open { display: block; }
+        .suggestion-header { padding: 10px 14px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; background: #f8fafc; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; }
+        .suggestion-item { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; cursor: pointer; text-decoration: none; display: block; color: inherit; }
+        .suggestion-item:hover { background: #eff6ff; }
+        .sugg-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+        .sugg-subj { font-size: 10.5px; font-weight: 700; color: #2563eb; background: #e0f2fe; padding: 2px 8px; border-radius: 10px; }
+        .sugg-unit { font-size: 10.5px; font-weight: 700; color: #475569; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; }
+        .sugg-freq { font-size: 10.5px; font-weight: 700; color: #991b1b; background: #fee2e2; padding: 2px 8px; border-radius: 10px; margin-left: auto; }
+        .sugg-title { font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 3px; line-height: 1.35; }
+        .sugg-snippet { font-size: 12px; color: #64748b; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .sugg-match { background: #fef08a; color: #854d0e; font-weight: 700; padding: 0 2px; border-radius: 2px; }
+
+        .nav-links { display: flex; align-items: center; gap: 6px; }
+        .nav-item { padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+        .nav-item:hover, .nav-item.active { background: #f1f5f9; color: var(--text-main); }
+
+        /* Hero */
+        .code-hero {
+            background: linear-gradient(135deg, #064e3b 0%, #059669 100%); color: #ffffff; padding: 45px 24px;
+        }
+        .code-hero-container {
+            max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+        }
+        .code-hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+        .code-hero p { font-size: 15px; opacity: 0.95; max-width: 680px; line-height: 1.5; }
+
+        /* Main */
+        .code-main {
+            max-width: 1100px; margin: 35px auto 60px auto; padding: 0 24px; flex: 1;
+        }
+        .code-card {
+            background: #ffffff; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(0,0,0,0.03); margin-bottom: 40px; overflow: hidden;
+        }
+        .code-card-header { padding: 24px 28px 18px 28px; border-bottom: 1px solid #f1f5f9; }
+        .code-badges { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+        .badge-u { background: #ede9fe; color: #5b21b6; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px; }
+        .badge-freq { background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+        .badge-marks { background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+        .code-card-title { font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+        .code-card-exp { font-size: 13.5px; color: #475569; line-height: 1.5; }
+
+        .code-section-block { padding: 22px 28px; }
+        .code-section-block.detailed { background: #ffffff; border-bottom: 2px dashed #e2e8f0; }
+        .code-section-block.exam { background: #fdfaf6; }
+        .section-label { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+        .detailed-lbl { color: #1e40af; }
+        .exam-lbl { color: #b45309; }
+
+        .copy-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer; color: #334155; transition: all 0.15s; font-family: inherit;
+        }
+        .copy-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+        pre.code-pre {
+            background: #0f172a; color: #f8fafc; padding: 16px 20px; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; overflow-x: auto; margin-bottom: 14px;
+        }
+        pre.exam-pre {
+            background: #1c1917; border: 1px solid #fbbf24; color: #fef08a;
+        }
+        .code-notes { font-size: 13px; color: #475569; }
+        .code-notes ul { margin: 6px 0 0 0; padding-left: 20px; }
+        .exam-tip {
+            background: #fef3c7; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 6px; font-size: 12.5px; color: #92400e;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; font-family: inherit;
+        }
+        .btn-white { background: #ffffff; color: var(--text-main); }
+        .btn-white:hover { background: #f8fafc; transform: translateY(-2px); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-container {
+            background: #ffffff; width: 100%; max-width: 1120px; height: 90vh; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); display: flex; flex-direction: column; overflow: hidden;
+        }
+        .modal-header {
+            padding: 16px 24px; background: #0f172a; color: white; display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-close {
+            background: rgba(255, 255, 255, 0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-body { flex: 1; background: #f8fafc; }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+
+        footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">⚡</div>
+                <div>
+                    <div class="brand-title">SPPU Sem 7 Exam Prep</div>
+                    <div class="brand-sub">VLSI Design & Technology Exam Code Bank</div>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="nav-search-box">
+                <span class="nav-search-icon">🔍</span>
+                <input type="text" id="globalSearchInput" class="nav-search-input" placeholder="Search any topic, code, or question..." autocomplete="off">
+                <div id="searchDropdown" class="search-suggestions-dropdown"></div>
+            </div>
+
+            <div class="nav-links"><a href="cram-mode.html" class="nav-item" style="color: #ef4444; font-weight: 700;">⚡ Cram Mode</a><a href="diagrams.html" class="nav-item" style="color: #8b5cf6; font-weight: 700;">🖼️ Diagrams</a><a href="calculators.html" class="nav-item" style="color: #10b981; font-weight: 700;">🧮 Calculators</a><a href="exam-guide.html" class="nav-item" style="color: #f59e0b; font-weight: 700;">🎯 Strategy</a><a href="cheatsheet.html" class="nav-item" style="color: #3b82f6; font-weight: 700;">📐 Formulas</a><a href="quiz.html" class="nav-item" style="color: #ec4899; font-weight: 700;">❓ Quiz</a><a href="tracker.html" class="nav-item" style="color: #14b8a6; font-weight: 700;">✅ Tracker</a><a href="index.html" class="nav-item">🏠 Home</a><a href="rmt.html" class="nav-item">📡 RMT</a><a href="vlsi.html" class="nav-item">⚡ VLSI</a><a href="cloud.html" class="nav-item">☁️ Cloud</a><a href="deep-learning.html" class="nav-item">🧠 DL</a><a href="javascript.html" class="nav-item">💻 JS</a></div>
+        </div>
+    </nav>
+
+    <header class="code-hero">
+        <div class="code-hero-container">
+            <div>
+                <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                    SPPU End-Sem Code Bank
+                </span>
+                <h1 style="margin-top: 8px;">⚡ VLSI Design & Technology Models & Codes</h1>
+                <p>Every coding, VHDL/Verilog, PyTorch, and CLI configuration question asked in SPPU End-Sem exams. Each question has a <strong>Detailed Architecture Model</strong> followed by an <strong>Ultra-Short Exam Snippet</strong> to write quickly and score full marks.</p>
+            </div>
+            <div>
+                <a href="vlsi.html" class="btn btn-white">
+                    ← Back to Subject Page
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="code-main">
+        
+        <div class="code-card" id="vcode1">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 3</span>
+                    <span class="badge-freq">🔥 5x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 to 8 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #1. 4:1 Multiplexer in VHDL (Behavioral & Dataflow)</h3>
+                <p class="code-card-exp">A 4:1 Multiplexer selects one of 4 input lines (I0, I1, I2, I3) using 2 select lines (S1, S0) to drive a single output line Y.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-1', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-1">-- Library declaration
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Entity Definition
+entity Mux4to1 is
+    Port (
+        I : in  STD_LOGIC_VECTOR (3 downto 0); -- 4 Inputs (I3, I2, I1, I0)
+        S : in  STD_LOGIC_VECTOR (1 downto 0); -- 2 Select Lines (S1, S0)
+        Y : out STD_LOGIC                      -- Single Output
+    );
+end Mux4to1;
+
+-- Architecture: Behavioral Modeling using CASE statement
+architecture Behavioral of Mux4to1 is
+begin
+    process(I, S)
+    begin
+        case S is
+            when "00" =&gt; Y &lt;= I(0);
+            when "01" =&gt; Y &lt;= I(1);
+            when "10" =&gt; Y &lt;= I(2);
+            when "11" =&gt; Y &lt;= I(3);
+            when others =&gt; Y &lt;= '0';
+        end case;
+    end process;
+end Behavioral;</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>Sensitivity list <code>process(I, S)</code> triggers the block whenever inputs or select lines transition.</li><li>Always include the <code>when others</code> clause in VHDL <code>case</code> statements to prevent latch inference.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-1', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-1">-- --- EXAM SHORT FORM (VHDL Dataflow - 5 Lines) ---
+library IEEE; use IEEE.STD_LOGIC_1164.ALL;
+entity mux4 is port(I: in bit_vector(3 downto 0); S: in bit_vector(1 downto 0); Y: out bit); end;
+architecture arch of mux4 is
+begin
+    Y &lt;= I(0) when S="00" else I(1) when S="01" else I(2) when S="10" else I(3);
+end arch;</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Draw the accompanying schematic symbol or truth table alongside this VHDL/Verilog snippet for full 6/6 marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="vcode2">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 3</span>
+                    <span class="badge-freq">🔥 4x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #2. D Flip-Flop with Synchronous and Asynchronous Reset in VHDL</h3>
+                <p class="code-card-exp">D Flip-Flop latches data input D at clock edges. Asynchronous reset takes effect immediately regardless of the clock, whereas synchronous reset waits for the active clock edge.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-2', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-2">library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity D_FF is
+    Port (
+        clk   : in  STD_LOGIC;
+        reset : in  STD_LOGIC; -- Active-High Asynchronous Reset
+        D     : in  STD_LOGIC;
+        Q     : out STD_LOGIC
+    );
+end D_FF;
+
+architecture Behavioral of D_FF is
+begin
+    -- Asynchronous Reset: 'reset' must be in the sensitivity list!
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            Q &lt;= '0';                    -- Cleared immediately
+        elsif rising_edge(clk) then
+            Q &lt;= D;                      -- Latches data on rising clock edge
+        end if;
+    end process;
+end Behavioral;</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>For <strong>Asynchronous Reset</strong>, <code>reset</code> is checked outside the clock edge condition.</li><li>For <strong>Synchronous Reset</strong>, the condition would be: <code>if rising_edge(clk) then if reset='1' then Q<='0'; else Q<=D; end if; end if;</code>.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-2', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-2">-- --- EXAM SHORT FORM (D Flip-Flop VHDL) ---
+library IEEE; use IEEE.STD_LOGIC_1164.ALL;
+entity dff is port(clk, rst, D: in std_logic; Q: out std_logic); end;
+architecture rtl of dff is
+begin
+    process(clk, rst) begin
+        if rst='1' then Q &lt;= '0';
+        elsif rising_edge(clk) then Q &lt;= D;
+        end if;
+    end process;
+end rtl;</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Draw the accompanying schematic symbol or truth table alongside this VHDL/Verilog snippet for full 6/6 marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="vcode3">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 4</span>
+                    <span class="badge-freq">🔥 4x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #3. CMOS Inverter SPICE Netlist & Transistor Simulation Model</h3>
+                <p class="code-card-exp">A CMOS inverter consists of an active PMOS pull-up connected between VDD and Out, and an active NMOS pull-down between Out and GND, driven by a common gate Input.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-3', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-3">* CMOS Inverter SPICE Subcircuit Netlist
+* Syntax: M&lt;name&gt; &lt;drain&gt; &lt;gate&gt; &lt;source&gt; &lt;bulk&gt; &lt;model&gt; W=&lt;width&gt; L=&lt;length&gt;
+
+.include 'tsmc018.param' * 180nm CMOS technology parameter file
+
+* Voltage Sources
+Vdd vdd 0 DC 1.8V
+Vin in 0 PULSE(0V 1.8V 0ns 100ps 100ps 5ns 10ns)
+
+* MOS Transistors (Sizing: PMOS W=4u, NMOS W=2u, L=0.18u)
+M1 out in vdd vdd PMOS W=4.0u L=0.18u  * Pull-up Network
+M2 out in 0   0   NMOS W=2.0u L=0.18u  * Pull-down Network
+
+* Load Capacitance
+Cload out 0 50fF
+
+* Simulation Analysis Commands
+.tran 10ps 20ns
+.plot tran V(in) V(out)
+.end</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>PMOS width is chosen twice the NMOS width ($W_p = 2 W_n$) to compensate for lower hole mobility ($\mu_p \approx 0.5 \mu_n$).</li><li>This achieves equal rise and fall propagation delays ($t_{PLH} = t_{PHL}$) and a symmetric switching threshold ($V_{th} = V_{DD}/2$).</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-3', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-3">* --- EXAM SHORT FORM (SPICE Netlist) ---
+* Mname Drain Gate Source Bulk Model W L
+M1 out in vdd vdd PMOS W=4u L=0.18u
+M2 out in 0   0   NMOS W=2u L=0.18u
+Cload out 0 20fF
+Vdd vdd 0 1.8V
+.end</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Draw the accompanying schematic symbol or truth table alongside this VHDL/Verilog snippet for full 6/6 marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="vcode4">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 4</span>
+                    <span class="badge-freq">🔥 4x repeated</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #4. 2-Input XOR Gate using Transmission Gates (TG)</h3>
+                <p class="code-card-exp">Conventional static CMOS XOR requires 12 transistors. Using Transmission Gates, an XOR gate can be implemented with only 6 transistors (2 TGs + 1 Inverter).</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-4', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-4">// Verilog Structural Model: 2-Input XOR using Transmission Gates
+// Logic Equation: Y = A ^ B = A * ~B + ~A * B
+
+module XOR_TG (
+    input A,
+    input B,
+    output Y
+);
+    wire not_A;
+
+    // Inverter for signal A
+    not (not_A, A);
+
+    // TG1: Passes B when A is LOW (A=0, not_A=1) -&gt; Y = B
+    // Syntax: cmos (out, in, ncontrol, pcontrol)
+    cmos tg1 (Y, B, not_A, A);
+
+    // TG2: Passes ~B when A is HIGH (A=1, not_A=0) -&gt; Y = ~B
+    wire not_B;
+    not (not_B, B);
+    cmos tg2 (Y, not_B, A, not_A);
+
+endmodule</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>When $A=0$, TG1 turns ON and passes $B$ to output $Y$ (since $0 \oplus B = B$).</li><li>When $A=1$, TG2 turns ON and passes $\bar{B}$ to output $Y$ (since $1 \oplus B = \bar{B}$).</li><li>Total Transistors: 2 inverters (4 transistors) + 2 TGs (4 transistors) = <strong>8 transistors</strong> (or 6 without second inverter).</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-4', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-4">// --- EXAM SHORT FORM (Verilog TG XOR) ---
+module xor_tg(input A, B, output Y);
+    wire notA, notB;
+    not(notA, A); not(notB, B);
+    cmos tg1(Y, B, notA, A);    // Passes B when A=0
+    cmos tg2(Y, notB, A, notA); // Passes ~B when A=1
+endmodule</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Draw the accompanying schematic symbol or truth table alongside this VHDL/Verilog snippet for full 6/6 marks.
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-card" id="vcode5">
+            <div class="code-card-header">
+                <div class="code-badges">
+                    <span class="badge-u">Unit 6</span>
+                    <span class="badge-freq">🔥 3x repeated in SPPU exams</span>
+                    <span class="badge-marks">6 Marks</span>
+                </div>
+                <h3 class="code-card-title">Implementation #5. Linear Feedback Shift Register (LFSR) for BIST Pattern Generation</h3>
+                <p class="code-card-exp">LFSR is the fundamental pseudo-random pattern generator (PRPG) in Built-In Self-Test (BIST) designs, using a shift register with XOR feedback.</p>
+            </div>
+
+            <!-- Section 1: Detailed Code -->
+            <div class="code-section-block detailed">
+                <div class="section-label detailed-lbl">
+                    <span>📘 1. Detailed Production / Structural Model (Full Architecture)</span>
+                    <button class="copy-btn" onclick="copyCode('code-det-5', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre"><code id="code-det-5">-- 4-bit LFSR with characteristic polynomial: P(x) = x^4 + x^3 + 1
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity LFSR_4bit is
+    Port (
+        clk   : in  STD_LOGIC;
+        reset : in  STD_LOGIC;
+        Q     : out STD_LOGIC_VECTOR(3 downto 0)
+    );
+end LFSR_4bit;
+
+architecture Behavioral of LFSR_4bit is
+    signal reg : STD_LOGIC_VECTOR(3 downto 0) := "0001"; -- Seed state
+begin
+    process(clk, reset)
+        variable feedback : STD_LOGIC;
+    begin
+        if reset = '1' then
+            reg &lt;= "0001"; -- Seed value (NEVER reset to all-zeros!)
+        elsif rising_edge(clk) then
+            -- Feedback XOR tap from Q(3) and Q(2)
+            feedback := reg(3) xor reg(2);
+            reg &lt;= reg(2 downto 0) &amp; feedback; -- Shift left and insert feedback
+        end if;
+    end process;
+
+    Q &lt;= reg;
+end Behavioral;</code></pre>
+                <div class="code-notes">
+                    <strong>Technical Concepts & Sizing Notes:</strong>
+                    <ul><li>An $n$-bit maximal length LFSR produces a repeating pseudo-random sequence of $2^n - 1$ states.</li><li>The all-zeros state ('0000') is an illegal locked state and must never be used as a seed.</li></ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Exam Quick Short Form -->
+            <div class="code-section-block exam">
+                <div class="section-label exam-lbl">
+                    <span>⚡ 2. Exam Short Form (Super Simple & Short — Memorize & Write in 2 Minutes)</span>
+                    <button class="copy-btn" onclick="copyCode('code-exam-5', this)">Copy Code</button>
+                </div>
+                <pre class="code-pre exam-pre"><code id="code-exam-5">-- --- EXAM SHORT FORM (4-bit LFSR) ---
+process(clk, rst) begin
+    if rst='1' then q &lt;= "0001"; -- Seed
+    elsif rising_edge(clk) then
+        q &lt;= q(2 downto 0) &amp; (q(3) xor q(2));
+    end if;
+end process;</code></pre>
+                <div class="exam-tip">
+                    🎯 <strong>SPPU 6/6 Marks Scoring Tip:</strong> Draw the accompanying schematic symbol or truth table alongside this VHDL/Verilog snippet for full 6/6 marks.
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="search-index.js"></script>
+    <div class="modal-overlay" id="readerModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h4 id="modalTitle" style="font-size: 15px; font-weight: 700;">Document Viewer</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a id="modalOpenExternal" href="#" target="_blank" class="btn btn-white" style="padding: 4px 12px; font-size: 11px;">Open in New Tab ↗</a>
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                </div>
+            </div>
+            <div class="modal-body"><iframe id="modalIframe" class="modal-iframe" src=""></iframe></div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(elementId, btn) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "✓ Copied!";
+                btn.style.background = "#dcfce7";
+                btn.style.color = "#166534";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "#f1f5f9";
+                    btn.style.color = "#334155";
+                }, 2000);
+            });
+        }
+
+        // Universal Search
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        if (searchInput && searchDropdown) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                if (query.length < 2) { searchDropdown.classList.remove('open'); return; }
+                const index = window.SPPU_SEARCH_INDEX || [];
+                const terms = query.split(/\s+/).filter(Boolean);
+                const matches = index.filter(item => {
+                    const corpus = (item.title + ' ' + item.subject + ' ' + item.snippet).toLowerCase();
+                    return terms.every(t => corpus.includes(t));
+                });
+                if (matches.length === 0) { searchDropdown.classList.remove('open'); return; }
+                searchDropdown.innerHTML = '<div class="suggestion-header"><span>Suggested Questions</span><span>' + matches.length + ' found</span></div>' +
+                    matches.slice(0, 8).map(m => `
+                        <div class="suggestion-item" onclick="openDoc('${m.title}', '${m.htmlUrl}')">
+                            <div class="sugg-top">
+                                <span class="sugg-subj">${m.icon} ${m.short}</span>
+                                <span class="sugg-unit">Unit ${m.unit}</span>
+                                ${m.freq ? `<span class="sugg-freq">${m.freq}</span>` : ''}
+                            </div>
+                            <div class="sugg-title">${m.title}</div>
+                            <div class="sugg-snippet">${m.snippet}</div>
+                        </div>
+                    `).join('');
+                searchDropdown.classList.add('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.remove('open');
+                }
+            });
+        }
+
+        function openDoc(title, url) {
+            if (searchDropdown) searchDropdown.classList.remove('open');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalIframe').src = url;
+            document.getElementById('modalOpenExternal').href = url;
+            document.getElementById('readerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('readerModal').classList.remove('active');
+            document.getElementById('modalIframe').src = '';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+    <footer>
+        <p><strong>SPPU Engineering End-Sem Preparation Hub (2019 Pattern)</strong></p>
+    </footer>
+</body>
+</html>

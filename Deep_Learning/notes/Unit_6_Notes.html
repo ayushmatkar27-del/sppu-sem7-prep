@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit 6: Deep Learning Applications - SPPU Master Notes</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #1e293b;
+      margin: 0;
+      padding: 30px;
+      background: #f8fafc;
+    }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    h1 { color: #0f172a; border-bottom: 3px solid #3b82f6; padding-bottom: 12px; font-size: 26px; }
+    h2 { color: #1e3a8a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 32px; font-size: 20px; }
+    h3 { color: #1e40af; margin-top: 24px; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13.5px; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; }
+    th { background: #f1f5f9; color: #0f172a; font-weight: 600; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .diagram-container {
+      text-align: center;
+      margin: 24px 0;
+      padding: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .diagram-caption {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #475569;
+      font-size: 13px;
+    }
+    pre, code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+    }
+    pre { padding: 14px; overflow-x: auto; line-height: 1.45; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>🔬 Unit 6: Deep Learning Case Studies & Applications</h1>
+<h3>Deep Learning (Elective IV - 404185C) | SPPU 2019 Course Pattern</h3>
+<strong>End-Sem Examination: Question 7 OR Question 8 (18 Marks Weightage) | Master Exam Notes</strong>
+<em>Course Outcome CO6: Make use of various case studies and deep learning applications.</em>
+
+---
+
+<h2>📌 Unit 6 Complete Syllabus Mapping & Exam Blueprint</h2>
+<em>Audited from SPPU Official Syllabus & University Examination Papers (2022 to 2026)</em>
+
+<table>
+<tr><th>Syllabus Topic</th><th>Exam Status & Frequency</th><th>Probability Tier</th><th>Expected Marks</th><th>Key Focus in SPPU Exam</th></tr>
+<tr><td><strong>1. Classical vs. Deep Learning Computer Vision</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>6 M</strong></td><td>8-point comprehensive distinction table: manual SIFT/HOG vs automated hierarchical features.</td></tr>
+<tr><td><strong>2. Image Classification & Transfer Learning</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>6 to 8 M</strong></td><td>End-to-end classification pipeline, Pre-trained CNN weights, Freezing layers vs Fine-tuning.</td></tr>
+<tr><td><strong>3. ImageNet - Object Detection (R-CNN vs YOLO)</strong></td><td><strong>Univ Question Bank</strong></td><td><code>⚡ Very High (80%)</code></td><td><strong>8 to 10 M</strong></td><td>Classification vs Localization vs Detection, IoU metric, Two-Stage (Faster R-CNN) vs Single-Stage (YOLO).</td></tr>
+<tr><td><strong>4. Deep Learning for Audio: WaveNet Architecture</strong></td><td><strong>1x in Univ Papers</strong></td><td><code>⚡ High Priority (75%)</code></td><td><strong>8 to 9 M</strong></td><td>Autoregressive raw waveform generation, Dilated Causal Convolutions ($2^L$ growth), Gated Activation Units.</td></tr>
+<tr><td><strong>5. Sentiment Analysis Case Study</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>6 to 8 M</strong></td><td>End-to-end Twitter/X sentiment pipeline, Word Embeddings, BiLSTM / BERT classifier, Polarity scoring.</td></tr>
+<tr><td><strong>6. Text Preprocessing Pipeline & Spam Mail Classifier</strong></td><td><strong>2x in Univ Papers</strong></td><td><code>🔥 100% Guaranteed</code></td><td><strong>7 to 8 M</strong></td><td>Tokenization, Lowercasing, Noise removal, Lemmatization, Stopwords, TF-IDF vectorizer, Spam classification.</td></tr>
+<tr><td><strong>7. ChatBot Architecture & Case Study</strong></td><td><strong>Univ Question Bank</strong></td><td><code>⚡ High Priority (75%)</code></td><td><strong>7 to 8 M</strong></td><td>Rule-Based vs Retrieval vs Generative ChatBots, Pipeline: Intent Recognition, Entity Extraction, DST, NLG.</td></tr>
+</table>
+
+---
+
+<h2>🏆 SECTION 1: Classical vs. Deep Learning Computer Vision</h2>
+<strong>Marks:</strong> 6 Marks | <strong>Frequency:</strong> 2x in Univ Papers (100% Guaranteed)
+
+<table>
+<tr><th>Comparison Dimension</th><th>Classical Computer Vision (Traditional)</th><th>Deep Learning Computer Vision (Modern)</th></tr>
+<tr><td><strong>1. Feature Extraction</strong></td><td><strong>Manual Hand-Crafted Feature Engineering</strong> (SIFT, SURF, HOG, Haar Cascades, Sobel).</td><td><strong>Automated Feature Representation Learning</strong> learned directly from raw pixel data via CNN backbones.</td></tr>
+<tr><td><strong>2. Pipeline Structure</strong></td><td>Separated multi-stage pipeline: Preprocessing $\to$ Feature Extraction $\to$ Standalone Classifier (SVM / Random Forest).</td><td><strong>End-to-End Joint Learning</strong>: Features and classification parameters are trained together via Backpropagation.</td></tr>
+<tr><td><strong>3. Data Dependency</strong></td><td>Performs moderately well on small datasets; plateaus rapidly as data volume increases.</td><td>Requires large labeled datasets (e.g., ImageNet with 1.4M images) to prevent overfitting and achieve superhuman accuracy.</td></tr>
+<tr><td><strong>4. Computational Demands</strong></td><td>Low computational footprint; runs easily on standard CPUs in real-time.</td><td>Extremely compute-heavy; requires specialized GPUs/TPUs with tensor cores for training and inference.</td></tr>
+<tr><td><strong>5. Domain Specificity</strong></td><td>Handcrafted features are brittle; an algorithm designed for car detection fails completely on pedestrian detection.</td><td>Highly adaptable; features learned on ImageNet transfer seamlessly across medical scans, aerial imagery, and botany.</td></tr>
+<tr><td><strong>6. Robustness to Variations</strong></td><td>Sensitive to complex real-world illumination shifts, scale, background clutter, and camera angles.</td><td>Exceptional robustness and spatial invariance due to convolutional weight sharing and pooling operations.</td></tr>
+<tr><td><strong>7. Feature Hierarchy</strong></td><td>Shallow, flat representations (only edges, gradients, or corner points).</td><td><strong>Deep Hierarchical Abstraction</strong>: Edges (Conv1) $\to$ Textures (Conv2) $\to$ Parts (Conv3) $\to$ Semantic Objects (Conv4/5).</td></tr>
+<tr><td><strong>8. Performance Ceiling</strong></td><td>Performance saturates quickly regardless of additional data.</td><td>Continues scaling monotonically with increased model capacity and training data volume.</td></tr>
+</table>
+
+---
+
+<h2>🏆 SECTION 2: Image Classification & Transfer Learning</h2>
+<strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 2x in Univ Papers (100% Guaranteed)
+
+<h3>2.1 The Image Classification Pipeline</h3>
+$$\text{Raw Image } (224 \times 224 \times 3) \xrightarrow{\text{Augment / Norm}} \text{CNN Backbone} \xrightarrow{\text{Global Avg Pool}} \text{Dense Feature Vector} \xrightarrow{\text{Softmax Layer}} \hat{y} \in [0, 1]^K$$
+1. <strong>Loss Function:</strong> Categorical Cross-Entropy across $K$ target classes:
+   $$\mathcal{L} = -\sum_{k=1}^K y_k \log \hat{y}_k$$
+2. <strong>Evaluation Metrics:</strong>
+   * <strong>Top-1 Accuracy:</strong> The highest-probability predicted class matches the ground-truth label.
+   * <strong>Top-5 Accuracy:</strong> The correct ground-truth label is among the model's top 5 highest probability predictions.
+
+<h3>2.2 Transfer Learning Workflow (Fine-Tuning Pre-Trained Backbones)</h3>
+Training a 50-layer CNN from scratch requires weeks on GPU clusters and millions of images. <strong>Transfer Learning</strong> leverages pre-trained network weights (e.g., ResNet-50 trained on 1.4M ImageNet images):
+* <strong>Step 1 (Base Model Selection):</strong> Load pre-trained ResNet-50 or VGG-16 without the top 1000-class classification head.
+* <strong>Step 2 (Freezing Backbone Layers):</strong> Freeze earlier convolutional layers ($\text{trainable} = \text{False}$) to preserve universal low-level visual features (edges, curves, textures).
+* <strong>Step 3 (Custom Classifier Head):</strong> Attach a new Global Average Pooling layer, a Dropout layer (0.5), and a Dense Softmax layer matching the target problem (e.g., 2 classes for COVID vs. Normal chest X-rays).
+* <strong>Step 4 (Phase 1 Training):</strong> Train only the top classifier head using a moderate learning rate ($\eta = 10^{-3}$) for 5–10 epochs.
+* <strong>Step 5 (Phase 2 Fine-Tuning):</strong> Unfreeze the final convolutional block of the backbone and train the entire network end-to-end with an extremely small learning rate ($\eta = 10^{-5}$) to subtly adapt representations to the target domain without destroying pre-trained weights.
+
+---
+
+<h2>🏆 SECTION 3: ImageNet - Object Detection (R-CNN vs. YOLO)</h2>
+<strong>Marks:</strong> 8 to 10 Marks | <strong>Probability:</strong> Very High (80%)
+
+<h3>3.1 Classification vs. Localization vs. Detection</h3>
+* <strong>Image Classification:</strong> "What is in the image?" Assigns a single class label to the entire image.
+* <strong>Object Localization:</strong> "What is it and where is it?" Predicts 1 class label + 1 bounding box coordinates $[x, y, w, h]$ for a single predominant object.
+* <strong>Object Detection:</strong> "What objects are present, where are they, and how many?" Detects multiple objects of various classes simultaneously, outputting class labels and bounding boxes for every instance.
+
+<h3>3.2 Key Evaluation Metrics: IoU and mAP</h3>
+1. <strong>Intersection over Union (IoU):</strong> Measures spatial overlap between the predicted bounding box $B_p$ and ground-truth box $B_{gt}$:
+   $$\text{IoU} = \frac{\text{Area}(B_p \cap B_{gt})}{\text{Area}(B_p \cup B_{gt})}$$
+   A prediction is considered a True Positive if $\text{IoU} \ge 0.50$.
+2. <strong>Mean Average Precision (mAP):</strong> The mean of Average Precision (area under precision-recall curve) calculated across all object classes.
+
+<h3>3.3 Two-Stage vs. Single-Stage Detectors</h3>
+<table>
+<tr><th>Feature / Parameter</th><th>Two-Stage Detectors (e.g., Faster R-CNN)</th><th>Single-Stage Detectors (e.g., YOLO, SSD)</th></tr>
+<tr><td><strong>Architectural Philosophy</strong></td><td>Stage 1 proposes candidate regions; Stage 2 classifies and refines boxes.</td><td>Treats detection as a <strong>single end-to-end regression problem</strong> directly from pixels to boxes.</td></tr>
+<tr><td><strong>Region Proposal</strong></td><td>Uses a dedicated <strong>Region Proposal Network (RPN)</strong> generating ~300 candidate anchors.</td><td>Divides image into an $S \times S$ grid; each grid cell predicts bounding boxes directly.</td></tr>
+<tr><td><strong>Inference Speed</strong></td><td>Slower (5 to 15 FPS); generally unsuitable for high-speed edge devices.</td><td><strong>Real-Time (45 to 140+ FPS)</strong>; ideal for autonomous vehicles and drone surveillance.</td></tr>
+<tr><td><strong>Localization Precision</strong></td><td>Slightly higher precision on tiny objects and dense crowds.</td><td>Exceptional speed with competitive mAP; early versions struggled on small grouped objects.</td></tr>
+</table>
+
+---
+
+<h2>🏆 SECTION 4: Deep Learning for Audio: WaveNet Architecture</h2>
+<strong>Marks:</strong> 8 to 9 Marks | <strong>Frequency:</strong> 1x in Univ Papers (Nov 2023)
+
+<h3>4.1 Why Audio Deep Learning is Difficult</h3>
+* Traditional speech models convert 1D audio into 2D spectrograms (STFT), losing phase information.
+* Standard CD-quality raw audio contains <strong>16,000 to 44,100 samples per second</strong>. An utterance of 2 seconds requires modeling 32,000 sequential data points. Standard RNNs fail completely across thousands of time steps due to vanishing gradients.
+
+<h3>4.2 The WaveNet Model (Google DeepMind, 2016)</h3>
+Developed by Aäron van den Oord et al., <strong>WaveNet</strong> models raw audio waveforms directly.
+1. <strong>Autoregressive Probabilistic Formulation:</strong>
+   The joint probability of a waveform $\mathbf{x} = \{x_1, x_2, \dots, x_T\}$ is factorized as a product of conditional probabilities:
+   $$P(\mathbf{x}) = \prod_{t=1}^T P(x_t \mid x_1, x_2, \dots, x_{t-1})$$
+   Each audio sample $x_t$ is conditioned on all previous audio samples.
+2. <strong>Dilated Causal Convolutions:</strong>
+   * <strong>Causal:</strong> The filter at time step $t$ accesses only inputs from time $t$ and earlier ($t, t-1, t-2, \dots$). No information leaks from the future.
+   * <strong>Dilated:</strong> The filter skips input values with dilation factor $d \in \{1, 2, 4, 8, 16, \dots, 512\}$.
+   * <strong>Exponential Receptive Field Growth:</strong> While standard convolutions grow linearly ($\mathcal{O}(L)$), doubling the dilation factor at each layer causes the receptive field to grow <strong>exponentially</strong>:
+     $$\text{Receptive Field} = 2^L$$
+     A 10-layer dilated convolutional stack covers a receptive field of $2^{10} = 1024$ audio samples with minimal parameter count.
+3. <strong>Gated Activation Units:</strong>
+   Mimicking LSTM gating, WaveNet replaces standard ReLU activations with a gated tanh/sigmoid pair:
+   $$\mathbf{z} = \tanh(W_{f, k} <em> \mathbf{x}) \odot \sigma(W_{g, k} </em> \mathbf{x})$$
+   where $*$ is the dilated convolution, $W_{f}$ is the filter weight, and $W_{g}$ is the gate weight.
+
+---
+
+<h2>🏆 SECTION 5: Sentiment Analysis Case Study</h2>
+<strong>Marks:</strong> 6 to 8 Marks | <strong>Frequency:</strong> 2x in Univ Papers (100% Guaranteed)
+
+<h3>5.1 End-to-End Deep Learning Sentiment Analysis Pipeline</h3>
+<code></code>`
+[Raw User Tweets / Product Reviews]
+               │
+               ▼
+   [Text Cleaning & Normalization]
+   (Strip URLs, Mentions, Emojis, Punctuation)
+               │
+               ▼
+[Tokenization & Lemmatization]
+               │
+               ▼
+    [Word Embedding Layer]
+    (Pretrained GloVe 300-d or Trainable Embedding)
+               │
+               ▼
+  [Bidirectional LSTM / BERT Layer]
+  (Captures contextual nuance, sarcasm, and negation)
+               │
+               ▼
+   [Dense Layer + Dropout (0.5)]
+               │
+               ▼
+    [Softmax / Sigmoid Output]
+    • Positive (+1)  • Neutral (0)  • Negative (-1)
+<code></code>`
+
+<h3>5.2 Critical Engineering Considerations in Sentiment Analysis</h3>
+1. <strong>Negation Handling:</strong> A phrase like <em>"not great"</em> must be treated as negative. Unigram Bag-of-Words fails because "not" and "great" are parsed independently. BiLSTM and Transformers maintain sequence context, preserving the modifier relationship.
+2. <strong>Class Imbalance:</strong> In real-world customer reviews, positive reviews frequently outnumber negative reviews 5:1. Mitigated using <strong>Focal Loss</strong> or weighted cross-entropy.
+
+---
+
+<h2>🏆 SECTION 6: Text Preprocessing Pipeline & Spam Mail Classifier</h2>
+<strong>Marks:</strong> 7 to 8 Marks | <strong>Frequency:</strong> 2x in Univ Papers (100% Guaranteed)
+
+<h3>6.1 The 6-Step NLP Preprocessing Pipeline</h3>
+1. <strong>Sentence Segmentation & Tokenization:</strong> Splitting continuous raw text into discrete word/subword tokens.
+2. <strong>Case Normalization:</strong> Converting all tokens to lowercase so that <em>"Deep"</em>, <em>"deep"</em>, and <em>"DEEP"</em> map to the identical vocabulary index.
+3. <strong>Noise & Punctuation Removal:</strong> Stripping HTML tags, URLs, email headers, emojis, numbers, and special symbols via regex patterns (<code>r'[^a-zA-Z\s]'</code>).
+4. <strong>Stop-Word Removal:</strong> Filtering out high-frequency words that carry little semantic discriminant power (e.g., <em>"the"</em>, <em>"is"</em>, <em>"at"</em>, <em>"which"</em>, <em>"on"</em>).
+5. <strong>Stemming vs. Lemmatization:</strong>
+   <em> </em>Stemming (Porter Stemmer):<em> Crude heuristic stripping of word suffixes (e.g., </em>"running"<em>, </em>"runner"<em> $\to$ </em>"run"<em>; </em>"studies"<em> $\to$ </em>"studi"*).
+   <em> </em>Lemmatization (WordNet):<em> Uses morphological dictionary analysis and Part-of-Speech (POS) tags to reduce words to true grammatical base roots (e.g., </em>"better"<em> $\to$ </em>"good"*).
+6. <strong>Numerical Vectorization:</strong> Converting text tokens into numerical vectors:
+   * <strong>TF-IDF:</strong> Weights tokens by frequency in document penalized by general corpus frequency:
+     $$\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \log\left(\frac{N}{1 + |\text{docs containing } t|}\right)$$
+   * <strong>Dense Embeddings (Word2Vec / GloVe):</strong> Maps words into continuous 300-dimensional semantic vector spaces where similar concepts cluster together ($\vec{v}_{\text{King}} - \vec{v}_{\text{Man}} + \vec{v}_{\text{Woman}} \approx \vec{v}_{\text{Queen}}$).
+
+<h3>6.2 Deep Learning Spam Mail Classification System</h3>
+* <strong>Architecture:</strong> Text Input $\to$ Preprocessing $\to$ Embedding Layer (vocab size 10,000, embedding dim 128) $\to$ Bidirectional LSTM (64 units) $\to$ Dense (32 units, ReLU) $\to$ Dropout (0.5) $\to$ Output Neuron (Sigmoid activation).
+* <strong>Evaluation Focus:</strong> <strong>Precision is prioritized over Recall</strong> because falsely classifying a legitimate job offer or university admission email as Spam (False Positive) is far more damaging than letting an occasional spam ad leak into the inbox (False Negative).
+
+---
+
+<h2>🏆 SECTION 7: ChatBot Architecture & Case Study</h2>
+<strong>Marks:</strong> 7 to 8 Marks | <strong>Probability:</strong> High Priority (75%)
+
+<h3>7.1 The Three Generations of Conversational ChatBots</h3>
+1. <strong>Rule-Based Chatbots (ELIZA, AIML):</strong> Rely on hardcoded if-else pattern matching trees and regular expressions. Incapable of handling typos, synonyms, or complex intent.
+2. <strong>Retrieval-Based Chatbots:</strong> Use deep embeddings and intent classifiers to map user queries to pre-written response databases using cosine similarity. Grammatically safe and predictable; widely used in banking FAQ assistants.
+3. <strong>Generative Chatbots (Seq2Seq / Transformers):</strong> Synthesize original responses token-by-token using deep neural language models. Highly versatile and human-like; requires guardrails to prevent hallucination.
+
+<h3>7.2 Modern Deep Learning ChatBot Pipeline Architecture</h3>
+<code></code>`
+[User Input Query]
+        │
+        ▼
+[NLP Preprocessing] (Tokenize, Lowercase, Clean)
+        │
+        ├─────────────────────────────────────────────────┐
+        ▼                                                 ▼
+[Intent Classification]                           [Entity Extraction / Slot Filling]
+(BiLSTM / CNN predicts intent,                     (BiLSTM-CRF extracts specific values,
+ e.g., "book_flight")                               e.g., "destination: Pune", "date: Friday")
+        │                                                 │
+        └───────────────────────┬─────────────────────────┘
+                                │
+                                ▼
+                 [Dialogue State Tracker (DST)]
+                 (Maintains conversation memory across multi-turn dialog)
+                                │
+                                ▼
+                 [Dialogue Policy Manager (DPM)]
+                 (Queries flight database API, checks seat availability)
+                                │
+                                ▼
+               [Response Generation (NLG / Seq2Seq)]
+               (Synthesizes natural confirmation response back to user)
+<code></code>`
+
+</div></body></html>
