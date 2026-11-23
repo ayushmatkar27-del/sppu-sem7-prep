@@ -441,10 +441,132 @@
 
     /* Print Optimizations */
     @media print {
-      body { background: white; padding: 0; max-width: 100%; font-size: 11pt; }
-      .jump-nav { display: none; }
-      .problem-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #94a3b8; box-shadow: none; }
-      .header-banner { background: #0f172a !important; color: white !important; }
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 12mm 12mm;
+      }
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        font-size: 9.5pt !important;
+        line-height: 1.45 !important;
+        color: #0f172a !important;
+      }
+      .jump-nav { display: none !important; }
+      .header-banner {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        padding: 14px 18px !important;
+        margin-bottom: 14px !important;
+        border-radius: 8px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .header-banner h1 { font-size: 1.3rem !important; margin: 0 0 4px !important; }
+      .header-banner p { font-size: 8.5pt !important; color: #cbd5e1 !important; }
+      .summary-card {
+        padding: 12px 14px !important;
+        margin-bottom: 16px !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .summary-card h2 { font-size: 11pt !important; margin-bottom: 6px !important; }
+      table { font-size: 8pt !important; }
+      th, td { padding: 4px 6px !important; }
+      .category-header {
+        background: #1e3a8a !important;
+        color: #ffffff !important;
+        padding: 6px 12px !important;
+        font-size: 10pt !important;
+        margin: 18px 0 10px !important;
+        border-radius: 6px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .problem-card {
+        background: #ffffff !important;
+        border: 1px solid #94a3b8 !important;
+        border-radius: 8px !important;
+        padding: 12px 14px !important;
+        margin-bottom: 14px !important;
+        box-shadow: none !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      .problem-top {
+        padding-bottom: 6px !important;
+        margin-bottom: 8px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .problem-title { font-size: 10.5pt !important; }
+      .question-box {
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+        font-size: 9pt !important;
+        border-left: 3.5px solid #2563eb !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .schematic-box {
+        font-size: 8pt !important;
+        padding: 6px 10px !important;
+        margin-bottom: 10px !important;
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .given-box {
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+        border: 1px solid #86efac !important;
+        background: #f0fdf4 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .param-grid { gap: 4px 10px !important; }
+      .param-item { padding: 4px 8px !important; font-size: 8.5pt !important; }
+      .formula-box {
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+        border: 1px solid #bfdbfe !important;
+        background: #eff6ff !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .formula-display { padding: 4px 8px !important; margin: 4px 0 !important; font-size: 9pt !important; }
+      .solution-box {
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+      .step-card {
+        padding: 6px 10px !important;
+        margin-bottom: 8px !important;
+        font-size: 8.5pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .step-math { padding: 4px 8px !important; margin: 4px 0 !important; font-size: 8.5pt !important; }
+      .answer-box {
+        padding: 8px 12px !important;
+        border: 2px solid #f59e0b !important;
+        background: #fefce8 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .answer-item { font-size: 9pt !important; margin: 3px 0 !important; }
+      .answer-highlight { font-size: 9.5pt !important; }
     }
   </style>
 </head>
