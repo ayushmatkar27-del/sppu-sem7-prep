@@ -51,7 +51,28 @@
     }
     pre { padding: 14px; overflow-x: auto; line-height: 1.45; }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+  <!-- KaTeX for ultra-fast, robust math typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- MathJax 3 configured for inline and display LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -246,4 +267,21 @@ $$\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}(x)}\left[ \log D(x)
 * <strong>Generator's Goal ($\min_G$):</strong> Wants $D(G(z)) \to 1$ so that $\log(1 - D(G(z))) \to -\infty$, minimizing $V(D,G)$.
 * <strong>Nash Equilibrium:</strong> The ideal equilibrium is reached when the generator reproduces the true data distribution $p_g = p_{\text{data}}$, and the discriminator outputs $D(x) = \frac{1}{2}$ for all inputs (pure random guess).
 
-</div></body></html>
+</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+
+</body></html>
