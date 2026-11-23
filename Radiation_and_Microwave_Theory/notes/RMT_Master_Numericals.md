@@ -37,12 +37,12 @@
 ```
 
 #### 1. Given Data:
-* Directivity: $D = \infty$ (Ideal coupler, no cross-coupling leakage).
-* Forward Attenuation (Coupling Factor): $C = 20\text{ dB}$.
-* Power measured by Bolometer 1 (attached to forward arm 4): $P_{b1} = 8\text{ mW}$.
-* VSWR introduced by Bolometer 1 on arm 4: $\text{VSWR}_4 = 2.0$.
-* Power measured by Bolometer 2 (attached to reverse arm 3): $P_{b2} = 2\text{ mW}$.
-* Bolometer 2 is matched: $\text{VSWR}_3 = 1.0 \implies \Gamma_3 = 0$.
+- **Directivity ($D$):** $D = \infty$ *(Ideal coupler, zero leakage from Port 1 to Port 3)*
+- **Forward Attenuation ($C$):** $C = 20\text{ dB} \implies 10^{20/10} = 100$ linear power ratio
+- **Bolometer 1 Reading ($P_{b1}$):** $P_{b1} = 8\text{ mW}$ *(Absorbed at forward Arm 4)*
+- **Arm 4 VSWR (Bolometer 1):** $\text{VSWR}_4 = 2.0$ *(Mismatched bolometer)*
+- **Bolometer 2 Reading ($P_{b2}$):** $P_{b2} = 2\text{ mW}$ *(Absorbed at reverse Arm 3)*
+- **Arm 3 VSWR (Bolometer 2):** $\text{VSWR}_3 = 1.0 \implies \Gamma_3 = 0$ *(Matched bolometer)*
 
 #### 2. Key Formulas:
 1. Reflection coefficient from VSWR:
