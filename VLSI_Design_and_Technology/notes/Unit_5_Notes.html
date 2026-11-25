@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VLSI Unit 5: Physical Design, Stick Diagrams &amp; Layout Rules | SPPU Prep</title>
+  <title>VLSI Unit 5: Complete Exam-Ready Notes (17+ Pages) | SPPU Prep</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,21 +30,21 @@
 
   <style>
     * { box-sizing: border-box; }
-    @page { size: A4 portrait; margin: 11mm 13mm; }
+    @page { size: A4 portrait; margin: 13mm 14mm 14mm 14mm; }
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: #0f172a;
       background: #f8fafc;
-      line-height: 1.6;
-      font-size: 13.5px;
+      line-height: 1.65;
+      font-size: 14px;
       margin: 0;
       padding: 20px;
     }
     .container {
-      max-width: 980px;
+      max-width: 960px;
       margin: 0 auto;
       background: #ffffff;
-      padding: 28px 34px;
+      padding: 30px 36px;
       border-radius: 14px;
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
@@ -52,48 +52,54 @@
     .header-banner {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: white;
-      padding: 20px 24px;
+      padding: 24px 28px;
       border-radius: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
     .header-banner h1 {
       color: #ffffff;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 800;
       margin: 0 0 6px;
-      border: none;
-      padding: 0;
     }
     .header-banner p {
       color: #93c5fd;
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
     h2 {
       color: #1e40af;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 800;
       background: #eff6ff;
       border-left: 5px solid #2563eb;
-      padding: 8px 14px;
+      padding: 10px 16px;
       border-radius: 0 8px 8px 0;
-      margin-top: 26px;
-      margin-bottom: 12px;
+      margin-top: 28px;
+      margin-bottom: 14px;
       page-break-after: avoid;
     }
     h3 {
       color: #0f172a;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      margin-top: 18px;
-      margin-bottom: 8px;
+      margin-top: 20px;
+      margin-bottom: 10px;
       border-bottom: 1.5px solid #e2e8f0;
-      padding-bottom: 4px;
+      padding-bottom: 5px;
       page-break-after: avoid;
     }
-    p { margin: 6px 0 10px; }
-    ul, ol { margin: 6px 0 12px; padding-left: 22px; }
-    li { margin-bottom: 5px; }
+    h4 {
+      color: #1e3a8a;
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+    p { margin: 8px 0 12px; }
+    ul, ol { margin: 8px 0 14px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
 
     /* Callout Cards */
     .simple-box {
@@ -101,8 +107,8 @@
       border: 1px solid #86efac;
       border-left: 5px solid #16a34a;
       border-radius: 8px;
-      padding: 12px 16px;
-      margin: 10px 0 14px;
+      padding: 14px 18px;
+      margin: 12px 0 16px;
       page-break-inside: avoid;
     }
     .simple-title {
@@ -110,16 +116,27 @@
       font-weight: 800;
       color: #166534;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .exam-q-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #64748b;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 10px 0 14px;
+      font-size: 12.5px;
+      color: #334155;
+      page-break-inside: avoid;
     }
     .formula-box {
       background: #fefce8;
       border: 1.5px solid #fde047;
       border-left: 5px solid #eab308;
       border-radius: 8px;
-      padding: 10px 16px;
-      margin: 10px 0 14px;
+      padding: 12px 18px;
+      margin: 12px 0 16px;
       text-align: center;
       page-break-inside: avoid;
     }
@@ -127,13 +144,13 @@
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 10px;
-      padding: 14px;
-      margin: 12px 0 16px;
+      padding: 16px;
+      margin: 14px 0 18px;
       text-align: center;
       page-break-inside: avoid;
     }
     .diagram-caption {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #475569;
       margin-top: 8px;
@@ -143,22 +160,22 @@
       background: #fef2f2;
       color: #b91c1c;
       border: 1px solid #fecaca;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 5px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 16px;
-      font-size: 12.5px;
+      margin: 14px 0 18px;
+      font-size: 13px;
       page-break-inside: avoid;
     }
     th, td {
       border: 1px solid #cbd5e1;
-      padding: 7px 10px;
+      padding: 8px 12px;
       text-align: left;
     }
     th {
@@ -171,491 +188,865 @@
       background: #0f172a;
       color: #e2e8f0;
       font-family: 'JetBrains Mono', Consolas, monospace;
-      font-size: 11.5px;
-      padding: 12px 16px;
+      font-size: 12px;
+      padding: 14px 18px;
       border-radius: 8px;
       overflow-x: auto;
-      line-height: 1.45;
-      margin: 10px 0 14px;
+      line-height: 1.5;
+      margin: 12px 0 16px;
       page-break-inside: avoid;
     }
     code {
       font-family: 'JetBrains Mono', Consolas, monospace;
       background: #f1f5f9;
       color: #b91c1c;
-      padding: 1px 5px;
+      padding: 2px 6px;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 12.5px;
     }
     pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }
     svg { max-width: 100%; height: auto; }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 10px 0;
+      gap: 16px;
+      margin: 12px 0;
+    }
+    .page-break {
+      page-break-before: always;
+      break-before: page;
     }
     @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
     @media print {
-      body { background: white; padding: 0; font-size: 9.5pt; line-height: 1.45; }
+      body { background: white; padding: 0; font-size: 10.5pt; line-height: 1.55; }
       .container { border: none; box-shadow: none; padding: 0; max-width: 100%; }
-      .header-banner, h2, th, pre, .simple-box, .formula-box {
+      .header-banner, h2, th, pre, .simple-box, .formula-box, .exam-q-box {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-      pre { font-size: 8pt; }
-      .grid-2 { gap: 10px; }
+      pre { font-size: 8.8pt; }
     }
   </style>
 </head>
 <body>
 <div class="container">
 
+  <!-- PAGE 1: COVER & COVERAGE MAP -->
   <div class="header-banner">
-    <div style="font-size:11px; font-weight:700; letter-spacing:0.6px; color:#93c5fd; text-transform:uppercase; margin-bottom:4px;">SPPU 2019 Course Pattern | VLSI Design &amp; Technology (404182)</div>
+    <div style="font-size:11.5px; font-weight:700; letter-spacing:0.6px; color:#93c5fd; text-transform:uppercase; margin-bottom:6px;">SPPU 2019 Course Pattern | BE E&amp;TC Engineering | Course Code: 404182</div>
     <h1>⚡ Unit 5: Physical Design, Stick Diagrams &amp; Layout Rules</h1>
-    <p>End-Sem Q.5 OR Q.6 (17 Marks) • Simple Real-Life Intuition + Color-Coded Diagrams + Exam-Ready Model Answers</p>
+    <p>Comprehensive End-Sem Answer Bank (Q.5 OR Q.6 — 17 Marks) • Simple Real-Life Intuition + Detailed 6 to 18 Mark Exam Answers + Color-Coded Diagrams</p>
   </div>
 
-  <!-- Frequency Map -->
+  <h3>📌 Unit 5 Examination Frequency &amp; Scoring Map (38 Questions Audited)</h3>
+  <p>This unit is one of the highest-scoring sections in VLSI. Every topic below is structured so you can write a complete, textbook-accurate <strong>6-mark, 8-mark, 10-mark, or 18-mark answer</strong> directly in your SPPU answer sheet.</p>
+
   <table>
     <thead>
-      <tr><th>Topic #</th><th>Exam Topic</th><th>Frequency</th><th>Priority</th><th>Marks</th></tr>
+      <tr><th>Topic #</th><th>Syllabus Topic &amp; Core Exam Questions</th><th>Frequency</th><th>Priority Tier</th><th>Marks</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>1</strong></td><td><strong>Stick Diagrams, Euler's Path &amp; CMOS Layouts</strong> (Inverter, NAND, NOR, Half Adder)</td><td>6+ times</td><td>🔥 100% CRITICAL</td><td>6–18 M</td></tr>
-      <tr><td><strong>2</strong></td><td><strong>Layout Parasitics</strong> (Antenna Effect, Electromigration, Crosstalk)</td><td>10 times</td><td>🔥 100% CRITICAL</td><td>5–9 M</td></tr>
-      <tr><td><strong>3</strong></td><td><strong>Lambda ($\lambda$) Based Design Rules</strong> (Mead-Conway Rules &amp; Scalability)</td><td>6 times</td><td>🔥 100% CRITICAL</td><td>6–9 M</td></tr>
-      <tr><td><strong>4</strong></td><td><strong>SPICE Simulation &amp; CMOS Inverter Code</strong> (AC, DC, Transient)</td><td>6 times</td><td>⚡ HIGH IMP</td><td>6–8 M</td></tr>
-      <tr><td><strong>5</strong></td><td><strong>Physical Verification Flow</strong> (DRC, Circuit Extraction, ERC, LVS)</td><td>5 times</td><td>📌 HIGH</td><td>6–8 M</td></tr>
-      <tr><td><strong>6</strong></td><td><strong>ASIC Design Flow &amp; Cell Design Specification</strong></td><td>4 times</td><td>📌 HIGH</td><td>6 M</td></tr>
-      <tr><td><strong>7</strong></td><td><strong>CMOS Transistor Fabrication Process</strong> (9-Step N-Well Process)</td><td>1–3 times</td><td>📌 STANDARD</td><td>8–12 M</td></tr>
+      <tr><td><strong>Topic 1</strong></td><td><strong>Stick Diagrams, Euler's Path &amp; CMOS Layouts</strong> (Inverter, 2-Input NAND, 2-Input NOR, Compound Gates, Half Adder)</td><td><strong>6+ times</strong></td><td>🔥 100% CRITICAL</td><td>6–18 M</td></tr>
+      <tr><td><strong>Topic 2</strong></td><td><strong>Layout Parasitics &amp; Signal Integrity</strong> (Antenna Effect, Electromigration, Black's Law, Crosstalk)</td><td><strong>10 times</strong></td><td>🔥 100% CRITICAL</td><td>5–9 M</td></tr>
+      <tr><td><strong>Topic 3</strong></td><td><strong>Lambda ($\lambda$) Based Design Rules</strong> (Mead-Conway Rules, Sketches, Scalability vs Micron Rules)</td><td><strong>6 times</strong></td><td>🔥 100% CRITICAL</td><td>6–9 M</td></tr>
+      <tr><td><strong>Topic 4</strong></td><td><strong>SPICE Simulation &amp; CMOS Inverter Code</strong> (AC, DC, Transient Analysis &amp; Netlist)</td><td><strong>6 times</strong></td><td>⚡ HIGH IMP</td><td>6–8 M</td></tr>
+      <tr><td><strong>Topic 5</strong></td><td><strong>Physical Verification Flow</strong> (DRC, Circuit Extraction, ERC, Layout vs Schematic LVS)</td><td><strong>5 times</strong></td><td>📌 HIGH</td><td>6–8 M</td></tr>
+      <tr><td><strong>Topic 6</strong></td><td><strong>ASIC Physical Design Flow &amp; Cell Design Specification</strong></td><td><strong>4 times</strong></td><td>📌 HIGH</td><td>6 M</td></tr>
+      <tr><td><strong>Topic 7</strong></td><td><strong>CMOS Transistor Fabrication Process</strong> (9-Step N-Well Photolithography Process)</td><td><strong>1–3 times</strong></td><td>📌 STANDARD</td><td>8–12 M</td></tr>
     </tbody>
   </table>
 
-  <!-- TOPIC 1 -->
+  <h3>🎨 Standard Stick Diagram Layer Color &amp; Pen Legend (Memorize First!)</h3>
+  <p>Whenever you draw a Stick Diagram in the SPPU exam, <strong>always draw this small legend box on the side</strong>. If you only have a blue/black pen, use the monochrome line patterns listed in the 3rd column.</p>
+  <table>
+    <thead>
+      <tr><th>Physical Layer</th><th>Industry Color</th><th>Monochrome Exam Pen Style</th><th>Min $\lambda$ Width</th><th>Function in Circuit</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Metal-1</strong></td><td><span style="color:#2563eb; font-weight:800;">BLUE</span></td><td>Thick solid line / Double line</td><td><strong>$3\lambda$</strong></td><td>$V_{DD}$ &amp; $GND$ power rails, local signal straps</td></tr>
+      <tr><td><strong>Polysilicon</strong></td><td><span style="color:#dc2626; font-weight:800;">RED</span></td><td>Thin solid vertical line</td><td><strong>$2\lambda$</strong></td><td>Transistor Gate terminals (Inputs $A, B, C$)</td></tr>
+      <tr><td><strong>n-Diffusion</strong></td><td><span style="color:#16a34a; font-weight:800;">GREEN</span></td><td>Solid line with vertical ticks</td><td><strong>$2\lambda$</strong></td><td>NMOS Source &amp; Drain regions (bottom half)</td></tr>
+      <tr><td><strong>p-Diffusion</strong></td><td><span style="color:#d97706; font-weight:800;">YELLOW / BROWN</span></td><td>Dotted line / Cross-hatched</td><td><strong>$2\lambda$</strong></td><td>PMOS Source &amp; Drain regions (top half)</td></tr>
+      <tr><td><strong>Demarcation Line</strong></td><td><span style="color:#78350f; font-weight:800;">BROWN DASHED</span></td><td>Long-dashed horizontal line</td><td>—</td><td>Separates PMOS (N-Well) above from NMOS below</td></tr>
+      <tr><td><strong>Contact Cut (Via)</strong></td><td><strong>BLACK 'X'</strong></td><td>Cross ($\times$) inside a small square</td><td><strong>$2\lambda \times 2\lambda$</strong></td><td>Vertical connection between Metal-1 and Diff/Poly</td></tr>
+    </tbody>
+  </table>
+
+  <!-- TOPIC 1A: INVERTER & NAND -->
+  <div class="page-break"></div>
   <h2>🏆 Topic 1: Stick Diagrams, Euler's Path &amp; CMOS Layouts</h2>
-  <span class="freq-tag">Asked in: Nov 2022 (18M Half Adder), May 2023, Nov 2023, May 2024, Nov 2024, Nov 2025</span>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered:</strong><br>
+    • <em>"What is stick diagram? Draw Stick diagram of CMOS Inverter."</em> (May 2023 — 6 Marks)<br>
+    • <em>"Draw stick diagram of CMOS inverter, 2 input NAND and NOR gates."</em> (Nov 2023, May 2024, Nov 2025 — 6 to 9 Marks)
+  </div>
 
   <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words: What is a Stick Diagram? (The Metro Map Analogy)</div>
-    Think of a <strong>Stick Diagram</strong> like a <strong>city Metro/Subway map</strong>. A Metro map does not care about exact kilometer distances or tunnel widths—it only uses <strong>colored lines</strong> to show <em>which lines cross each other</em> and <em>where the stations (contacts) are</em>.<br>
-    <strong>Golden Rule:</strong> Wherever a <strong>Red (Polysilicon)</strong> line crosses a <strong>Green (n-Diffusion)</strong> or <strong>Yellow (p-Diffusion)</strong> line, a <strong>MOSFET transistor is born!</strong>
+    <div class="simple-title">💡 In Simple Words: What is a Stick Diagram? (The Subway/Metro Map Analogy)</div>
+    Imagine looking at a <strong>city Metro/Subway map</strong>. A Metro map does not show the exact kilometer distance between stations or the exact width of the tunnels—it only uses <strong>colored lines</strong> to show <em>which train lines cross each other</em> and <em>where the interchange stations (contacts) are</em>.<br>
+    In VLSI, a <strong>Stick Diagram</strong> is a simplified topological cartoon of a chip layout using colored lines ("sticks") before drawing exact geometric masks.<br>
+    <strong>Golden Rule:</strong> Wherever a <strong>Red (Polysilicon)</strong> line crosses a <strong>Green (n-Diffusion)</strong> or <strong>Yellow (p-Diffusion)</strong> line, a <strong>MOSFET transistor is formed!</strong>
   </div>
 
-  <table>
-    <thead>
-      <tr><th>Layer Name</th><th>Industry Color</th><th>Monochrome Exam Pen Style</th><th>Min Rule</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>Metal-1</strong> ($V_{DD}$, $GND$, Signals)</td><td><span style="color:#2563eb; font-weight:800;">BLUE</span></td><td>Thick solid line</td><td>$3\lambda$</td></tr>
-      <tr><td><strong>Polysilicon</strong> (Gate Inputs)</td><td><span style="color:#dc2626; font-weight:800;">RED</span></td><td>Thin solid line</td><td>$2\lambda$</td></tr>
-      <tr><td><strong>n-Diffusion</strong> (NMOS Source/Drain)</td><td><span style="color:#16a34a; font-weight:800;">GREEN</span></td><td>Double parallel / Solid line</td><td>$2\lambda$</td></tr>
-      <tr><td><strong>p-Diffusion</strong> (PMOS Source/Drain)</td><td><span style="color:#d97706; font-weight:800;">YELLOW / AMBER</span></td><td>Dotted / Cross-hatched line</td><td>$2\lambda$</td></tr>
-      <tr><td><strong>Demarcation Line</strong> (N-Well boundary)</td><td><span style="color:#78350f; font-weight:800;">BROWN DASHED</span></td><td>Long-dashed horizontal centerline</td><td>—</td></tr>
-      <tr><td><strong>Contact Cut (Via)</strong></td><td><strong>BLACK 'X'</strong></td><td>Cross ($	imes$) inside a small square</td><td>$2\lambda 	imes 2\lambda$</td></tr>
-    </tbody>
-  </table>
-
-  <div class="grid-2">
-    <!-- SVG 1: Inverter -->
-    <div class="diagram-card">
-      <svg viewBox="0 0 320 220" width="300" height="205">
-        <!-- VDD & GND Rails -->
-        <line x1="20" y1="25" x2="300" y2="25" stroke="#2563eb" stroke-width="5"/>
-        <text x="25" y="17" font-size="12" font-weight="bold" fill="#2563eb">VDD (Metal-1)</text>
-        <line x1="20" y1="195" x2="300" y2="195" stroke="#2563eb" stroke-width="5"/>
-        <text x="25" y="213" font-size="12" font-weight="bold" fill="#2563eb">GND (Metal-1)</text>
-        <!-- p-Diffusion -->
-        <line x1="70" y1="65" x2="210" y2="65" stroke="#eab308" stroke-width="6"/>
-        <text x="218" y="69" font-size="10" font-weight="bold" fill="#b45309">p-Diff (PMOS)</text>
-        <!-- n-Diffusion -->
-        <line x1="70" y1="155" x2="210" y2="155" stroke="#16a34a" stroke-width="6"/>
-        <text x="218" y="159" font-size="10" font-weight="bold" fill="#15803d">n-Diff (NMOS)</text>
-        <!-- Demarcation Line -->
-        <line x1="20" y1="110" x2="300" y2="110" stroke="#78350f" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <text x="220" y="105" font-size="9" fill="#78350f">Demarcation</text>
-        <!-- Polysilicon Gate A -->
-        <line x1="140" y1="40" x2="140" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="148" y="48" font-size="11" font-weight="bold" fill="#dc2626">Poly A (In)</text>
-        <!-- Metal straps & Contacts -->
-        <line x1="90" y1="25" x2="90" y2="65" stroke="#2563eb" stroke-width="3"/>
-        <line x1="90" y1="155" x2="90" y2="195" stroke="#2563eb" stroke-width="3"/>
-        <line x1="185" y1="65" x2="185" y2="155" stroke="#2563eb" stroke-width="3"/>
-        <line x1="185" y1="110" x2="255" y2="110" stroke="#2563eb" stroke-width="3"/>
-        <text x="260" y="114" font-size="12" font-weight="bold" fill="#2563eb">Y = Ā</text>
-        <!-- Contact X marks -->
-        <g stroke="#0f172a" stroke-width="2">
-          <line x1="85" y1="60" x2="95" y2="70"/><line x1="95" y1="60" x2="85" y2="70"/>
-          <line x1="85" y1="150" x2="95" y2="160"/><line x1="95" y1="150" x2="85" y2="160"/>
-          <line x1="180" y1="60" x2="190" y2="70"/><line x1="190" y1="60" x2="180" y2="70"/>
-          <line x1="180" y1="150" x2="190" y2="160"/><line x1="190" y1="150" x2="180" y2="160"/>
-        </g>
-      </svg>
-      <div class="diagram-caption">Fig 1.1: CMOS Inverter Stick Diagram ($Y = \overline{A}$)</div>
-    </div>
-
-    <!-- SVG 2: 2-Input NAND -->
-    <div class="diagram-card">
-      <svg viewBox="0 0 340 220" width="320" height="205">
-        <line x1="15" y1="25" x2="325" y2="25" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="17" font-size="11" font-weight="bold" fill="#2563eb">VDD (Parallel PMOS)</text>
-        <line x1="15" y1="195" x2="325" y2="195" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="213" font-size="11" font-weight="bold" fill="#2563eb">GND (Series NMOS)</text>
-        <!-- p-Diff & n-Diff -->
-        <line x1="50" y1="65" x2="260" y2="65" stroke="#eab308" stroke-width="6"/>
-        <line x1="50" y1="155" x2="260" y2="155" stroke="#16a34a" stroke-width="6"/>
-        <line x1="15" y1="110" x2="325" y2="110" stroke="#78350f" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <!-- Poly Gates A & B -->
-        <line x1="105" y1="40" x2="105" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="98" y="37" font-size="11" font-weight="bold" fill="#dc2626">A</text>
-        <line x1="205" y1="40" x2="205" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="198" y="37" font-size="11" font-weight="bold" fill="#dc2626">B</text>
-        <!-- Contacts & Metal-1 -->
-        <line x1="65" y1="25" x2="65" y2="65" stroke="#2563eb" stroke-width="3"/>
-        <line x1="245" y1="25" x2="245" y2="65" stroke="#2563eb" stroke-width="3"/>
-        <line x1="155" y1="65" x2="155" y2="125" stroke="#2563eb" stroke-width="3"/>
-        <line x1="65" y1="125" x2="155" y2="125" stroke="#2563eb" stroke-width="3"/>
-        <line x1="65" y1="125" x2="65" y2="155" stroke="#2563eb" stroke-width="3"/>
-        <line x1="155" y1="110" x2="290" y2="110" stroke="#2563eb" stroke-width="3"/>
-        <text x="294" y="114" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
-        <line x1="245" y1="155" x2="245" y2="195" stroke="#2563eb" stroke-width="3"/>
-        <g stroke="#0f172a" stroke-width="2">
-          <line x1="60" y1="60" x2="70" y2="70"/><line x1="70" y1="60" x2="60" y2="70"/>
-          <line x1="240" y1="60" x2="250" y2="70"/><line x1="250" y1="60" x2="240" y2="70"/>
-          <line x1="150" y1="60" x2="160" y2="70"/><line x1="160" y1="60" x2="150" y2="70"/>
-          <line x1="60" y1="150" x2="70" y2="160"/><line x1="70" y1="150" x2="60" y2="160"/>
-          <line x1="240" y1="150" x2="250" y2="160"/><line x1="250" y1="150" x2="240" y2="160"/>
-        </g>
-      </svg>
-      <div class="diagram-caption">Fig 1.2: 2-Input NAND Stick Diagram ($Y = \overline{A \cdot B}$)</div>
-    </div>
-  </div>
-
-  <!-- SVG 3: NOR + Compound Gate -->
-  <div class="grid-2">
-    <div class="diagram-card">
-      <svg viewBox="0 0 340 220" width="320" height="205">
-        <line x1="15" y1="25" x2="325" y2="25" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="17" font-size="11" font-weight="bold" fill="#2563eb">VDD (Series PMOS)</text>
-        <line x1="15" y1="195" x2="325" y2="195" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="213" font-size="11" font-weight="bold" fill="#2563eb">GND (Parallel NMOS)</text>
-        <line x1="50" y1="65" x2="260" y2="65" stroke="#eab308" stroke-width="6"/>
-        <line x1="50" y1="155" x2="260" y2="155" stroke="#16a34a" stroke-width="6"/>
-        <line x1="15" y1="110" x2="325" y2="110" stroke="#78350f" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <line x1="105" y1="40" x2="105" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="98" y="37" font-size="11" font-weight="bold" fill="#dc2626">A</text>
-        <line x1="205" y1="40" x2="205" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="198" y="37" font-size="11" font-weight="bold" fill="#dc2626">B</text>
-        <!-- Connections -->
-        <line x1="65" y1="25" x2="65" y2="65" stroke="#2563eb" stroke-width="3"/>
-        <line x1="65" y1="155" x2="65" y2="195" stroke="#2563eb" stroke-width="3"/>
-        <line x1="245" y1="155" x2="245" y2="195" stroke="#2563eb" stroke-width="3"/>
-        <line x1="245" y1="65" x2="245" y2="95" stroke="#2563eb" stroke-width="3"/>
-        <line x1="155" y1="95" x2="245" y2="95" stroke="#2563eb" stroke-width="3"/>
-        <line x1="155" y1="95" x2="155" y2="155" stroke="#2563eb" stroke-width="3"/>
-        <line x1="155" y1="110" x2="290" y2="110" stroke="#2563eb" stroke-width="3"/>
-        <text x="294" y="114" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
-        <g stroke="#0f172a" stroke-width="2">
-          <line x1="60" y1="60" x2="70" y2="70"/><line x1="70" y1="60" x2="60" y2="70"/>
-          <line x1="240" y1="60" x2="250" y2="70"/><line x1="250" y1="60" x2="240" y2="70"/>
-          <line x1="60" y1="150" x2="70" y2="160"/><line x1="70" y1="150" x2="60" y2="160"/>
-          <line x1="150" y1="150" x2="160" y2="160"/><line x1="160" y1="150" x2="150" y2="160"/>
-          <line x1="240" y1="150" x2="250" y2="160"/><line x1="250" y1="150" x2="240" y2="160"/>
-        </g>
-      </svg>
-      <div class="diagram-caption">Fig 1.3: 2-Input NOR Stick Diagram ($Y = \overline{A + B}$)</div>
-    </div>
-
-    <div class="diagram-card">
-      <svg viewBox="0 0 360 220" width="335" height="205">
-        <line x1="15" y1="25" x2="345" y2="25" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="17" font-size="11" font-weight="bold" fill="#2563eb">VDD (Euler Order: A - C - B)</text>
-        <line x1="15" y1="195" x2="345" y2="195" stroke="#2563eb" stroke-width="5"/>
-        <text x="20" y="213" font-size="11" font-weight="bold" fill="#2563eb">GND</text>
-        <line x1="40" y1="65" x2="290" y2="65" stroke="#eab308" stroke-width="6"/>
-        <line x1="40" y1="155" x2="290" y2="155" stroke="#16a34a" stroke-width="6"/>
-        <line x1="15" y1="110" x2="345" y2="110" stroke="#78350f" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <!-- 3 Poly lines: A, C, B -->
-        <line x1="90" y1="40" x2="90" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="85" y="37" font-size="11" font-weight="bold" fill="#dc2626">A</text>
-        <line x1="165" y1="40" x2="165" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="160" y="37" font-size="11" font-weight="bold" fill="#dc2626">C</text>
-        <line x1="240" y1="40" x2="240" y2="180" stroke="#dc2626" stroke-width="4"/>
-        <text x="235" y="37" font-size="11" font-weight="bold" fill="#dc2626">B</text>
-        <!-- Straps -->
-        <line x1="128" y1="25" x2="128" y2="65" stroke="#2563eb" stroke-width="3"/>
-        <line x1="202" y1="65" x2="202" y2="155" stroke="#2563eb" stroke-width="3"/>
-        <line x1="202" y1="110" x2="310" y2="110" stroke="#2563eb" stroke-width="3"/>
-        <text x="315" y="114" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
-        <line x1="55" y1="155" x2="55" y2="195" stroke="#2563eb" stroke-width="3"/>
-        <g stroke="#0f172a" stroke-width="2">
-          <line x1="123" y1="60" x2="133" y2="70"/><line x1="133" y1="60" x2="123" y2="70"/>
-          <line x1="197" y1="60" x2="207" y2="70"/><line x1="207" y1="60" x2="197" y2="70"/>
-          <line x1="197" y1="150" x2="207" y2="160"/><line x1="207" y1="150" x2="197" y2="160"/>
-          <line x1="50" y1="150" x2="60" y2="160"/><line x1="60" y1="150" x2="50" y2="160"/>
-        </g>
-      </svg>
-      <div class="diagram-caption">Fig 1.4: Euler's Path Stick Diagram for $Y = \overline{(A+B)\cdot C}$</div>
-    </div>
-  </div>
-
-  <h3>🎯 1.5 Euler's Path Method &amp; 18-Mark Half Adder Design</h3>
-  <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words: What is Euler's Path?</div>
-    Imagine drawing a shape <strong>without lifting your pen</strong>. In VLSI, lifting your pen means breaking the silicon diffusion strip into disconnected islands, which wastes chip space. <strong>Euler's Path</strong> finds a single left-to-right order of inputs ($A 	o C 	o B$) that visits every transistor once in both PMOS and NMOS graphs, keeping diffusion strips 100% continuous!
-  </div>
-  <ul>
-    <li><strong>Half Adder Equations (Asked in Nov 2022 — 18 Marks):</strong>
-      $	ext{Carry} = A \cdot B = \overline{\overline{A \cdot B}}$ (2-input NAND + Inverter = 6 transistors); $	ext{Sum} = A \oplus B = (A+B)\cdot \overline{AB}$.</li>
-    <li><strong>Common Euler Sequence:</strong> For Carry: $A - B$. For Sum: $A - B - ar{A} - ar{B}$. Place vertical Polysilicon tracks in this order across unbroken p-diffusion and n-diffusion strips.</li>
-  </ul>
-
-  <!-- TOPIC 2 -->
-  <h2>🏆 Topic 2: Layout Parasitics &amp; Signal Integrity (10x Repeated!)</h2>
-  <span class="freq-tag">Asked in 7 out of 8 Papers (May 2023–2026, Nov 2023–2025)</span>
-
-  <h3>🎯 2.1 Antenna Effect (Plasma-Induced Gate Oxide Breakdown)</h3>
-  <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words (The Lightning Rod Analogy)</div>
-    Think of a <strong>long metal wire</strong> on a chip as a <strong>TV antenna or lightning rod</strong>. During manufacturing, <strong>plasma etching</strong> shoots charged ions onto the wafer.<br>
-    1. A long floating wire acts like an antenna and collects static charge.<br>
-    2. If it connects only to a transistor's thin gate ($	ext{SiO}_2$) with <strong>no path to ground</strong>, high voltage builds up ($V = Q/C$) and <strong>burns a hole</strong> through the gate insulation, destroying the transistor!
-  </div>
+  <h3>1.1 CMOS Inverter ($Y = \overline{A}$) — Circuit &amp; Stick Diagram</h3>
+  <h4>Working &amp; Construction (Write for 4–6 Marks):</h4>
+  <ol>
+    <li><strong>Circuit Topology:</strong> A CMOS inverter consists of <strong>1 PMOS</strong> (Pull-Up Network) connected between $V_{DD}$ and output $Y$, and <strong>1 NMOS</strong> (Pull-Down Network) connected between output $Y$ and $GND$. Both gates are tied together to input $A$.</li>
+    <li><strong>When $A = 0$ (LOW):</strong> PMOS turns ON, NMOS turns OFF $\implies$ Output $Y$ is pulled up to $V_{DD}$ (Logic 1).</li>
+    <li><strong>When $A = 1$ (HIGH):</strong> NMOS turns ON, PMOS turns OFF $\implies$ Output $Y$ is pulled down to $GND$ (Logic 0).</li>
+    <li><strong>Stick Diagram Construction:</strong>
+      <ul>
+        <li>Draw top Blue Metal-1 rail ($V_{DD}$) and bottom Blue Metal-1 rail ($GND$).</li>
+        <li>Draw horizontal Yellow p-diffusion below $V_{DD}$ and horizontal Green n-diffusion above $GND$, separated by a dashed Demarcation Line.</li>
+        <li>Run one vertical Red Polysilicon line ($A$) crossing both diffusions to create the PMOS and NMOS transistors.</li>
+        <li>Add Contact Cuts ($\times$) to tie PMOS source to $V_{DD}$, NMOS source to $GND$, and join both drains via Metal-1 to Output $Y$.</li>
+      </ul>
+    </li>
+  </ol>
 
   <div class="diagram-card">
-    <svg viewBox="0 0 640 160" width="600" height="150">
-      <!-- Left: Breakdown -->
-      <text x="115" y="18" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">1. Antenna Effect Failure</text>
-      <text x="115" y="34" font-size="10" fill="#dc2626" text-anchor="middle">Plasma Ions (+ + + + +)</text>
-      <line x1="40" y1="50" x2="190" y2="50" stroke="#2563eb" stroke-width="6"/>
-      <text x="115" y="45" font-size="9" fill="#1e40af" text-anchor="middle">Long Metal Wire ("Antenna")</text>
-      <line x1="115" y1="50" x2="115" y2="95" stroke="#2563eb" stroke-width="3"/>
-      <rect x="85" y="95" width="60" height="14" fill="#dc2626"/>
-      <text x="115" y="105" font-size="9" fill="white" text-anchor="middle" font-weight="bold">Poly Gate</text>
-      <rect x="75" y="109" width="80" height="8" fill="#fef08a" stroke="#ca8a04"/>
-      <text x="195" y="116" font-size="9" fill="#b91c1c" font-weight="bold">⚡ SiO2 Punctured!</text>
-      <rect x="40" y="117" width="150" height="25" fill="#e2e8f0" stroke="#94a3b8"/>
-      <text x="115" y="133" font-size="10" fill="#334155" text-anchor="middle">p-Substrate</text>
+    <svg viewBox="0 0 580 215" width="540" height="200">
+      <!-- Left: Transistor Schematic -->
+      <text x="95" y="18" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">CMOS Inverter Schematic</text>
+      <line x1="65" y1="32" x2="125" y2="32" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="95" y="27" font-size="10" font-weight="bold" text-anchor="middle">VDD</text>
+      <line x1="95" y1="32" x2="95" y2="52" stroke="#0f172a" stroke-width="2"/>
+      <!-- PMOS -->
+      <line x1="95" y1="52" x2="80" y2="52" stroke="#0f172a" stroke-width="2"/>
+      <line x1="80" y1="52" x2="80" y2="82" stroke="#0f172a" stroke-width="2"/>
+      <line x1="80" y1="82" x2="95" y2="82" stroke="#0f172a" stroke-width="2"/>
+      <line x1="72" y1="52" x2="72" y2="82" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="67" cy="67" r="4" fill="white" stroke="#0f172a" stroke-width="1.5"/>
+      <text x="108" y="70" font-size="10" fill="#b45309" font-weight="bold">PMOS</text>
+      <!-- Join drains -->
+      <line x1="95" y1="82" x2="95" y2="128" stroke="#0f172a" stroke-width="2"/>
+      <line x1="95" y1="105" x2="155" y2="105" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="95" cy="105" r="3" fill="#0f172a"/>
+      <text x="160" y="109" font-size="11" font-weight="bold">Y = Ā</text>
+      <!-- NMOS -->
+      <line x1="95" y1="128" x2="80" y2="128" stroke="#0f172a" stroke-width="2"/>
+      <line x1="80" y1="128" x2="80" y2="158" stroke="#0f172a" stroke-width="2"/>
+      <line x1="80" y1="158" x2="95" y2="158" stroke="#0f172a" stroke-width="2"/>
+      <line x1="72" y1="128" x2="72" y2="158" stroke="#0f172a" stroke-width="2"/>
+      <text x="108" y="146" font-size="10" fill="#15803d" font-weight="bold">NMOS</text>
+      <!-- Gate input A -->
+      <line x1="45" y1="67" x2="63" y2="67" stroke="#0f172a" stroke-width="2"/>
+      <line x1="45" y1="143" x2="72" y2="143" stroke="#0f172a" stroke-width="2"/>
+      <line x1="45" y1="67" x2="45" y2="143" stroke="#0f172a" stroke-width="2"/>
+      <line x1="20" y1="105" x2="45" y2="105" stroke="#0f172a" stroke-width="2"/>
+      <text x="10" y="109" font-size="11" font-weight="bold">A</text>
+      <!-- GND -->
+      <line x1="95" y1="158" x2="95" y2="180" stroke="#0f172a" stroke-width="2"/>
+      <line x1="80" y1="180" x2="110" y2="180" stroke="#0f172a" stroke-width="2.5"/>
+      <line x1="85" y1="185" x2="105" y2="185" stroke="#0f172a" stroke-width="2"/>
+      <line x1="90" y1="190" x2="100" y2="190" stroke="#0f172a" stroke-width="1.5"/>
 
       <!-- Divider -->
-      <line x1="295" y1="15" x2="295" y2="145" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+      <line x1="215" y1="15" x2="215" y2="205" stroke="#cbd5e1" stroke-dasharray="4,4"/>
 
-      <!-- Right: Two Fixes -->
-      <text x="470" y="18" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">2. Prevention: Metal Hopping &amp; Diode</text>
-      <!-- Metal Hopping -->
-      <line x1="330" y1="55" x2="400" y2="55" stroke="#2563eb" stroke-width="5"/>
-      <line x1="400" y1="35" x2="400" y2="55" stroke="#0f172a" stroke-width="2"/>
-      <line x1="395" y1="35" x2="455" y2="35" stroke="#9333ea" stroke-width="5"/>
-      <text x="425" y="28" font-size="9" fill="#7e22ce" font-weight="bold" text-anchor="middle">Metal-2 Jumper</text>
-      <line x1="450" y1="35" x2="450" y2="95" stroke="#2563eb" stroke-width="3"/>
-      <rect x="425" y="95" width="50" height="14" fill="#dc2626"/>
-      <!-- Antenna Diode -->
-      <line x1="475" y1="75" x2="540" y2="75" stroke="#2563eb" stroke-width="3"/>
-      <polygon points="540,65 540,85 525,75" fill="#16a34a"/>
-      <line x1="525" y1="65" x2="525" y2="85" stroke="#16a34a" stroke-width="2"/>
-      <line x1="540" y1="75" x2="570" y2="75" stroke="#0f172a" stroke-width="2"/>
-      <text x="575" y="79" font-size="9" fill="#15803d" font-weight="bold">GND (Diode Drain)</text>
-      <rect x="330" y="117" width="270" height="25" fill="#dcfce7" stroke="#86efac"/>
-      <text x="465" y="133" font-size="10" fill="#166534" text-anchor="middle">Safe Gate Oxide (Charge shunted or isolated)</text>
+      <!-- Right: Stick Diagram -->
+      <text x="395" y="18" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">CMOS Inverter Stick Diagram</text>
+      <line x1="245" y1="35" x2="545" y2="35" stroke="#2563eb" stroke-width="5"/>
+      <text x="250" y="28" font-size="11" font-weight="bold" fill="#2563eb">VDD (Metal-1)</text>
+      <line x1="245" y1="190" x2="545" y2="190" stroke="#2563eb" stroke-width="5"/>
+      <text x="250" y="207" font-size="11" font-weight="bold" fill="#2563eb">GND (Metal-1)</text>
+      <line x1="285" y1="70" x2="450" y2="70" stroke="#eab308" stroke-width="6"/>
+      <text x="458" y="74" font-size="10" font-weight="bold" fill="#b45309">p-Diff</text>
+      <line x1="285" y1="155" x2="450" y2="155" stroke="#16a34a" stroke-width="6"/>
+      <text x="458" y="159" font-size="10" font-weight="bold" fill="#15803d">n-Diff</text>
+      <line x1="245" y1="112" x2="545" y2="112" stroke="#78350f" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <!-- Poly A -->
+      <line x1="365" y1="45" x2="365" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="373" y="54" font-size="11" font-weight="bold" fill="#dc2626">Poly A (In)</text>
+      <!-- Metal straps -->
+      <line x1="305" y1="35" x2="305" y2="70" stroke="#2563eb" stroke-width="3"/>
+      <line x1="305" y1="155" x2="305" y2="190" stroke="#2563eb" stroke-width="3"/>
+      <line x1="425" y1="70" x2="425" y2="155" stroke="#2563eb" stroke-width="3"/>
+      <line x1="425" y1="112" x2="505" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <text x="510" y="116" font-size="12" font-weight="bold" fill="#2563eb">Y = Ā</text>
+      <g stroke="#0f172a" stroke-width="2">
+        <line x1="300" y1="65" x2="310" y2="75"/><line x1="310" y1="65" x2="300" y2="75"/>
+        <line x1="300" y1="150" x2="310" y2="160"/><line x1="310" y1="150" x2="300" y2="160"/>
+        <line x1="420" y1="65" x2="430" y2="75"/><line x1="430" y1="65" x2="420" y2="75"/>
+        <line x1="420" y1="150" x2="430" y2="160"/><line x1="430" y1="150" x2="420" y2="160"/>
+      </g>
     </svg>
-    <div class="diagram-caption">Fig 2.1: Antenna Effect Gate Breakdown &amp; Remedies (Metal Hopping + Antenna Diode)</div>
+    <div class="diagram-caption">Fig 1.1: CMOS Inverter Schematic &amp; Stick Diagram ($Y = \overline{A}$)</div>
   </div>
 
-  <div class="formula-box">
-    $$	ext{Antenna Ratio} = rac{	ext{Area of Metal Interconnect}}{	ext{Area of Connected Gate Oxide}} \le 	ext{Safe Limit (typically } 200	ext{–}500	ext{)}$$
+  <!-- PAGE 3: 2-INPUT NAND & 2-INPUT NOR -->
+  <div class="page-break"></div>
+  <h3>1.2 Stick Diagrams of 2-Input NAND &amp; 2-Input NOR Gates</h3>
+  <p>To draw any static CMOS gate stick diagram effortlessly, remember the fundamental duality rule:</p>
+  <ul>
+    <li><strong>2-Input NAND ($Y = \overline{A \cdot B}$):</strong> In Pull-Down (NMOS), $A \cdot B$ means <strong>Series</strong> connection (only 1 GND contact). In Pull-Up (PMOS), the dual means <strong>Parallel</strong> connection (both PMOS sources tap to $V_{DD}$).</li>
+    <li><strong>2-Input NOR ($Y = \overline{A + B}$):</strong> In Pull-Down (NMOS), $A + B$ means <strong>Parallel</strong> connection (both NMOS sources tap to $GND$). In Pull-Up (PMOS), the dual means <strong>Series</strong> connection (only 1 $V_{DD}$ contact).</li>
+  </ul>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 620 220" width="580" height="205">
+      <!-- Left: NAND -->
+      <text x="150" y="16" font-size="11.5" font-weight="bold" fill="#1e3a8a" text-anchor="middle">2-Input CMOS NAND (Y = ~(A·B))</text>
+      <line x1="20" y1="32" x2="285" y2="32" stroke="#2563eb" stroke-width="5"/>
+      <text x="25" y="25" font-size="10" font-weight="bold" fill="#2563eb">VDD (Parallel PMOS)</text>
+      <line x1="20" y1="195" x2="285" y2="195" stroke="#2563eb" stroke-width="5"/>
+      <text x="25" y="212" font-size="10" font-weight="bold" fill="#2563eb">GND (Series NMOS)</text>
+      <line x1="45" y1="70" x2="245" y2="70" stroke="#eab308" stroke-width="6"/>
+      <line x1="45" y1="155" x2="245" y2="155" stroke="#16a34a" stroke-width="6"/>
+      <line x1="20" y1="112" x2="285" y2="112" stroke="#78350f" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="95" y1="45" x2="95" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="89" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">A</text>
+      <line x1="190" y1="45" x2="190" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="184" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">B</text>
+      <line x1="60" y1="32" x2="60" y2="70" stroke="#2563eb" stroke-width="3"/>
+      <line x1="225" y1="32" x2="225" y2="70" stroke="#2563eb" stroke-width="3"/>
+      <line x1="142" y1="70" x2="142" y2="128" stroke="#2563eb" stroke-width="3"/>
+      <line x1="60" y1="128" x2="142" y2="128" stroke="#2563eb" stroke-width="3"/>
+      <line x1="60" y1="128" x2="60" y2="155" stroke="#2563eb" stroke-width="3"/>
+      <line x1="142" y1="112" x2="265" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <text x="270" y="116" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
+      <line x1="225" y1="155" x2="225" y2="195" stroke="#2563eb" stroke-width="3"/>
+      <g stroke="#0f172a" stroke-width="2">
+        <line x1="55" y1="65" x2="65" y2="75"/><line x1="65" y1="65" x2="55" y2="75"/>
+        <line x1="220" y1="65" x2="230" y2="75"/><line x1="230" y1="65" x2="220" y2="75"/>
+        <line x1="137" y1="65" x2="147" y2="75"/><line x1="147" y1="65" x2="137" y2="75"/>
+        <line x1="55" y1="150" x2="65" y2="160"/><line x1="65" y1="150" x2="55" y2="160"/>
+        <line x1="220" y1="150" x2="230" y2="160"/><line x1="230" y1="150" x2="220" y2="160"/>
+      </g>
+
+      <!-- Divider -->
+      <line x1="310" y1="10" x2="310" y2="210" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+
+      <!-- Right: NOR -->
+      <text x="465" y="16" font-size="11.5" font-weight="bold" fill="#1e3a8a" text-anchor="middle">2-Input CMOS NOR (Y = ~(A+B))</text>
+      <line x1="335" y1="32" x2="600" y2="32" stroke="#2563eb" stroke-width="5"/>
+      <text x="340" y="25" font-size="10" font-weight="bold" fill="#2563eb">VDD (Series PMOS)</text>
+      <line x1="335" y1="195" x2="600" y2="195" stroke="#2563eb" stroke-width="5"/>
+      <text x="340" y="212" font-size="10" font-weight="bold" fill="#2563eb">GND (Parallel NMOS)</text>
+      <line x1="360" y1="70" x2="560" y2="70" stroke="#eab308" stroke-width="6"/>
+      <line x1="360" y1="155" x2="560" y2="155" stroke="#16a34a" stroke-width="6"/>
+      <line x1="335" y1="112" x2="600" y2="112" stroke="#78350f" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="410" y1="45" x2="410" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="404" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">A</text>
+      <line x1="505" y1="45" x2="505" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="499" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">B</text>
+      <line x1="375" y1="32" x2="375" y2="70" stroke="#2563eb" stroke-width="3"/>
+      <line x1="375" y1="155" x2="375" y2="195" stroke="#2563eb" stroke-width="3"/>
+      <line x1="540" y1="155" x2="540" y2="195" stroke="#2563eb" stroke-width="3"/>
+      <line x1="540" y1="70" x2="540" y2="98" stroke="#2563eb" stroke-width="3"/>
+      <line x1="457" y1="98" x2="540" y2="98" stroke="#2563eb" stroke-width="3"/>
+      <line x1="457" y1="98" x2="457" y2="155" stroke="#2563eb" stroke-width="3"/>
+      <line x1="457" y1="112" x2="580" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <text x="585" y="116" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
+      <g stroke="#0f172a" stroke-width="2">
+        <line x1="370" y1="65" x2="380" y2="75"/><line x1="380" y1="65" x2="370" y2="75"/>
+        <line x1="535" y1="65" x2="545" y2="75"/><line x1="545" y1="65" x2="535" y2="75"/>
+        <line x1="370" y1="150" x2="380" y2="160"/><line x1="380" y1="150" x2="370" y2="160"/>
+        <line x1="452" y1="150" x2="462" y2="160"/><line x1="462" y1="150" x2="452" y2="160"/>
+        <line x1="535" y1="150" x2="545" y2="160"/><line x1="545" y1="150" x2="535" y2="160"/>
+      </g>
+    </svg>
+    <div class="diagram-caption">Fig 1.2 &amp; 1.3: Side-by-Side Comparison of 2-Input NAND and 2-Input NOR Stick Diagrams</div>
   </div>
 
-  <h3>🎯 2.2 Electromigration (EM) &amp; Black's Equation</h3>
+  <!-- PAGE 4: EULER'S PATH & COMPOUND GATE -->
+  <div class="page-break"></div>
+  <h3>1.3 Euler's Path Method &amp; Compound Gate: $Y = \overline{(A + B) \cdot C}$</h3>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Question:</strong> <em>"Find Euler's path and draw stick diagram for CMOS Boolean Equation $Y = \overline{(A+B)\cdot C}$."</em> (6–8 Marks)
+  </div>
+
   <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words (River Pushing Pebbles Analogy)</div>
-    Imagine a fast-flowing <strong>river pushing sand and pebbles</strong> downstream. Inside a wire, high-speed flowing electrons act like an <strong>"electron wind"</strong> that bumps into metal atoms and physically pushes them forward. Over time, empty holes (<strong>Voids</strong> $	o$ open circuit) form at the start, and piles (<strong>Hillocks</strong> $	o$ short circuit) form at the end!
+    <div class="simple-title">💡 In Simple Words: Why Do We Need Euler's Path?</div>
+    Imagine trying to draw a house <strong>without lifting your pen from the paper</strong>. In a chip layout, lifting your pen means <strong>breaking the silicon diffusion strip</strong> into isolated islands and adding extra metal wires to jump across. That wastes up to 35% of silicon area and slows down the chip!<br>
+    <strong>Euler's Path</strong> finds the exact left-to-right input order (e.g., $A \to C \to B$) so both PMOS and NMOS form <strong>one single, unbroken diffusion strip</strong>.
+  </div>
+
+  <h4>4-Step Exam Algorithm (Write These Exact Steps):</h4>
+  <ol>
+    <li><strong>Draw Pull-Up (PMOS) &amp; Pull-Down (NMOS) Graphs:</strong> Represent every electrical circuit node ($V_{DD}, GND, Y$, intermediate nodes $X, Z$) as a <strong>Vertex (dot)</strong>, and every transistor ($A, B, C$) as an <strong>Edge (line)</strong>.</li>
+    <li><strong>Trace PMOS Euler Path:</strong> Find a path visiting every PMOS edge exactly once. For $Y = \overline{(A+B)\cdot C}$, $A$ and $B$ are in series (via node $Z$) in parallel with $C$. Sequence: <strong>$A \to C \to B$</strong>.</li>
+    <li><strong>Verify NMOS Euler Path:</strong> Check if the exact same order <strong>$A \to C \to B$</strong> visits every NMOS edge once without lifting the pen. Here, $A$ and $B$ are parallel (between $Y$ and $X$) in series with $C$ (to $GND$). Tracing $Y \xrightarrow{A} X \xrightarrow{C} GND$ (Wait: $A - B - C$ or $C - A - B$? Let's check: $A$ is $Y\text{-}X$, $B$ is $Y\text{-}X$, $C$ is $X\text{-}GND$. Path $C \to A \to B$: $GND \xrightarrow{C} X \xrightarrow{A} Y \xrightarrow{B} X$. In PMOS: $Z \xrightarrow{C}$ wait, $A$ is $V_{DD}\text{-}Z$, $B$ is $Z\text{-}Y$, $C$ is $V_{DD}\text{-}Y$. Trace $B \to A \to C$: $Y \xrightarrow{B} Z \xrightarrow{A} V_{DD} \xrightarrow{C} Y$! And in NMOS for $B \to A \to C$: $X \xrightarrow{B} Y \xrightarrow{A} X \xrightarrow{C} GND$! Both work continuously!).</li>
+    <li><strong>Draw Stick Diagram:</strong> Place 3 vertical Red Polysilicon lines in order <strong>$B - A - C$</strong> (or $C - A - B$) across continuous p-diffusion and n-diffusion strips.</li>
+  </ol>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 600 215" width="560" height="200">
+      <!-- Left: Euler Graphs -->
+      <text x="110" y="18" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Dual Euler Graphs (B - A - C)</text>
+      <!-- PMOS Graph -->
+      <text x="110" y="36" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">PMOS Graph (PUN)</text>
+      <circle cx="50" cy="60" r="4" fill="#0f172a"/><text x="35" y="57" font-size="9" font-weight="bold">VDD</text>
+      <circle cx="170" cy="60" r="4" fill="#0f172a"/><text x="176" y="57" font-size="9" font-weight="bold">Y</text>
+      <circle cx="110" cy="95" r="4" fill="#0f172a"/><text x="106" y="108" font-size="9" font-weight="bold">Z</text>
+      <line x1="50" y1="60" x2="170" y2="60" stroke="#eab308" stroke-width="2.5"/>
+      <text x="110" y="54" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">C</text>
+      <line x1="50" y1="60" x2="110" y2="95" stroke="#eab308" stroke-width="2.5"/>
+      <text x="72" y="86" font-size="10" font-weight="bold" fill="#b45309">A</text>
+      <line x1="110" y1="95" x2="170" y2="60" stroke="#eab308" stroke-width="2.5"/>
+      <text x="145" y="86" font-size="10" font-weight="bold" fill="#b45309">B</text>
+
+      <!-- NMOS Graph -->
+      <text x="110" y="132" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">NMOS Graph (PDN)</text>
+      <circle cx="40" cy="175" r="4" fill="#0f172a"/><text x="20" y="179" font-size="9" font-weight="bold">Y</text>
+      <circle cx="115" cy="175" r="4" fill="#0f172a"/><text x="112" y="192" font-size="9" font-weight="bold">X</text>
+      <circle cx="180" cy="175" r="4" fill="#0f172a"/><text x="186" y="179" font-size="9" font-weight="bold">GND</text>
+      <path d="M 40,175 Q 77,145 115,175" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="77" y="155" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">B</text>
+      <path d="M 40,175 Q 77,205 115,175" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="77" y="202" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">A</text>
+      <line x1="115" y1="175" x2="180" y2="175" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="147" y="169" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">C</text>
+
+      <!-- Divider -->
+      <line x1="225" y1="10" x2="225" y2="205" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+
+      <!-- Right: Stick Diagram (B - A - C) -->
+      <text x="415" y="18" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Unbroken Stick Diagram (B - A - C)</text>
+      <line x1="250" y1="35" x2="580" y2="35" stroke="#2563eb" stroke-width="5"/>
+      <text x="255" y="28" font-size="10" font-weight="bold" fill="#2563eb">VDD</text>
+      <line x1="250" y1="190" x2="580" y2="190" stroke="#2563eb" stroke-width="5"/>
+      <text x="255" y="207" font-size="10" font-weight="bold" fill="#2563eb">GND</text>
+      <line x1="270" y1="70" x2="530" y2="70" stroke="#eab308" stroke-width="6"/>
+      <line x1="270" y1="155" x2="530" y2="155" stroke="#16a34a" stroke-width="6"/>
+      <line x1="250" y1="112" x2="580" y2="112" stroke="#78350f" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <!-- Poly B, A, C -->
+      <line x1="320" y1="45" x2="320" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="315" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">B</text>
+      <line x1="400" y1="45" x2="400" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="395" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">A</text>
+      <line x1="480" y1="45" x2="480" y2="180" stroke="#dc2626" stroke-width="4"/>
+      <text x="475" y="42" font-size="10.5" font-weight="bold" fill="#dc2626">C</text>
+      <!-- Connections -->
+      <line x1="440" y1="35" x2="440" y2="70" stroke="#2563eb" stroke-width="3"/>
+      <line x1="285" y1="70" x2="285" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <line x1="515" y1="70" x2="515" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <line x1="285" y1="112" x2="555" y2="112" stroke="#2563eb" stroke-width="3"/>
+      <text x="560" y="116" font-size="11" font-weight="bold" fill="#2563eb">Y</text>
+      <line x1="360" y1="112" x2="360" y2="155" stroke="#2563eb" stroke-width="3"/>
+      <line x1="515" y1="155" x2="515" y2="190" stroke="#2563eb" stroke-width="3"/>
+      <g stroke="#0f172a" stroke-width="2">
+        <line x1="435" y1="65" x2="445" y2="75"/><line x1="445" y1="65" x2="435" y2="75"/>
+        <line x1="280" y1="65" x2="290" y2="75"/><line x1="290" y1="65" x2="280" y2="75"/>
+        <line x1="510" y1="65" x2="520" y2="75"/><line x1="520" y1="65" x2="510" y2="75"/>
+        <line x1="355" y1="150" x2="365" y2="160"/><line x1="365" y1="150" x2="355" y2="160"/>
+        <line x1="510" y1="150" x2="520" y2="160"/><line x1="520" y1="150" x2="510" y2="160"/>
+      </g>
+    </svg>
+    <div class="diagram-caption">Fig 1.4: Euler Graphs and Unbroken Stick Diagram for $Y = \overline{(A+B)\cdot C}$ (Order: $B - A - C$)</div>
+  </div>
+
+  <!-- PAGE 5: 18-MARK HALF ADDER -->
+  <div class="page-break"></div>
+  <h3>1.4 Master 18-Mark Problem: CMOS Half Adder Complete Design</h3>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Question (Nov/Dec 2022 — 18 Marks!):</strong><br>
+    <em>"Draw block diagram of half adder and its truth table. Draw its CMOS transistor level circuit. Draw Euler's Path for both networks. Draw stick diagram for Sum and Carry."</em>
   </div>
 
   <div class="grid-2">
-    <div class="diagram-card">
-      <svg viewBox="0 0 320 110" width="300" height="100">
-        <rect x="20" y="35" width="280" height="35" fill="#cbd5e1" stroke="#475569"/>
-        <!-- Void -->
-        <circle cx="70" cy="52" r="12" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,2"/>
-        <text x="70" y="25" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">Void (Open)</text>
-        <!-- Electron Wind arrows -->
-        <line x1="115" y1="52" x2="185" y2="52" stroke="#2563eb" stroke-width="2.5"/>
-        <polygon points="185,47 195,52 185,57" fill="#2563eb"/>
-        <text x="150" y="45" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">e⁻ Wind (J)</text>
-        <!-- Hillock -->
-        <path d="M 230,35 Q 250,10 270,35 Z" fill="#94a3b8" stroke="#b91c1c" stroke-width="2"/>
-        <text x="250" y="12" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">Hillock (Short)</text>
-      </svg>
-      <div class="diagram-caption">Fig 2.2: Electromigration Voids &amp; Hillocks</div>
+    <div>
+      <h4>Step 1: Block Diagram &amp; Truth Table</h4>
+      <p>A <strong>Half Adder</strong> adds two 1-bit binary inputs ($A, B$) and produces two outputs: <strong>Sum ($S$)</strong> and <strong>Carry ($C$)</strong>.</p>
+      <table>
+        <thead><tr><th>$A$</th><th>$B$</th><th>Sum ($S = A \oplus B$)</th><th>Carry ($C = A \cdot B$)</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>0</td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+          <tr><td>0</td><td>1</td><td><strong>1</strong></td><td><strong>0</strong></td></tr>
+          <tr><td>1</td><td>0</td><td><strong>1</strong></td><td><strong>0</strong></td></tr>
+          <tr><td>1</td><td>1</td><td><strong>0</strong></td><td><strong>1</strong></td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="formula-box" style="margin: 12px 0;">
-      <strong>Black's Equation (MTTF):</strong>
-      $$	ext{MTTF} = rac{A}{J^n} \exp\left(rac{E_a}{kT}ight)$$
-      <div style="font-size:11.5px; text-align:left; margin-top:6px;">
-        • <strong>Fixes:</strong> Widen $V_{DD}/GND$ rails (lowers $J$), use <strong>Copper (Cu)</strong> instead of Al, and add redundant multiple vias.
+    <div>
+      <h4>Step 2: CMOS Boolean Equations</h4>
+      <div class="formula-box" style="text-align:left; font-size:12.5px;">
+        $$\text{Carry} = A \cdot B = \overline{\overline{A \cdot B}} \quad (\text{2-Input NAND} + \text{Inverter})$$
+        $$\text{Sum} = A \oplus B = \bar{A}B + A\bar{B} = (A + B) \cdot \overline{A \cdot B}$$
+        *(Implemented using 6 transistors for Carry and 8–10 transistors for Sum!)*
       </div>
     </div>
   </div>
 
-  <h3>🎯 2.3 Interconnect Crosstalk</h3>
-  <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words (Highway Lanes Analogy)</div>
-    Two parallel metal wires sitting very close together form a tiny capacitor ($C_c$). When one wire switches rapidly from $0 	o 1$ (<strong>Aggressor Line</strong>), it pushes a fake voltage spike onto its quiet neighbor (<strong>Victim Line</strong>)—like a speeding truck shaking a small car in the next lane!
-  </div>
-  <div class="formula-box">
-    $$\Delta V_{	ext{victim}} = V_{	ext{swing}} \cdot \left(rac{C_c}{C_c + C_{	ext{gnd}}}ight) \qquad 	ext{• Prevention: GND Shielding, Larger Spacing, Orthogonal Metal Layers}$$
+  <h4>Step 3: Euler's Path &amp; Stick Diagram Strategy (For Full 18/18 Marks)</h4>
+  <ol>
+    <li><strong>Carry Circuit &amp; Euler Path:</strong> Built using a 2-input NAND gate (output $\overline{AB}$) followed by a CMOS Inverter (output $C = AB$). Common Euler sequence for NAND is <strong>$A - B$</strong>, followed by 1 poly track driven by $\overline{AB}$ for the inverter.</li>
+    <li><strong>Sum Circuit &amp; Euler Path:</strong> Using inverted inputs $\bar{A}, \bar{B}$ (or $\overline{AB}$), the static CMOS XOR/OAI pull-up &amp; pull-down networks share a continuous Euler Path sequence: <strong>$A \to B \to \bar{A} \to \bar{B}$</strong>.</li>
+    <li><strong>Combined Stick Diagram:</strong> Draw continuous top $V_{DD}$ and bottom $GND$ Metal-1 rails, uninterrupted p-diffusion (top) and n-diffusion (bottom), and run vertical Polysilicon gates in Euler sequence to tap both <strong>Sum</strong> and <strong>Carry</strong> outputs.</li>
+  </ol>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 600 185" width="560" height="175">
+      <text x="300" y="16" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Half Adder Carry Block (NAND + Inverter) Stick Diagram</text>
+      <line x1="20" y1="30" x2="580" y2="30" stroke="#2563eb" stroke-width="5"/>
+      <text x="25" y="23" font-size="10" font-weight="bold" fill="#2563eb">VDD</text>
+      <line x1="20" y1="165" x2="580" y2="165" stroke="#2563eb" stroke-width="5"/>
+      <text x="25" y="180" font-size="10" font-weight="bold" fill="#2563eb">GND</text>
+      <line x1="50" y1="62" x2="530" y2="62" stroke="#eab308" stroke-width="6"/>
+      <line x1="50" y1="132" x2="530" y2="132" stroke="#16a34a" stroke-width="6"/>
+      <line x1="20" y1="97" x2="580" y2="97" stroke="#78350f" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <!-- Poly A, B (NAND) and Poly ~(AB) (Inverter) -->
+      <line x1="120" y1="40" x2="120" y2="155" stroke="#dc2626" stroke-width="4"/>
+      <text x="114" y="38" font-size="10" font-weight="bold" fill="#dc2626">A</text>
+      <line x1="220" y1="40" x2="220" y2="155" stroke="#dc2626" stroke-width="4"/>
+      <text x="214" y="38" font-size="10" font-weight="bold" fill="#dc2626">B</text>
+      <line x1="420" y1="40" x2="420" y2="155" stroke="#dc2626" stroke-width="4"/>
+      <text x="410" y="38" font-size="9.5" font-weight="bold" fill="#dc2626">~(AB)</text>
+      <!-- NAND Straps -->
+      <line x1="75" y1="30" x2="75" y2="62" stroke="#2563eb" stroke-width="3"/>
+      <line x1="265" y1="30" x2="265" y2="62" stroke="#2563eb" stroke-width="3"/>
+      <line x1="170" y1="62" x2="170" y2="110" stroke="#2563eb" stroke-width="3"/>
+      <line x1="75" y1="110" x2="170" y2="110" stroke="#2563eb" stroke-width="3"/>
+      <line x1="75" y1="110" x2="75" y2="132" stroke="#2563eb" stroke-width="3"/>
+      <line x1="265" y1="132" x2="265" y2="165" stroke="#2563eb" stroke-width="3"/>
+      <!-- NAND Out to Inverter Poly -->
+      <line x1="170" y1="97" x2="420" y2="97" stroke="#2563eb" stroke-width="2.5"/>
+      <!-- Inverter Straps -->
+      <line x1="365" y1="30" x2="365" y2="62" stroke="#2563eb" stroke-width="3"/>
+      <line x1="365" y1="132" x2="365" y2="165" stroke="#2563eb" stroke-width="3"/>
+      <line x1="485" y1="62" x2="485" y2="132" stroke="#2563eb" stroke-width="3"/>
+      <line x1="485" y1="97" x2="545" y2="97" stroke="#2563eb" stroke-width="3"/>
+      <text x="548" y="101" font-size="11" font-weight="bold" fill="#2563eb">Carry</text>
+      <g stroke="#0f172a" stroke-width="2">
+        <line x1="70" y1="57" x2="80" y2="67"/><line x1="80" y1="57" x2="70" y2="67"/>
+        <line x1="260" y1="57" x2="270" y2="67"/><line x1="270" y1="57" x2="260" y2="67"/>
+        <line x1="165" y1="57" x2="175" y2="67"/><line x1="175" y1="57" x2="165" y2="67"/>
+        <line x1="70" y1="127" x2="80" y2="137"/><line x1="80" y1="127" x2="70" y2="137"/>
+        <line x1="260" y1="127" x2="270" y2="137"/><line x1="270" y1="127" x2="260" y2="137"/>
+        <line x1="360" y1="57" x2="370" y2="67"/><line x1="370" y1="57" x2="360" y2="67"/>
+        <line x1="360" y1="127" x2="370" y2="137"/><line x1="370" y1="127" x2="360" y2="137"/>
+        <line x1="480" y1="57" x2="490" y2="67"/><line x1="490" y1="57" x2="480" y2="67"/>
+        <line x1="480" y1="127" x2="490" y2="137"/><line x1="490" y1="127" x2="480" y2="137"/>
+      </g>
+    </svg>
+    <div class="diagram-caption">Fig 1.5: Half Adder Carry Output Stick Diagram ($C = A \cdot B$)</div>
   </div>
 
-  <!-- TOPIC 3 -->
+  <!-- PAGE 6-7: TOPIC 2A - ANTENNA EFFECT -->
+  <div class="page-break"></div>
+  <h2>🏆 Topic 2: Layout Parasitics &amp; Signal Integrity (10x Repeated!)</h2>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered (Asked in 7 out of 8 Papers):</strong><br>
+    • <em>"Explain Antenna Effect in brief / Write short note on Antenna Effect."</em> (May 2023, Nov 2023, May 2024, May 2025, Nov 2025 — 5 to 8 Marks)<br>
+    • <em>"Explain Antenna Effect and Electromigration Effect in VLSI circuits."</em> (May 2026 — 8 Marks)
+  </div>
+
+  <h3>2.1 Antenna Effect (Plasma-Induced Gate Oxide Damage)</h3>
+  <div class="simple-box">
+    <div class="simple-title">💡 In Simple Words (The Lightning Rod / TV Antenna Analogy)</div>
+    Think of a <strong>long metal wire</strong> on a chip as a <strong>TV antenna or lightning rod</strong>.<br>
+    During chip manufacturing, a process called <strong>plasma etching</strong> shoots charged ions onto the wafer to carve out metal wires:<br>
+    1. A long, floating metal wire acts like an <strong>antenna</strong> and collects static electric charge from the plasma.<br>
+    2. If that wire connects directly to a MOSFET's ultra-thin <strong>gate oxide ($\text{SiO}_2$)</strong> and has <strong>no escape path to ground</strong>, all that charge gets trapped at the gate.<br>
+    3. Voltage builds up rapidly ($V = Q/C_{\text{ox}}$) and <strong>punches a hole (burns/breaks down)</strong> through the gate insulation, permanently destroying the transistor!
+  </div>
+
+  <h4>Detailed Exam Explanation (Write for 6 to 8 Marks):</h4>
+  <ol>
+    <li><strong>Physical Cause:</strong> Modern VLSI fabrication uses <strong>Reactive Ion Etching (RIE)</strong> to pattern metal interconnects. During RIE, the wafer is exposed to high-energy ionized plasma gases ($Ar^+, Cl^+$).</li>
+    <li><strong>Charge Accumulation:</strong> Unconnected ("floating") metal tracks act as charge collectors. The longer or wider the metal track, the larger the charge $Q$ it captures before upper layers are even deposited.</li>
+    <li><strong>Catastrophic Breakdown:</strong> Because the transistor's silicon dioxide ($\text{SiO}_2$) gate dielectric is extremely thin ($2\text{–}5\text{ nm}$), if the induced voltage exceeds $\approx 10\text{ MV/cm}$, Fowler-Nordheim tunneling or permanent dielectric breakdown occurs, causing gate leakage or dead transistors.</li>
+  </ol>
+
+  <div class="formula-box">
+    <strong>Antenna Ratio Design Rule:</strong>
+    $$\text{Antenna Ratio (AR)} = \frac{\text{Surface Area of Exposed Metal Interconnect}}{\text{Area of Connected Gate Oxide}} \le \text{Max Foundry Limit (typically } 200\text{–}500\text{)}$$
+  </div>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 640 165" width="600" height="155">
+      <!-- Left: Breakdown -->
+      <text x="125" y="18" font-size="11.5" font-weight="bold" fill="#b91c1c" text-anchor="middle">1. Antenna Effect Failure</text>
+      <text x="125" y="34" font-size="10" fill="#dc2626" text-anchor="middle">Plasma Ions (+ + + + +)</text>
+      <line x1="40" y1="52" x2="210" y2="52" stroke="#2563eb" stroke-width="6"/>
+      <text x="125" y="46" font-size="9.5" fill="#1e40af" text-anchor="middle">Long Floating Metal-1 ("Antenna")</text>
+      <line x1="125" y1="52" x2="125" y2="95" stroke="#2563eb" stroke-width="3"/>
+      <rect x="95" y="95" width="60" height="14" fill="#dc2626"/>
+      <text x="125" y="105" font-size="9" fill="white" text-anchor="middle" font-weight="bold">Poly Gate</text>
+      <rect x="85" y="109" width="80" height="8" fill="#fef08a" stroke="#ca8a04"/>
+      <text x="220" y="116" font-size="9.5" fill="#b91c1c" font-weight="bold">⚡ SiO2 Punctured!</text>
+      <rect x="40" y="117" width="170" height="28" fill="#e2e8f0" stroke="#94a3b8"/>
+      <text x="125" y="135" font-size="10" fill="#334155" text-anchor="middle">p-Substrate (No discharge path)</text>
+
+      <line x1="305" y1="15" x2="305" y2="150" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+
+      <!-- Right: Remedies -->
+      <text x="475" y="18" font-size="11.5" font-weight="bold" fill="#15803d" text-anchor="middle">2. Remedies: Metal Hopping &amp; Diode</text>
+      <line x1="335" y1="55" x2="405" y2="55" stroke="#2563eb" stroke-width="5"/>
+      <line x1="405" y1="35" x2="405" y2="55" stroke="#0f172a" stroke-width="2"/>
+      <line x1="400" y1="35" x2="460" y2="35" stroke="#9333ea" stroke-width="5"/>
+      <text x="430" y="28" font-size="9.5" fill="#7e22ce" font-weight="bold" text-anchor="middle">Metal-2 Jumper</text>
+      <line x1="455" y1="35" x2="455" y2="95" stroke="#2563eb" stroke-width="3"/>
+      <rect x="430" y="95" width="50" height="14" fill="#dc2626"/>
+      <line x1="480" y1="75" x2="545" y2="75" stroke="#2563eb" stroke-width="3"/>
+      <polygon points="545,65 545,85 530,75" fill="#16a34a"/>
+      <line x1="530" y1="65" x2="530" y2="85" stroke="#16a34a" stroke-width="2"/>
+      <line x1="545" y1="75" x2="575" y2="75" stroke="#0f172a" stroke-width="2"/>
+      <text x="580" y="79" font-size="9.5" fill="#15803d" font-weight="bold">GND (Diode)</text>
+      <rect x="335" y="117" width="270" height="28" fill="#dcfce7" stroke="#86efac"/>
+      <text x="470" y="135" font-size="10" fill="#166534" text-anchor="middle">Protected Gate Oxide (Safe Charge Path)</text>
+    </svg>
+    <div class="diagram-caption">Fig 2.1: Antenna Effect Gate Breakdown &amp; Prevention Techniques</div>
+  </div>
+
+  <h4>Three Standard Mitigation Techniques (Write All 3 in Exam):</h4>
+  <ol>
+    <li><strong>Metal Hopping (Layer Jumping):</strong> Break the long Metal-1 wire near the gate and jump up to a higher metal layer (Metal-2 or Metal-3). While Metal-1 is being etched, the long upper metal wire does not exist yet—keeping the antenna area near the gate tiny!</li>
+    <li><strong>Antenna Diode Insertion:</strong> Place a small reverse-biased $p\text{-}n$ junction diode connected to $GND$ directly adjacent to the gate. During normal chip operation it is OFF (reverse-biased), but during high-voltage plasma etching it breaks down harmlessly and drains static charge into the substrate.</li>
+    <li><strong>Increasing Gate Oxide / Dummy Gate Insertion:</strong> Connecting parallel dummy transistor gates increases the total gate capacitance, lowering the induced voltage ($V = Q/C$).</li>
+  </ol>
+
+  <!-- PAGE 8-9: ELECTROMIGRATION & CROSSTALK -->
+  <div class="page-break"></div>
+  <h3>2.2 Electromigration (EM) &amp; Black's Empirical Law</h3>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Question:</strong> <em>"Explain Electro migration effect in detail."</em> (Nov 2023, May 2023, May 2026 — 6 to 8 Marks)
+  </div>
+
+  <div class="simple-box">
+    <div class="simple-title">💡 In Simple Words (The River &amp; Pebbles Analogy)</div>
+    Imagine a fast-flowing <strong>river pushing sand and pebbles</strong> downstream. Inside a chip's metal wire, high-speed flowing electrons act like an <strong>"electron wind"</strong> that physically bumps into metal atoms and pushes them forward over time. This leaves empty holes at the start (<strong>Voids $\to$ wire snaps open</strong>) and giant piles at the end (<strong>Hillocks $\to$ wire shorts to its neighbor</strong>)!
+  </div>
+
+  <ol>
+    <li><strong>Physical Mechanism:</strong> Under high DC current density ($J > 10^5\text{ to }10^6\text{ A/cm}^2$), moving conduction electrons transfer momentum to thermally agitated metal lattice ions via collisions. This "electron wind force" overcomes lattice binding forces and drives metal atoms from the cathode (negative) toward the anode (positive).</li>
+    <li><strong>Two Catastrophic Failure Modes:</strong>
+      <ul>
+        <li><strong>Voids (Upstream / Cathode):</strong> Depletion of metal atoms creates cavities that increase wire resistance and eventually cause an <strong>Open Circuit</strong>.</li>
+        <li><strong>Hillocks / Whiskers (Downstream / Anode):</strong> Accumulation of metal atoms bulges outward, cracking surrounding $\text{SiO}_2$ insulation and touching adjacent wires to cause a <strong>Short Circuit</strong>.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="grid-2">
+    <div class="diagram-card">
+      <svg viewBox="0 0 320 115" width="300" height="105">
+        <rect x="20" y="38" width="280" height="35" fill="#cbd5e1" stroke="#475569"/>
+        <circle cx="70" cy="55" r="12" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,2"/>
+        <text x="70" y="28" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">Void (Open)</text>
+        <line x1="115" y1="55" x2="185" y2="55" stroke="#2563eb" stroke-width="2.5"/>
+        <polygon points="185,50 195,55 185,60" fill="#2563eb"/>
+        <text x="150" y="48" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">e⁻ Wind (J)</text>
+        <path d="M 230,38 Q 250,12 270,38 Z" fill="#94a3b8" stroke="#b91c1c" stroke-width="2"/>
+        <text x="250" y="13" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">Hillock (Short)</text>
+      </svg>
+      <div class="diagram-caption">Fig 2.2: Electromigration Void &amp; Hillock Formation</div>
+    </div>
+    <div class="formula-box" style="margin:14px 0; text-align:left;">
+      <strong>Black's Equation for Mean Time to Failure (MTTF):</strong>
+      $$\text{MTTF} = \frac{A}{J^n} \exp\left(\frac{E_a}{kT}\right)$$
+      <span style="font-size:12px;">
+        • $A$ = Cross-sectional geometry constant<br>
+        • $J$ = Current density ($\text{A/cm}^2$), $n \approx 2$<br>
+        • $E_a$ = Activation energy ($0.6\text{ eV}$ Al, $1.0\text{ eV}$ Cu)<br>
+        • $k$ = Boltzmann constant, $T$ = Temp (K)
+      </span>
+    </div>
+  </div>
+
+  <h4>Prevention Techniques:</h4>
+  <ul>
+    <li><strong>Widen Power Rails ($V_{DD}/GND$):</strong> Increasing cross-sectional area directly reduces current density $J$ (since $\text{MTTF} \propto 1/J^2$).</li>
+    <li><strong>Use Copper (Cu) Instead of Aluminum (Al):</strong> Copper has a higher melting point and higher activation energy ($E_a = 1.0\text{ eV}$), giving 10x better EM lifetime.</li>
+    <li><strong>Redundant Vias:</strong> Use double/multiple vias at high-current bends so if one via degrades, current still flows safely.</li>
+  </ul>
+
+  <h3>2.3 Interconnect Crosstalk</h3>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Question:</strong> <em>"Write short note on Cross talk."</em> (Nov 2024, May 2025 — 5 to 6 Marks)
+  </div>
+
+  <div class="simple-box">
+    <div class="simple-title">💡 In Simple Words (The Highway Lanes Analogy)</div>
+    When two metal wires run side-by-side very closely, they act like plates of a tiny <strong>parasitic capacitor ($C_c$)</strong>. When one wire switches rapidly from $0 \to 1$ (<strong>Aggressor Line</strong>), it pushes a fake voltage spike onto its quiet neighbor (<strong>Victim Line</strong>)—just like a speeding truck shaking a small car in the next lane!
+  </div>
+
+  <div class="formula-box">
+    $$\Delta V_{\text{victim}} = V_{\text{swing}} \cdot \left(\frac{C_c}{C_c + C_{\text{gnd}}}\right)$$
+  </div>
+  <ul>
+    <li><strong>Harmful Effects:</strong> (1) <strong>Crosstalk Glitch:</strong> False logic switching ($0 \to 1$ spike) on a static line. (2) <strong>Crosstalk Delay (Miller Effect):</strong> Opposite switching doubles effective capacitance, causing setup/hold timing violations.</li>
+    <li><strong>Prevention:</strong> (1) Insert grounded ($GND$) <strong>shielding wires</strong> between critical buses; (2) <strong>Increase wire spacing</strong> ($\ge 2\times$ min spacing); (3) Route adjacent layers <strong>orthogonally</strong> (Metal-1 horizontal, Metal-2 vertical); (4) Insert repeater buffers on long lines.</li>
+  </ul>
+
+  <!-- PAGE 10-11: LAMBDA DESIGN RULES -->
+  <div class="page-break"></div>
   <h2>🏆 Topic 3: Lambda ($\lambda$) Based Layout Design Rules (Mead-Conway)</h2>
-  <span class="freq-tag">Asked 6 times (Nov 2022, May 2023, Nov 2023, May 2024, Nov 2024, May 2025)</span>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered (Asked 6 times across 6 papers):</strong><br>
+    • <em>"Explain LAMBDA rules used for CMOS layout design. Give its significance."</em> (Nov 2022, Nov 2023, May 2024, Nov 2024, May 2025 — 6 to 9 Marks)<br>
+    • <em>"Discuss Lambda rules with diagram? (Any 6 rules)"</em> (May 2023 — 6 Marks)
+  </div>
 
   <div class="simple-box">
     <div class="simple-title">💡 In Simple Words (The LEGO Brick Analogy)</div>
-    Imagine building a castle with <strong>LEGO bricks</strong> where every wall is "2 studs wide" and "3 studs apart." If a factory makes LEGO bricks half as big, you don't redesign the castle—it shrinks automatically! <strong>$\lambda$ (Lambda)</strong> is that single "stud unit" (<strong>half of minimum transistor length, $L_{\min}=2\lambda$</strong>). All layout sizes scale effortlessly across technologies simply by changing $\lambda$.
+    Imagine building a castle with <strong>LEGO bricks</strong> where every wall is "2 studs wide" and "3 studs apart." If a factory invents LEGO bricks that are half as big, you don't need to redesign your castle—it shrinks automatically to half the size!<br>
+    In VLSI, <strong>$\lambda$ (Lambda)</strong> is that single "stud unit"—defined as <strong>half the minimum transistor feature length ($L_{\min} = 2\lambda$)</strong>. Writing layouts in multiples of $\lambda$ makes designs 100% scalable across future technology generations.
   </div>
 
+  <h3>3.1 Scalability Significance &amp; Lambda vs. Micron Rules</h3>
+  <ul>
+    <li><strong>Numeric Scalability Example:</strong> Suppose a chip layout is designed at $0.5\,\mu\text{m}$ technology ($\lambda = 0.25\,\mu\text{m}$). When the foundry upgrades to $0.25\,\mu\text{m}$ technology, you simply change the software parameter to $\lambda = 0.125\,\mu\text{m}$—all geometries scale linearly without redrawing a single polygon!</li>
+  </ul>
   <table>
-    <thead><tr><th>Layer / Feature</th><th>Min Width / Size</th><th>Min Spacing / Overlap</th><th>Why This Rule Exists</th></tr></thead>
+    <thead><tr><th>Parameter</th><th>Lambda ($\lambda$) Rules (Mead-Conway)</th><th>Micron ($\mu\text{m}$ / $\text{nm}$) Rules</th></tr></thead>
     <tbody>
-      <tr><td><strong>Active Diffusion ($n^+, p^+$)</strong></td><td><strong>$2\lambda$</strong></td><td><strong>$3\lambda$</strong> spacing</td><td>Prevents source/drain punch-through between neighbors.</td></tr>
-      <tr><td><strong>Polysilicon (Gates)</strong></td><td><strong>$2\lambda$</strong></td><td><strong>$2\lambda$</strong> spacing; <strong>$2\lambda$</strong> overhang</td><td>Overhang prevents source-drain short around gate tip.</td></tr>
-      <tr><td><strong>Contact Cut</strong></td><td><strong>$2\lambda 	imes 2\lambda$</strong></td><td><strong>$1\lambda$</strong> metal/diff surround</td><td>Prevents etching misalignment open circuits.</td></tr>
-      <tr><td><strong>Metal-1 / Metal-2</strong></td><td><strong>$3\lambda$</strong></td><td><strong>$3\lambda$</strong> (M1), <strong>$4\lambda$</strong> (M2)</td><td>Reduces series wire resistance and capacitive crosstalk.</td></tr>
+      <tr><td><strong>Measurement Unit</strong></td><td>Dimensionless integer multiples ($2\lambda, 3\lambda$).</td><td>Absolute physical dimensions ($\mu\text{m}$ or $\text{nm}$).</td></tr>
+      <tr><td><strong>Process Scalability</strong></td><td><strong>Highly Scalable</strong> across technology nodes.</td><td><strong>Not Scalable</strong>; tied to one specific foundry process.</td></tr>
+      <tr><td><strong>Silicon Packing Density</strong></td><td>Conservative (wastes 10–15% area for safety).</td><td>Maximum density (tailored for commercial CPUs/GPUs).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 The 8 Essential Mead-Conway $\lambda$ Design Rules (With Diagrams)</h3>
+  <table>
+    <thead><tr><th>Layer / Check</th><th>Rule &amp; Min Value</th><th>Physical Significance (Why Rule Exists)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. Active Diffusion ($n^+, p^+$)</strong></td><td>Min Width = <strong>$2\lambda$</strong><br>Min Spacing = <strong>$3\lambda$</strong></td><td>Width defines min transistor $W$. $3\lambda$ spacing prevents punch-through &amp; depletion overlap.</td></tr>
+      <tr><td><strong>2. Polysilicon (Gate)</strong></td><td>Min Width = <strong>$2\lambda$</strong><br>Min Spacing = <strong>$2\lambda$</strong></td><td>$2\lambda$ width sets minimum channel length ($L_{\min}$). Spacing prevents bridging shorts.</td></tr>
+      <tr><td><strong>3. Poly Overhang of Diff</strong></td><td>Min Extension = <strong>$2\lambda$</strong></td><td>Ensures Poly completely crosses diffusion even with mask misalignment (stops S-D short).</td></tr>
+      <tr><td><strong>4. Diff Extension past Poly</strong></td><td>Min Extension = <strong>$2\lambda$</strong></td><td>Provides enough area on both sides of the gate to form Source and Drain regions.</td></tr>
+      <tr><td><strong>5. Poly-to-Diff Clearance</strong></td><td>Min Spacing = <strong>$1\lambda$</strong></td><td>Clearance required where a non-gate Poly wire passes near active diffusion.</td></tr>
+      <tr><td><strong>6. Contact Cut Rules</strong></td><td>Cut Size = <strong>$2\lambda \times 2\lambda$</strong><br>Overlap = <strong>$1\lambda$</strong></td><td>$1\lambda$ Metal/Diff surround around the $2\lambda \times 2\lambda$ hole prevents open circuits during etching.</td></tr>
+      <tr><td><strong>7. Metal-1 Rules</strong></td><td>Min Width = <strong>$3\lambda$</strong><br>Min Spacing = <strong>$3\lambda$</strong></td><td>Wider than poly ($3\lambda$) to lower wire resistance and prevent electromigration/crosstalk.</td></tr>
+      <tr><td><strong>8. Metal-2 &amp; N-Well</strong></td><td>M2 Width = <strong>$3\lambda$</strong>, Space = <strong>$4\lambda$</strong><br>N-Well Width = <strong>$10\lambda\text{–}12\lambda$</strong></td><td>Larger M2 spacing handles step-coverage topography; N-Well width prevents latch-up.</td></tr>
     </tbody>
   </table>
 
   <div class="diagram-card">
-    <svg viewBox="0 0 600 110" width="560" height="100">
-      <!-- Diffusion spacing -->
+    <svg viewBox="0 0 600 115" width="560" height="105">
       <rect x="20" y="30" width="45" height="45" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
       <text x="42" y="57" font-size="10" text-anchor="middle" font-weight="bold">Diff</text>
       <line x1="65" y1="52" x2="110" y2="52" stroke="#0f172a" stroke-width="1.5"/>
       <text x="87" y="46" font-size="10" text-anchor="middle" font-weight="bold">3λ</text>
       <rect x="110" y="30" width="45" height="45" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
-      <text x="132" y="92" font-size="9" text-anchor="middle" fill="#475569">Diff Width ≥ 2λ, Space ≥ 3λ</text>
+      <text x="132" y="95" font-size="9.5" text-anchor="middle" fill="#475569">Diff Width ≥ 2λ, Space ≥ 3λ</text>
 
-      <!-- Poly Overhang -->
       <rect x="225" y="35" width="110" height="35" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
       <rect x="268" y="15" width="24" height="75" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
       <text x="280" y="57" font-size="9" text-anchor="middle" font-weight="bold" fill="#991b1b">2λ</text>
-      <text x="312" y="25" font-size="9" font-weight="bold" fill="#dc2626">2λ Overhang</text>
-      <text x="280" y="102" font-size="9" text-anchor="middle" fill="#475569">Transistor Gate Rules</text>
+      <text x="315" y="25" font-size="9.5" font-weight="bold" fill="#dc2626">2λ Overhang</text>
+      <text x="280" y="105" font-size="9.5" text-anchor="middle" fill="#475569">Transistor Gate Overhang</text>
 
-      <!-- Contact Cut -->
       <rect x="440" y="22" width="60" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
       <rect x="455" y="37" width="30" height="30" fill="#0f172a"/>
       <text x="470" y="56" font-size="9" fill="white" text-anchor="middle" font-weight="bold">2λ×2λ</text>
-      <text x="530" y="45" font-size="9" fill="#2563eb" font-weight="bold">1λ Surround</text>
-      <text x="470" y="98" font-size="9" text-anchor="middle" fill="#475569">Contact Cut Rules</text>
+      <text x="535" y="45" font-size="9.5" fill="#2563eb" font-weight="bold">1λ Surround</text>
+      <text x="470" y="102" font-size="9.5" text-anchor="middle" fill="#475569">Contact Cut Rules</text>
     </svg>
-    <div class="diagram-caption">Fig 3.1: Mead-Conway $\lambda$-Based Design Rule Sketches</div>
+    <div class="diagram-caption">Fig 3.1: Mead-Conway $\lambda$-Based Design Rule Sketches (Draw in Exam for Full Marks)</div>
   </div>
 
-  <!-- TOPIC 4 -->
-  <h2>🏆 Topic 4: SPICE Simulation &amp; CMOS Inverter Code (AC, DC, Transient)</h2>
-  <span class="freq-tag">Asked 6 times (Nov 2023, Nov 2024, May 2025, Nov 2025, May 2026)</span>
+  <!-- PAGE 12-13: SPICE SIMULATION -->
+  <div class="page-break"></div>
+  <h2>🏆 Topic 4: SPICE Simulation &amp; CMOS Inverter Code</h2>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered (Asked 6 times across 5 papers):</strong><br>
+    • <em>"Write SPICE code for CMOS invertor for AC analysis."</em> (Nov 2023, Nov 2024, May 2025 — 6 Marks)<br>
+    • <em>"Explain DC and transient analysis using SPICE / Discuss SPICE simulation and explain AC and DC analysis."</em> (May 2025, Nov 2025, May 2026 — 6 to 8 Marks)
+  </div>
 
   <div class="simple-box">
-    <div class="simple-title">💡 In Simple Words: Virtual Breadboard</div>
-    Making a real chip costs millions of dollars. <strong>SPICE</strong> is a <strong>virtual breadboard &amp; oscilloscope</strong> where you describe your circuit in text (<strong>Netlist</strong>) to test voltages, delays, and frequencies <em>before</em> manufacturing.
+    <div class="simple-title">💡 In Simple Words (The Virtual Breadboard &amp; Oscilloscope)</div>
+    Fabricating a real silicon wafer costs millions of dollars—you cannot afford trial-and-error! <strong>SPICE</strong> (<em>Simulation Program with Integrated Circuit Emphasis</em>) is a <strong>virtual breadboard</strong> on a computer. You describe your transistors and connections in a simple text file called a <strong>Netlist</strong>, and SPICE solves circuit equations to predict exact voltages, switching delays, and frequency curves before manufacturing.
   </div>
-  <ul>
-    <li><strong>DC Analysis (<code>.DC</code>):</strong> Sweeps $V_{	ext{in}}$ from $0 	o V_{DD}$ to plot the <strong>VTC curve</strong> and find <strong>Noise Margins</strong> ($NM_H, NM_L$).</li>
-    <li><strong>Transient Analysis (<code>.TRAN</code>):</strong> Applies a pulse over <strong>time</strong> to measure rise time ($t_r$), fall time ($t_f$), and propagation delay ($t_{pd}$).</li>
-    <li><strong>AC Analysis (<code>.AC</code>):</strong> Sweeps <strong>frequency</strong> to plot <strong>Bode Magnitude (dB) &amp; Phase</strong> and find 3-dB bandwidth.</li>
-  </ul>
 
-<pre><code>* SPICE Netlist: CMOS Inverter AC Analysis (Nodes: 1=VDD, 2=Vin, 3=Vout, 0=GND)
+  <h3>4.1 The Three Primary SPICE Circuit Analyses</h3>
+  <table>
+    <thead><tr><th>Analysis Type</th><th>SPICE Command</th><th>What It Sweeps</th><th>Parameters Measured in VLSI</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. DC Analysis</strong></td><td><code>.DC VIN 0 1.8 0.01</code></td><td>DC Input Voltage ($V_{\text{in}}$) while time is frozen.</td><td>Plots <strong>VTC Curve</strong> ($V_{\text{out}}$ vs $V_{\text{in}}$), Switching Threshold ($V_M$), Noise Margins ($NM_H, NM_L$).</td></tr>
+      <tr><td><strong>2. Transient Analysis</strong></td><td><code>.TRAN 10p 10n</code></td><td><strong>Time ($t$)</strong> with pulse/square-wave inputs.</td><td>Rise time ($t_r$), Fall time ($t_f$), Propagation Delays ($t_{pLH}, t_{pHL}$), Dynamic Power.</td></tr>
+      <tr><td><strong>3. AC Analysis</strong></td><td><code>.AC DEC 10 1K 10G</code></td><td><strong>Frequency ($f$)</strong> around a fixed DC bias point.</td><td><strong>Bode Plot</strong> (Magnitude dB &amp; Phase vs Frequency), 3-dB Bandwidth, Unity-Gain Freq ($f_T$).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 Complete SPICE Netlist: CMOS Inverter AC Analysis</h3>
+  <p>Every SPICE netlist follows 4 strict sections: <strong>(1) Voltage Sources</strong>, <strong>(2) Circuit Elements (MOSFETs &amp; Capacitors)</strong>, <strong>(3) <code>.MODEL</code> Parameters</strong>, and <strong>(4) Analysis &amp; Output Directives</strong>.</p>
+
+<pre><code>* SPICE Netlist for CMOS Inverter AC Analysis
+* Node Numbering Convention: 1 = VDD, 2 = Vin (Input), 3 = Vout (Output), 0 = GND
+
+* 1. Power Supply &amp; Input AC Signal Source
 VDD  1  0  DC 1.8V
-VIN  2  0  DC 0.9V  AC 1.0V                  ; DC Bias at 0.9V + 1V AC Sweep
+VIN  2  0  DC 0.9V  AC 1.0V                  ; DC Bias at V_M (0.9V) + 1V AC small-signal
 
-M1   3  2  1  1  PMOS_MOD  W=2.0u  L=0.18u   ; PMOS Pull-Up (Source &amp; Bulk to VDD)
-M2   3  2  0  0  NMOS_MOD  W=1.0u  L=0.18u   ; NMOS Pull-Down (Source &amp; Bulk to GND)
-CL   3  0  50fF                              ; Output Load Capacitance
+* 2. MOSFET Transistors (Syntax: Mname Drain Gate Source Bulk ModelName W L)
+M1   3  2  1  1  PMOS_MOD  W=2.0u  L=0.18u   ; PMOS Pull-Up (Source &amp; Bulk tied to VDD=1)
+M2   3  2  0  0  NMOS_MOD  W=1.0u  L=0.18u   ; NMOS Pull-Down (Source &amp; Bulk tied to GND=0)
 
+* 3. Output Load Capacitance
+CL   3  0  50fF                              ; 50 fF capacitive load at Vout
+
+* 4. Transistor Device Models
 .MODEL NMOS_MOD NMOS (LEVEL=1 VTO=0.4 KP=120u)
 .MODEL PMOS_MOD PMOS (LEVEL=1 VTO=-0.4 KP=40u)
 
-.AC DEC 10 1K 10G                            ; Decade sweep: 1 kHz to 10 GHz
-.PRINT AC VDB(3) VP(3)                       ; Output Magnitude (dB) &amp; Phase
+* 5. AC Sweep Command (Decade sweep: 10 points/decade from 1 kHz to 10 GHz)
+.AC DEC 10 1K 10G
+
+* 6. Print &amp; Plot Output (Magnitude in dB and Phase at Output Node 3)
+.PRINT AC VDB(3) VP(3)
+.PLOT  AC VDB(3)
 .END</code></pre>
 
-  <!-- TOPIC 5 & 6 -->
-  <h2>🏆 Topic 5 &amp; 6: Physical Verification (DRC, ERC, LVS) &amp; ASIC Flow</h2>
-  <span class="freq-tag">Asked 9 times combined (May 2023–2026, Nov 2024–2025)</span>
+  <p><strong>Exam Quick-Swap Tip:</strong> If the exam asks for <strong>DC Analysis</strong>, replace <code>.AC...</code> with <code>.DC VIN 0 1.8 0.01</code> and <code>.PRINT DC V(3)</code>. For <strong>Transient Analysis</strong>, use <code>VIN 2 0 PULSE(0 1.8 0 0.1n 0.1n 2n 4n)</code> with <code>.TRAN 0.05n 10n</code>.</p>
 
-  <div class="grid-2">
-    <div class="diagram-card">
-      <svg viewBox="0 0 340 160" width="320" height="150">
-        <rect x="20" y="15" width="110" height="30" rx="5" fill="#1e3a8a"/>
-        <text x="75" y="34" font-size="10" fill="white" text-anchor="middle" font-weight="bold">Layout (GDSII)</text>
-        <line x1="130" y1="30" x2="170" y2="30" stroke="#0f172a" stroke-width="2"/>
-        <rect x="170" y="15" width="150" height="30" rx="5" fill="#eff6ff" stroke="#2563eb"/>
-        <text x="245" y="34" font-size="10" fill="#1e40af" text-anchor="middle" font-weight="bold">1. DRC (Geometry Rules)</text>
-        <line x1="75" y1="45" x2="75" y2="70" stroke="#0f172a" stroke-width="2"/>
-        <rect x="15" y="70" width="120" height="30" rx="5" fill="#f0fdf4" stroke="#16a34a"/>
-        <text x="75" y="89" font-size="10" fill="#166534" text-anchor="middle" font-weight="bold">2. Extraction (R, C)</text>
-        <line x1="135" y1="85" x2="170" y2="85" stroke="#0f172a" stroke-width="2"/>
-        <rect x="170" y="70" width="150" height="30" rx="5" fill="#fefce8" stroke="#eab308"/>
-        <text x="245" y="89" font-size="10" fill="#854d0e" text-anchor="middle" font-weight="bold">3. ERC (Shorts/Floating)</text>
-        <line x1="75" y1="100" x2="75" y2="120" stroke="#0f172a" stroke-width="2"/>
-        <rect x="45" y="120" width="250" height="30" rx="5" fill="#fef2f2" stroke="#dc2626"/>
-        <text x="170" y="139" font-size="10" fill="#991b1b" text-anchor="middle" font-weight="bold">4. LVS: Layout Netlist == Golden Schematic</text>
-      </svg>
-      <div class="diagram-caption">Fig 5.1: Physical Verification Flow (DRC → Extraction → ERC → LVS)</div>
-    </div>
-    <div>
-      <ul>
-        <li><strong>ASIC 8-Step Flow (City Planning Analogy):</strong>
-          1. RTL Entry $	o$ 2. Logic Synthesis $	o$ 3. Partitioning $	o$ 4. Floorplanning (district zoning) $	o$ 5. Placement (rows) $	o$ 6. Clock Tree Synthesis (synchronized traffic lights, zero skew) $	o$ 7. Routing (roads) $	o$ 8. Verification &amp; <strong>GDSII</strong> Tape-Out.</li>
-        <li><strong>Cell Design Specification:</strong> Uniform cell height (9/12-track), aligned $V_{DD}/GND$ Metal-1 rails, on-grid I/O pins, and `.lib` timing/power models.</li>
-      </ul>
-    </div>
+  <!-- PAGE 14-15: PHYSICAL VERIFICATION -->
+  <div class="page-break"></div>
+  <h2>🏆 Topic 5: Physical Verification Flow (DRC, Extraction, ERC, LVS)</h2>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered (Asked 5 times):</strong><br>
+    • <em>"Explain circuit extraction, ERC, and LVS verification techniques."</em> (May 2026 — 8 Marks)<br>
+    • <em>"Write short note on Electrical Rule Check / Layout Vs Schematic."</em> (May 2024, Nov 2025 — 6 Marks)
   </div>
 
-  <!-- TOPIC 7 -->
-  <h2>🏆 Topic 7: CMOS Transistor Fabrication Process (N-Well Steps)</h2>
-  <span class="freq-tag">Asked in Nov/Dec 2022 (12 Marks)</span>
-
-  <p><strong>9-Step Sequence:</strong> (1) $p$-Substrate + $	ext{SiO}_2$ $	o$ (2) <strong>N-Well</strong> implant (Phosphorus, $1100^\circ	ext{C}$) $	o$ (3) Active Area &amp; <strong>FOX (LOCOS)</strong> isolation $	o$ (4) Thin Gate Oxide + <strong>Poly Gate</strong> $	o$ (5) $n^+$ S/D implant (Arsenic for NMOS) $	o$ (6) $p^+$ S/D implant (Boron for PMOS) $	o$ (7) ILD ($	ext{SiO}_2$) $	o$ (8) Contact Cuts $	o$ (9) Metal-1 &amp; $	ext{Si}_3	ext{N}_4$ Passivation.</p>
+  <div class="simple-box">
+    <div class="simple-title">💡 In Simple Words (4 Final Quality Checks Before Printing a Book)</div>
+    Before sending your layout (GDSII) to the factory, it must pass 4 strict automated checks:<br>
+    1. <strong>DRC (Spellcheck):</strong> Did you break any $\lambda$ width or spacing rules?<br>
+    2. <strong>Circuit Extraction (Weighing Wires):</strong> Measures real parasitic resistance ($R$) and capacitance ($C$) of your drawn wires.<br>
+    3. <strong>ERC (Safety Inspector):</strong> Checks for electrical disasters like $V_{DD}$ shorted to $GND$ or floating gates.<br>
+    4. <strong>LVS (Blueprint Match):</strong> Compares the drawn layout against your original schematic to prove they are 100% identical!
+  </div>
 
   <div class="diagram-card">
-    <svg viewBox="0 0 600 175" width="560" height="160">
-      <!-- p-Substrate -->
-      <rect x="20" y="90" width="560" height="75" fill="#e2e8f0" stroke="#64748b"/>
-      <text x="150" y="150" font-size="11" font-weight="bold" fill="#334155">p-Type Silicon Substrate (NMOS Body)</text>
-      <!-- N-Well -->
-      <path d="M 310,90 L 560,90 L 560,145 Q 560,155 545,155 L 325,155 Q 310,155 310,145 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
-      <text x="435" y="142" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">N-Well (PMOS Body)</text>
-      <!-- n+ and p+ regions -->
-      <rect x="65" y="90" width="45" height="22" fill="#86efac" stroke="#16a34a" stroke-width="1.5"/>
-      <text x="87" y="105" font-size="10" font-weight="bold" text-anchor="middle">n+</text>
-      <rect x="175" y="90" width="45" height="22" fill="#86efac" stroke="#16a34a" stroke-width="1.5"/>
-      <text x="197" y="105" font-size="10" font-weight="bold" text-anchor="middle">n+</text>
-      <rect x="345" y="90" width="45" height="22" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/>
-      <text x="367" y="105" font-size="10" font-weight="bold" text-anchor="middle">p+</text>
-      <rect x="455" y="90" width="45" height="22" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/>
-      <text x="477" y="105" font-size="10" font-weight="bold" text-anchor="middle">p+</text>
-      <!-- Field Oxide (FOX) -->
-      <rect x="240" y="75" width="55" height="18" rx="4" fill="#bae6fd" stroke="#0284c7"/>
-      <text x="267" y="88" font-size="9" text-anchor="middle" font-weight="bold">FOX</text>
-      <!-- Poly Gates & Gate Oxide -->
-      <rect x="115" y="83" width="55" height="7" fill="#fef08a"/>
-      <rect x="115" y="65" width="55" height="18" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5"/>
-      <text x="142" y="78" font-size="9" font-weight="bold" text-anchor="middle">Poly</text>
-      <rect x="395" y="83" width="55" height="7" fill="#fef08a"/>
-      <rect x="395" y="65" width="55" height="18" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5"/>
-      <text x="422" y="78" font-size="9" font-weight="bold" text-anchor="middle">Poly</text>
-      <!-- Metal Contacts -->
-      <rect x="75" y="30" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
-      <rect x="185" y="30" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
-      <rect x="355" y="30" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
-      <rect x="465" y="30" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
-      <text x="87" y="23" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">GND</text>
-      <text x="280" y="23" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">Metal-1 Interconnects</text>
-      <text x="477" y="23" font-size="9" font-weight="bold" fill="#1e40af" text-anchor="middle">VDD</text>
+    <svg viewBox="0 0 560 165" width="520" height="155">
+      <rect x="20" y="15" width="140" height="34" rx="6" fill="#1e3a8a"/>
+      <text x="90" y="36" font-size="11" fill="white" text-anchor="middle" font-weight="bold">Physical Layout (GDSII)</text>
+      <line x1="160" y1="32" x2="230" y2="32" stroke="#0f172a" stroke-width="2"/>
+      <polygon points="225,27 235,32 225,37" fill="#0f172a"/>
+      <rect x="235" y="15" width="295" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="382" y="36" font-size="11" fill="#1e40af" text-anchor="middle" font-weight="bold">1. DRC (Geometric Width, Spacing &amp; Antenna Rules)</text>
+
+      <line x1="90" y1="49" x2="90" y2="70" stroke="#0f172a" stroke-width="2"/>
+      <rect x="20" y="70" width="180" height="34" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="110" y="91" font-size="10.5" fill="#166534" text-anchor="middle" font-weight="bold">2. Circuit Extraction (Netlist + R,C)</text>
+      <line x1="200" y1="87" x2="235" y2="87" stroke="#0f172a" stroke-width="2"/>
+      <rect x="235" y="70" width="295" height="34" rx="6" fill="#fefce8" stroke="#eab308" stroke-width="1.5"/>
+      <text x="382" y="91" font-size="10.5" fill="#854d0e" text-anchor="middle" font-weight="bold">3. ERC (Power Shorts, Floating Gates, Well Taps)</text>
+
+      <line x1="110" y1="104" x2="110" y2="122" stroke="#0f172a" stroke-width="2"/>
+      <rect x="70" y="122" width="420" height="34" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+      <text x="280" y="143" font-size="11" fill="#991b1b" text-anchor="middle" font-weight="bold">4. LVS: Extracted Layout Netlist ══ Golden Schematic Netlist</text>
+    </svg>
+    <div class="diagram-caption">Fig 5.1: Physical Verification Flow Before Foundry Tape-Out</div>
+  </div>
+
+  <table>
+    <thead><tr><th>Stage</th><th>Full Name &amp; Purpose</th><th>Specific Errors &amp; Violations Caught</th><th>Industry EDA Tools</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DRC</strong></td><td><strong>Design Rule Check:</strong> Verifies geometric polygons obey foundry $\lambda$/micron rules.</td><td>Width violations, clearance shorts, contact enclosure errors, antenna ratio violations.</td><td>Siemens Calibre DRC, Synopsys IC Validator</td></tr>
+      <tr><td><strong>Extraction</strong></td><td><strong>Circuit / Parasitic Extraction:</strong> Converts geometric shapes back into an electrical SPICE netlist.</td><td>Extracts exact transistor $W/L$, parasitic resistances ($R$) &amp; coupling capacitances ($C$) for timing check.</td><td>Calibre xRC, Cadence Quantus</td></tr>
+      <tr><td><strong>ERC</strong></td><td><strong>Electrical Rule Check:</strong> Verifies electrical sanity of the extracted circuit.</td><td>Direct $V_{DD}$-to-$GND$ shorts, floating transistor gates, missing well/substrate bias taps.</td><td>Calibre ERC, Cadence Pegasus</td></tr>
+      <tr><td><strong>LVS</strong></td><td><strong>Layout Versus Schematic:</strong> Proves 1-to-1 topological match between layout and schematic.</td><td>Missing/extra devices, wrong $W/L$ sizes, swapped input/output pins, short/open nets.</td><td>Siemens Calibre LVS, Cadence PVS</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PAGE 16-17: ASIC DESIGN FLOW & CELL SPEC -->
+  <div class="page-break"></div>
+  <h2>🏆 Topic 6: ASIC Physical Design Flow &amp; Cell Specification</h2>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Questions Covered (Asked 4 times):</strong><br>
+    • <em>"Draw and explain ASIC design flow."</em> (May 2023, Nov 2024, May 2025 — 6 Marks)<br>
+    • <em>"Explain cell design specification."</em> (Nov 2024 — 6 Marks)
+  </div>
+
+  <div class="simple-box">
+    <div class="simple-title">💡 In Simple Words (The Smart City Planning Analogy)</div>
+    Building an ASIC microchip is just like planning a <strong>smart city</strong>: <strong>Floorplanning</strong> divides the land into districts; <strong>Placement</strong> puts houses neatly along streets; <strong>Clock Tree Synthesis (CTS)</strong> synchronizes all traffic lights so cars arrive on time; and <strong>Routing</strong> builds the roads connecting every house!
+  </div>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 600 95" width="570" height="90">
+      <g font-size="9.5" font-weight="bold" text-anchor="middle">
+        <rect x="5" y="10" width="65" height="32" rx="4" fill="#eff6ff" stroke="#2563eb"/><text x="37" y="30" fill="#1e40af">1. RTL</text>
+        <line x1="70" y1="26" x2="82" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="82" y="10" width="75" height="32" rx="4" fill="#eff6ff" stroke="#2563eb"/><text x="119" y="30" fill="#1e40af">2. Synthesis</text>
+        <line x1="157" y1="26" x2="169" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="169" y="10" width="85" height="32" rx="4" fill="#f0fdf4" stroke="#16a34a"/><text x="211" y="30" fill="#166534">3. Partitioning</text>
+        <line x1="254" y1="26" x2="266" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="266" y="10" width="85" height="32" rx="4" fill="#f0fdf4" stroke="#16a34a"/><text x="308" y="30" fill="#166534">4. Floorplan</text>
+        <line x1="351" y1="26" x2="363" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="363" y="10" width="80" height="32" rx="4" fill="#fefce8" stroke="#eab308"/><text x="403" y="30" fill="#854d0e">5. Placement</text>
+        <line x1="443" y1="26" x2="455" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="455" y="10" width="65" height="32" rx="4" fill="#fefce8" stroke="#eab308"/><text x="487" y="30" fill="#854d0e">6. CTS</text>
+        <line x1="520" y1="26" x2="532" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="532" y="10" width="63" height="32" rx="4" fill="#fef2f2" stroke="#dc2626"/><text x="563" y="30" fill="#991b1b">7. Route</text>
+        <line x1="563" y1="42" x2="563" y2="55" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="180" y="55" width="415" height="28" rx="4" fill="#0f172a"/><text x="387" y="73" fill="white">8. Signoff (DRC + LVS + STA) ──► GDSII Tape-Out</text>
+      </g>
+    </svg>
+    <div class="diagram-caption">Fig 6.1: Complete 8-Step ASIC Physical Design Backend Flow</div>
+  </div>
+
+  <ol>
+    <li><strong>Design Entry (RTL Coding):</strong> Hardware logic is written in Verilog/VHDL and verified using functional simulation.</li>
+    <li><strong>Logic Synthesis:</strong> Converts RTL code into a <strong>Gate-Level Netlist</strong> using a Standard Cell Library, optimizing for speed, area, and power.</li>
+    <li><strong>System Partitioning:</strong> Divides large chip architectures into smaller, manageable functional subsystems.</li>
+    <li><strong>Floorplanning &amp; Power Planning:</strong> Sets chip die size, I/O pad rings, macro block positions, and builds $V_{DD}/GND$ power rings to prevent IR voltage drop.</li>
+    <li><strong>Placement:</strong> Organizes standard library cells into regular horizontal rows to minimize total wirelength and congestion.</li>
+    <li><strong>Clock Tree Synthesis (CTS):</strong> Inserts balanced clock buffers (H-tree / mesh) so the clock edge reaches every flip-flop simultaneously (<strong>zero Clock Skew</strong>).</li>
+    <li><strong>Routing (Global &amp; Detailed):</strong> Global routing plans wire channels; detailed routing draws exact DRC-clean metal tracks and vias.</li>
+    <li><strong>Physical Verification &amp; Tape-Out:</strong> Runs DRC, ERC, LVS, and Static Timing Analysis (STA), then exports the final <strong>GDSII</strong> mask file to the foundry.</li>
+  </ol>
+
+  <h3>6.2 Cell Design Specification (Standard Cell Library Rules)</h3>
+  <ul>
+    <li><strong>Fixed Uniform Cell Height:</strong> All standard cells (Inverter, NAND, Flip-Flop) share the exact same vertical height (e.g., 9 or 12 tracks) so they snap cleanly into rows; only horizontal width varies.</li>
+    <li><strong>Abutting Power Rails:</strong> Top $V_{DD}$ and bottom $GND$ Metal-1 rails have identical width and vertical offset so adjacent cells automatically share power.</li>
+    <li><strong>On-Grid I/O Pins:</strong> Input and output pins sit strictly on routing grid intersections for automated routers.</li>
+    <li><strong>Liberty Characterization (<code>.lib</code>):</strong> Propagation delay ($t_{pd}$), input capacitance ($C_{\text{in}}$), slew rate, and power tables are pre-measured across PVT (Process, Voltage, Temperature) corners.</li>
+  </ul>
+
+  <!-- PAGE 18-19: CMOS FABRICATION -->
+  <div class="page-break"></div>
+  <h2>🏆 Topic 7: CMOS Transistor Fabrication Process (N-Well Steps)</h2>
+  <div class="exam-q-box">
+    <strong>SPPU Exact Question:</strong> <em>"Explain the steps involved in fabrication of CMOS transistor with suitable diagram."</em> (Nov/Dec 2022 — 12 Marks)
+  </div>
+
+  <p>The <strong>N-Well CMOS Process</strong> builds both NMOS (directly inside the $p$-type silicon wafer) and PMOS (inside an implanted $n$-type well) on the same chip through <strong>9 sequential photolithography steps</strong>:</p>
+  <ol>
+    <li><strong>Wafer Preparation &amp; Initial Oxidation:</strong> Start with a lightly doped $p$-type silicon wafer. Grow a thin protective silicon dioxide ($\text{SiO}_2$) layer thermally in a furnace.</li>
+    <li><strong>N-Well Formation (Mask 1):</strong> Coat with photoresist, expose through N-Well mask, etch oxide, and implant <strong>Phosphorus ($n$-type)</strong> donor ions. Drive in at $1100^\circ\text{C}$ to form the N-Well (body for PMOS).</li>
+    <li><strong>Active Area &amp; Field Oxide Isolation (Mask 2):</strong> Pattern Silicon Nitride ($\text{Si}_3\text{N}_4$) over active transistor zones. Grow thick <strong>Field Oxide (FOX)</strong> via <strong>LOCOS</strong> (or STI) to isolate neighboring transistors.</li>
+    <li><strong>Thin Gate Oxide &amp; Polysilicon Gate (Mask 3):</strong> Grow ultra-pure thin gate oxide ($\text{SiO}_2$, $2\text{–}5\text{ nm}$). Deposit Polysilicon via CVD, dope heavily, and pattern with Mask 3 to create <strong>self-aligned gates</strong>.</li>
+    <li><strong>$n^+$ Source/Drain Implantation (Mask 4):</strong> Mask PMOS areas; implant <strong>Arsenic</strong> into the $p$-substrate to form NMOS source/drain and N-Well bias taps.</li>
+    <li><strong>$p^+$ Source/Drain Implantation (Mask 5):</strong> Mask NMOS areas; implant <strong>Boron</strong> into the N-Well to form PMOS source/drain and $p$-substrate bias taps.</li>
+    <li><strong>Inter-Layer Dielectric (ILD) Deposition:</strong> Deposit a thick insulating $\text{SiO}_2$ / BPSG layer across the entire wafer surface.</li>
+    <li><strong>Contact Cut Etching (Mask 6):</strong> Etch vertical contact windows through the ILD down to source, drain, and gate terminals using RIE.</li>
+    <li><strong>Metallization &amp; Passivation (Masks 7 &amp; 8):</strong> Sputter Aluminum or Copper and pattern interconnects (Mask 7). Deposit final protective <strong>$\text{Si}_3\text{N}_4$ passivation glass</strong> (Mask 8), leaving openings only for external bonding pads.</li>
+  </ol>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 600 185" width="560" height="170">
+      <rect x="20" y="92" width="560" height="80" fill="#e2e8f0" stroke="#64748b"/>
+      <text x="150" y="155" font-size="11" font-weight="bold" fill="#334155">p-Type Silicon Substrate (NMOS Body)</text>
+      <path d="M 310,92 L 560,92 L 560,150 Q 560,160 545,160 L 325,160 Q 310,160 310,150 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+      <text x="435" y="145" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">N-Well (PMOS Body)</text>
+      <rect x="65" y="92" width="45" height="22" fill="#86efac" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="87" y="107" font-size="10" font-weight="bold" text-anchor="middle">n+</text>
+      <rect x="175" y="92" width="45" height="22" fill="#86efac" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="197" y="107" font-size="10" font-weight="bold" text-anchor="middle">n+</text>
+      <rect x="345" y="92" width="45" height="22" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/>
+      <text x="367" y="107" font-size="10" font-weight="bold" text-anchor="middle">p+</text>
+      <rect x="455" y="92" width="45" height="22" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/>
+      <text x="477" y="107" font-size="10" font-weight="bold" text-anchor="middle">p+</text>
+      <rect x="240" y="77" width="55" height="18" rx="4" fill="#bae6fd" stroke="#0284c7"/>
+      <text x="267" y="90" font-size="9" text-anchor="middle" font-weight="bold">FOX</text>
+      <rect x="115" y="85" width="55" height="7" fill="#fef08a"/>
+      <rect x="115" y="67" width="55" height="18" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5"/>
+      <text x="142" y="80" font-size="9" font-weight="bold" text-anchor="middle">Poly</text>
+      <rect x="395" y="85" width="55" height="7" fill="#fef08a"/>
+      <rect x="395" y="67" width="55" height="18" fill="#fca5a5" stroke="#dc2626" stroke-width="1.5"/>
+      <text x="422" y="80" font-size="9" font-weight="bold" text-anchor="middle">Poly</text>
+      <rect x="75" y="32" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
+      <rect x="185" y="32" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
+      <rect x="355" y="32" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
+      <rect x="465" y="32" width="25" height="60" fill="#93c5fd" stroke="#2563eb"/>
+      <text x="87" y="25" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">GND</text>
+      <text x="280" y="25" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">Metal-1 Interconnects</text>
+      <text x="477" y="25" font-size="9.5" font-weight="bold" fill="#1e40af" text-anchor="middle">VDD</text>
     </svg>
     <div class="diagram-caption">Fig 7.1: Cross-Section of Fabricated N-Well CMOS Inverter (NMOS + PMOS)</div>
   </div>
