@@ -751,22 +751,60 @@
     <li><strong>Redundant Vias:</strong> Use double/multiple vias at high-current bends so if one via degrades, current still flows safely.</li>
   </ul>
 
-  <h3>2.3 Interconnect Crosstalk</h3>
+  <div class="page-break"></div>
+  <h3>2.3 Interconnect Crosstalk (Capacitive &amp; Inductive Coupling)</h3>
   <div class="exam-q-box">
     <strong>SPPU Exact Question:</strong> <em>"Write short note on Cross talk."</em> (Nov 2024, May 2025 — 5 to 6 Marks)
   </div>
 
   <div class="simple-box">
     <div class="simple-title">💡 In Simple Words (The Highway Lanes Analogy)</div>
-    When two metal wires run side-by-side very closely, they act like plates of a tiny <strong>parasitic capacitor ($C_c$)</strong>. When one wire switches rapidly from $0 \to 1$ (<strong>Aggressor Line</strong>), it pushes a fake voltage spike onto its quiet neighbor (<strong>Victim Line</strong>)—just like a speeding truck shaking a small car in the next lane!
+    Imagine driving a small car in one lane when a giant truck speeds past right next to you—the air push shakes your car!<br>
+    On a chip, when two metal wires run side-by-side very closely, they act like two plates of a tiny <strong>parasitic capacitor ($C_c$)</strong>. When one wire switches rapidly from $0 \to 1$ (<strong>Aggressor Line</strong>), it pushes a fake voltage spike onto its quiet neighbor (<strong>Victim Line</strong>).
+  </div>
+
+  <div class="diagram-card">
+    <svg viewBox="0 0 600 160" width="560" height="150">
+      <text x="85" y="25" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">Aggressor Line (0 → 1)</text>
+      <polyline points="20,45 45,45 55,20 90,20" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+      <rect x="110" y="28" width="260" height="16" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+      <text x="240" y="40" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">Fast-Switching Signal Wire</text>
+      <line x1="240" y1="44" x2="240" y2="68" stroke="#0f172a" stroke-width="2"/>
+      <line x1="222" y1="68" x2="258" y2="68" stroke="#0f172a" stroke-width="2.5"/>
+      <line x1="222" y1="76" x2="258" y2="76" stroke="#0f172a" stroke-width="2.5"/>
+      <line x1="240" y1="76" x2="240" y2="100" stroke="#0f172a" stroke-width="2"/>
+      <text x="275" y="76" font-size="11" font-weight="bold" fill="#1e40af">Cc (Coupling Cap)</text>
+      <rect x="110" y="100" width="260" height="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="240" y="112" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">Quiet Victim Line</text>
+      <text x="485" y="95" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">Induced Glitch (ΔV)</text>
+      <polyline points="410,112 455,112 465,86 475,112 540,112" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+      <line x1="240" y1="116" x2="240" y2="130" stroke="#0f172a" stroke-width="1.5"/>
+      <line x1="226" y1="130" x2="254" y2="130" stroke="#0f172a" stroke-width="2"/>
+      <line x1="226" y1="136" x2="254" y2="136" stroke="#0f172a" stroke-width="2"/>
+      <line x1="240" y1="136" x2="240" y2="148" stroke="#0f172a" stroke-width="1.5"/>
+      <line x1="228" y1="148" x2="252" y2="148" stroke="#0f172a" stroke-width="2"/>
+      <text x="275" y="138" font-size="10" font-weight="bold" fill="#475569">Cgnd (Substrate Cap)</text>
+    </svg>
+    <div class="diagram-caption">Fig 2.3: Capacitive Crosstalk Coupling Between Aggressor and Victim Interconnects</div>
   </div>
 
   <div class="formula-box">
+    <strong>Induced Victim Noise Voltage Formula:</strong>
     $$\Delta V_{\text{victim}} = V_{\text{swing}} \cdot \left(\frac{C_c}{C_c + C_{\text{gnd}}}\right)$$
   </div>
+
+  <h4>Two Major Harmful Effects in VLSI Circuits:</h4>
+  <ol>
+    <li><strong>Crosstalk Glitch (Noise Spike):</strong> If the victim line is held at steady Logic 0, a rising aggressor ($0 \to 1$) injects a positive voltage spike ($\Delta V_{\text{victim}}$). If $\Delta V_{\text{victim}} > V_{\text{threshold}}$, downstream logic gates falsely switch!</li>
+    <li><strong>Crosstalk Delay (Miller Effect):</strong> If aggressor and victim switch in <em>opposite</em> directions simultaneously, effective coupling capacitance doubles ($2C_c$), dramatically slowing down the signal and causing <strong>setup/hold timing violations</strong>.</li>
+  </ol>
+
+  <h4>Four Standard Prevention Techniques:</h4>
   <ul>
-    <li><strong>Harmful Effects:</strong> (1) <strong>Crosstalk Glitch:</strong> False logic switching ($0 \to 1$ spike) on a static line. (2) <strong>Crosstalk Delay (Miller Effect):</strong> Opposite switching doubles effective capacitance, causing setup/hold timing violations.</li>
-    <li><strong>Prevention:</strong> (1) Insert grounded ($GND$) <strong>shielding wires</strong> between critical buses; (2) <strong>Increase wire spacing</strong> ($\ge 2\times$ min spacing); (3) Route adjacent layers <strong>orthogonally</strong> (Metal-1 horizontal, Metal-2 vertical); (4) Insert repeater buffers on long lines.</li>
+    <li><strong>1. Ground Shielding:</strong> Place a grounded ($GND$ or $V_{DD}$) shield wire between critical signals (e.g., around clock lines) to absorb electric field lines.</li>
+    <li><strong>2. Increase Wire Spacing:</strong> Separate parallel metal tracks by $\ge 2\times$ minimum spacing rule ($S$) since $C_c \propto 1/S$.</li>
+    <li><strong>3. Orthogonal Layer Routing:</strong> Route Metal-1 horizontally and Metal-2 vertically so wires never run parallel to each other for long distances.</li>
+    <li><strong>4. Driver Sizing &amp; Repeater Insertion:</strong> Use stronger drivers or insert buffers along long victim nets to hold the logic level firmly against noise spikes.</li>
   </ul>
 
   <!-- PAGE 10-11: LAMBDA DESIGN RULES -->
