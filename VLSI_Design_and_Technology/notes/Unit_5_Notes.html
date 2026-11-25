@@ -898,6 +898,7 @@
     </tbody>
   </table>
 
+  <div class="page-break"></div>
   <h3>4.2 Complete SPICE Netlist: CMOS Inverter AC Analysis</h3>
   <p>Every SPICE netlist follows 4 strict sections: <strong>(1) Voltage Sources</strong>, <strong>(2) Circuit Elements (MOSFETs &amp; Capacitors)</strong>, <strong>(3) <code>.MODEL</code> Parameters</strong>, and <strong>(4) Analysis &amp; Output Directives</strong>.</p>
 
@@ -1028,6 +1029,7 @@ CL   3  0  50fF                              ; 50 fF capacitive load at Vout
     <li><strong>Physical Verification &amp; Tape-Out:</strong> Runs DRC, ERC, LVS, and Static Timing Analysis (STA), then exports the final <strong>GDSII</strong> mask file to the foundry.</li>
   </ol>
 
+  <div class="page-break"></div>
   <h3>6.2 Cell Design Specification (Standard Cell Library Rules)</h3>
   <ul>
     <li><strong>Fixed Uniform Cell Height:</strong> All standard cells (Inverter, NAND, Flip-Flop) share the exact same vertical height (e.g., 9 or 12 tracks) so they snap cleanly into rows; only horizontal width varies.</li>
