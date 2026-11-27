@@ -1,531 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cloud Computing - SPPU Exam IMP Questions & Frequency Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            margin: 0;
-            padding: 30px;
-            background: #f1f5f9;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px 48px;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
-        .header {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
-            color: white;
-            padding: 32px 36px;
-            border-radius: 14px;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            margin: 0 0 8px 0;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .header p {
-            margin: 0;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-bottom: 30px;
-        }
-        .stat-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .stat-card .val {
-            font-size: 24px;
-            font-weight: 800;
-            color: #4338ca;
-        }
-        .stat-card .lbl {
-            font-size: 11.5px;
-            color: #64748b;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; padding: 0; max-width: 100%; }
-            .header { background: #1e1b4b !important; -webkit-print-color-adjust: exact; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Cloud Computing - SPPU End-Sem Master Exam Analysis (Units 3 to 6)</title>
+  <style>
+    @page { size: A4; margin: 14mm; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; color: #0f172a; background: #ffffff; padding: 10px; max-width: 920px; margin: 0 auto; font-size: 13px; }
+    h1 { color: #1e3a8a; font-size: 1.7rem; border-bottom: 3px solid #2563eb; padding-bottom: 6px; margin-bottom: 6px; }
+    h2 { color: #1e40af; font-size: 1.25rem; margin-top: 24px; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; page-break-after: avoid; }
+    h3 { color: #1d4ed8; font-size: 1.05rem; margin-top: 18px; margin-bottom: 6px; page-break-after: avoid; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78rem; }
+    .badge-critical { background: #fee2e2; color: #b91c1c; }
+    .badge-high { background: #fef3c7; color: #b45309; }
+    .badge-med { background: #e0f2fe; color: #0369a1; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; page-break-inside: avoid; }
+    th, td { border: 1px solid #cbd5e1; padding: 7px 10px; text-align: left; }
+    th { background: #1e3a8a; color: #ffffff; font-weight: 700; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .meta-box { background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 12px 16px; margin: 12px 0; }
+    .variant-card { background: #f8fafc; border-left: 3px solid #2563eb; padding: 7px 12px; margin: 6px 0; border-radius: 0 6px 6px 0; page-break-inside: avoid; }
+    ul { margin: 6px 0; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #e2e8f0; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+    @media print { th, .meta-box, .badge { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Cloud Computing</h1>
-            <p><strong>SPPU End-Sem 4-Year Exam Frequency Analysis & Top IMP Questions</strong></p>
-            <p style="margin-top: 6px; font-size: 13px; opacity: 0.8;">Course Pattern: SPPU TE/BE Computer / IT - 2019 Pattern | Analyzed May/June & Nov/Dec Papers</p>
-        </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="val">8</div>
-                <div class="lbl">Exam Papers</div>
-            </div>
-            <div class="stat-card">
-                <div class="val">192</div>
-                <div class="lbl">Questions Analyzed</div>
-            </div>
-            <div class="stat-card">
-                <div class="val">4</div>
-                <div class="lbl">Units (3, 4, 5, 6)</div>
-            </div>
-            <div class="stat-card">
-                <div class="val">100%</div>
-                <div class="lbl">Exam Pattern Matched</div>
-            </div>
-        </div>
+<h1>☁️ Cloud Computing (Course Code: 404183)</h1>
+<h2>📊 SPPU End-Semester Exam Frequency &amp; Trend Analysis (2022–2026)</h2>
 
-        
-        <div style="margin-top: 36px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 18px;">
-                <h2 style="margin: 0; font-size: 22px; color: #1e293b;">Unit 3 Question Breakdown</h2>
-                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 12px;">48 Total Questions Analyzed</span>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#1. Hardware Level Virtualization & Hypervisor Types (Type-1 vs Type-2, Full vs Para Virtualization)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">10x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">7 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Draw and explain any two types of hardware virtualization.</li><li style='margin-bottom: 4px;'>Discuss the disadvantages of Hardware Level Virtualization along with the solutions to overcome.</li><li style='margin-bottom: 4px;'>Explain Full and Para Virtualization with example.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#2. Virtualization of CPU, Memory, Storage and I/O / Network</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">9x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">7 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Write short notes on: i) CPU virtualization. ii) Memory virtualization.</li><li style='margin-bottom: 4px;'>Describe the concept of network virtualization with the help of suitable diagram.</li><li style='margin-bottom: 4px;'>Describe the concept of storage virtualization and explain its implementation methods.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#3. Virtual Clusters & Resource Management (Resource provisioning, Live migration)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">7x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">6 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain in brief virtual clusters and resource management</li><li style='margin-bottom: 4px;'>Explain Virtual Cluster and Resource Management.</li><li style='margin-bottom: 4px;'>Define virtual cluster and compare it with physical cluster.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #2563eb; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">📌 MEDIUM</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#4. Virtualization Architecture, Benefits, Pitfalls & Cloud vs Virtualization</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #2563eb;">3x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">2 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Draw and explain architecture of virtualization technique.</li><li style='margin-bottom: 4px;'>Differentiate between cloud computing and virtualization.</li><li style='margin-bottom: 4px;'>Differentiate between Cloud Computing and Virtualization.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, Nov_Dec_2025
-                </div>
-            </div>
-            
-        </div>
-        
-        <div style="margin-top: 36px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 18px;">
-                <h2 style="margin: 0; font-size: 22px; color: #1e293b;">Unit 4 Question Breakdown</h2>
-                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 12px;">48 Total Questions Analyzed</span>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#1. Host Security, Data Security, Identity Management & Firewalls</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">14x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Describe the types of firewall and its benefits.</li><li style='margin-bottom: 4px;'>Explain the various security issues for cloud service providers.</li><li style='margin-bottom: 4px;'>Discuss Host Security and Data Security in detail.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#2. Service Oriented Architecture (SOA) & Cloud Computing Architecture (COA) / Life Cycle</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">12x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Draw and explain fundamental components of SOA and enlists it’s characteristics.</li><li style='margin-bottom: 4px;'>Explain the design principles of Cloud Computing Architecture (COA).</li><li style='margin-bottom: 4px;'>Draw and explain Cloud Computing Life Cycle.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#3. Cloud Security Architecture & CIA Security Model (Confidentiality, Integrity, Availability)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">9x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">7 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Draw and explain the cloud CIA security model.</li><li style='margin-bottom: 4px;'>Explain cloud computing security architecture with neat diagram.</li><li style='margin-bottom: 4px;'>Elaborate the implementation of CIA security model.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #2563eb; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">📌 MEDIUM</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#4. Cloud Threats, Attacks & CSA Top Threats (Data breaches, Account hijacking, DDoS)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #2563eb;">3x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">2 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain any four types of threats and attacks on cloud specifying which security goal it affects.</li><li style='margin-bottom: 4px;'>Describe the top threats identified by Cloud Security Alliance (CSA).</li><li style='margin-bottom: 4px;'>Apply your understanding of virtualization to explain security threats and solutions specific to virtualized environments.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-        </div>
-        
-        <div style="margin-top: 36px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 18px;">
-                <h2 style="margin: 0; font-size: 22px; color: #1e293b;">Unit 5 Question Breakdown</h2>
-                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 12px;">48 Total Questions Analyzed</span>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#1. Amazon Web Services (AWS) Core Services (EC2, S3, EBS, Snapshots, ELB)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">16x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Define Amazon EBS snapshot. Write the steps create EBS snapshot.</li><li style='margin-bottom: 4px;'>Explain Amazon compute and storage services of AWS.</li><li style='margin-bottom: 4px;'>Enlist the AWS load balancing services. Also Describe Elastic Load Balancer.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#2. Google App Engine (GAE) Architecture, Features & Application Life Cycle</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">10x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain Google App Engine application life cycle.</li><li style='margin-bottom: 4px;'>Explain the features of Google App Engine.</li><li style='margin-bottom: 4px;'>Explain Google App Engine application life cycle.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#3. Microsoft Azure Architecture & Cloud Services</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">7x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">7 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain the microsoft Azure cloud services.</li><li style='margin-bottom: 4px;'>Write short on Microsoft Azure.</li><li style='margin-bottom: 4px;'>Explain the Windows Azure Platform with Cost Model.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #ea580c; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">⚡ HIGH IMP</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#4. Cloud Cost Models & Pricing Strategies (Pay-as-you-go, Subscription, Spot)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #ea580c;">5x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">5 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #ea580c; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain the cost models in cloud computing.</li><li style='margin-bottom: 4px;'>Explain the different Cost Models in cloud computing.</li><li style='margin-bottom: 4px;'>Explain the COST model in cloud computing.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2023, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #ea580c; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">⚡ HIGH IMP</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#5. Cloud Platforms Classification & PaaS / IaaS Comparative Analysis</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #ea580c;">5x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">5 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #ea580c; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Enlist types of cloud platforms and describe any two.</li><li style='margin-bottom: 4px;'>Explain different services provided by Google Cloud Platform.</li><li style='margin-bottom: 4px;'>Explain different services provided by Google Cloud Platform.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-        </div>
-        
-        <div style="margin-top: 36px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 18px;">
-                <h2 style="margin: 0; font-size: 22px; color: #1e293b;">Unit 6 Question Breakdown</h2>
-                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 12px;">48 Total Questions Analyzed</span>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#1. Distributed Computing vs Cloud Computing & Distributed Systems Types/Pros/Cons</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">14x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Differentiate between distributed computing and cloud computing.</li><li style='margin-bottom: 4px;'>Enlist and explain types of Distributed Systems.</li><li style='margin-bottom: 4px;'>Discuss the advantages and disadvantages of distributed systems. </li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#2. Internet of Things (IoT) Enabling Technologies (RFID, WSN, Actuators, Cloud of Things)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">10x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Describe any three enabling technologies for loT.</li><li style='margin-bottom: 4px;'>Describe in brief the following enabling technologies of IoT. i) WSN ii) Big Data Analytics</li><li style='margin-bottom: 4px;'>Write Short note on: i) RFID Tags ii) Significance of GPS in IOT</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">🔥 CRITICAL (Must Study)</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 5, 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#3. Online Social & Professional Networking in Cloud (Benefits over Traditional Networking)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #dc2626;">10x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">8 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Write short note on Online social and Professional Networking.</li><li style='margin-bottom: 4px;'>Explain the benefits of Online Networking over Traditional Networking.</li><li style='margin-bottom: 4px;'>Explain the need for Professional Networking and its benefits.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025
-                </div>
-            </div>
-            
-            <div style="background: white; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                        <span style="background: #ea580c; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">⚡ HIGH IMP</span>
-                        <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 6px;">Weightage: 6M</span>
-                        <h3 style="margin: 8px 0 4px 0; color: #0f172a; font-size: 18px;">#4. IoT Innovative Applications & Case Studies (Smart home, Healthcare, Smart grid, Transportation)</h3>
-                    </div>
-                    <div style="text-align: right; min-width: 110px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #ea580c;">5x</span>
-                        <div style="font-size: 11px; color: #64748b; font-weight: 600;">5 of 8 Exams</div>
-                    </div>
-                </div>
-                <div style="background: #f8fafc; border-left: 4px solid #ea580c; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
-                    <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.5;"><strong>Sample Questions Asked:</strong></p>
-                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            <li style='margin-bottom: 4px;'>Explain any three innovative applications of loT.</li><li style='margin-bottom: 4px;'>Describe any two innovative applications of Internet of Things.</li><li style='margin-bottom: 4px;'>Describe any two innovative applications of Internet of Things.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-                    <strong>Exam Occurrences:</strong> May_Jun_2023, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024
-                </div>
-            </div>
-            
-        </div>
-        
+<div class="meta-box">
+  <strong>Pattern:</strong> SPPU 2019 Course Pattern | BE E&amp;TC Engineering<br>
+  <strong>Scope:</strong> End-Semester Examination (70 Marks — Strictly Units 3, 4, 5, and 6)<br>
+  <strong>Dataset Audited:</strong> 8 Official End-Sem Question Papers (Nov/Dec 2022 to May/Jun 2026)<br>
+  <strong>Total End-Sem Questions Analyzed:</strong> 192 Questions<br>
+  <strong>Blueprint:</strong> Q1/Q2 (Unit 3: 18M) | Q3/Q4 (Unit 4: 17M) | Q5/Q6 (Unit 5: 18M) | Q7/Q8 (Unit 6: 17M)
+</div>
 
-        <div style="margin-top: 40px; padding: 20px; background: #eef2ff; border-radius: 12px; text-align: center; font-size: 13px; color: #4338ca; font-weight: 600;">
-            Generated for SPPU Engineering Students | Comprehensive Question Bank & Frequency Guide
-        </div>
-    </div>
-</body>
-</html>
+<h2>🏆 Top 15 Ultra-High-Yield End-Sem Questions</h2>
+<table>
+<thead><tr><th>#</th><th>Unit</th><th>Core Exam Topic</th><th>Repetitions</th><th>End-Sem Papers</th><th>Marks</th><th>Style</th></tr></thead><tbody>
+
+<tr><td><strong>#1</strong></td><td>Unit 5</td><td><strong>Amazon Web Services (AWS): Architecture, EC2, S3, EBS Snapshots, ELB, RDS, DynamoDB & CloudFront</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>16x</strong></td><td>8/8 (100.0%)</td><td>6M</td><td>Architecture & Steps</td></tr>
+<tr><td><strong>#2</strong></td><td>Unit 6</td><td><strong>IoT Architecture & Enabling Technologies (RFID, WSN, GPS, Embedded Systems, Big Data, Cloud)</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>16x</strong></td><td>8/8 (100.0%)</td><td>5-6M</td><td>Theory & Diagram</td></tr>
+<tr><td><strong>#3</strong></td><td>Unit 3</td><td><strong>Virtualization Architecture, Cloud vs Virtualization, Levels, Benefits & Limitations</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>14x</strong></td><td>8/8 (100.0%)</td><td>6M</td><td>Theory & Comparison</td></tr>
+<tr><td><strong>#4</strong></td><td>Unit 4</td><td><strong>Firewalls (Types, OSI Layer Relation, Benefits), Host Security & Data Security</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>14x</strong></td><td>8/8 (100.0%)</td><td>5-6M</td><td>Theory & Security</td></tr>
+<tr><td><strong>#5</strong></td><td>Unit 6</td><td><strong>Distributed Computing vs Cloud Computing, Types, Working & Pros/Cons</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>14x</strong></td><td>8/8 (100.0%)</td><td>5-6M</td><td>Theory & Comparison</td></tr>
+<tr><td><strong>#6</strong></td><td>Unit 3</td><td><strong>Hardware Virtualization, Full vs Para-Virtualization & Hypervisors (Type-1 vs Type-2)</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>12x</strong></td><td>8/8 (100.0%)</td><td>6M</td><td>Theory & Comparison</td></tr>
+<tr><td><strong>#7</strong></td><td>Unit 4</td><td><strong>Service-Oriented Architecture (SOA), Cloud Architecture (COA) & NIST Reference Architecture</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>12x</strong></td><td>8/8 (100.0%)</td><td>5-6M</td><td>Theory & Architecture</td></tr>
+<tr><td><strong>#8</strong></td><td>Unit 5</td><td><strong>Google App Engine (GAE) Architecture, Life Cycle, Features & GCP Services</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>12x</strong></td><td>8/8 (100.0%)</td><td>6M</td><td>Architecture & Lifecycle</td></tr>
+<tr><td><strong>#9</strong></td><td>Unit 6</td><td><strong>Online Social & Professional Networking in Cloud (Benefits, Services & Challenges)</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>10x</strong></td><td>8/8 (100.0%)</td><td>5-6M</td><td>Theory & Applications</td></tr>
+<tr><td><strong>#10</strong></td><td>Unit 3</td><td><strong>Subsystem Virtualization: CPU, Memory, Storage, Network, Desktop & OS</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>10x</strong></td><td>7/8 (87.5%)</td><td>6M</td><td>Theory & Diagram</td></tr>
+<tr><td><strong>#11</strong></td><td>Unit 3</td><td><strong>Virtual Clusters, Resource Management, Partitioning & Scalability</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>9x</strong></td><td>7/8 (87.5%)</td><td>6M</td><td>Theory & Architecture</td></tr>
+<tr><td><strong>#12</strong></td><td>Unit 6</td><td><strong>IoT Innovative Applications (Smart Cities, Smart Traffic, Smart Agriculture)</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>8x</strong></td><td>7/8 (87.5%)</td><td>5-6M</td><td>Applications & Use Cases</td></tr>
+<tr><td><strong>#13</strong></td><td>Unit 4</td><td><strong>Cloud CIA Security Model & Cloud Security Architecture</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>8x</strong></td><td>6/8 (75.0%)</td><td>5-6M</td><td>Theory & Diagram</td></tr>
+<tr><td><strong>#14</strong></td><td>Unit 4</td><td><strong>Cloud Computing Life Cycle (CCLC) Phases</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>7x</strong></td><td>7/8 (87.5%)</td><td>5-6M</td><td>Theory & Diagram</td></tr>
+<tr><td><strong>#15</strong></td><td>Unit 5</td><td><strong>Microsoft Azure Platform, Compute Roles & Cloud Services</strong> <span class="badge badge-critical">🔥 CRITICAL</span></td><td><strong>7x</strong></td><td>7/8 (87.5%)</td><td>6M</td><td>Theory & Architecture</td></tr>
+</tbody></table>
+<h2>📌 Unit 3: Virtualization Foundations & Architectures (End-Sem Q1/Q2)</h2>
+<p><em>Total Questions in this Unit: <strong>48 questions</strong> across 8 End-Sem papers</em></p>
+<h3>3.1 Hardware Virtualization, Full vs Para-Virtualization & Hypervisors (Type-1 vs Type-2) <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>12 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Draw and explain any two types of hardware virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Discuss the disadvantages of Hardware Level Virtualization along with the solutions to overcome. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Explain Full and Para Virtualization with example. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Explain full virtualization and para virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Explain Hardware and Software virtualization with suitable diagram. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Describe Hypervisors in detail. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q2b)</code></small></div>
+<div class='variant-card'><em>"What is Hardware Virtualization? Explain different types of Hardware virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Explain different types of Hypervisors with examples. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Type 1 and Type 2 hypervisor. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Compare Type I and Type II hypervisors with the help of diagram. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Draw and explain Bare Metal and Hosted virtualization techniques. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Explain in brief Hardware Virtualization and Software Virtualization techniques. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q1b)</code></small></div>
+<h3>3.2 Subsystem Virtualization: CPU, Memory, Storage, Network, Desktop & OS <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>10 times</strong> across <strong>7 of 8 End-Sem papers</strong> (87.5% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Write short notes on: [6] i) CPU virtualization. ii) Memory virtualization."</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Describe the concept of network virtualization with the help of suitable diagram. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Describe the concept of storage virtualization and explain its implementation methods. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Explain Network virtualization and its types in detail. Enlist the advantages and  disadvantages of Network virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Describe operating system virtualization with the help of suitable diagram. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Explain the methods of storage virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Write short notes on: [6] i) Desktop virtualization. ii) Network virtualization."</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Describe the various methods of implementing storage virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Describe Network Virtualization with advantages and disadvantages. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Write short notes on: [6] i) CPU Virtualization. ii) Memory Virtualization."</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q1c)</code></small></div>
+<h3>3.3 Virtual Clusters, Resource Management, Partitioning & Scalability <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>9 times</strong> across <strong>7 of 8 End-Sem papers</strong> (87.5% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain in brief virtual clusters and resource management [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Explain Virtual Cluster and Resource Management. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Define virtual cluster and compare it with physical cluster. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Explain resource partitioning and service partitioning. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Explain Virtual Clustering in detail. Enlist applications of Virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q1c)</code></small></div>
+<div class='variant-card'><em>"Explain benefits of virtual clusters and differentiate between virtual cluster and physical cluster. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Explain in brief Virtual Clusters. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Describe the concept of virtual clustering. How does it improve fault tolerance and scalability in virtualized environments? [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Justify virtualization improves scalability in virtualized environments, elaborate your answer. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q2c)</code></small></div>
+<h3>3.4 Virtualization Architecture, Cloud vs Virtualization, Levels, Benefits & Limitations <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>14 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Draw and explain architecture of virtualization technique. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Differentiate between cloud computing and virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Describe different types of Virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Define virtualization? Explain the five stage virtualization process. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Define Server virtualization and discuss its benefits and limitations. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q1c)</code></small></div>
+<div class='variant-card'><em>"What is virtualization? Explain the need of virtualization and applications of virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Explain Server virtualization in detail. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Define virtualization. Explain the characteristics and benefits of virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Describe various implementation levels of virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Describe the structure and types of virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q1a)</code></small></div>
+<div class='variant-card'><em>"Describe the components of virtual machine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Virtualization and Cloud Computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q1b)</code></small></div>
+<div class='variant-card'><em>"Explain in detail advantages and disadvantages of Virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q2b)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Cloud Computing and Virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q1a)</code></small></div>
+<h3>3.5 Virtualization Software & Applications (Education, Enterprise, Disaster Recovery) <span class="badge badge-med">📌 STANDARD TOPIC</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>3 times</strong> across <strong>2 of 8 End-Sem papers</strong> (25.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain any three virtualizations software. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q2a)</code></small></div>
+<div class='variant-card'><em>"Write a short note on Applications of Virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q2c)</code></small></div>
+<div class='variant-card'><em>"Explain how virtualization is being leveraged in education, enterprise, and disaster recovery? [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q2a)</code></small></div>
+<h2>📌 Unit 4: Cloud Architecture (SOA/COA) & Security (End-Sem Q3/Q4)</h2>
+<p><em>Total Questions in this Unit: <strong>48 questions</strong> across 8 End-Sem papers</em></p>
+<h3>4.1 Firewalls (Types, OSI Layer Relation, Benefits), Host Security & Data Security <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>14 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Describe the types of firewall and its benefits. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q3b)</code></small></div>
+<div class='variant-card'><em>"Discuss Host Security and Data Security in detail. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Enlist the types and explain the functions of firewall. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Write short note on: [5] i) Data Security ii) Host Security"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Describe the types of firewalls and their benefits. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Write a note on Firewall. [5]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2026 (Q4c), Nov_Dec_2022 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Discuss the types of data security in detail. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Explain the role of host security in SaaS, Paas and IaaS. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Explain the types and functions of firewall. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Write short note on following : [6] i) Firewall ii) Host Security"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Explain with example how data security provided in social media. [5] 1) 2) 3) 4)"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Explain the role of host security in SaaS, PaaS and IaaS. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q3c)</code></small></div>
+<div class='variant-card'><em>"State the characteristics and elaborate on relation between OSI layer and firewall with the help of types of firewall. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q4b)</code></small></div>
+<h3>4.2 Service-Oriented Architecture (SOA), Cloud Architecture (COA) & NIST Reference Architecture <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>12 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Draw and explain fundamental components of SOA and enlists it’s characteristics. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Explain the design principles of Cloud Computing Architecture (COA).[6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Enlist the advantages and disadvantages of SOA. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q3b)</code></small></div>
+<div class='variant-card'><em>"Draw & explain Cloud Architecture. State its importance. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Explain in detail design principles of COA. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Describe the fundamental components and characteristics of service-oriented architecture. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Describe fundamental components and characteristics of service oriented architecture. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Explain the design principles of cloud computing services. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Elaborate the cloud computing reference architecture. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Draw and explain Service Oriented Architecture (SOA). [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Describe the role of actors in NIST cloud computing reference architecture. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Apply the concept of cloud reference architecture to describe how a cloud service is deployed in practice. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q4a)</code></small></div>
+<h3>4.3 Cloud Computing Life Cycle (CCLC) Phases <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>7 times</strong> across <strong>7 of 8 End-Sem papers</strong> (87.5% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Draw and explain Cloud Computing Life Cycle. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q3b)</code></small></div>
+<div class='variant-card'><em>"Explain cloud computing lifecycle management? [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Write a note on the cloud computing life cycle. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Write a note on cloud computing life cycle. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Draw and explain cloud computing life cycle. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q3b)</code></small></div>
+<div class='variant-card'><em>"Describe steps involved in life cycle of cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Describe with relevant real world usage; the phases in the Cloud Computing Life Cycle (CCLC). [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q3b)</code></small></div>
+<h3>4.4 Cloud CIA Security Model & Cloud Security Architecture <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>8 times</strong> across <strong>6 of 8 End-Sem papers</strong> (75.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Draw and explain the cloud CIA security model. [6]"</em><br><small style='color:#475569;'>Asked <strong>4x</strong>: <code>May_Jun_2023 (Q3a), May_Jun_2026 (Q3b), Nov_Dec_2022 (Q3b), Nov_Dec_2025 (Q3a)</code></small></div>
+<div class='variant-card'><em>"Explain cloud computing security architecture with neat diagram. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Elaborate the implementation of CIA security model. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Explain Cloud Computing Security Architecture in detail. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Enlist the elements of cloud security architecture with suitable diagram.[5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q3c)</code></small></div>
+<h3>4.5 Cloud Threats, CSA Top Threats, Virtualization Security & Provider/Customer Issues <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>7 times</strong> across <strong>6 of 8 End-Sem papers</strong> (75.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain the various security issues for cloud service providers. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Explain any four types of threats and attacks on cloud specifying which security goal it affects. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q3c)</code></small></div>
+<div class='variant-card'><em>"Describe the top threats identified by Cloud Security Alliance (CSA).[6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q4a)</code></small></div>
+<div class='variant-card'><em>"Describe the Security issues in Cloud service providers. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q4b)</code></small></div>
+<div class='variant-card'><em>"Describe the security challenges for cloud service customers. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q4c)</code></small></div>
+<div class='variant-card'><em>"Explain the security issues and risks in virtualization. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q3b)</code></small></div>
+<div class='variant-card'><em>"Apply your understanding of virtualization to explain security threats and solutions specific to virtualized environments. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q4c)</code></small></div>
+<h2>📌 Unit 5: Cloud Platforms (AWS, GAE, Azure) & Cost Models (End-Sem Q5/Q6)</h2>
+<p><em>Total Questions in this Unit: <strong>48 questions</strong> across 8 End-Sem papers</em></p>
+<h3>5.1 Amazon Web Services (AWS): Architecture, EC2, S3, EBS Snapshots, ELB, RDS, DynamoDB & CloudFront <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>16 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Define Amazon EBS snapshot. Write the steps create EBS snapshot.[6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q6b)</code></small></div>
+<div class='variant-card'><em>"Explain Amazon compute and storage services of AWS. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Enlist the AWS load balancing services. Also Describe Elastic Load Balancer. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Draw and explain the architecture of Amazon Web Services. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Explain the steps for configuring a server for EC2. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q6c)</code></small></div>
+<div class='variant-card'><em>"What is Amazon Web Services? Explain AWS architecture in detail. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Describe the steps involved in creating an EC2 instance. [6]"</em><br><small style='color:#475569;'>Asked <strong>3x</strong>: <code>May_Jun_2026 (Q6b), Nov_Dec_2022 (Q6c), Nov_Dec_2025 (Q6b)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Google Cloud platform and Amazon Web Services. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q6c)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Google cloud platform and Amazon Web Services. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>Nov_Dec_2022 (Q5c), Nov_Dec_2025 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Draw and elaborate various components of Amazon Web Service (AWS) architecture. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q6b)</code></small></div>
+<div class='variant-card'><em>"Explain the steps to create and manage associated objects for Amazon S3 Bucket. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Describe Amazon EC2 cloud in brief considering following points: [6] i) Amazon Machine Image ii) Amazon Cloud Watch"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Explain the following services of AWS : [6] i) Amazon Cloud-front ii) Amazon RDS iii) DynamoDB"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q5b)</code></small></div>
+<h3>5.2 Google App Engine (GAE) Architecture, Life Cycle, Features & GCP Services <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>12 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain Google App Engine application life cycle. [6]"</em><br><small style='color:#475569;'>Asked <strong>3x</strong>: <code>May_Jun_2023 (Q5b), May_Jun_2024 (Q5a), Nov_Dec_2023 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Explain the features of Google App Engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q6c)</code></small></div>
+<div class='variant-card'><em>"Explain different services provided by Google Cloud Platform. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2024 (Q6c), Nov_Dec_2023 (Q6c)</code></small></div>
+<div class='variant-card'><em>"Enlist the various advantages & disadvantages of Google App Engine.[6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Describe the application services of App Engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q6b)</code></small></div>
+<div class='variant-card'><em>"What is Google App engine? Explain features of Google App engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Draw and explain the architecture of Google App Engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Discuss the advantages and disadvantages of Google App Engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Explain with use case; the architecture of Google App Engine. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q5a)</code></small></div>
+<h3>5.3 Microsoft Azure Platform, Compute Roles & Cloud Services <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>7 times</strong> across <strong>7 of 8 End-Sem papers</strong> (87.5% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain the microsoft Azure cloud services. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Write short on Microsoft Azure. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2024 (Q6b), Nov_Dec_2023 (Q6b)</code></small></div>
+<div class='variant-card'><em>"Explain the Windows Azure Platform with Cost Model. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Discuss the various roles provided by Azure operating system in compute services. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>Nov_Dec_2022 (Q6a), Nov_Dec_2025 (Q5b)</code></small></div>
+<div class='variant-card'><em>"Describe in brief various Azure Services. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q6b)</code></small></div>
+<h3>5.4 Cloud Cost Models & Cost Estimation Techniques <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>6 times</strong> across <strong>6 of 8 End-Sem papers</strong> (75.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2026, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Explain the cost models in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2023 (Q5c), Nov_Dec_2025 (Q6c)</code></small></div>
+<div class='variant-card'><em>"Explain the different Cost Models in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q5c)</code></small></div>
+<div class='variant-card'><em>"Explain the COST model in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q5c)</code></small></div>
+<div class='variant-card'><em>"Explain the different cost models in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q5c)</code></small></div>
+<div class='variant-card'><em>"Describe the different techniques for cost estimation in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q5c)</code></small></div>
+<h3>5.5 Cloud Platforms Classification (Hadoop, Force.com, Communication Services) <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>7 times</strong> across <strong>6 of 8 End-Sem papers</strong> (75.0% probability)</li>
+<li><strong>Weightage:</strong> 6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Enlist types of cloud platforms and describe any two. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Explain the types of cloud platforms. [6] i) Hadoop ii) GAE"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q5c)</code></small></div>
+<div class='variant-card'><em>"Explain the different cloud computing platforms. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2026 (Q6a), Nov_Dec_2022 (Q5a)</code></small></div>
+<div class='variant-card'><em>"Explain the following cloud platforms: [6] i) Hadoop ii) Force.com"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q6a)</code></small></div>
+<div class='variant-card'><em>"Explain different communication services in cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q6c)</code></small></div>
+<div class='variant-card'><em>"Enlist and describe any two types of cloud platforms. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q5c)</code></small></div>
+<h2>📌 Unit 6: Distributed Computing, IoT & Online Networking (End-Sem Q7/Q8)</h2>
+<p><em>Total Questions in this Unit: <strong>48 questions</strong> across 8 End-Sem papers</em></p>
+<h3>6.1 Distributed Computing vs Cloud Computing, Types, Working & Pros/Cons <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>14 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Differentiate between distributed computing and cloud computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2023 (Q7b), May_Jun_2026 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Enlist and explain types of Distributed Systems. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q8b)</code></small></div>
+<div class='variant-card'><em>"Discuss the advantages and disadvantages of distributed systems. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Describe the working of distributed computing and its needs. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Differentiate between Distributed Computing and Cloud Computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2024 (Q8b), Nov_Dec_2023 (Q8b)</code></small></div>
+<div class='variant-card'><em>"Define Distributed computing. Elaborate advantages of Distributed Computing. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Compare Cloud Computing and Distributed Computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Write a note on distributed computing. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Describe the different types of distributed systems. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Define Distributed Computing and discuss the different types of Distributed System. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Discuss the advantages and disadvantages of Distributed Systems. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Classify and compare different types of distributed systems based on their architecture, functionality, and use-cases. Support your answer with real world examples. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q8b)</code></small></div>
+<h3>6.2 IoT Architecture & Enabling Technologies (RFID, WSN, GPS, Embedded Systems, Big Data, Cloud) <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>16 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Describe any three enabling technologies for loT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Describe in brief the following enabling technologies of IoT. [6] i) WSN ii) Big Data Analytics"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Write Short note on: [6] i) RFID Tags ii) Significance of GPS in IOT"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Describe any three IOT enabling Technologies. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q8b)</code></small></div>
+<div class='variant-card'><em>"Write a note on the role of embedded system in implementation of IoT [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Identify and elaborate different IoT enabling technologies. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2026 (Q8b), Nov_Dec_2022 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Write a note on role of embedded system in implementation of IoT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Draw and explain the architecture of the IoT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Explain any two enabling technologies for IoT. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Explain role of cloud computing in IoT. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Describe in brief the following Enabling Technologies of IoT. [6] i) Communications Protocols ii) Embedded Systems"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Apply your understanding of IoT to analyze how various enabling technologies (such as RFID, sensor networks and cloud computing) contribute to the development of an IoT based smart system. Support your answer with real life use case. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q7a)</code></small></div>
+<div class='variant-card'><em>"Describe any three enabling technologies for IoT. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Demonstrate the role of embedded systems in the implementation of IoT by describing how they are integrated into a real-world IoT application. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Explain role of Big Data Analytics in context of IoT application. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q8c)</code></small></div>
+<h3>6.3 Online Social & Professional Networking in Cloud (Benefits, Services & Challenges) <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>10 times</strong> across <strong>8 of 8 End-Sem papers</strong> (100.0% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024, Nov_Dec_2025</code></li>
+</ul>
+<div class='variant-card'><em>"Write short note on Online social and Professional Networking. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Explain the benefits of Online Networking over Traditional Networking.[5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Explain the need for Professional Networking and its benefits. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Enlist the benefits of Online Networking over Traditional Networking?[5] eeee"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Write short note on Online Social and Professional Networking. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q7c)</code></small></div>
+<div class='variant-card'><em>"Describe the IoT application for online social networking. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2022 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Write short note on: Online social and Professional Networking. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Enlist the social networking services provided over web and mobile and elaborate the fields where it is popular. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Explain the challenges of Social Networking. [5]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Explain how IoT technologies like Smart Devices Integration, can be applied to enhance online social networking, with suitable examples. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2025 (Q7b)</code></small></div>
+<h3>6.4 IoT Innovative Applications (Smart Cities, Smart Traffic, Smart Agriculture) <span class="badge badge-critical">🔥 CRITICAL (Must Study)</span></h3>
+<ul>
+<li><strong>Repetition Statistics:</strong> <strong>8 times</strong> across <strong>7 of 8 End-Sem papers</strong> (87.5% probability)</li>
+<li><strong>Weightage:</strong> 5-6M | <strong>Appeared in:</strong> <code>May_Jun_2023, May_Jun_2024, May_Jun_2025, May_Jun_2026, Nov_Dec_2022, Nov_Dec_2023, Nov_Dec_2024</code></li>
+</ul>
+<div class='variant-card'><em>"Explain any three innovative applications of loT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2023 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Define IoT and Explain its any two innovative applications. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2024 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Explain the following applications: [6] i) Smart Traffic Management systems ii) Smart Agriculture Systems"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2025 (Q7b)</code></small></div>
+<div class='variant-card'><em>"Describe any two innovative applications of Internet of Things. [6]"</em><br><small style='color:#475569;'>Asked <strong>2x</strong>: <code>May_Jun_2026 (Q7a), Nov_Dec_2022 (Q8b)</code></small></div>
+<div class='variant-card'><em>"Write a note on [5] i) Smart Cities ii) Smart Agriculture System."</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>May_Jun_2026 (Q8c)</code></small></div>
+<div class='variant-card'><em>"Explain any three innovative applications of IoT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2023 (Q8a)</code></small></div>
+<div class='variant-card'><em>"Write a short note on innovative applications of IoT. [6]"</em><br><small style='color:#475569;'>Asked <strong>1x</strong>: <code>Nov_Dec_2024 (Q8b)</code></small></div>
+</body></html>
